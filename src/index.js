@@ -7,9 +7,9 @@ import store from './store'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <Provider store={store}>
+  <>
     <App />
-  </Provider>,
+  </>,
   document.getElementById('root')
 );
 
