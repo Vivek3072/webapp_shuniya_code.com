@@ -36,3 +36,32 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.editor_area{
+  width: 1000px;
+  height: 500px;
+  margin-right: 700px;
+}
+textarea{
+  position: relative;
+  width: 1000px;
+  height: 200px;
+}
+.submit-btn{
+  position: relative;
+  left: 100px;
+
+}
+.sub{
+  margin-right: 700px;
+}
+.text{
+  position: relative;
+  right: 820px;
+}
+.re{
+  position: relative;
+  right: 800px;
+}

@@ -47,18 +47,27 @@ export default class home extends Component {
     render() {
         return (
             <div>
+                <Helmet>
+                    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+                </Helmet>
                 <div className='row'>
                     <div className="col-sm-12 col-md-12 col-lg-12">
+                        <h1 className="text">कोड</h1>
+                        <textarea id="texteditor" className="editor_area">पश्य("hello ,world")</textarea>
                         <div className="menu-bar">
                             <button className="btn btn-sm btn-primary submit-btn" style={{ position: 'relative', top: '20%' }} onClick={this.submitHandler}>Submit</button>
                         </div>
-                        <textarea id="texteditor" className="editor_area">पश्य("hello ,world")</textarea>
                     </div>
                     <div className="col-sm-12 col-md-12 col-lg-12">
                         <div className="menu-bar"></div>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <h1 className="text , re">परिणाम</h1>
 
+                        <textarea className="sub" value={this.state.showtext}>  </textarea>
 
-                        {this.state.showtext}
+                        
 
                     </div>
                 </div>
