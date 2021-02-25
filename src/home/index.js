@@ -3,7 +3,6 @@ import axios from 'axios';
 
 
 
-
 export default class home extends Component {
 
     constructor(props) {
@@ -47,13 +46,15 @@ export default class home extends Component {
     }
     render() {
         return (
+            <div>
+            <br></br><br></br>
             <div className="container">
                 <div className='row'>
                     <div className="col-sm-12 col-md-12 col-lg-12">
                         <h1>कोड</h1>
-                        <textarea id="texteditor" className="editor_area">पश्य("hello ,world")</textarea>
+                        <textarea id="texteditor" className="editor_area">पश्य("नमस्ते दुनिया !!")</textarea>
                         <div className="menu-bar" style={{ position: 'relative', textAlign: 'end'}}>
-                            <button className="btn btn-sm btn-primary submit-btn" onClick={this.submitHandler}>Submit</button>
+                            <button className="btn btn-lg btn-primary submit-btn" onClick={this.submitHandler}>चल कोड</button>
                         </div>
                     </div>
                     <div className="col-sm-12 col-md-12 col-lg-12">
@@ -62,13 +63,13 @@ export default class home extends Component {
                         <br></br>
                         <br></br>
                         
-                        {this.state.isSubmited ? <h1>परिणाम</h1> : <h3>Submit to see result</h3>}
-                        {this.state.isloaded ? <textarea className="sub" value={this.state.showtext}>  </textarea> : <h6>Please wait ....................</h6>}
+                        {this.state.isSubmited ? <div><h1>परिणाम</h1>{this.state.isloaded ? <textarea className="sub" value={this.state.showtext}>  </textarea> : <div><h6>प्रोसेसिंग....................</h6><div className="loader"></div></div>}</div> : <h3>परिणाम देखने के लिए सबमिट करें</h3>}
 
                         
 
                     </div>
                 </div>
+            </div>
             </div>
         )
     }
