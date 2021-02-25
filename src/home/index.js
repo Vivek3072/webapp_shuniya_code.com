@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import Helmet from 'react-helmet'
 
 
 
@@ -11,12 +10,18 @@ export default class home extends Component {
         super(props);
         this.state = { 
           texteditor: '',
-          showtext : ''
+          showtext : '',
+          isSubmited : false,
+          isloaded : false
         };
       }
 
 
     submitHandler = () => {
+        this.setState({
+            isloaded : false,
+            isSubmited : true
+        })
         var getText = document.getElementById('texteditor').value;
         console.log(getText)
         
@@ -34,28 +39,21 @@ export default class home extends Component {
     }
         const res = axios.post("http://ec2-13-232-16-70.ap-south-1.compute.amazonaws.com:8000/api/v1/web_ide/", postContent, headers)
         .then( res => {
-        // dispatch({
-        //     type: CODE_SUBMIT_SUCCESS,
-        //     payload: res.data,
-            
-        // })
         this.setState({
-            showtext : res.data
+            showtext : res.data,
+            isloaded : true
         })
     })
     }
     render() {
         return (
-            <div>
-                <Helmet>
-                    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-                </Helmet>
+            <div className="container">
                 <div className='row'>
                     <div className="col-sm-12 col-md-12 col-lg-12">
-                        <h1 className="text">कोड</h1>
+                        <h1>कोड</h1>
                         <textarea id="texteditor" className="editor_area">पश्य("hello ,world")</textarea>
-                        <div className="menu-bar">
-                            <button className="btn btn-sm btn-primary submit-btn" style={{ position: 'relative', top: '20%' }} onClick={this.submitHandler}>Submit</button>
+                        <div className="menu-bar" style={{ position: 'relative', textAlign: 'end'}}>
+                            <button className="btn btn-sm btn-primary submit-btn" onClick={this.submitHandler}>Submit</button>
                         </div>
                     </div>
                     <div className="col-sm-12 col-md-12 col-lg-12">
@@ -63,9 +61,9 @@ export default class home extends Component {
                         <br></br>
                         <br></br>
                         <br></br>
-                        <h1 className="text , re">परिणाम</h1>
-
-                        <textarea className="sub" value={this.state.showtext}>  </textarea>
+                        
+                        {this.state.isSubmited ? <h1>परिणाम</h1> : <h3>Submit to see result</h3>}
+                        {this.state.isloaded ? <textarea className="sub" value={this.state.showtext}>  </textarea> : <h6>Please wait ....................</h6>}
 
                         
 
