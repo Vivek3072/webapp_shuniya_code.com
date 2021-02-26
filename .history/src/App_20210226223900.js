@@ -3,11 +3,11 @@
 
 import React, { Component} from "react";
 import { Switch, Route, Link } from "react-router-dom";
-import Login from "./components/Login";
-import Signup from "./components/Singup";
-// import Hello from "./hello";
+import Login from "./login";
+import Signup from "./signup";
+import Hello from "./hello";
 
-import axiosInstance from "./axiosApi";
+import axiosInstance from "../axiosApi";
 
 import home from './home'
 
@@ -36,17 +36,25 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
+            <div className="site">
                 <nav>
+                    <Link className={"nav-link"} to={"/"}>Home</Link>
+                    <Link className={"nav-link"} to={"/login/"}>Login</Link>
+                    <Link className={"nav-link"} to={"/signup/"}>Signup</Link>
+                    <Link className={"nav-link"} to={"/hello/"}>Hello</Link>
                     <button onClick={this.handleLogout}>Logout</button>
                 </nav>
-                 
+                <main>
+                    <h1>Ahhh after 10,000 years I'm free. Time to conquer the Earth!</h1>
+
                     <Switch>
-                     <Route exact path="/" component={home}  />
+                    <Route exact path="/" component={home}  />
                         <Route exact path={"/login/"} component={Login}/>
                         <Route exact path={"/signup/"} component={Signup}/>
+                        <Route exact path={"/hello/"} component={Hello}/>
+                        <Route path={"/"} render={() => <div>Home again</div>}/>
                     </Switch>
-               
+                </main>
             </div>
         );
     }

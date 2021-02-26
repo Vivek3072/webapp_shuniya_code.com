@@ -40,13 +40,15 @@ class App extends Component {
                 <nav>
                     <button onClick={this.handleLogout}>Logout</button>
                 </nav>
+                <main>
                  
+
                     <Switch>
                      <Route exact path="/" component={home}  />
                         <Route exact path={"/login/"} component={Login}/>
                         <Route exact path={"/signup/"} component={Signup}/>
                     </Switch>
-               
+                </main>
             </div>
         );
     }

@@ -51,8 +51,7 @@ export default class home extends Component {
           <div className="row">
             <div className="col-sm-12 col-md-12 col-lg-12">
               <h1>कोड</h1>
-              <textarea id="texteditor" className="editor_area" style={{width: "300px",
-    height: "200px"}}>
+              <textarea id="texteditor" className="editor_area">
                 पश्य("नमस्ते दुनिया !!")
               </textarea>
               <div

@@ -11,6 +11,7 @@ export default class home extends Component {
       isloaded: false,
     };
   }
+
   submitHandler = () => {
     this.setState({
       isloaded: false,
@@ -18,6 +19,7 @@ export default class home extends Component {
     });
     var getText = document.getElementById("texteditor").value;
     console.log(getText);
+
     var code_text_b64 = btoa(unescape(encodeURIComponent(getText)));
     const postBody = {
       code_file_name: "a.py",
@@ -51,8 +53,7 @@ export default class home extends Component {
           <div className="row">
             <div className="col-sm-12 col-md-12 col-lg-12">
               <h1>कोड</h1>
-              <textarea id="texteditor" className="editor_area" style={{width: "300px",
-    height: "200px"}}>
+              <textarea id="texteditor" className="editor_area">
                 पश्य("नमस्ते दुनिया !!")
               </textarea>
               <div

@@ -36,17 +36,21 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
+            <div className="site">
                 <nav>
                     <button onClick={this.handleLogout}>Logout</button>
                 </nav>
+                <main>
                  
+
                     <Switch>
-                     <Route exact path="/" component={home}  />
+                        <Route exact path="/" component={home}  />
                         <Route exact path={"/login/"} component={Login}/>
                         <Route exact path={"/signup/"} component={Signup}/>
+                        {/* <Route exact path={"/hello/"} component={Hello}/> */}
+                        <Route path={"/"} render={() => <div>Home again</div>}/>
                     </Switch>
-               
+                </main>
             </div>
         );
     }
