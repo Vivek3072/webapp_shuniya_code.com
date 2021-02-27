@@ -38,7 +38,7 @@ class App extends Component {
         const token=localStorage.getItem('access_token');
         console.log(token)
         return (
-            <div className="Container">
+            <div className="App">
                 <nav>
                 {token ? <button onClick={this.handleLogout}>Logout</button>:<Link to="/login">Login</Link> }   
                     

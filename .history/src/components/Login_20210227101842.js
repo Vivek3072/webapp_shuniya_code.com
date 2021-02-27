@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import axiosInstance from "../axiosApi";
-import { withRouter } from "react-router-dom";
 
 class Login extends Component {
   constructor(props) {
@@ -19,7 +17,6 @@ class Login extends Component {
 
   handleSubmitWThen(event) {
     event.preventDefault();
-   
     axiosInstance
       .post("/token/obtain/", {
         username: this.state.username,
@@ -30,7 +27,6 @@ class Login extends Component {
           "JWT " + result.data.access;
         localStorage.setItem("access_token", result.data.access);
         localStorage.setItem("refresh_token", result.data.refresh);
-   
       })
       .catch((error) => {
         throw error;
@@ -39,7 +35,6 @@ class Login extends Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-  
     try {
       const response = await axiosInstance.post("/token/obtain/", {
         username: this.state.username,
@@ -49,7 +44,6 @@ class Login extends Component {
         "JWT " + response.data.access;
       localStorage.setItem("access_token", response.data.access);
       localStorage.setItem("refresh_token", response.data.refresh);
-      this.props.history.push("/")
       return response;
     } catch (error) {
       throw error;
@@ -94,5 +88,4 @@ class Login extends Component {
     );
   }
 }
-
-export default withRouter(Login);
+export default Login;

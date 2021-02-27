@@ -1,4 +1,6 @@
 
+
+
 import React, { Component} from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import Login from "./components/Login";
@@ -8,7 +10,7 @@ import Signup from "./components/Singup";
 import axiosInstance from "./axiosApi";
 
 import home from './home'
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class App extends Component {
 
@@ -35,12 +37,11 @@ class App extends Component {
    
 
     render() {
-        const token=localStorage.getItem('access_token');
-        console.log(token)
+        const token=localStorage.getItem('access-token');
         return (
-            <div className="Container">
+            <div className="App">
                 <nav>
-                {token ? <button onClick={this.handleLogout}>Logout</button>:<Link to="/login">Login</Link> }   
+                {token ?  <button onClick={this.handleLogout}>Logout</button>:<Link to="/login">Login</Link> }   
                     
                 </nav>
                     <Switch>
