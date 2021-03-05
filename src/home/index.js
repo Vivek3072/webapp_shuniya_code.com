@@ -1,8 +1,14 @@
-import React, { Component } from "react";
+import React, { Fragment, Component } from "react";
 import axios from "axios";
 import './Index.css'
 import FilterOptions from './filteroptions';
 import FilterItems from './filteritems';
+
+import { jsonData } from './../code_data/data1';
+
+import { ReactTransliterate } from "react-transliterate";
+import "react-transliterate/dist/index.css";
+
 var filterData = [
   { name: 'Aang', bender: 'yes', nation: 'Air', person: 'yes', show: 'ATLA' },
   { name: 'Appa', bender: 'yes', nation: 'Air', person: 'no', show: 'ATLA' },
@@ -14,10 +20,10 @@ var filterData = [
   { name: 'Jinora', bender: 'yes', nation: 'Air', person: 'yes', show: 'LOK' },
   { name: 'Lin Beifong', bender: 'yes', nation: 'Republic City', person: 'yes', show: 'LOK' },
   { name: 'Pabu', bender: 'no', nation: 'Fire', person: 'no', show: 'LOK' },
-  { name: 'Momo', bender: 'no', nation: 'Air',  person: 'no', show: 'ATLA'},
+  { name: 'Momo', bender: 'no', nation: 'Air', person: 'no', show: 'ATLA' },
   { name: 'Mai', bender: 'no', nation: 'Fire', person: 'yes', show: 'ATLA' },
   { name: 'Mako', bender: 'yes', nation: 'Fire', person: 'yes', show: 'LOK' },
-  { name: 'Naga', bender: 'no', nation: 'Water', person: 'no', show: 'LOK'},
+  { name: 'Naga', bender: 'no', nation: 'Water', person: 'no', show: 'LOK' },
   { name: 'Sokka', bender: 'no', nation: 'Water', person: 'yes', show: 'ATLA' },
   { name: 'Suki', bender: 'no', nation: 'Earth', person: 'yes', show: 'ATLA' },
   { name: 'Tenzin', bender: 'yes', nation: 'Air', person: 'yes', show: 'LOK' },
@@ -44,30 +50,30 @@ export default class home extends Component {
       show: '',
     };
   }
-  filterItems=(val, type)=> {
+  filterItems = (val, type) => {
     switch (type) {
-     case 'bender':
-       this.setState({bender: val});
-       break;
-     case 'nation':
-       this.setState({nation: val});
-       break;
-     case 'person': 
-       this.setState({person: val});
-       break;
-     case 'show':
-       this.setState({show: val});
-       break;
-     default:
-       break;
-   }
- };
+      case 'bender':
+        this.setState({ bender: val });
+        break;
+      case 'nation':
+        this.setState({ nation: val });
+        break;
+      case 'person':
+        this.setState({ person: val });
+        break;
+      case 'show':
+        this.setState({ show: val });
+        break;
+      default:
+        break;
+    }
+  };
   submitHandler = () => {
     this.setState({
       isloaded: false,
       isSubmited: true,
     });
-    var getText = document.getElementById("texteditor").value;
+    var getText = this.state.texteditor;
     console.log(getText);
     var code_text_b64 = btoa(unescape(encodeURIComponent(getText)));
     const postBody = {
@@ -93,86 +99,109 @@ export default class home extends Component {
         });
       });
   };
-  login=()=>{
+  login = () => {
     this.props.history.push('/login')
-}
+  }
+  handleCopy = (e) => {
+    this.setState({ texteditor: e.target.value })
+  }
+  handleChange = (code) => {
+    this.setState({ texteditor: code })
+  }
+
+
+
+  //TODO add a prims editor to make it even better
   render() {
-    const token=localStorage.getItem('access_token');
+    const token = localStorage.getItem('access_token');
     var filteredItems = this.state.data;
     var state = this.state;
-    ["bender", "nation", "person", "show"].forEach(function(filterBy) {
+    ["bender", "nation", "person", "show"].forEach(function (filterBy) {
       var filterValue = state[filterBy];
       if (filterValue) {
-        filteredItems = filteredItems.filter(function(item) {
+        filteredItems = filteredItems.filter(function (item) {
           return item[filterBy] === filterValue;
         });
       }
     });
-    var benderArray = this.state.data.map(function(item) { return item.bender });
-    var nationArray = this.state.data.map(function(item) { return item.nation });
-    var personArray = this.state.data.map(function(item) { return item.person });
-    var showArray = this.state.data.map(function(item) { return item.show });
+    var benderArray = this.state.data.map(function (item) { return item.bender });
+    var nationArray = this.state.data.map(function (item) { return item.nation });
+    var personArray = this.state.data.map(function (item) { return item.person });
+    var showArray = this.state.data.map(function (item) { return item.show });
     benderArray.unshift("");
     nationArray.unshift("");
     personArray.unshift("");
     showArray.unshift("");
     return (
       <>
-       <div className="row">
-      
-            <div className="col-sm-6 col-md-4 col-lg-4">
-          {token? null : <button type="button" className="btn btn-secondary userLogin" onClick={this.login}>Login</button>}
+        <div className="row">
 
-               <div>
-                 <h3>category </h3>
-                 <h3>class </h3>
-                 <h3>subject </h3>
-                 <h3>source_book_or_board</h3>
-               </div>
-              
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-6">
+          <div className="col-sm-6 col-md-4 col-lg-4">
+            {token ? null : <button type="button" className="btn btn-secondary userLogin" onClick={this.login}>Login</button>}
+            {
+              jsonData.data.map((question) => {
+                return (
+                  <div key={question.question_no}>
+                    <div>{question.question_no}</div>
+                    <div>{question.question_statement}</div>
+                    <div>{question.code_file}</div>
+                    <button value={question.code} onClick={this.handleCopy}>Code</button>
+                  </div>
+                )
+              })
+            }
+
+          </div>
+          <div className="col-sm-12 col-md-6 col-lg-6">
             <h1>कोड</h1>
-              <textarea id="texteditor" className="editorArea">
-                पश्य("नमस्ते दुनिया !!")
-              </textarea>
-              <div
-                className="menu-bar"
-                style={{ position: "relative", textAlign: "end" }}
-              >
-                <button
-                  className="btn btn-lg btn-primary submit-btn"
-                  onClick={this.submitHandler}
-                >
-                  चल कोड
-                </button>
-              </div>
-              {this.state.isSubmited ? (
-                <div>
-                  <h1>परिणाम</h1>
-                  {this.state.isloaded ? (
-                    <textarea className="sub" value={this.state.showtext}>
-                      {" "}
-                    </textarea>
-                  ) : (
-                    <div>
-                      <h6>प्रोसेसिंग....................</h6>
-                      <div className="loader"></div>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <h3>परिणाम देखने के लिए सबमिट करें</h3>
-              )}
+            <div>
+              <ReactTransliterate
+                className="editorArea"
+                value={this.state.texteditor}
+                onChange={(e) => this.setState({ texteditor: e.target.value })}
+                lang="hi"
+              />
+
             </div>
-            <div className="col-sm-12" col-md-2 col-lg-2></div>
+
+
+            <div
+              className="menu-bar"
+              style={{ position: "relative", textAlign: "end" }}
+            >
+              <button
+                className="btn btn-lg btn-primary submit-btn"
+                onClick={this.submitHandler}
+              >
+                चल कोड
+                </button>
+            </div>
+            {this.state.isSubmited ? (
+              <div>
+                <h1>परिणाम</h1>
+                {this.state.isloaded ? (
+                  <textarea className="sub" readOnly={true} value={this.state.showtext}>
+                    {" "}
+                  </textarea>
+                ) : (
+                  <div>
+                    <h6>प्रोसेसिंग....................</h6>
+                    <div className="loader"></div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <h3>परिणाम देखने के लिए सबमिट करें</h3>
+            )}
+          </div>
+          <div className="col-sm-12" col-md-2 col-lg-2></div>
         </div>
         <div className="row">
-        <div className="menu-bar"></div>
-             
+          <div className="menu-bar"></div>
+
         </div>
       </>
-     
+
     );
   }
 }
