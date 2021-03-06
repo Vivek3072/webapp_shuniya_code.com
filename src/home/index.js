@@ -161,21 +161,6 @@ export default class home extends Component {
 
           <div className="col-sm-6 col-md-4 col-lg-4">
             {token ? null : <button type="button" className="btn btn-secondary userLogin" onClick={this.login}>Login</button>}
-            <QuestionList handleCopy={this.handleCopy} code={this.state.texteditor}/>
-          </div>
-          <div className="col-sm-12 col-md-6 col-lg-6">
-            <h1>कोड</h1>
-            <div>
-              <ReactTransliterate
-                className="editorArea"
-                Component="textarea"
-                value={this.state.texteditor}
-                onChange={(e) => this.setState({ texteditor: e.target.value })}
-                onKeyDown={this.handleKeyDown}
-                lang="hi"
-              />
-            </div>
-
             <div>
             <Highlight {...defaultProps} theme={theme} code={syntaxedValue} language="py">
     {({ className, style, tokens, getLineProps, getTokenProps }) => (
@@ -191,6 +176,22 @@ export default class home extends Component {
     )}
   </Highlight>
             </div>
+            <QuestionList handleCopy={this.handleCopy} code={this.state.texteditor}/>
+          </div>
+          <div className="col-sm-12 col-md-6 col-lg-6">
+            <h1>कोड</h1>
+            <div>
+              <ReactTransliterate
+                className="editorArea"
+                Component="textarea"
+                value={this.state.texteditor}
+                onChange={(e) => this.setState({ texteditor: e.target.value })}
+                onKeyDown={this.handleKeyDown}
+                lang="hi"
+              />
+            </div>
+
+            
             <div
               className="menu-bar"
               style={{ position: "relative", textAlign: "end" }}
