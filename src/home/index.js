@@ -4,10 +4,15 @@ import './Index.css'
 import FilterOptions from './filteroptions';
 import FilterItems from './filteritems';
 
-import { jsonData } from './../code_data/data1';
 
 import { ReactTransliterate } from "react-transliterate";
 import "react-transliterate/dist/index.css";
+
+import Highlight, { defaultProps } from "prism-react-renderer";
+import theme from "prism-react-renderer/themes/nightOwl";
+import { Pre } from "./styles";
+import QuestionList from "../components/QuestionList";
+
 
 var filterData = [
   { name: 'Aang', bender: 'yes', nation: 'Air', person: 'yes', show: 'ATLA' },
@@ -108,10 +113,25 @@ export default class home extends Component {
   handleChange = (code) => {
     this.setState({ texteditor: code })
   }
+  handleKeyDown = evt => {
+    let value = this.state.texteditor,
+      selStartPos = evt.currentTarget.selectionStart;
 
+    console.log(evt.currentTarget);
 
+    // handle 4-space indent on
+    if (evt.key === "Tab") {
+      value =
+        value.substring(0, selStartPos) +
+        "    " +
+        value.substring(selStartPos, value.length);
+      evt.currentTarget.selectionStart = selStartPos + 3;
+      evt.currentTarget.selectionEnd = selStartPos + 4;
+      evt.preventDefault();
 
-  //TODO add a prims editor to make it even better
+      this.setState({texteditor:value});
+    }
+  };
   render() {
     const token = localStorage.getItem('access_token');
     var filteredItems = this.state.data;
@@ -132,39 +152,45 @@ export default class home extends Component {
     nationArray.unshift("");
     personArray.unshift("");
     showArray.unshift("");
-    return (
+
+    const syntaxedValue = this.state.texteditor.trim();
+
+    return (  
       <>
         <div className="row">
 
           <div className="col-sm-6 col-md-4 col-lg-4">
             {token ? null : <button type="button" className="btn btn-secondary userLogin" onClick={this.login}>Login</button>}
-            {
-              jsonData.data.map((question) => {
-                return (
-                  <div key={question.question_no}>
-                    <div>{question.question_no}</div>
-                    <div>{question.question_statement}</div>
-                    <div>{question.code_file}</div>
-                    <button value={question.code} onClick={this.handleCopy}>Code</button>
-                  </div>
-                )
-              })
-            }
-
+            <QuestionList handleCopy={this.handleCopy} code={this.state.texteditor}/>
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6">
             <h1>कोड</h1>
             <div>
               <ReactTransliterate
                 className="editorArea"
+                Component="textarea"
                 value={this.state.texteditor}
                 onChange={(e) => this.setState({ texteditor: e.target.value })}
+                onKeyDown={this.handleKeyDown}
                 lang="hi"
               />
-
             </div>
 
-
+            <div>
+            <Highlight {...defaultProps} theme={theme} code={syntaxedValue} language="py">
+    {({ className, style, tokens, getLineProps, getTokenProps }) => (
+      <Pre className={className} style={style}>
+        {tokens.map((line, i) => (
+          <div {...getLineProps({ line, key: i })}>
+            {line.map((token, key) => (
+              <span {...getTokenProps({ token, key })} />
+            ))}
+          </div>
+        ))}
+      </Pre>
+    )}
+  </Highlight>
+            </div>
             <div
               className="menu-bar"
               style={{ position: "relative", textAlign: "end" }}
