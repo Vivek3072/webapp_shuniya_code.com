@@ -158,10 +158,9 @@ export default class home extends Component {
     return (  
       <>
         <div className="row">
-
           <div className="col-sm-6 col-md-4 col-lg-4">
             {token ? null : <button type="button" className="btn btn-secondary userLogin" onClick={this.login}>Login</button>}
-            <div>
+            <div >
             <Highlight {...defaultProps} theme={theme} code={syntaxedValue} language="py">
     {({ className, style, tokens, getLineProps, getTokenProps }) => (
       <Pre className={className} style={style}>
@@ -182,16 +181,14 @@ export default class home extends Component {
             <h1>कोड</h1>
             <div>
               <ReactTransliterate
-                className="editorArea"
+                className="editorArea rounded border"
                 Component="textarea"
                 value={this.state.texteditor}
                 onChange={(e) => this.setState({ texteditor: e.target.value })}
                 onKeyDown={this.handleKeyDown}
                 lang="hi"
               />
-            </div>
-
-            
+            </div> 
             <div
               className="menu-bar"
               style={{ position: "relative", textAlign: "end" }}
