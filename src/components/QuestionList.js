@@ -1,5 +1,4 @@
 import React,{useEffect, useState} from 'react';
-import { jsonData } from './../code_data/data1';
 import axios from 'axios';
 
 const  QuestionList = (props) => {
@@ -30,7 +29,7 @@ const  QuestionList = (props) => {
             const active = tag === section? true: false;
             return (
               <li className="nav-item fw-bold" key={tag}>
-                <button className={active? "btn-primary rounded fw-bold" : "btn rounded fw-bold" } onClick={(e) => setSection(e.target.value)} value={tag} aria-current="page" >{tag}</button>
+                <button className={active? "btn-dark rounded fw-bold" : "btn rounded fw-bold" } onClick={(e) => setSection(e.target.value)} value={tag} aria-current="page" >{tag}</button>
               </li> 
             )
           })}
@@ -43,7 +42,7 @@ const  QuestionList = (props) => {
             return (
               <div key={question.question_statement} className="list-group-item d-flex justify-content-between align-items-center">
                     <p className="list-item">{ question.question_statement}</p>
-                    <button className="btn-primary rounded" value={decodedCode} onClick={props.handleCopy}>Code</button>
+                    <button className="btn-dark rounded" value={decodedCode} onClick={props.handleCopy}>Code</button>
               </div>
             )
           })}

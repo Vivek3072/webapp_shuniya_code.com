@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   font-family: sans-serif;
   text-align: center;
+  overflow: hidden;
 `;
 
 export const Pre = styled.pre`
@@ -10,6 +11,9 @@ export const Pre = styled.pre`
   margin: 1em 0;
   padding: 0.5em;
   overflow: scroll;
+  overflow-y: hidden;
+  overflow-x: hidden;
+
 
   & .token-line {
     line-height: 1.3em;

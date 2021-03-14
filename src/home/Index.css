@@ -6,4 +6,11 @@
     height: 350px;
 }
 
+.SideContainer {
+    width: 50px;
+    max-height : 100vh;
+    overflow-y: scroll;
+}
+
+
 

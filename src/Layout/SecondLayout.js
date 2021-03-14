@@ -1,40 +1,11 @@
 import React, { Fragment, Component } from "react";
 import axios from "axios";
-import './Index.css'
-import FilterOptions from './filteroptions';
-import FilterItems from './filteritems';
-
+import './../index.css';
 
 import CodeEditor from '../CodeEditor/CodeEditor';
-import QuestionList from "../components/QuestionList";
 
+import Class from "./../Pages/Class"
 
-
-var filterData = [
-  { name: 'Aang', bender: 'yes', nation: 'Air', person: 'yes', show: 'ATLA' },
-  { name: 'Appa', bender: 'yes', nation: 'Air', person: 'no', show: 'ATLA' },
-  { name: 'Asami', bender: 'no', nation: 'Republic City', person: 'yes', show: 'LOK' },
-  { name: 'Azula', bender: 'yes', nation: 'Fire', person: 'yes', show: 'ATLA' },
-  { name: 'Bolin', bender: 'yes', nation: 'Earth', person: 'yes', show: 'LOK' },
-  { name: 'Katara', bender: 'yes', nation: 'Water', person: 'yes', show: 'ATLA' },
-  { name: 'Korra', bender: 'yes', nation: 'Water', person: 'yes', show: 'LOK' },
-  { name: 'Jinora', bender: 'yes', nation: 'Air', person: 'yes', show: 'LOK' },
-  { name: 'Lin Beifong', bender: 'yes', nation: 'Republic City', person: 'yes', show: 'LOK' },
-  { name: 'Pabu', bender: 'no', nation: 'Fire', person: 'no', show: 'LOK' },
-  { name: 'Momo', bender: 'no', nation: 'Air', person: 'no', show: 'ATLA' },
-  { name: 'Mai', bender: 'no', nation: 'Fire', person: 'yes', show: 'ATLA' },
-  { name: 'Mako', bender: 'yes', nation: 'Fire', person: 'yes', show: 'LOK' },
-  { name: 'Naga', bender: 'no', nation: 'Water', person: 'no', show: 'LOK' },
-  { name: 'Sokka', bender: 'no', nation: 'Water', person: 'yes', show: 'ATLA' },
-  { name: 'Suki', bender: 'no', nation: 'Earth', person: 'yes', show: 'ATLA' },
-  { name: 'Tenzin', bender: 'yes', nation: 'Air', person: 'yes', show: 'LOK' },
-  { name: 'Toph Beifong', bender: 'yes', nation: 'Earth', person: 'yes', show: 'ATLA' },
-  { name: 'Ty Lee', bender: 'no', nation: 'Fire', person: 'yes', show: 'ATLA' },
-  { name: 'Uncle Iroh', bender: 'yes', nation: 'Fire', person: 'yes', show: 'ATLA' },
-  { name: 'Varrick', bender: 'no', nation: 'Republic City', person: 'yes', show: 'LOK' },
-  { name: 'Zhu Li', bender: 'no', nation: 'Republic City', person: 'yes', show: 'LOK' },
-  { name: 'Zuko', bender: 'yes', nation: 'Fire', person: 'yes', show: 'ATLA' }
-];
 
 export default class home extends Component {
   constructor(props) {
@@ -44,31 +15,13 @@ export default class home extends Component {
       showtext: "",
       isSubmited: false,
       isloaded: false,
-      data: filterData,
       bender: '',
       nation: '',
       person: '',
       show: '',
     };
   }
-  filterItems = (val, type) => {
-    switch (type) {
-      case 'bender':
-        this.setState({ bender: val });
-        break;
-      case 'nation':
-        this.setState({ nation: val });
-        break;
-      case 'person':
-        this.setState({ person: val });
-        break;
-      case 'show':
-        this.setState({ show: val });
-        break;
-      default:
-        break;
-    }
-  };
+  
   submitHandler = () => {
     this.setState({
       isloaded: false,
@@ -100,10 +53,16 @@ export default class home extends Component {
         });
       });
   };
-  
+  login = () => {
+    this.props.history.push('/login')
+  }
+  class = () => {
+    this.props.history.push('/class')
+  }
   handleCopy = (e) => {
     this.setState({ texteditor: e.target.value })
   }
+  
   handleCode = (code) => {
     this.setState({texteditor: code})
   }
@@ -130,30 +89,15 @@ export default class home extends Component {
     }
   };
   render() {
-    const token = localStorage.getItem('access_token');
-    var filteredItems = this.state.data;
-    var state = this.state;
-    ["bender", "nation", "person", "show"].forEach(function (filterBy) {
-      var filterValue = state[filterBy];
-      if (filterValue) {
-        filteredItems = filteredItems.filter(function (item) {
-          return item[filterBy] === filterValue;
-        });
-      }
-    });
-    var benderArray = this.state.data.map(function (item) { return item.bender });
-    var nationArray = this.state.data.map(function (item) { return item.nation });
-    var personArray = this.state.data.map(function (item) { return item.person });
-    var showArray = this.state.data.map(function (item) { return item.show });
-    benderArray.unshift("");
-    nationArray.unshift("");
-    personArray.unshift("");
-    showArray.unshift("");
     return (  
       <>
         <div className="row">
           <div className="col-sm-6 col-md-4 col-lg-4">
-            <QuestionList handleCopy={this.handleCopy} code={this.state.texteditor}/>
+              <div className="ClassContainer">
+              <Class 
+              handleCopy={this.handleCopy}
+              />
+              </div>
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6">
             <div>कोड</div>
