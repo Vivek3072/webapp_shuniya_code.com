@@ -1,17 +1,17 @@
 import React, {Fragment, } from 'react';
 import { ReactTransliterate } from "./Translator/index";
 
-//using context to get the texteditor state
-//then
 
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import theme from 'prism-react-renderer/themes/nightOwl'
+
 
 
 const styles = {
     root: {
       boxSizing: 'border-box',
       fontFamily: '"Dank Mono", "Fira Code", monospace',
+      minHeight: '200px', 
       ...theme.plain
     }
   }

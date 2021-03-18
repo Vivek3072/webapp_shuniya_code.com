@@ -6,7 +6,11 @@ import Login from './Login';
 const LoginCard = () => {
     const [show, setShow] = useState(false);
     let history = useHistory();
+
     const handleClose = () => {
+      setShow(false)
+    }
+    const handleSubmit = () => {
       history.push('/signup')
       setShow(false)
     }
@@ -25,7 +29,7 @@ const LoginCard = () => {
         </Modal.Body>
         <Modal.Footer>
           <h4>Don't have an account?</h4>
-          <Button  variant="secondary" onClick={handleClose}>
+          <Button  variant="secondary" onClick={handleSubmit}>
             Signup
           </Button>
         </Modal.Footer>

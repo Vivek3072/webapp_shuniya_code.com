@@ -4,8 +4,8 @@ import axios from 'axios';
 const  QuestionList = (props) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const sectionList = ['इनपुट', 'पश्य', 'लिस्ट']
-  const [section, setSection ] = useState('इनपुट');
+  const sectionList = [ 'पश्य' , 'लिस्ट', 'इनपुट']
+  const [section, setSection ] = useState( 'पश्य' );
 
   useEffect (() => {
     async function fetchData() {

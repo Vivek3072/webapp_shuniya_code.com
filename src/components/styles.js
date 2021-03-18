@@ -8,8 +8,9 @@ export const Wrapper = styled.div`
 
 export const Pre = styled.pre`
   text-align: left;
+  font-size: 16px;
   margin: 1em 0;
-  padding: 0.5em;
+  padding: 1em;
   overflow: scroll;
   overflow-y: hidden;
   overflow-x: hidden;

@@ -7,7 +7,9 @@ import FilterItems from './filteritems';
 
 import CodeEditor from '../CodeEditor/CodeEditor';
 import QuestionList from "../components/QuestionList";
+import CodeSnippet from '../components/CodeSnippet';
 
+import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
 
 
 var filterData = [
@@ -43,6 +45,7 @@ export default class home extends Component {
       texteditor: "",
       showtext: "",
       isSubmited: false,
+      showSnippet: false,
       isloaded: false,
       data: filterData,
       bender: '',
@@ -50,6 +53,7 @@ export default class home extends Component {
       person: '',
       show: '',
     };
+    this.componentRef = React.createRef();
   }
   filterItems = (val, type) => {
     switch (type) {
@@ -75,7 +79,6 @@ export default class home extends Component {
       isSubmited: true,
     });
     var getText = this.state.texteditor;
-    console.log(getText);
     var code_text_b64 = btoa(unescape(encodeURIComponent(getText)));
     const postBody = {
       code_file_name: "a.py",
@@ -114,8 +117,6 @@ export default class home extends Component {
     let value = this.state.texteditor,
       selStartPos = evt.currentTarget.selectionStart;
 
-    console.log(evt.currentTarget);
-
     // handle 4-space indent on
     if (evt.key === "Tab") {
       value =
@@ -151,9 +152,20 @@ export default class home extends Component {
     showArray.unshift("");
     return (  
       <>
-        <div className="row">
+        <div className="row page" >
           <div className="col-sm-6 col-md-4 col-lg-4">
-            <QuestionList handleCopy={this.handleCopy} code={this.state.texteditor}/>
+       <button onClick={() => exportComponentAsJPEG(this.componentRef)}>
+         Export As JPEG
+       </button>
+       <button onClick={() => exportComponentAsPDF(this.componentRef)}>
+         Export As PDF
+       </button>
+       <button onClick={() => exportComponentAsPNG(this.componentRef)}>
+         Export As PNG
+       </button>
+           
+            <CodeSnippet syntaxedValue={this.state.texteditor}  ref={this.componentRef} />
+            <QuestionList  handleCopy={this.handleCopy} code={this.state.texteditor}/>
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6">
             <div>कोड</div>
@@ -192,7 +204,6 @@ export default class home extends Component {
               <h3>परिणाम देखने के लिए सबमिट करें</h3>
             )}
           </div>
-          <div className="col-sm-12" col-md-2 col-lg-2></div>
         </div>
         <div className="row">
           <div className="menu-bar"></div>

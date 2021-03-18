@@ -75,7 +75,7 @@ class Login extends Component {
             />
           </div>
           <div className="form-group">
-            <label for="exampleInputPassword1">Password</label>
+            <label for="exampleInputPassword1">Password ( must be more than 8 letters)</label>
             <input
               type="password"
               name="password"

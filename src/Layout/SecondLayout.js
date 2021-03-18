@@ -28,7 +28,6 @@ export default class home extends Component {
       isSubmited: true,
     });
     var getText = this.state.texteditor;
-    console.log(getText);
     var code_text_b64 = btoa(unescape(encodeURIComponent(getText)));
     const postBody = {
       code_file_name: "a.py",
@@ -73,7 +72,6 @@ export default class home extends Component {
     let value = this.state.texteditor,
       selStartPos = evt.currentTarget.selectionStart;
 
-    console.log(evt.currentTarget);
 
     // handle 4-space indent on
     if (evt.key === "Tab") {
@@ -112,10 +110,10 @@ export default class home extends Component {
               style={{ position: "relative", textAlign: "end" }}
             >
               <button
-                className="btn btn-lg btn-primary submit-btn"
+                className="btn .btn-sm btn-dark mt-4 submit-btn"
                 onClick={this.submitHandler}
               >
-                चल कोड
+                चलाओ कोड
                 </button>
             </div>
             {this.state.isSubmited ? (
@@ -136,7 +134,7 @@ export default class home extends Component {
               <h3>परिणाम देखने के लिए सबमिट करें</h3>
             )}
           </div>
-          <div className="col-sm-12" col-md-2 col-lg-2></div>
+        
         </div>
         <div className="row">
           <div className="menu-bar"></div>
