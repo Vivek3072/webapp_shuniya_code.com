@@ -12,5 +12,12 @@
     overflow-y: scroll;
 }
 
+.buttonStyle {
+    all: unset;
+    margin-bottom: 1rem;
+}
+.buttonStyle:hover {
+    text-decoration: underline;
+}
 
 
