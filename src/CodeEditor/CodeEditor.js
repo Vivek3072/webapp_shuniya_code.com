@@ -1,9 +1,10 @@
-import React, {Fragment, } from 'react';
+import React, {Fragment, useState, } from 'react';
 import { ReactTransliterate } from "./Translator/index";
-
 
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import theme from 'prism-react-renderer/themes/nightOwl'
+
+import {languages} from './languages';
 
 
 
@@ -18,6 +19,10 @@ const styles = {
 
 
 const CodeEditor = ({texteditor, handleChange, handleKeyDown, handleCode}) => {
+  const [text, setText] = useState("");
+
+  const [lang, setLang] = useState("hi");
+
     const highlight = code => (
         <Highlight {...defaultProps} theme={theme} code={code} language="py">
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
@@ -35,6 +40,18 @@ const CodeEditor = ({texteditor, handleChange, handleKeyDown, handleCode}) => {
 
     return (
         <div>
+          <select
+        className="language-dropdown mb-4"
+        value={lang}
+        onChange={(e) => setLang(e.target.value)}
+      >
+        {languages.map((l) => (
+          <option key={l.value} value={l.value}>
+            {l.label}
+          </option>
+        ))}
+      </select>
+            
             <ReactTransliterate 
                 language="python"
                 Component="textarea"
@@ -44,8 +61,8 @@ const CodeEditor = ({texteditor, handleChange, handleKeyDown, handleCode}) => {
                 onKeyDown={handleKeyDown}
                 padding={14}
                 style={styles.root}
-                lang="hi"
-                className="rounded "
+                lang={lang}
+                className="rounded mb-3"
               />
         </div>
     )
