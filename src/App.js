@@ -7,7 +7,8 @@ import Signup from "./components/Singup";
 import HomePage from './homepage'
 
 import Class from "./Pages/Class";
-import Form from "./components/Form";   
+ 
+import TextEditor from './TextEditor'; 
 import NotFound from "./components/NotFound"
 import SecondLayout from "./Layout/SecondLayout";
 // import Hello from "./hello";
@@ -37,7 +38,7 @@ const App = () => {
                         <Route exact path={"/signup/"} component={Signup}/>
                         <Route exact path={"/class/:id"} component={SecondLayout} />
                         <Route exact path={"/homepage"} component={HomePage} />
-                        <Route exact path={"/write"} component={Form} />
+                        <Route exact path={"/write"} component={ TextEditor} />
                         <Route exact path={"/*"} component={NotFound} />
                     </Switch>
                 </CSSTransition>

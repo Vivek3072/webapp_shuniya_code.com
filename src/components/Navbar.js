@@ -8,11 +8,41 @@ import  { useHistory } from 'react-router-dom';
 import axiosInstance from "./../axiosApi";
 import LoginCard from './LoginCard';
 
-
+import Axios from 'axios';
 
 const NavComponent = () => {
   const token=localStorage.getItem('access_token');
   let history = useHistory()
+
+
+  const paymentHandler = async (e) => {
+    const API_URL = 'http://localhost:8000/'
+    e.preventDefault();
+    const orderUrl = `${API_URL}order`;
+    const response = await Axios.get(orderUrl);
+    const { data } = response;
+    const options = {
+        key: process.env.RAZOR_PAY_TEST_KEY,
+        name: "Your App Name",
+        description: "Some Description",
+        order_id: data.id,
+        handler: async (response) => {
+            try {
+                const paymentId = response.razorpay_payment_id;
+                const url = `${API_URL}capture/${paymentId}`;
+                const captureResponse = await Axios.post(url, {})
+                console.log(captureResponse.data);
+            } catch (err) {
+                console.log(err);
+            }
+        },
+        theme: {
+            color: "#686CFD",
+        },
+    };
+    const rzp1 = new window.Razorpay(options);
+    rzp1.open();
+};
 
   const handleLogout = async () => {
     try{  
@@ -39,35 +69,32 @@ const NavComponent = () => {
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
     <Nav className="mr-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <NavDropdown title="Student" id="basic-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Data Structure</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Algorithm</NavDropdown.Item>
-      </NavDropdown >
+      <Nav.Link href="/homepage">Home</Nav.Link>
+      
       <NavDropdown title="Class" id="basic-nav-dropdown">
+      <NavDropdown.Item href="/class/class_6">Class 6</NavDropdown.Item>
       <NavDropdown.Item href="/class/class_7">Class 7</NavDropdown.Item>
         <NavDropdown.Item href="/class/class_8">Class 8</NavDropdown.Item>
         <NavDropdown.Item href="/class/class_9">Class 9</NavDropdown.Item>
         <NavDropdown.Item href="/class/class_10">Class 10</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.4">More</NavDropdown.Item>
       </NavDropdown>
     </Nav>
     <Nav>
       {!token? (
         <>
         <LoginCard/>
+      <Nav.Link href="/write"> Write</Nav.Link>
+
         </>
       ): (
         <>
-        <Button type="button" variant="light" className="btn text-muted" onClick={handleLogout}>
-          LogOut
-        </Button>
+        <NavDropdown title="Account" id="basic-nav-dropdown">
+      <NavDropdown.Item href="/user/profile"> Profile </NavDropdown.Item>
+        <NavDropdown.Item type="button" onClick={handleLogout} >LogOut</NavDropdown.Item>
+      </NavDropdown>
         </>
       )}
-      
-      <Nav.Link href="/form">Write</Nav.Link>
-      <Button type="button" variant="" className="btn btn-dark fw-bold">
+      <Button type="button" variant="" onClick={paymentHandler} className="ml-3 btn btn-dark fw-bold">
       सदस्य बने </Button>
     </Nav>
   </Navbar.Collapse>

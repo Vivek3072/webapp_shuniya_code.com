@@ -8,6 +8,7 @@ import {languages} from './languages';
 
 
 
+
 const styles = {
     root: {
       boxSizing: 'border-box',
@@ -19,7 +20,6 @@ const styles = {
 
 
 const CodeEditor = ({texteditor, handleChange, handleKeyDown, handleCode}) => {
-  const [text, setText] = useState("");
 
   const [lang, setLang] = useState("hi");
 
