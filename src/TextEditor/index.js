@@ -214,9 +214,9 @@ const FormContainer = () => {
                 </Col>
               </Row>
               <Row>
-                <Button variant="dark" type="submit">
+                <Button variant="dark" type="button" onClick={() => alert('this is submit')}>
                   Submit
-    </Button>
+                </Button>
               </Row>
             </Container>
 
