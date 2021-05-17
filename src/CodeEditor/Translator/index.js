@@ -194,7 +194,7 @@ export const ReactTransliterate = ({
   const handleKeyDown = (event) => {
     const helperVisible = options.length > 0;
 
-    if (helperVisible) {
+    if (helperVisible && translate) {
       switch (event.keyCode) {
         case KEY_ESCAPE:
           event.preventDefault();
