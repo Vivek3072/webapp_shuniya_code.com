@@ -23,6 +23,8 @@ const CodeEditor = ({texteditor, handleChange, handleKeyDown, handleCode}) => {
 
   const [lang, setLang] = useState("hi");
 
+  const [disable, setDisable] = useState(true);
+
     const highlight = code => (
         <Highlight {...defaultProps} theme={theme} code={code} language="py">
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
@@ -51,11 +53,14 @@ const CodeEditor = ({texteditor, handleChange, handleKeyDown, handleCode}) => {
           </option>
         ))}
       </select>
+      <div> Transliterate </div>
+      <button onClick={() => setDisable(!disable)}>{disable? 'ON': 'OFF'}</button>
             
             <ReactTransliterate 
                 language="python"
                 Component="textarea"
                 highlight={highlight}
+                translate={disable}
                 value={texteditor}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}

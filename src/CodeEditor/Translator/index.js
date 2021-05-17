@@ -95,6 +95,7 @@ const styles = {
 
 export const ReactTransliterate = ({
   Component="textarea",
+  translate = true,
   onBlur = () => {},
   disabled = false,
   preClassName,
@@ -324,7 +325,7 @@ export const ReactTransliterate = ({
     {/* eslint-disable-next-line react/no-danger */}
     <style type="text/css" dangerouslySetInnerHTML={{ __html: cssText }} />
       
-      {options.length > 0 && (
+      {options.length > 0 && translate ? (
         <ul
           style={{
             left: `${left + offsetX}px`,
@@ -348,7 +349,7 @@ export const ReactTransliterate = ({
             </li>
           ))}
         </ul>
-      )}
+      ): null}
     </div>
   );
 };
