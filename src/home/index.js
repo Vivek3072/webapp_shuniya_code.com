@@ -4,11 +4,6 @@ import './Index.css'
 
 import CodeEditor from '../CodeEditor/CodeEditor';
 import QuestionList from "../components/QuestionList";
-import CodeSnippet from '../components/CodeSnippet';
-
-import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
-import { CardText, FileImage } from "react-bootstrap-icons";
-
 
 
 
