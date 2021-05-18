@@ -98,7 +98,6 @@ export default class home extends Component {
               </div>
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6">
-            <div>कोड</div>
             <CodeEditor
             handleCode= {this.handleCode}
             texteditor ={this.state.texteditor}
@@ -131,7 +130,7 @@ export default class home extends Component {
                 )}
               </div>
             ) : (
-              <h3>परिणाम देखने के लिए सबमिट करें</h3>
+              <h5>परिणाम देखने के लिए सबमिट करें</h5>
             )}
           </div>
         

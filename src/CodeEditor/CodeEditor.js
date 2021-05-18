@@ -1,76 +1,97 @@
-import React, {Fragment, useState, } from 'react';
+import React, { Fragment, useRef, useState, } from 'react';
 import { ReactTransliterate } from "./Translator/index";
 
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import theme from 'prism-react-renderer/themes/nightOwl'
 
-import {languages} from './languages';
 
+import { languages } from './languages';
 
 
 
 const styles = {
-    root: {
-      boxSizing: 'border-box',
-      fontFamily: '"Dank Mono", "Fira Code", monospace',
-      minHeight: '200px', 
-      ...theme.plain
-    }
+  root: {
+    boxSizing: 'border-box',
+    fontFamily: '"Dank Mono", "Fira Code", monospace',
+    minHeight: '200px',
+    ...theme.plain
   }
+}
 
 
-const CodeEditor = ({texteditor, handleChange, handleKeyDown, handleCode}) => {
+
+const CodeEditor = ({ texteditor, handleChange, handleKeyDown, handleCode, input, handleInput, customInput, setcustomInput }) => {
 
   const [lang, setLang] = useState("hi");
 
   const [disable, setDisable] = useState(true);
 
-    const highlight = code => (
-        <Highlight {...defaultProps} theme={theme} code={code} language="py">
-          {({ className, style, tokens, getLineProps, getTokenProps }) => (
-            <Fragment>
-              {tokens.map((line, i) => (
-                <div {...getLineProps({ line, key: i })}>
-                  {line.map((token, key) => <span {...getTokenProps({ token, key })} />)}
-                </div>
-              ))}
-            </Fragment>
-          )}
-        </Highlight>
-      )
+  const [show, setShow] = useState(false)
+
+  const componentRef = useRef();
+
+  const highlight = code => (
+    <Highlight {...defaultProps} theme={theme} code={code} language="py">
+      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        <Fragment>
+          {tokens.map((line, i) => (
+            <div {...getLineProps({ line, key: i })}>
+              {line.map((token, key) => <span {...getTokenProps({ token, key })} />)}
+            </div>
+          ))}
+        </Fragment>
+      )}
+    </Highlight>
+  )
 
 
-    return (
-        <div>
-          <select
-        className="language-dropdown mb-4"
-        value={lang}
-        onChange={(e) => setLang(e.target.value)}
-      >
-        {languages.map((l) => (
-          <option key={l.value} value={l.value}>
-            {l.label}
-          </option>
-        ))}
-      </select>
-      <div> Transliterate </div>
-      <button onClick={() => setDisable(!disable)}>{disable? 'ON': 'OFF'}</button>
-            
-            <ReactTransliterate 
-                language="python"
-                Component="textarea"
-                highlight={highlight}
-                translate={disable}
-                value={texteditor}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-                padding={14}
-                style={styles.root}
-                lang={lang}
-                className="rounded mb-3"
-              />
-        </div>
-    )
-}  
+  return (
+    <div >
+      <div className="d-flex justify-content-between">
+      <div className="d-flex  justify-content-between">
+        <label htmlFor="language" className="mr-4">Language</label>
+        <select
+          className="language-dropdown mb-4"
+          value={lang}
+          onChange={(e) => setLang(e.target.value)}
+        >
+          {languages.map((l) => (
+            <option key={l.value} value={l.value}>
+              {l.label}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="d-flex ">
+        <div className="mr-4"> Transliterate </div>
+        <button className="btn-secondary" style={{ height: '25px'}} onClick={() => setDisable(!disable)}>{disable ? 'ON' : 'OFF'}</button>
+      </div>
+      </div>
+  
+      <ReactTransliterate
+        language="python"
+        Component="textarea"
+        highlight={highlight}
+        translate={disable}
+        value={texteditor}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        padding={14}
+        style={styles.root}
+        lang={lang}
+        className="rounded mb-3"
+      />
+      <div className='d-flex justify-content-between' style={{ maxWidth: '200px' }}>
+        <div>Custom Input</div>
+        <button onClick={setcustomInput}>{customInput ? "On" : "Off"}</button>
+      </div>
+
+      {
+        customInput ?
+          <input className='mt-1' value={input} onChange={handleInput} /> : null
+      }
+    </div>
+  )
+}
 
 export default CodeEditor

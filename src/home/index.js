@@ -1,42 +1,16 @@
 import React, { Fragment, Component } from "react";
 import axios from "axios";
 import './Index.css'
-import FilterOptions from './filteroptions';
-import FilterItems from './filteritems';
-
 
 import CodeEditor from '../CodeEditor/CodeEditor';
 import QuestionList from "../components/QuestionList";
 import CodeSnippet from '../components/CodeSnippet';
 
 import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
+import { CardText, FileImage } from "react-bootstrap-icons";
 
 
-var filterData = [
-  { name: 'Aang', bender: 'yes', nation: 'Air', person: 'yes', show: 'ATLA' },
-  { name: 'Appa', bender: 'yes', nation: 'Air', person: 'no', show: 'ATLA' },
-  { name: 'Asami', bender: 'no', nation: 'Republic City', person: 'yes', show: 'LOK' },
-  { name: 'Azula', bender: 'yes', nation: 'Fire', person: 'yes', show: 'ATLA' },
-  { name: 'Bolin', bender: 'yes', nation: 'Earth', person: 'yes', show: 'LOK' },
-  { name: 'Katara', bender: 'yes', nation: 'Water', person: 'yes', show: 'ATLA' },
-  { name: 'Korra', bender: 'yes', nation: 'Water', person: 'yes', show: 'LOK' },
-  { name: 'Jinora', bender: 'yes', nation: 'Air', person: 'yes', show: 'LOK' },
-  { name: 'Lin Beifong', bender: 'yes', nation: 'Republic City', person: 'yes', show: 'LOK' },
-  { name: 'Pabu', bender: 'no', nation: 'Fire', person: 'no', show: 'LOK' },
-  { name: 'Momo', bender: 'no', nation: 'Air', person: 'no', show: 'ATLA' },
-  { name: 'Mai', bender: 'no', nation: 'Fire', person: 'yes', show: 'ATLA' },
-  { name: 'Mako', bender: 'yes', nation: 'Fire', person: 'yes', show: 'LOK' },
-  { name: 'Naga', bender: 'no', nation: 'Water', person: 'no', show: 'LOK' },
-  { name: 'Sokka', bender: 'no', nation: 'Water', person: 'yes', show: 'ATLA' },
-  { name: 'Suki', bender: 'no', nation: 'Earth', person: 'yes', show: 'ATLA' },
-  { name: 'Tenzin', bender: 'yes', nation: 'Air', person: 'yes', show: 'LOK' },
-  { name: 'Toph Beifong', bender: 'yes', nation: 'Earth', person: 'yes', show: 'ATLA' },
-  { name: 'Ty Lee', bender: 'no', nation: 'Fire', person: 'yes', show: 'ATLA' },
-  { name: 'Uncle Iroh', bender: 'yes', nation: 'Fire', person: 'yes', show: 'ATLA' },
-  { name: 'Varrick', bender: 'no', nation: 'Republic City', person: 'yes', show: 'LOK' },
-  { name: 'Zhu Li', bender: 'no', nation: 'Republic City', person: 'yes', show: 'LOK' },
-  { name: 'Zuko', bender: 'yes', nation: 'Fire', person: 'yes', show: 'ATLA' }
-];
+
 
 export default class home extends Component {
   constructor(props) {
@@ -44,35 +18,16 @@ export default class home extends Component {
     this.state = {
       texteditor: "",
       showtext: "",
+      input: "",
+      customInput: false,
       isSubmited: false,
       showSnippet: false,
       isloaded: false,
-      data: filterData,
-      bender: '',
-      nation: '',
-      person: '',
       show: '',
     };
     this.componentRef = React.createRef();
   }
-  filterItems = (val, type) => {
-    switch (type) {
-      case 'bender':
-        this.setState({ bender: val });
-        break;
-      case 'nation':
-        this.setState({ nation: val });
-        break;
-      case 'person':
-        this.setState({ person: val });
-        break;
-      case 'show':
-        this.setState({ show: val });
-        break;
-      default:
-        break;
-    }
-  };
+  
   submitHandler = () => {
     this.setState({
       isloaded: false,
@@ -80,12 +35,17 @@ export default class home extends Component {
     });
     var getText = this.state.texteditor;
     var code_text_b64 = btoa(unescape(encodeURIComponent(getText)));
+
+    const code_input_b64 = btoa(unescape(encodeURIComponent(this.state.input)))
+
+    const input_flag = this.state.customInput ? "PRESENT" : "ABSENT"
     const postBody = {
       code_file_name: "a.py",
-      code_input: "1",
+      code_input_b64: this.state.customInput ? code_input_b64 : null,
       code_text_b64: code_text_b64,
-      input_flag: "ABSENT",
+      input_flag: input_flag,
     };
+    console.log(postBody)
     var postContent = JSON.stringify(postBody);
     const headers = {
       "Content-Type": "application/json",
@@ -103,6 +63,14 @@ export default class home extends Component {
         });
       });
   };
+
+  handleInput = (e) => {
+    this.setState({ input: e.target.value})
+  }
+
+  setcustomInput = (e ) => {
+    this.setState({customInput: !this.state.customInput})
+  }
   
   handleCopy = (e) => {
     this.setState({ texteditor: e.target.value })
@@ -131,49 +99,24 @@ export default class home extends Component {
     }
   };
   render() {
-    const token = localStorage.getItem('access_token');
-    var filteredItems = this.state.data;
-    var state = this.state;
-    ["bender", "nation", "person", "show"].forEach(function (filterBy) {
-      var filterValue = state[filterBy];
-      if (filterValue) {
-        filteredItems = filteredItems.filter(function (item) {
-          return item[filterBy] === filterValue;
-        });
-      }
-    });
-    var benderArray = this.state.data.map(function (item) { return item.bender });
-    var nationArray = this.state.data.map(function (item) { return item.nation });
-    var personArray = this.state.data.map(function (item) { return item.person });
-    var showArray = this.state.data.map(function (item) { return item.show });
-    benderArray.unshift("");
-    nationArray.unshift("");
-    personArray.unshift("");
-    showArray.unshift("");
+
     return (  
       <>
         <div className="row page" >
-          <div className="col-sm-6 col-md-4 col-lg-4">
-       <button onClick={() => exportComponentAsJPEG(this.componentRef)}>
-         Export As JPEG
-       </button>
-       <button onClick={() => exportComponentAsPDF(this.componentRef)}>
-         Export As PDF
-       </button>
-       <button onClick={() => exportComponentAsPNG(this.componentRef)}>
-         Export As PNG
-       </button>
-           
-            <CodeSnippet syntaxedValue={this.state.texteditor}  ref={this.componentRef} />
+          <div className="col-sm-6 col-md-4 col-lg-4 flex-d justify-content-between">
+            
             <QuestionList  handleCopy={this.handleCopy} code={this.state.texteditor}/>
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6">
-            <div>कोड</div>
             <CodeEditor
             handleCode= {this.handleCode}
             texteditor ={this.state.texteditor}
             handleChange = {this.handleChange}
             handleKeyDown ={ this.handleKeyDown}
+            input ={this.state.input}
+            customInput = {this.state.customInput}
+            handleInput={this.handleInput}
+            setcustomInput = {this.setcustomInput}
             />
             <div
               className="menu-bar"
@@ -188,7 +131,7 @@ export default class home extends Component {
             </div>
             {this.state.isSubmited ? (
               <div>
-                <h1>परिणाम</h1>
+                <h3>परिणाम</h3>
                 {this.state.isloaded ? (
                   <textarea className="sub" readOnly={true} value={this.state.showtext}>
                     {" "}
@@ -201,7 +144,7 @@ export default class home extends Component {
                 )}
               </div>
             ) : (
-              <h3>परिणाम देखने के लिए सबमिट करें</h3>
+              <h5>परिणाम देखने के लिए सबमिट करें</h5>
             )}
           </div>
         </div>
