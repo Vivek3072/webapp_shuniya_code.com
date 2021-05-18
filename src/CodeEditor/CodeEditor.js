@@ -88,7 +88,7 @@ const CodeEditor = ({ texteditor, handleChange, handleKeyDown, handleCode, input
 
       {
         customInput ?
-          <input className='mt-1' value={input} onChange={handleInput} /> : null
+          <textarea  className='mt-1 ' value={input} onChange={handleInput} /> : null
       }
     </div>
   )
