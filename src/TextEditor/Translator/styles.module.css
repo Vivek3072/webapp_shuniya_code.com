@@ -14,6 +14,7 @@
 }
   
 .ReactTransliterate > li {
+        justify-content: center;
         cursor: pointer;
         min-width: 50px;
 }

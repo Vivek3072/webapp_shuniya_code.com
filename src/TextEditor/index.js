@@ -8,6 +8,7 @@ import { CaretRightSquareFill, Textarea } from 'react-bootstrap-icons'
 import { ReactTransliterate } from "./Translator/index";
 import axios from 'axios';
 
+import MentionEditor from './Example/index';
 
 
 const Classes = [
@@ -92,7 +93,6 @@ const FormContainer = () => {
       <Form >
         <Row >
           <Col xs={12} md={8} className="mt-2">
-
             <Container className="border rounded" >
               <h2 className="text-bold mt-2">Post </h2>
               <Form.Group controlId="" size="lg">
@@ -116,6 +116,7 @@ const FormContainer = () => {
                 lang={lang}
                 className="rounded mb-3"
               />
+              <MentionEditor/>
               <CodeEditor
                 texteditor={code}
                 handleChange={(e) => setCode(e.target.value)}

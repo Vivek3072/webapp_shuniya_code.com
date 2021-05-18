@@ -128,7 +128,7 @@ export default class home extends Component {
               <div>
                 <h3>परिणाम</h3>
                 {this.state.isloaded ? (
-                  <textarea className="sub" readOnly={true} value={this.state.showtext}>
+                  <textarea className="sub textarea" readOnly={true} value={this.state.showtext}>
                     {" "}
                   </textarea>
                 ) : (

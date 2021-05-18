@@ -1,4 +1,5 @@
 import React from 'react';
+import Keyboard from './Keyboard'
 
 export default function NotFound ()  {
     return (
@@ -7,6 +8,7 @@ export default function NotFound ()  {
             <div>Please redirect to 
                 <a href="/" className="btn  btn-lg active" role="button">home</a>
             </div>
+            <Keyboard/>
         </div>
     )
 }

@@ -70,6 +70,8 @@ export const ReactTransliterate = ({
     const input = inputRef.current;
     const caretPos = getCaretCoordinates(input, caret);
 
+    console.log(caret, input, caretPos)
+
     // search for the last occurence of the space character from
     // the cursor
     const indexOfLastSpace =

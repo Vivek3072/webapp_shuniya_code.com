@@ -4,6 +4,7 @@ import { ReactTransliterate } from "./Translator/index";
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import theme from 'prism-react-renderer/themes/nightOwl'
 
+import {File, FileCheck} from 'react-bootstrap-icons';
 
 import { languages } from './languages';
 
@@ -83,12 +84,12 @@ const CodeEditor = ({ texteditor, handleChange, handleKeyDown, handleCode, input
       />
       <div className='d-flex justify-content-between' style={{ maxWidth: '200px' }}>
         <div>Custom Input</div>
-        <button onClick={setcustomInput}>{customInput ? "On" : "Off"}</button>
+        <div onClick={setcustomInput}>{customInput ? <FileCheck/> : <File/> }</div>
       </div>
 
       {
         customInput ?
-          <textarea  className='mt-1 ' value={input} onChange={handleInput} /> : null
+          <textarea  className='mt-1 multi-input' value={input} onChange={handleInput} /> : null
       }
     </div>
   )
