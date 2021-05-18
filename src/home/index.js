@@ -119,6 +119,7 @@ export default class home extends Component {
             >
               <button
                 className="btn btn-lg btn-primary submit-btn"
+                style={{zIndex: 100}}
                 onClick={this.submitHandler}
               >
                 चल कोड
