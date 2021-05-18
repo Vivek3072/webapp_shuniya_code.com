@@ -84,9 +84,8 @@ const CodeEditor = ({ texteditor, handleChange, handleKeyDown, handleCode, input
       />
       <div className='d-flex justify-content-between' style={{ maxWidth: '200px' }}>
         <div>Custom Input</div>
-        <div onClick={setcustomInput}>{customInput ? <FileCheck/> : <File/> }</div>
+        <div onClick={setcustomInput}>{customInput ? <FileCheck color="green" size={20} /> : <File size={20} /> }</div>
       </div>
-
       {
         customInput ?
           <textarea  className='mt-1 multi-input' value={input} onChange={handleInput} /> : null
