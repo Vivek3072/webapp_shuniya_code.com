@@ -2,37 +2,44 @@ import React, { Fragment, useRef, useState, } from 'react';
 import { ReactTransliterate } from "./Translator/index";
 
 import Highlight, { defaultProps } from 'prism-react-renderer'
-import theme from 'prism-react-renderer/themes/nightOwl'
+import Dark from 'prism-react-renderer/themes/nightOwl'
+import Light from 'prism-react-renderer/themes/nightOwlLight'
 
-import {File, FileCheck} from 'react-bootstrap-icons';
+import {File, FileCheck, BrightnessHigh, MoonFill} from 'react-bootstrap-icons';
 
 import { languages } from './languages';
 
 
 
-const styles = {
-  root: {
-    boxSizing: 'border-box',
-    fontFamily: '"Dank Mono", "Fira Code", monospace',
-    minHeight: '200px',
-    ...theme.plain
-  }
-}
 
 
 
 const CodeEditor = ({ texteditor, handleChange, handleKeyDown, handleCode, input, handleInput, customInput, setcustomInput }) => {
 
   const [lang, setLang] = useState("hi");
+  
+  const [dark, setDark] = useState(true);
 
   const [disable, setDisable] = useState(true);
+
+  const theme = dark ? Dark : Light
+
+  const styles = {
+    root: {
+      boxSizing: 'border-box',
+      fontFamily: '"Dank Mono", "Fira Code", monospace',
+      minHeight: '200px',
+      ...theme.plain
+    }
+  }
+  
 
   const [show, setShow] = useState(false)
 
   const componentRef = useRef();
 
   const highlight = code => (
-    <Highlight {...defaultProps} theme={theme} code={code} language="py">
+    <Highlight {...defaultProps} theme={dark? Dark : Light} code={code} language="py">
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Fragment>
           {tokens.map((line, i) => (
@@ -65,7 +72,10 @@ const CodeEditor = ({ texteditor, handleChange, handleKeyDown, handleCode, input
       </div> */}
       <div className="d-flex ">
         <div className="mr-4"> Transliterate </div>
-        <button className="btn-secondary" style={{ height: '25px'}} onClick={() => setDisable(!disable)}>{disable ? 'ON' : 'OFF'}</button>
+        <button className="btn-secondary mb-4" style={{ height: '25px',}} onClick={() => setDisable(!disable)}>{disable ? 'Hindi' : 'English'}</button>
+      </div>
+      <div>
+      <button className="btn-dark rounded" onClick={() => setDark(!dark)}>{dark? <MoonFill/>: <BrightnessHigh/> }</button>
       </div>
       </div>
   
