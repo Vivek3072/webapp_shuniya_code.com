@@ -15,9 +15,6 @@ export default class home extends Component {
       showtext: "",
       isSubmited: false,
       isloaded: false,
-      bender: '',
-      nation: '',
-      person: '',
       show: '',
     };
   }

@@ -49,7 +49,7 @@ const CodeEditor = ({ texteditor, handleChange, handleKeyDown, handleCode, input
   return (
     <div >
       <div className="d-flex justify-content-between">
-      <div className="d-flex  justify-content-between">
+      {/* <div className="d-flex  justify-content-between">
         <label htmlFor="language" className="mr-4">Language</label>
         <select
           className="language-dropdown mb-4"
@@ -62,7 +62,7 @@ const CodeEditor = ({ texteditor, handleChange, handleKeyDown, handleCode, input
             </option>
           ))}
         </select>
-      </div>
+      </div> */}
       <div className="d-flex ">
         <div className="mr-4"> Transliterate </div>
         <button className="btn-secondary" style={{ height: '25px'}} onClick={() => setDisable(!disable)}>{disable ? 'ON' : 'OFF'}</button>
