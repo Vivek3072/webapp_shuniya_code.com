@@ -3,12 +3,10 @@ import { Container, Form, Button, Row, Col, Spinner } from 'react-bootstrap';
 import CodeEditor from '../CodeEditor/CodeEditor';
 import { languages } from '../CodeEditor/languages'
 
-import { CaretRightSquareFill, Textarea } from 'react-bootstrap-icons'
+import { CaretRightSquareFill } from 'react-bootstrap-icons'
 
 import { ReactTransliterate } from "./Translator/index";
 import axios from 'axios';
-
-import MentionEditor from './Example/index';
 
 
 const Classes = [
@@ -116,7 +114,6 @@ const FormContainer = () => {
                 lang={lang}
                 className="rounded mb-3"
               />
-              <MentionEditor/>
               <CodeEditor
                 texteditor={code}
                 handleChange={(e) => setCode(e.target.value)}

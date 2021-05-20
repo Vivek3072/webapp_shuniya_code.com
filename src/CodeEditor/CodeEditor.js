@@ -3,11 +3,14 @@ import { ReactTransliterate } from "./Translator/index";
 
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import Dark from 'prism-react-renderer/themes/nightOwl'
-import Light from 'prism-react-renderer/themes/nightOwlLight'
+import Light from 'prism-react-renderer/themes/duotoneLight'
 
 import {File, FileCheck, BrightnessHigh, MoonFill} from 'react-bootstrap-icons';
 
 import { languages } from './languages';
+
+
+
 
 
 
@@ -54,8 +57,8 @@ const CodeEditor = ({ texteditor, handleChange, handleKeyDown, handleCode, input
 
 
   return (
-    <div >
-      <div className="d-flex justify-content-between">
+    <div className='mt-5'>
+      <div className="d-flex justify-content-between mt-5">
       {/* <div className="d-flex  justify-content-between">
         <label htmlFor="language" className="mr-4">Language</label>
         <select
@@ -72,7 +75,10 @@ const CodeEditor = ({ texteditor, handleChange, handleKeyDown, handleCode, input
       </div> */}
       <div className="d-flex ">
         <div className="mr-4"> Transliterate </div>
-        <button className="btn-secondary mb-4" style={{ height: '25px',}} onClick={() => setDisable(!disable)}>{disable ? 'Hindi' : 'English'}</button>
+        <button className="btn-dark rounded mb-4" style={{ height: '25px',}} onClick={() => setDisable(!disable)}>{disable ? 'Hindi' : 'English'}</button>
+      </div>
+      <div>
+        {/* <Keyboard/> */}
       </div>
       <div>
       <button className="btn-dark rounded" onClick={() => setDark(!dark)}>{dark? <MoonFill/>: <BrightnessHigh/> }</button>
@@ -100,6 +106,7 @@ const CodeEditor = ({ texteditor, handleChange, handleKeyDown, handleCode, input
         customInput ?
           <textarea  className='mt-1 multi-input' value={input} onChange={handleInput} /> : null
       }
+
     </div>
   )
 }
