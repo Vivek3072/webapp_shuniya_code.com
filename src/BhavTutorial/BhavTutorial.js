@@ -1,13 +1,19 @@
 import React from "react";
-import Header from "./components/Header";
-import Main from "./components/Main";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+  useLocation,
+} from "react-router-dom";
+import TutorialPage from "./components/TutorialPage";
 
 function BhavTutorial() {
+  const location = useLocation();
   return (
-    <div>
-      <Header />
-      <Main />
-    </div>
+    <Router>
+      <Switch location={location}></Switch>
+    </Router>
   );
 }
 

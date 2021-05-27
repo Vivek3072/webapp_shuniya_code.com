@@ -1,10 +1,18 @@
 import React, { Component } from "react";
-import { Switch, Route, Link, withRouter, useLocation } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  Link,
+  withRouter,
+  useLocation,
+  Redirect,
+} from "react-router-dom";
 
 import Login from "./components/Login";
 import Signup from "./components/Singup";
 import HomePage from "./homepage";
 import BhavTutorial from "./BhavTutorial/BhavTutorial";
+import TutorialPage from "./BhavTutorial/components/TutorialPage";
 
 import Class from "./Pages/Class";
 
@@ -33,7 +41,14 @@ const App = () => {
               <Route exact path={"/login/"} component={Login} />
               <Route exact path={"/signup/"} component={Signup} />
               <Route exact path={"/class/:id"} component={SecondLayout} />
-              <Route exact path={"/bhav-tutorials"} component={BhavTutorial} />
+              <Route
+                exact
+                path={"/tutorial/:tutorialTitle"}
+                component={TutorialPage}
+              ></Route>
+              <Route exact path="/bhav-tutorials">
+                <Redirect to="/tutorial/bhav-if-else"></Redirect>
+              </Route>
               <Route exact path={"/homepage"} component={HomePage} />
               <Route exact path={"/write"} component={TextEditor} />
               <Route exact path={"/*"} component={NotFound} />

@@ -5,7 +5,7 @@ import AccordionCard from "./AccordionCard";
 
 function TopicAccordion() {
   return (
-    <Accordion defaultActiveKey="0">
+    <Accordion defaultActiveKey="3">
       <AccordionCard
         title={"Introduction"}
         links={[

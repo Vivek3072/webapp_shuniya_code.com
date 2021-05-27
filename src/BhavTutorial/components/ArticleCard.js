@@ -24,9 +24,7 @@ class ArticleCard extends Component {
       showSnippet: false,
       isloaded: false,
       show: "",
-      article: articles.find(
-        (arti) => arti.titleURL === this.props.match.params.tutorialTitle
-      ),
+      article: articles.find((arti) => arti.titleURL === this.props.titleLink),
       date: new Date(),
     };
     this.componentRef = React.createRef();
@@ -101,21 +99,21 @@ class ArticleCard extends Component {
     }
   };
 
-  handleArticleRefresh = (e) => {
-    this.setState({
-      article: articles.find(
-        (arti) => arti.titleURL === this.props.match.params.tutorialTitle
-      ),
-    });
-  };
+  // handleArticleRefresh = (e) => {
+  //   this.setState({
+  //     article: articles.find(
+  //       (arti) => arti.titleURL === this.props.match.params.tutorialTitle
+  //     ),
+  //   });
+  // };
 
   render() {
     return (
-      <Card onMouseMove={this.handleArticleRefresh}>
+      <Card>
         {this.state.article ? (
           <Card.Body className="text-start px-3">
             <Card.Title className="py-3">
-              <h2>{this.state.article?.title}</h2>
+              <h2>{this.state.article.title}</h2>
             </Card.Title>
             {/* <Card.Subtitle className="mb-2 text-muted">
             {`${this.date.getDate().toString()}/${this.date

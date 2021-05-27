@@ -8,12 +8,10 @@ import {
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
-import { Link, matchPath, NavLink } from "react-router-dom";
+
 import "./components.css";
 
 function AccordionCard({ title, links, eventKey }) {
-  let match = matchPath();
-  console.log(match);
   return (
     <Card>
       <Accordion.Toggle
@@ -24,17 +22,16 @@ function AccordionCard({ title, links, eventKey }) {
         {title}
       </Accordion.Toggle>
       <Accordion.Collapse eventKey={eventKey}>
-        <Card.Body className="px-0 py-0">
+        <Card.Body className="py-1 px-2">
           <ListGroup variant="flush">
             {links.map((item) => (
-              <Link
-                to={`/tutorial/${item.replace(/\s+/g, "-").toLowerCase()}`}
-                className="accordion-link"
+              <ListGroup.Item
+                action
+                href={`/tutorial/${item.replace(/\s+/g, "-").toLowerCase()}`}
+                className="text-start accordion-link-box"
               >
-                <ListGroup.Item className="text-start accordion-link-box">
-                  {item}
-                </ListGroup.Item>
-              </Link>
+                {item}
+              </ListGroup.Item>
             ))}
           </ListGroup>
         </Card.Body>
