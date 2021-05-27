@@ -1,0 +1,36 @@
+.cursor-pointer:hover {
+  cursor: pointer;
+}
+
+.icon {
+  position: absolute;
+}
+
+.white-bg {
+  background-color: whitesmoke;
+}
+
+.accordion-link {
+  text-decoration: none;
+  color: black;
+}
+
+.accordion-link:hover {
+  text-decoration: none;
+}
+
+.accordion-link-box:hover {
+  text-decoration: none;
+  background-color: rgb(217, 226, 245);
+  color: black;
+  transition: all 0.3s ease;
+}
+
+.accordion-link-box {
+  transition: all 0.3s ease;
+  color: black;
+}
+
+.max-height {
+  height: 80vh;
+}
