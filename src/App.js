@@ -13,6 +13,7 @@ import Signup from "./components/Singup";
 import HomePage from "./homepage";
 import BhavTutorial from "./BhavTutorial/BhavTutorial";
 import TutorialPage from "./BhavTutorial/components/TutorialPage";
+import Quiz from "./Quiz/Quiz";
 
 import Class from "./Pages/Class";
 
@@ -49,6 +50,7 @@ const App = () => {
               <Route exact path="/bhav-tutorials">
                 <Redirect to="/tutorial/bhav-if-else"></Redirect>
               </Route>
+              <Route exact path={"/quiz"} component={Quiz} />
               <Route exact path={"/homepage"} component={HomePage} />
               <Route exact path={"/write"} component={TextEditor} />
               <Route exact path={"/*"} component={NotFound} />
