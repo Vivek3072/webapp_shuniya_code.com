@@ -15,11 +15,12 @@ class Login extends Component {
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
+    localStorage.setItem("user-id", this.state.username);
   }
 
   handleSubmitWThen(event) {
     event.preventDefault();
-   
+
     axiosInstance
       .post("/token/obtain/", {
         username: this.state.username,
@@ -30,7 +31,6 @@ class Login extends Component {
           "JWT " + result.data.access;
         localStorage.setItem("access_token", result.data.access);
         localStorage.setItem("refresh_token", result.data.refresh);
-   
       })
       .catch((error) => {
         throw error;
@@ -39,7 +39,7 @@ class Login extends Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-  
+
     try {
       const response = await axiosInstance.post("/token/obtain/", {
         username: this.state.username,
@@ -49,7 +49,7 @@ class Login extends Component {
         "JWT " + response.data.access;
       localStorage.setItem("access_token", response.data.access);
       localStorage.setItem("refresh_token", response.data.refresh);
-      this.props.history.push("/")
+      this.props.history.push("/");
       return response;
     } catch (error) {
       throw error;
@@ -59,9 +59,10 @@ class Login extends Component {
   render() {
     return (
       <div className="row">
-        <form onSubmit={this.handleSubmit} style={{   margin:" 0 auto",
-    textAlign: "left",
-    width: "800px"}}>
+        <form
+          onSubmit={this.handleSubmit}
+          style={{ margin: " 0 auto", textAlign: "left", width: "800px" }}
+        >
           <div className="form-group">
             <label for="exampleInputEmail1">Username</label>
             <input
@@ -75,7 +76,9 @@ class Login extends Component {
             />
           </div>
           <div className="form-group">
-            <label for="exampleInputPassword1">Password ( must be more than 8 letters)</label>
+            <label for="exampleInputPassword1">
+              Password ( must be more than 8 letters)
+            </label>
             <input
               type="password"
               name="password"
