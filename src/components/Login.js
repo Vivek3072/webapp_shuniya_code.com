@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Alert, Fade } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import axiosInstance from "../axiosApi";
 import { withRouter } from "react-router-dom";
@@ -6,7 +7,7 @@ import { withRouter } from "react-router-dom";
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "" };
+    this.state = { username: "", password: "", alert: false, token: "" };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,13 +46,29 @@ class Login extends Component {
         username: this.state.username,
         password: this.state.password,
       });
-      axiosInstance.defaults.headers["Authorization"] =
-        "JWT " + response.data.access;
-      localStorage.setItem("access_token", response.data.access);
-      localStorage.setItem("refresh_token", response.data.refresh);
-      this.props.history.push("/");
+
+      if (response.data.access === undefined) {
+        this.setState({ alert: true });
+        setTimeout(() => {
+          this.setState({ alert: false });
+        }, 5000);
+      } else {
+        axiosInstance.defaults.headers["Authorization"] =
+          "JWT " + response.data.access;
+
+        localStorage.setItem("access_token", response.data.access);
+        localStorage.setItem("refresh_token", response.data.refresh);
+        this.setState({ token: localStorage.getItem("access_token") });
+        console.log(response.data);
+        this.props.history.push("/");
+      }
+
       return response;
     } catch (error) {
+      this.setState({ alert: true });
+      setTimeout(() => {
+        this.setState({ alert: false });
+      }, 5000);
       throw error;
     }
   }
@@ -89,6 +106,11 @@ class Login extends Component {
               placeholder="Password"
             />
           </div>
+
+          {this.state.alert && (
+            <Alert variant="danger">Enter valid username and password</Alert>
+          )}
+
           <button type="submit" className="btn btn-primary">
             Login
           </button>

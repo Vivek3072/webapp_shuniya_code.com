@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Navbar, NavDropdown, Button, Nav } from "react-bootstrap";
 import { Code } from "react-bootstrap-icons";
@@ -11,6 +11,7 @@ import Axios from "axios";
 
 const NavComponent = () => {
   const token = localStorage.getItem("access_token");
+
   let history = useHistory();
 
   const paymentHandler = async (e) => {
@@ -44,11 +45,14 @@ const NavComponent = () => {
 
   const handleLogout = async () => {
     try {
+      console.log(localStorage.getItem("refresh_token"));
       const response = await axiosInstance.post("/blacklist/", {
         refresh_token: localStorage.getItem("refresh_token"),
       });
+
       localStorage.removeItem("access_token");
       localStorage.removeItem("refresh_token");
+
       axiosInstance.defaults.headers["Authorization"] = null;
       history.push("/");
       return response;
@@ -76,9 +80,8 @@ const NavComponent = () => {
             <NavDropdown.Item href="/class/class_9">Class 9</NavDropdown.Item>
             <NavDropdown.Item href="/class/class_10">Class 10</NavDropdown.Item>
           </NavDropdown>
-          {localStorage.getItem("user-id") && (
-            <Nav.Link href="/quiz">Attempt Quiz</Nav.Link>
-          )}
+
+          {token && <Nav.Link href="/quiz">Attempt Quiz</Nav.Link>}
         </Nav>
         <Nav>
           {!token ? (

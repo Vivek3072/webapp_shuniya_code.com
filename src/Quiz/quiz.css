@@ -1,18 +1,18 @@
 .shadow-box {
-    box-shadow: 3px 3px 8px 2px  rgb(194, 194, 194);
-    
+  box-shadow: 3px 3px 8px 2px rgb(194, 194, 194);
 }
 .card-bg {
-    background-color: rgb(252, 207, 156) !important;
+  background-color: rgb(252, 207, 156) !important;
 }
 
 .option-button {
-    background-color: rgb(184, 113, 32) !important;
+  background-color: rgb(184, 113, 32) !important;
 }
 
 .option-button:hover {
-    background-color: rgb(170, 95, 10) !important;
+  background-color: rgb(170, 95, 10) !important;
 }
-.option-button:active, .option-button:focus {
-    background-color: rgb(170, 95, 10) !important;
+.option-button:active,
+.option-button:focus {
+  background-color: rgb(170, 95, 10) !important;
 }

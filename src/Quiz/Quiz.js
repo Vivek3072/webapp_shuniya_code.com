@@ -1,18 +1,53 @@
 // import { Button } from 'bootstrap'
 
 import React, { useState, useEffect } from "react";
-import { Card, Button, Col, Form, Row } from "react-bootstrap";
+import { Card, Button, Col, Form, Row, Alert } from "react-bootstrap";
 import "./quiz.css";
 import axios from "axios";
-// import answers from "./answerSubmission.json";
-// import questionList from "./questionList.json";
+import { useHistory } from "react-router-dom";
+// import questions from "./questionList.json";
 
 function Quiz() {
   const [questionsList, setQuestionsList] = useState([]);
-  function submitHandle(e) {
+  const [submitError, setSubmitError] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [quizID, setQuizID] = useState("");
+
+  let history = useHistory();
+
+  async function submitHandle(e) {
     e.preventDefault();
-    answers["user-id"] = localStorage.getItem("user-id");
-    console.log(answers);
+    answers["user_id"] = localStorage.getItem("user-id");
+    if (!answers["user_id"]) {
+      setSubmitError(true);
+      setTimeout(() => {
+        setSubmitError(false);
+      }, 5000);
+    } else {
+      const response = await axios.post(
+        "http://कोड.com:8000/api/v1/submit_quiz/",
+        answers
+      );
+      try {
+        if (response.data == "Done") {
+          setSubmitSuccess(true);
+          setTimeout(() => {
+            setSubmitSuccess(false);
+            history.push("/");
+          }, 5000);
+        } else {
+          setSubmitError(true);
+          setTimeout(() => {
+            setSubmitError(false);
+          }, 5000);
+        }
+      } catch {
+        setSubmitError(true);
+        setTimeout(() => {
+          setSubmitError(false);
+        }, 5000);
+      }
+    }
   }
 
   useEffect(() => {
@@ -25,10 +60,14 @@ function Quiz() {
     );
     const questionsData = await response.data;
     setQuestionsList(questionsData.questions);
+    // setQuestionsList(questions.questions);
+    console.log(questionsData.quiz_id);
+    setQuizID(questionsData.quiz_id);
   }
 
   const answers = {
-    "user-id": "",
+    user_id: "",
+    quiz_id: quizID,
     submission: [
       questionsList.map((answer) => {
         return { answerValue: "" };
@@ -102,6 +141,16 @@ function Quiz() {
               </Card>
             );
           })}
+          {submitError && (
+            <Alert variant="danger">
+              Error during submission. Please try again.
+            </Alert>
+          )}
+          {submitSuccess && (
+            <Alert variant="success">
+              Your submission was recorded. Thank you.
+            </Alert>
+          )}
           <Button
             variant="primary"
             className="mx-auto mb-4 option-button"

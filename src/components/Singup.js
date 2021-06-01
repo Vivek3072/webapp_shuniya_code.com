@@ -28,6 +28,7 @@ class Signup extends Component {
         email: this.state.email,
         password: this.state.password,
       });
+      console.log(response.data);
       return response;
     } catch (error) {
       console.log(error.stack);
@@ -60,7 +61,7 @@ class Signup extends Component {
           <div className="form-group">
             <label for="exampleInputPassword1">Email</label>
             <input
-               className="form-control"
+              className="form-control"
               name="email"
               type="email"
               placeholder="Email"
