@@ -7,7 +7,7 @@ import { CaretRightSquareFill } from 'react-bootstrap-icons'
 
 import { ReactTransliterate } from "./Translator/index";
 import axios from 'axios';
-
+import ControlledEditor from './MainEditor';
 
 const Classes = [
   { label: 'Class 6', value: 'class_6' },
@@ -105,15 +105,12 @@ const FormContainer = () => {
                 />
               </Form.Group>
               <Form.Label htmlFor="Header">
-                Explanation
-      </Form.Label>
-              <ReactTransliterate
-                type="textarea"
-                value={explanation}
-                onChange={(e) => setExplanation(e.target.value)}
-                lang={lang}
-                className="rounded mb-3"
-              />
+                Editor
+              </Form.Label>
+              {/* This is the Text Editors */}
+              <ControlledEditor />
+              <br/>
+
               <CodeEditor
                 texteditor={code}
                 handleChange={(e) => setCode(e.target.value)}
