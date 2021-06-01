@@ -76,6 +76,9 @@ const NavComponent = () => {
             <NavDropdown.Item href="/class/class_9">Class 9</NavDropdown.Item>
             <NavDropdown.Item href="/class/class_10">Class 10</NavDropdown.Item>
           </NavDropdown>
+          {localStorage.getItem("user-id") && (
+            <Nav.Link href="/quiz">Attempt Quiz</Nav.Link>
+          )}
         </Nav>
         <Nav>
           {!token ? (
