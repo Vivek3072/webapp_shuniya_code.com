@@ -87,9 +87,12 @@ function Quiz() {
                 key={"ques" + idx}
               >
                 <Card.Title>{"Question " + (idx + 1)}</Card.Title>
-                <Card.Text>
-                  <strong>{question.questionText}</strong>
-                </Card.Text>
+                {question.questionText.map((line) => (
+                  <Card.Text>
+                    <strong>{line}</strong>
+                  </Card.Text>
+                ))}
+
                 {question.codeText && (
                   <Card.Text>
                     <pre>{question.codeText}</pre>

@@ -2,7 +2,7 @@
     "quiz-id": "quiz_1",
     "questions": [
     {
-      "questionText": "What is function of secondary memory in computer?",
+      "questionText": ["What is function of secondary memory in computer?"],
       "questionType": "mcq",
       "answerOptions": [
         {
@@ -17,15 +17,15 @@
       ]
     },
     {
-      "questionText": "What is a program?",
+      "questionText": ["What is a program?"],
       "questionType": "write-ups"
     },
     {
-      "questionText": "What is difference between a compiler and an interpreter?",
+      "questionText": ["What is difference between a compiler and an interpreter?"],
       "questionType": "write-ups"
     },
     {
-      "questionText": "Which of the following contains \"machine code\"?",
+      "questionText": ["Which of the following contains \"machine code\"?"],
       "questionType": "mcq",
       "answerOptions": [
         { "answerText": "The Python Interpreter" },
@@ -35,14 +35,14 @@
       ]
     },
     {
-      "questionText": "What is wrong with the following code:",
+      "questionText": ["What is wrong with the following code:"],
       "questionType": "write-ups",
       "codeText":
         ">>> primt 'Hello world!'\nFile \"<stdin>\", line 1\nprimt 'Hello world!'\n\t\t^\nSyntaxError: invalid syntax\n>>>"
     },
     {
       "questionText":
-        "Where in the computer is a variable such as “x” stored afterthe following Python line finishes?",
+        ["Where in the computer is a variable such as “x” stored afterthe following Python line finishes?"],
       "questionType": "mcq",
       "codeText": "x = 123",
       "answerOptions": [
@@ -54,7 +54,7 @@
       ]
     },
     {
-      "questionText": "What will the following program print out:",
+      "questionText": ["What will the following program print out:"],
       "questionType": "write-ups",
       "codeText": "x = 43\nx = x + 1\nprint(x)",
       "answerOptions": [
@@ -68,11 +68,11 @@
     },
     {
       "questionText":
-        "Explain each of the following using an example of a human capability: (1) Central processing unit, (2) Main Memory, (3)Secondary Memory, (4) Input Device, and (5) Output Device. For example, “What is the human equivalent to a Central Processing Unit”?",
+        ["Explain each of the following using an example of a human capability:", "(1) Central processing unit,", "(2) Main Memory,", "(3)Secondary Memory,", "(4) Input Device, and", "(5) Output Device.", "For example, “What is the human equivalent to a Central Processing Unit”?"],
       "questionType": "write-ups"
     },
     {
-      "questionText": "How do you fix a “Syntax Error”?",
+      "questionText": ["How do you fix a “Syntax Error”?"],
       "questionType": "write-ups"
     }
   ]
