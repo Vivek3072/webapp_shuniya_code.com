@@ -61,7 +61,7 @@ function Quiz() {
     const questionsData = await response.data;
     setQuestionsList(questionsData.questions);
     // setQuestionsList(questions.questions);
-    console.log(questionsData.quiz_id);
+
     setQuizID(questionsData.quiz_id);
   }
 
