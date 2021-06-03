@@ -87,7 +87,6 @@ const NavComponent = () => {
           {!token ? (
             <>
               <LoginCard />
-              <Nav.Link href="/write"> Write</Nav.Link>
             </>
           ) : (
             <>
@@ -102,6 +101,7 @@ const NavComponent = () => {
               </NavDropdown>
             </>
           )}
+          <Nav.Link href="/write"> Write</Nav.Link>
           <Button
             type="button"
             variant=""
