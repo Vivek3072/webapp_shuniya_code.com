@@ -29,6 +29,9 @@ class Signup extends Component {
         password: this.state.password,
       });
       console.log(response.data);
+      alert("Signup was successful. Please login.");
+      this.props.history.push("/");
+
       return response;
     } catch (error) {
       console.log(error.stack);
@@ -83,7 +86,7 @@ class Signup extends Component {
             />
             {this.state.errors.password ? this.state.errors.password : null}
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary" href="/">
             Singup
           </button>
         </form>
