@@ -53,29 +53,26 @@ function Quiz() {
         setSubmitError(false);
       }, 5000);
     } else {
-      const response = await axios.post(
-        "http://कोड.com:8000/api/v1/submit_quiz/",
-        answers
-      );
-      try {
-        if (response.data == "Done") {
+      var answerContent = JSON.stringify(answers);
+      const headers = {
+        "Content-Type": "application/json",
+      };
+      const response = axios
+        .post("http://कोड.com:8000/api/v1/submit_quiz/", answerContent, headers)
+        .then((res) => {
+          console.log(res.data);
           setSubmitSuccess(true);
           setTimeout(() => {
             setSubmitSuccess(false);
           }, 5000);
           setdisplayResultsModal(true);
-        } else {
+        })
+        .catch((res) => {
           setSubmitError(true);
           setTimeout(() => {
             setSubmitError(false);
           }, 5000);
-        }
-      } catch {
-        setSubmitError(true);
-        setTimeout(() => {
-          setSubmitError(false);
-        }, 5000);
-      }
+        });
     }
   }
 
@@ -104,7 +101,12 @@ function Quiz() {
   }, [userAnswers]);
 
   useEffect(() => {
-    QuestionApiHandle();
+    if (localStorage.getItem("user-id") === null) {
+      alert("Please login to attempt quiz");
+      history.push("/");
+    } else {
+      QuestionApiHandle();
+    }
   }, []);
 
   async function QuestionApiHandle() {
