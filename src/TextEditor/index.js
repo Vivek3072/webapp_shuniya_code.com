@@ -77,13 +77,14 @@ const FormContainer = (props) => {
     formData.append("tags", [difficulty, classes]);
     formData.append("reviewer_id", "None");
     formData.append("status", "submitted_for_review");
+    formData.append("reviewer_reference_id", "None");
 
     const headers = { "Content-Type": "multipart/form-data" };
 
     // console.log(formData);
     const response = axios
       .post(
-        "http://xn--11by0j.com/api/v1/article_review_demo/",
+        "http://कोड.com:8000/api/v1/article_review_demo/",
         formData,
         headers
       )
