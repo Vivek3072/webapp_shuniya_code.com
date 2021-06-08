@@ -1,0 +1,11 @@
+div.DraftEditor-root {
+  background-color: rgb(245, 245, 245);
+  height: 40vh;
+
+  overflow-y: visible;
+}
+div.DraftEditor-editorContainer,
+div.public-DraftEditor-content {
+  height: 100%;
+  padding: 0.5rem;
+}

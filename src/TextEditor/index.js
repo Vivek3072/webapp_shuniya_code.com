@@ -16,6 +16,7 @@ import { CaretRightSquareFill } from "react-bootstrap-icons";
 import { ReactTransliterate } from "./Translator/index";
 import axios from "axios";
 import ControlledEditor from "./MainEditor";
+import MyEditor from "./Editor";
 import { mdToDraftjs, draftjsToMd } from "draftjs-md-converter";
 import {
   EditorState,
@@ -24,6 +25,7 @@ import {
   convertFromRaw,
 } from "draft-js";
 import { useHistory } from "react-router";
+import "./editor.css";
 
 const Classes = [
   { label: "Class 6", value: "class_6" },
@@ -54,6 +56,7 @@ const FormContainer = (props) => {
   const history = useHistory();
   const [lang, setLang] = useState("hi");
   const [header, setHeader] = useState("");
+  const [editorContent, setEditorContent] = useState("");
   const [explanation, setExplanation] = useState("");
   const [code, setCode] = useState("");
   const [book, setBook] = useState("");
@@ -71,116 +74,131 @@ const FormContainer = (props) => {
   const textEditorRef = useRef(null);
 
   const handlePublish = () => {
-    const content = textEditorRef.current.state.editorState.getCurrentContent();
-    const mdText = draftjsToMd(convertToRaw(content));
-    let blob = new Blob([mdText], { type: "text/markdown" });
+    if (header === "") {
+      alert("Please enter a valid Header");
+    } else {
+      const content =
+        textEditorRef.current.state.editorState.getCurrentContent();
+      const mdText = draftjsToMd(convertToRaw(content));
+      let blob = new Blob([mdText], { type: "text/markdown" });
 
-    var formData = new FormData();
-    formData.append("file", blob, "ts.md");
-    formData.append("article_id", "new_article");
-    formData.append("user_id", localStorage.getItem("user-id"));
-    formData.append("feedback", "");
-    formData.append("remarks", "");
-    formData.append("title", header);
-    formData.append("published_status", "YES");
-    formData.append("category", topic);
-    formData.append("tags", [difficulty, classes]);
-    formData.append("reviewer_id", "temporary_testing");
-    formData.append("status", "reviewed");
-    formData.append("reviewer_reference_id", "None");
+      var formData = new FormData();
+      formData.append("file", blob, "ts.md");
+      formData.append("article_id", "new_article");
+      formData.append("user_id", localStorage.getItem("user-id"));
+      formData.append("feedback", "");
+      formData.append("remarks", "");
+      formData.append("title", header);
+      formData.append("published_status", "YES");
+      formData.append("category", topic);
+      formData.append("tags", [difficulty, classes]);
+      formData.append("reviewer_id", "temporary_testing");
+      formData.append("status", "reviewed");
+      formData.append("reviewer_reference_id", "None");
 
-    const headers = { "Content-Type": "multipart/form-data" };
+      const headers = { "Content-Type": "multipart/form-data" };
 
-    // console.log(formData);
-    const response = axios
-      .post(
-        "http://कोड.com:8000/api/v1/article_review_demo/",
-        formData,
-        headers
-      )
-      .then((res) => {
-        console.log(res);
-        alert("Article published successfully");
-        history.push("/");
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+      // console.log(formData);
+      const response = axios
+        .post(
+          "http://कोड.com:8000/api/v1/article_review_demo/",
+          formData,
+          headers
+        )
+        .then((res) => {
+          console.log(res);
+          alert("Article published successfully");
+          history.push("/");
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
   };
 
   const handleSave = () => {
-    const content = textEditorRef.current.state.editorState.getCurrentContent();
-    const mdText = draftjsToMd(convertToRaw(content));
-    let blob = new Blob([mdText], { type: "text/markdown" });
+    if (header === "") {
+      alert("Please enter a valid Header");
+    } else {
+      const content =
+        textEditorRef.current.state.editorState.getCurrentContent();
+      const mdText = draftjsToMd(convertToRaw(content));
+      let blob = new Blob([mdText], { type: "text/markdown" });
 
-    var formData = new FormData();
-    formData.append("file", blob, "ts.md");
-    formData.append("article_id", "new_article");
-    formData.append("user_id", localStorage.getItem("user-id"));
-    formData.append("feedback", "");
-    formData.append("remarks", "");
-    formData.append("title", header);
-    formData.append("published_status", "NO");
-    formData.append("category", topic);
-    formData.append("tags", [difficulty, classes]);
-    formData.append("reviewer_id", "None");
-    formData.append("status", "saved");
-    formData.append("reviewer_reference_id", "None");
+      var formData = new FormData();
+      formData.append("file", blob, "ts.md");
+      formData.append("article_id", "new_article");
+      formData.append("user_id", localStorage.getItem("user-id"));
+      formData.append("feedback", "");
+      formData.append("remarks", "");
+      formData.append("title", header);
+      formData.append("published_status", "NO");
+      formData.append("category", topic);
+      formData.append("tags", [difficulty, classes]);
+      formData.append("reviewer_id", "None");
+      formData.append("status", "saved");
+      formData.append("reviewer_reference_id", "None");
 
-    const headers = { "Content-Type": "multipart/form-data" };
+      const headers = { "Content-Type": "multipart/form-data" };
 
-    // console.log(formData);
-    const response = axios
-      .post(
-        "http://कोड.com:8000/api/v1/article_review_demo/",
-        formData,
-        headers
-      )
-      .then((res) => {
-        console.log(res);
-        alert("Article saved successfully");
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+      // console.log(formData);
+      const response = axios
+        .post(
+          "http://कोड.com:8000/api/v1/article_review_demo/",
+          formData,
+          headers
+        )
+        .then((res) => {
+          console.log(res);
+          alert("Article saved successfully");
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
   };
 
   const handleSubmit = () => {
-    const content = textEditorRef.current.state.editorState.getCurrentContent();
-    const mdText = draftjsToMd(convertToRaw(content));
-    let blob = new Blob([mdText], { type: "text/markdown" });
+    if (header === "") {
+      alert("Please enter a valid Header");
+    } else {
+      const content =
+        textEditorRef.current.state.editorState.getCurrentContent();
+      const mdText = draftjsToMd(convertToRaw(content));
+      let blob = new Blob([mdText], { type: "text/markdown" });
 
-    var formData = new FormData();
-    formData.append("file", blob, "ts.md");
-    formData.append("article_id", "new_article");
-    formData.append("user_id", localStorage.getItem("user-id"));
-    formData.append("feedback", "");
-    formData.append("remarks", "");
-    formData.append("title", header);
-    formData.append("published_status", "NO");
-    formData.append("category", topic);
-    formData.append("tags", [difficulty, classes]);
-    formData.append("reviewer_id", "None");
-    formData.append("status", "submitted_for_review");
-    formData.append("reviewer_reference_id", "None");
+      var formData = new FormData();
+      formData.append("file", blob, "ts.md");
+      formData.append("article_id", "new_article");
+      formData.append("user_id", localStorage.getItem("user-id"));
+      formData.append("feedback", "");
+      formData.append("remarks", "");
+      formData.append("title", header);
+      formData.append("published_status", "NO");
+      formData.append("category", topic);
+      formData.append("tags", [difficulty, classes]);
+      formData.append("reviewer_id", "None");
+      formData.append("status", "submitted_for_review");
+      formData.append("reviewer_reference_id", "None");
 
-    const headers = { "Content-Type": "multipart/form-data" };
+      const headers = { "Content-Type": "multipart/form-data" };
 
-    // console.log(formData);
-    const response = axios
-      .post(
-        "http://कोड.com:8000/api/v1/article_review_demo/",
-        formData,
-        headers
-      )
-      .then((res) => {
-        console.log(res);
-        alert("Article submitted for review successfully");
-        history.push("/");
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+      // console.log(formData);
+      const response = axios
+        .post(
+          "http://कोड.com:8000/api/v1/article_review_demo/",
+          formData,
+          headers
+        )
+        .then((res) => {
+          console.log(res);
+          alert("Article submitted for review successfully");
+          history.push("/");
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
   };
 
   const handleCodeRun = () => {
@@ -228,6 +246,21 @@ const FormContainer = (props) => {
               <Form.Label htmlFor="Header">Editor</Form.Label>
               {/* This is the Text Editors */}
               <ControlledEditor ref={textEditorRef} />
+              <Form.Group>
+                <Form.Label htmlFor="TransliterationBox" className="mt-4">
+                  Transliteration Box: (Copy paste below content to editor to
+                  add to the article)
+                </Form.Label>
+                <ReactTransliterate
+                  size="md"
+                  type="textarea"
+                  value={editorContent}
+                  onChange={(e) => setEditorContent(e.target.value)}
+                  lang={lang}
+                  className="rounded mb-3 transliterate-box"
+                  placeholder="Enter text here to transliterate and paste in the editor above"
+                />
+              </Form.Group>
               <br />
 
               <CodeEditor

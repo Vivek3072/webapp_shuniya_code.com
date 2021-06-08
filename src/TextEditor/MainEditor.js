@@ -44,27 +44,29 @@ class ControlledEditor extends Component {
   render() {
     const { editorState } = this.state;
     return (
-      <Editor
-        editorState={editorState}
-        wrapperClassName="demo-wrapper"
-        editorClassName="demo-editor"
-        toolbarCustomButtons={[<CustomOption />]}
-        onEditorStateChange={this.onEditorStateChange}
-        mention={{
-          separator: " ",
-          trigger: "@",
-          suggestions: [
-            { text: "APPLE", value: "apple" },
-            { text: "BANANA", value: "banana" },
-            { text: "CHERRY", value: "cherry", url: "cherry" },
-            { text: "DURIAN", value: "durian", url: "durian" },
-            { text: "EGGFRUIT", value: "eggfruit", url: "eggfruit" },
-            { text: "FIG", value: "fig", url: "fig" },
-            { text: "GRAPEFRUIT", value: "grapefruit", url: "grapefruit" },
-            { text: "HONEYDEW", value: "honeydew", url: "honeydew" },
-          ],
-        }}
-      />
+      <div>
+        <Editor
+          editorState={editorState}
+          wrapperClassName="demo-wrapper"
+          editorClassName="demo-editor"
+          toolbarCustomButtons={[<CustomOption />]}
+          onEditorStateChange={this.onEditorStateChange}
+          mention={{
+            separator: " ",
+            trigger: "@",
+            suggestions: [
+              { text: "APPLE", value: "apple" },
+              { text: "BANANA", value: "banana" },
+              { text: "CHERRY", value: "cherry", url: "cherry" },
+              { text: "DURIAN", value: "durian", url: "durian" },
+              { text: "EGGFRUIT", value: "eggfruit", url: "eggfruit" },
+              { text: "FIG", value: "fig", url: "fig" },
+              { text: "GRAPEFRUIT", value: "grapefruit", url: "grapefruit" },
+              { text: "HONEYDEW", value: "honeydew", url: "honeydew" },
+            ],
+          }}
+        />
+      </div>
     );
   }
 }
