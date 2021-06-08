@@ -23,6 +23,7 @@ import {
   convertToRaw,
   convertFromRaw,
 } from "draft-js";
+import { useHistory } from "react-router";
 
 const Classes = [
   { label: "Class 6", value: "class_6" },
@@ -50,6 +51,7 @@ const Difficulty = [
 ];
 
 const FormContainer = (props) => {
+  const history = useHistory();
   const [lang, setLang] = useState("hi");
   const [header, setHeader] = useState("");
   const [explanation, setExplanation] = useState("");
@@ -98,6 +100,8 @@ const FormContainer = (props) => {
       )
       .then((res) => {
         console.log(res);
+        alert("Article published successfully");
+        history.push("/");
       })
       .catch((err) => {
         console.error(err);
@@ -134,6 +138,7 @@ const FormContainer = (props) => {
       )
       .then((res) => {
         console.log(res);
+        alert("Article saved successfully");
       })
       .catch((err) => {
         console.error(err);
@@ -170,6 +175,8 @@ const FormContainer = (props) => {
       )
       .then((res) => {
         console.log(res);
+        alert("Article submitted for review successfully");
+        history.push("/");
       })
       .catch((err) => {
         console.error(err);
