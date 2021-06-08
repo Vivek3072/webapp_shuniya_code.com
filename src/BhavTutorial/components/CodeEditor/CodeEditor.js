@@ -114,6 +114,7 @@ const CodeEditor = ({
         lang={lang}
         className="rounded mb-3"
       />
+
       <div
         className="d-flex justify-content-between"
         style={{ maxWidth: "200px" }}

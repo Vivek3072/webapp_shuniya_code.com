@@ -73,6 +73,7 @@ const NavComponent = () => {
         <Nav className="mr-auto">
           <Nav.Link href="/homepage">Home</Nav.Link>
           <Nav.Link href="/bhav-tutorials">Bhav Tutorials</Nav.Link>
+          <Nav.Link href="/articles">Articles</Nav.Link>
 
           <NavDropdown title="Class" id="basic-nav-dropdown">
             <NavDropdown.Item href="/class/class_6">Class 6</NavDropdown.Item>
@@ -102,7 +103,11 @@ const NavComponent = () => {
               </NavDropdown>
             </>
           )}
-          <Nav.Link href="/write"> Write</Nav.Link>
+          <NavDropdown title="Articles">
+            <NavDropdown.Item href="/write"> Write</NavDropdown.Item>
+            <NavDropdown.Item href="/my-articles">My Articles</NavDropdown.Item>
+          </NavDropdown>
+
           <Button
             type="button"
             variant=""

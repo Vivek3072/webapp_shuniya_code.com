@@ -1,5 +1,13 @@
 import React, { useState, useRef } from "react";
-import { Container, Form, Button, Row, Col, Spinner } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Button,
+  Row,
+  Col,
+  Spinner,
+  ButtonGroup,
+} from "react-bootstrap";
 import CodeEditor from "../CodeEditor/CodeEditor";
 import { languages } from "../CodeEditor/languages";
 
@@ -59,6 +67,78 @@ const FormContainer = (props) => {
   const [runcode, setRunCode] = useState("");
 
   const textEditorRef = useRef(null);
+
+  const handlePublish = () => {
+    const content = textEditorRef.current.state.editorState.getCurrentContent();
+    const mdText = draftjsToMd(convertToRaw(content));
+    let blob = new Blob([mdText], { type: "text/markdown" });
+
+    var formData = new FormData();
+    formData.append("file", blob, "ts.md");
+    formData.append("article_id", "new_article");
+    formData.append("user_id", localStorage.getItem("user-id"));
+    formData.append("feedback", "");
+    formData.append("remarks", "");
+    formData.append("title", header);
+    formData.append("published_status", "YES");
+    formData.append("category", topic);
+    formData.append("tags", [difficulty, classes]);
+    formData.append("reviewer_id", "temporary_testing");
+    formData.append("status", "reviewed");
+    formData.append("reviewer_reference_id", "None");
+
+    const headers = { "Content-Type": "multipart/form-data" };
+
+    // console.log(formData);
+    const response = axios
+      .post(
+        "http://कोड.com:8000/api/v1/article_review_demo/",
+        formData,
+        headers
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const handleSave = () => {
+    const content = textEditorRef.current.state.editorState.getCurrentContent();
+    const mdText = draftjsToMd(convertToRaw(content));
+    let blob = new Blob([mdText], { type: "text/markdown" });
+
+    var formData = new FormData();
+    formData.append("file", blob, "ts.md");
+    formData.append("article_id", "new_article");
+    formData.append("user_id", localStorage.getItem("user-id"));
+    formData.append("feedback", "");
+    formData.append("remarks", "");
+    formData.append("title", header);
+    formData.append("published_status", "NO");
+    formData.append("category", topic);
+    formData.append("tags", [difficulty, classes]);
+    formData.append("reviewer_id", "None");
+    formData.append("status", "saved");
+    formData.append("reviewer_reference_id", "None");
+
+    const headers = { "Content-Type": "multipart/form-data" };
+
+    // console.log(formData);
+    const response = axios
+      .post(
+        "http://कोड.com:8000/api/v1/article_review_demo/",
+        formData,
+        headers
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   const handleSubmit = () => {
     const content = textEditorRef.current.state.editorState.getCurrentContent();
@@ -244,8 +324,34 @@ const FormContainer = (props) => {
                 </Col>
               </Row>
               <Row>
-                <Button variant="dark" type="button" onClick={handleSubmit}>
+                <Button
+                  variant="dark"
+                  type="button"
+                  className="my-1"
+                  onClick={handleSave}
+                >
+                  Save
+                </Button>
+              </Row>
+              <Row className="mb-3">
+                <Button
+                  variant="dark"
+                  type="button"
+                  className="my-1"
+                  onClick={handleSubmit}
+                >
                   Submit
+                </Button>
+              </Row>
+              <Row>
+                {"This will only be available for reviewer:"}
+                <Button
+                  variant="dark"
+                  type="button"
+                  className="my-1"
+                  onClick={handlePublish}
+                >
+                  Publish
                 </Button>
               </Row>
             </Container>

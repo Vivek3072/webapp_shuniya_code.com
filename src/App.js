@@ -14,6 +14,8 @@ import HomePage from "./homepage";
 import BhavTutorial from "./BhavTutorial/BhavTutorial";
 import TutorialPage from "./BhavTutorial/components/TutorialPage";
 import Quiz from "./Quiz/Quiz";
+import UserArticleList from "./Articles/UserArticleList";
+import PublicArticles from "./Articles/PublicArticles";
 
 import Class from "./Pages/Class";
 
@@ -28,6 +30,8 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import { Container } from "react-bootstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import UserArticleView from "./Articles/UserArticleView";
+import PublicArticleView from "./Articles/PublicArticleView";
 
 const App = () => {
   const location = useLocation();
@@ -50,7 +54,23 @@ const App = () => {
               <Route exact path="/bhav-tutorials">
                 <Redirect to="/tutorial/bhav-if-else"></Redirect>
               </Route>
+              <Route exact path={"/articles"} component={PublicArticles} />
               <Route exact path={"/quiz"} component={Quiz} />
+              <Route
+                exact
+                path={"/article/user/:user_id/:article_no"}
+                component={UserArticleView}
+              ></Route>
+              <Route
+                exact
+                path={"/article/public/:article_no"}
+                component={PublicArticleView}
+              ></Route>
+              <Route
+                exact
+                path={"/my-articles"}
+                component={UserArticleList}
+              ></Route>
               <Route exact path={"/homepage"} component={HomePage} />
               <Route exact path={"/write"} component={TextEditor} />
               <Route exact path={"/*"} component={NotFound} />
