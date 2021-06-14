@@ -113,7 +113,7 @@ class ArticleCard extends Component {
         {this.state.article ? (
           <Card.Body className="text-start px-3">
             <Card.Title className="py-3">
-              <h2>{this.state.article.title}</h2>
+              <h1>{this.state.article.title}</h1>
             </Card.Title>
             {/* <Card.Subtitle className="mb-2 text-muted">
             {`${this.date.getDate().toString()}/${this.date

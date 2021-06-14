@@ -8,9 +8,11 @@ import axiosInstance from "./../axiosApi";
 import LoginCard from "./LoginCard";
 
 import Axios from "axios";
+import firebase from "firebase";
 
 const NavComponent = () => {
-  const token = localStorage.getItem("access_token");
+  const token = localStorage.getItem("user-id");
+  const refreshToken = localStorage.getItem("refresh_token");
 
   let history = useHistory();
 
@@ -45,7 +47,7 @@ const NavComponent = () => {
 
   const handleLogout = async () => {
     try {
-      console.log(localStorage.getItem("refresh_token"));
+      // console.log(localStorage.getItem("refresh_token"));
       const response = await axiosInstance.post("/blacklist/", {
         refresh_token: localStorage.getItem("refresh_token"),
       });
@@ -60,6 +62,12 @@ const NavComponent = () => {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const handleFirebaseLogout = () => {
+    firebase.auth().signOut();
+    localStorage.removeItem("user-id");
+    history.push("/");
   };
 
   return (
@@ -97,9 +105,18 @@ const NavComponent = () => {
                   {" "}
                   Profile{" "}
                 </NavDropdown.Item>
-                <NavDropdown.Item type="button" onClick={handleLogout}>
-                  LogOut
-                </NavDropdown.Item>
+                {!!refreshToken ? (
+                  <NavDropdown.Item type="button" onClick={handleLogout}>
+                    LogOut
+                  </NavDropdown.Item>
+                ) : (
+                  <NavDropdown.Item
+                    type="button"
+                    onClick={handleFirebaseLogout}
+                  >
+                    LogOut
+                  </NavDropdown.Item>
+                )}
               </NavDropdown>
             </>
           )}

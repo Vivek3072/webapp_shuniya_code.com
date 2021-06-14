@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Col, Card } from "react-bootstrap";
-import "./articles.css";
+import "./articlelist.css";
 
 function UserArticleList() {
   const [userArticles, setUserArticles] = useState([]);
@@ -28,8 +28,8 @@ function UserArticleList() {
             href={`/article/user/${localStorage.getItem("user-id")}/${idx}`}
           >
             <Card.Body className="article-title-card">
-              <Card.Title className="lg-font">{article.title}</Card.Title>
-              <Card.Subtitle className="text-muted">
+              <Card.Title className="lg-font h2">{article.title}</Card.Title>
+              <Card.Subtitle className="date-modified my-3">
                 {article.timestamp.slice(0, 10)}
               </Card.Subtitle>
             </Card.Body>

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Card, Col } from "react-bootstrap";
+import "./articlelist.css";
 
 function PublicArticles() {
   const [generalArticles, setGeneralArticles] = useState([]);
@@ -20,12 +21,13 @@ function PublicArticles() {
         <Card key={`article-${idx}`} className="my-2">
           <Card.Link href={`/article/public/${idx}`}>
             <Card.Body className="article-title-card">
-              <Card.Title className="lg-font">{article.title}</Card.Title>
-              <Card.Subtitle className="text-muted my-3">
-                {article.timestamp.slice(0, 10)}
-              </Card.Subtitle>
-              <Card.Subtitle className="text-muted">
+              <Card.Subtitle className="h4 my-3">
                 {article.user_id}
+              </Card.Subtitle>
+              <Card.Title className="lg-font h2">{article.title}</Card.Title>
+              <Card.Text></Card.Text>
+              <Card.Subtitle className="date-modified my-3">
+                {article.timestamp.slice(0, 10)}
               </Card.Subtitle>
             </Card.Body>
           </Card.Link>

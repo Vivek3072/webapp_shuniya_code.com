@@ -16,6 +16,7 @@ import TutorialPage from "./BhavTutorial/components/TutorialPage";
 import Quiz from "./Quiz/Quiz";
 import UserArticleList from "./Articles/UserArticleList";
 import PublicArticles from "./Articles/PublicArticles";
+import EditArticle from "./Articles/EditArticle";
 
 import Class from "./Pages/Class";
 
@@ -32,9 +33,16 @@ import { Container } from "react-bootstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import UserArticleView from "./Articles/UserArticleView";
 import PublicArticleView from "./Articles/PublicArticleView";
+import firebase from "firebase";
+
+firebase.initializeApp({
+  apiKey: "AIzaSyC065TVIqadZfzSI8bVWlsUgYegZGSDlVE",
+  authDomain: "xn--11by0j.firebaseapp.com",
+});
 
 const App = () => {
   const location = useLocation();
+
   return (
     <>
       <Navbar />
@@ -60,6 +68,11 @@ const App = () => {
                 exact
                 path={"/article/user/:user_id/:article_no"}
                 component={UserArticleView}
+              ></Route>
+              <Route
+                exact
+                path={"/edit/:user_id/:article_no"}
+                component={EditArticle}
               ></Route>
               <Route
                 exact

@@ -1,0 +1,23 @@
+.h4 {
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  max-height: 16px;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  color: rgba(41, 41, 41, 1);
+}
+
+.h2 {
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: rgba(41, 41, 41, 1);
+}
+
+.date-modified {
+  color: rgba(117, 117, 117, 1);
+  font-size: 13px;
+  line-height: 20px;
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}

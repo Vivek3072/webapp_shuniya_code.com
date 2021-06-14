@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Container,
   Form,
@@ -13,11 +13,10 @@ import { languages } from "../CodeEditor/languages";
 
 import { CaretRightSquareFill } from "react-bootstrap-icons";
 
-import { ReactTransliterate } from "./Translator/index";
+import { ReactTransliterate } from "../TextEditor/Translator/index";
 import axios from "axios";
-import ControlledEditor from "./MainEditor";
-import MyEditor from "./Editor";
-import { draftToMarkdown, markdownToDraft } from "markdown-draft-js";
+import ControlledEditor from "../TextEditor/MainEditor";
+// import MyEditor from "./Editor";
 import { mdToDraftjs, draftjsToMd } from "draftjs-md-converter";
 import {
   EditorState,
@@ -26,7 +25,7 @@ import {
   convertFromRaw,
 } from "draft-js";
 import { useHistory } from "react-router";
-import "./editor.css";
+import "../TextEditor";
 
 const Classes = [
   { label: "Class 6", value: "class_6" },
@@ -69,10 +68,68 @@ const FormContainer = (props) => {
   const [difficulty, setDifficulty] = useState("Easy");
 
   const [loading, setLoading] = useState(false);
+  const [markdownLoaded, setMarkdownLoaded] = useState(false);
 
   const [runcode, setRunCode] = useState("");
 
   const textEditorRef = useRef(null);
+
+  const article_no = props.match.params.article_no;
+  const user_id = props.match.params.user_id;
+  const [filePath, setFilePath] = useState("");
+  const [fileURL, setFileURL] = useState("");
+  const [markdown, setMarkdown] = useState("");
+  const [articleID, setArticleID] = useState("");
+
+  const file_fetch = { file_path: "" };
+
+  async function filePathHandle() {
+    const response = await axios.get(
+      `http://कोड.com:8000/api/v1/get_article_for_user/${user_id}`
+    );
+    try {
+      if (response.status == 200) {
+        console.log(response.data);
+        setHeader(response.data[article_no].title);
+        setTopic(response.data[article_no].category);
+        setDifficulty(response.data[article_no].tags.split(",")[0]);
+        setClasses(response.data[article_no].tags.split(",")[1]);
+        setArticleID(response.data[article_no].article_id);
+        setFilePath(response.data[article_no].file_path);
+        file_fetch.file_path = filePath;
+        fileFetchHandle();
+      }
+    } catch {
+      console.error("Error");
+    }
+  }
+
+  async function fileFetchHandle() {
+    var file_path_json = JSON.stringify(file_fetch);
+    // console.log(file_fetch);
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const response = await axios.post(
+      "http://कोड.com:8000/api/v1/retrieve_articles/",
+      file_path_json,
+      headers
+    );
+    try {
+      setFileURL(response.data.url);
+    } catch {
+      console.error("Error");
+    }
+  }
+
+  useEffect(() => {
+    filePathHandle();
+    console.log(fileURL);
+    axios.get(fileURL).then((res) => {
+      console.log(res.data);
+      setMarkdown(res.data);
+    });
+  });
 
   const handlePublish = () => {
     if (header === "") {
@@ -80,12 +137,12 @@ const FormContainer = (props) => {
     } else {
       const content =
         textEditorRef.current.state.editorState.getCurrentContent();
-      const mdText = draftToMarkdown(convertToRaw(content));
+      const mdText = draftjsToMd(convertToRaw(content));
       let blob = new Blob([mdText], { type: "text/markdown" });
 
       var formData = new FormData();
       formData.append("file", blob, "ts.md");
-      formData.append("article_id", "new_article");
+      formData.append("article_id", articleID);
       formData.append("user_id", localStorage.getItem("user-id"));
       formData.append("feedback", "");
       formData.append("remarks", "");
@@ -128,7 +185,7 @@ const FormContainer = (props) => {
 
       var formData = new FormData();
       formData.append("file", blob, "ts.md");
-      formData.append("article_id", "new_article");
+      formData.append("article_id", articleID);
       formData.append("user_id", localStorage.getItem("user-id"));
       formData.append("feedback", "");
       formData.append("remarks", "");
@@ -170,7 +227,7 @@ const FormContainer = (props) => {
 
       var formData = new FormData();
       formData.append("file", blob, "ts.md");
-      formData.append("article_id", "new_article");
+      formData.append("article_id", articleID);
       formData.append("user_id", localStorage.getItem("user-id"));
       formData.append("feedback", "");
       formData.append("remarks", "");
@@ -232,7 +289,7 @@ const FormContainer = (props) => {
         <Row>
           <Col xs={12} md={9} className="mt-2">
             <Container className="border rounded">
-              <h1 className="my-2">Post </h1>
+              <h2 className="text-bold mt-2">Post </h2>
               <Form.Group controlId="" size="lg">
                 <Form.Label>Header</Form.Label>
                 <ReactTransliterate

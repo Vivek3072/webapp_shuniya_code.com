@@ -3,16 +3,51 @@ import { Alert, Fade } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import axiosInstance from "../axiosApi";
 import { withRouter } from "react-router-dom";
+import firebase from "firebase";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "", alert: false, token: "" };
-
+    this.state = {
+      username: "",
+      password: "",
+      alert: false,
+      token: "",
+      isSignedIn: false,
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSubmitWThen = this.handleSubmitWThen.bind(this);
   }
+
+  uiConfig = {
+    signInFlow: "popup",
+    signINOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      firebase.auth.GithubAuthProvider.PROVIDER_ID,
+      "yahoo.com",
+    ],
+    callbacks: {
+      signInFlow: "popup",
+      signInSuccessWithAuthResult: (result) => {
+        console.log(result);
+
+        localStorage.setItem(
+          "user-id",
+          firebase.auth().currentUser.displayName
+            ? firebase
+                .auth()
+                .currentUser.displayName.toLowerCase()
+                .split(" ")
+                .join("")
+            : result.additionalUserInfo.username
+        );
+        this.props.history.push("/");
+      },
+    },
+  };
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
@@ -73,6 +108,18 @@ class Login extends Component {
     }
   }
 
+  componentDidMount = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+      this.setState({ isSignedIn: !!user });
+    });
+  };
+
+  // componentDidUpdate = () => {
+  //   firebase.auth().onAuthStateChanged((user) => {
+  //     this.setState({ isSignedIn: !!user });
+  //   });
+  // };
+
   render() {
     return (
       <div className="row">
@@ -115,6 +162,11 @@ class Login extends Component {
             Login
           </button>
         </form>
+        <div className="text-center">OR</div>
+        <StyledFirebaseAuth
+          uiConfig={this.uiConfig}
+          firebaseAuth={firebase.auth()}
+        />
       </div>
     );
   }
