@@ -225,6 +225,10 @@ function Quiz() {
                   ) : (
                     <Alert variant="danger">Incorrect Answer</Alert>
                   ))}
+                {question.questionType === "write-ups" &&
+                  displayAlert &&
+                    <Alert variant="success">{question.answer_key}</Alert>
+                }
                 {/* {question.questionType === "mcq" &&
                   answers.submission[0][idx][idx + 1] !==
                     question.answerOptions[answerKeys[idx].charCodeAt(0) - 97][
