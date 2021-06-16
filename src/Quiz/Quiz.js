@@ -6,6 +6,9 @@ import "./quiz.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import QuizResultsModal from "./QuizResultsModal";
+import CodeQuestions from "./codeQuestionsList.json";
+import CodeQuizQuestion from "./CodeQuizQuestion";
+
 // import questions from "./questionList.json";
 
 function Quiz() {
@@ -18,7 +21,6 @@ function Quiz() {
   const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
   const [totalMcqCount, setTotalMcqCount] = useState(0);
   const [displayResultsModal, setdisplayResultsModal] = useState(false);
-  const [reattempt, setReattempt] = useState(false);
 
   let history = useHistory();
 
@@ -30,23 +32,10 @@ function Quiz() {
       }),
     ]);
 
-    // console.log(correctAnswerCount);
-    // console.log(userAnswers[0]);
-    // console.log(
-    //   questionsList[0].answerOptions[answerKeys[0].charCodeAt(0) - 97][
-    //     answerKeys[0]
-    //   ]
-    // );
     setDisplayAlert(true);
     answers["user_id"] = localStorage.getItem("user-id");
     let idx = 0;
-    // console.log(
-    //   answers.submission[0][idx][idx + 1] ===
-    //     questionsList[idx].answerOptions[answerKeys[idx].charCodeAt(0) - 97][
-    //       answerKeys[idx]
-    //     ]
-    // );
-    // console.log(questionsList[0].answerOptions);
+
     if (!answers["user_id"]) {
       setSubmitError(true);
       setTimeout(() => {
@@ -90,9 +79,6 @@ function Quiz() {
         ) {
           correctMcqs++;
         }
-        // console.log(totalMcqs);
-        // console.log(correctMcqs);
-        // console.log(totalMcqs);
       }
     });
     setCorrectAnswerCount(correctMcqs);
@@ -114,25 +100,13 @@ function Quiz() {
       "http://कोड.com:8000/api/v1/get_quiz_questions/quiz_1/"
     );
     const questionsData = await response.data;
-    // console.log(questionsData.questions);
-    // console.log(
-    //   questionsData.questions[0].answerOptions[
-    //     answerKeys[0][0].charCodeAt(0) - 97
-    //   ][answerKeys[0][0]]
-    // );
-    // console.log(answerKeys[0]);
-    setQuestionsList(questionsData.questions);
 
-    // setQuestionsList(questions.questions);
+    setQuestionsList(questionsData.questions);
 
     setQuizID(questionsData.quiz_id);
   }
 
   const answerKeys = [...questionsList.map((question) => question.answer_key)];
-  // let userAnswers = [];
-  // console.log(questionsList);
-  // console.log(userAnswers);
-  // console.log(answerKeys);
 
   const answers = {
     user_id: "",
@@ -150,7 +124,11 @@ function Quiz() {
     <Col id="top">
       <h1 className="text-center">Attempt Quiz</h1>
       <Col lg={6} className="mx-auto my-0">
-        <Form onSubmit={submitHandle}>
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           {questionsList.map((question, idx) => {
             return (
               <>
@@ -225,21 +203,23 @@ function Quiz() {
                   ) : (
                     <Alert variant="danger">Incorrect Answer</Alert>
                   ))}
-                {question.questionType === "write-ups" &&
-                  displayAlert &&
-                    <Alert variant="success">{question.answer_key}</Alert>
-                }
-                {/* {question.questionType === "mcq" &&
-                  answers.submission[0][idx][idx + 1] !==
-                    question.answerOptions[answerKeys[idx].charCodeAt(0) - 97][
-                      answerKeys[idx]
-                    ] &&
-                  displayAlert && (
-                    
-                  )} */}
+                {question.questionType === "write-ups" && displayAlert && (
+                  <Alert variant="success">{question.answer_key}</Alert>
+                )}
               </>
             );
           })}
+
+          {CodeQuestions.questions.map((question, idx) => {
+            return (
+              <CodeQuizQuestion
+                question={question}
+                idx={idx + questionsList.length + 1}
+                quiz_id={CodeQuestions["quiz-id"]}
+              />
+            );
+          })}
+
           {submitError && (
             <Alert variant="danger">
               Error during submission. Please try again.
@@ -253,7 +233,7 @@ function Quiz() {
           <Button
             variant="primary"
             className="mx-auto mb-4 option-button"
-            type="submit"
+            onClick={submitHandle}
             block
             size="lg"
             style={{ width: "10rem" }}
@@ -265,7 +245,7 @@ function Quiz() {
             href="/quiz"
             variant="primary"
             className="mx-auto mb-4 option-button"
-            type="submit"
+            onClick={submitHandle}
             block
             size="lg"
             style={{ width: "14rem" }}
