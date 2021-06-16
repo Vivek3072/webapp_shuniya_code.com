@@ -134,20 +134,22 @@ function CodeQuizQuestion({ question, idx, quiz_id }) {
             handleInput={handleInput}
             setcustomInput={setcustomInput}
           />
-          <Row></Row>
+
+          {customInput && (
+            <button
+              className="btn btn-primary my-2 mx-1 submit-btn"
+              style={{ zIndex: 100 }}
+              onClick={runCodeHandler}
+            >
+              चल कोड
+            </button>
+          )}
           <button
-            className="btn btn-primary submit-btn"
+            className="btn btn-primary my-2 mx-1 submit-btn"
             style={{ zIndex: 100 }}
             onClick={submitHandler}
           >
             Submit Code
-          </button>
-          <button
-            className="btn btn-primary my-2 mx-2 submit-btn"
-            style={{ zIndex: 100 }}
-            onClick={runCodeHandler}
-          >
-            चल कोड
           </button>
           {isSubmited ? (
             <div>
