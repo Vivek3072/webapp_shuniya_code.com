@@ -123,7 +123,7 @@ function Quiz() {
   return (
     <Col id="top">
       <h1 className="text-center">Attempt Quiz</h1>
-      <Col lg={6} className="mx-auto my-0">
+      <Col lg={6} md={12} className="mx-auto my-0">
         <Form
           onSubmit={(e) => {
             e.preventDefault();

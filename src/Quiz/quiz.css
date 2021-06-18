@@ -16,3 +16,27 @@
 .option-button:focus {
   background-color: rgb(170, 95, 10) !important;
 }
+
+.quiz-testcase-success {
+  color: rgb(8, 116, 8) !important;
+}
+
+.quiz-testcase-failure {
+  color: rgb(170, 9, 9) !important;
+}
+
+.test-case-list {
+  background-color: rgb(252, 207, 156);
+}
+
+.test-case-data {
+  background: rgb(233, 231, 231);
+  font-family: monospace !important;
+  font-weight: 700;
+}
+
+.test-case-data-heading {
+  font-family: OpenSans, Arial, Helvetica, sans-serif !important;
+  color: #576871 !important;
+  font-weight: 400 !important;
+}

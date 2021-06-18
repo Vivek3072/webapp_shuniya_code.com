@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Card, Button, Col, Form, Row, Alert } from "react-bootstrap";
+import {
+  Card,
+  Button,
+  Col,
+  Form,
+  Row,
+  Alert,
+  ListGroup,
+} from "react-bootstrap";
 import "./quiz.css";
 import axios from "axios";
-
+import TestcaseData from "./TestcaseData";
 import CodeEditor from "../CodeEditor/CodeEditor";
 
 function CodeQuizQuestion({ question, idx, quiz_id }) {
@@ -12,11 +20,13 @@ function CodeQuizQuestion({ question, idx, quiz_id }) {
   const [texteditor, setTexteditor] = useState("");
   const [loadedTestcaseResults, setLoadedTestcaseResults] = useState(false);
   const [codeSubmitResults, setCodeSubmitResults] = useState(false);
+  const [testCaseResults, setTestCaseResults] = useState({});
   const [testcasesPassed, setTestcasesPassed] = useState(0);
   const [testcasesTotal, setTestcasesTotal] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [showText, setShowText] = useState("");
   const [isSubmited, setIsSubmited] = useState(false);
+  const [testcaseInfo, setTestcaseInfo] = useState(1);
 
   const submitHandler = async () => {
     setCodeSubmitResults(true);
@@ -47,12 +57,12 @@ function CodeQuizQuestion({ question, idx, quiz_id }) {
     if (response.status == 200) {
       setTestcasesPassed(response.data.total_number_of_test_cases_passed);
       setTestcasesTotal(response.data.total_number_of_test_cases);
+      setTestCaseResults(response.data);
+      console.log(response.data);
       setLoadedTestcaseResults(true);
     } else {
       console.log("Error: " + response.status);
     }
-
-    console.log(response.data);
   };
 
   const runCodeHandler = () => {
@@ -172,15 +182,60 @@ function CodeQuizQuestion({ question, idx, quiz_id }) {
           ) : (
             <h5></h5>
           )}
-          {codeSubmitResults &&
-            (!loadedTestcaseResults ? (
-              <Card.Text>Checking testcases..</Card.Text>
-            ) : (
-              <Card.Text>
-                Testcases passed:{" "}
-                <strong>{`${testcasesPassed}/${testcasesTotal}`}</strong>
-              </Card.Text>
-            ))}
+          <Row>
+            <Col>
+              {codeSubmitResults &&
+                (!loadedTestcaseResults ? (
+                  <Card.Text>Checking testcases..</Card.Text>
+                ) : (
+                  <ListGroup className="test-case-list">
+                    {Object.keys(testCaseResults)
+                      .filter(
+                        (key) =>
+                          key.slice(0, 9) + key.slice(-7) === "test_case_status"
+                      )
+                      .map((key, idx) => {
+                        return testCaseResults[key] === "PASSED" ? (
+                          <ListGroup.Item
+                            action
+                            className="quiz-testcase-success"
+                            onClick={() => {
+                              setTestcaseInfo(idx + 1);
+                            }}
+                          >
+                            {"Testcase " +
+                              (idx + 1) +
+                              ": " +
+                              testCaseResults[key]}
+                          </ListGroup.Item>
+                        ) : (
+                          <ListGroup.Item
+                            action
+                            className="quiz-testcase-failure"
+                            onClick={() => {
+                              setTestcaseInfo(idx + 1);
+                            }}
+                          >
+                            {" "}
+                            {"Testcase " +
+                              (idx + 1) +
+                              ": " +
+                              testCaseResults[key]}{" "}
+                          </ListGroup.Item>
+                        );
+                      })}
+                  </ListGroup>
+                ))}
+            </Col>
+            <Col>
+              {loadedTestcaseResults && (
+                <TestcaseData
+                  testCaseResults={testCaseResults}
+                  testCaseNumber={testcaseInfo}
+                />
+              )}
+            </Col>
+          </Row>
         </Card.Body>
       </Card>
     </>
