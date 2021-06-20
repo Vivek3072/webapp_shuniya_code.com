@@ -62,37 +62,38 @@ function ArticleView(props) {
   });
 
   return (
-    <Col className="text-center py-2">
+    <Col className=" py-2">
       {isLoaded ? (
         <Card className="align-center">
-          {/* <Button variant="primary" href={`/edit/${user_id}/${article_no}`}>
-          Edit
-        </Button> */}
-          <Card.Body>
-            <ReactMarkdown remarkPlugins={[gfm]} className="py-3">
-              {markdown}
-            </ReactMarkdown>
-          </Card.Body>
-          <Card.Footer className="bg-white">
-            <Card className="footer my-3 py-2 text-start">
-              <Row>
-                <Col xs={4} md={1} className="mx-0 my-0 py-1 px-3">
-                  <Image
-                    src="https://www.hhcenter.org/wp-content/uploads/2017/02/person-placeholder.jpg"
-                    className="profile"
-                    roundedCircle
-                  />
-                </Col>
-                <Col xs={8} md={11} className="mt-3">
-                  <Card.Subtitle className="writtenby">
-                    WRITTEN BY
-                  </Card.Subtitle>
-                  <Card.Title className="article-writer">{user_id}</Card.Title>
-                  <Card.Subtitle className="writtenby">{date}</Card.Subtitle>
-                </Col>
-              </Row>
-            </Card>
-          </Card.Footer>
+          <Col lg={9} md={12} className="mx-auto">
+            <Card.Body>
+              <ReactMarkdown remarkPlugins={[gfm]} className="py-3">
+                {markdown}
+              </ReactMarkdown>
+            </Card.Body>
+            <Card.Footer className="bg-white">
+              <Card className="footer my-3 py-2 text-start">
+                <Row>
+                  <Col xs={4} md={1} className="mx-0 my-0 py-1 px-3">
+                    <Image
+                      src="https://www.hhcenter.org/wp-content/uploads/2017/02/person-placeholder.jpg"
+                      className="profile"
+                      roundedCircle
+                    />
+                  </Col>
+                  <Col xs={8} md={11} className="mt-3">
+                    <Card.Subtitle className="writtenby">
+                      WRITTEN BY
+                    </Card.Subtitle>
+                    <Card.Title className="article-writer">
+                      {user_id}
+                    </Card.Title>
+                    <Card.Subtitle className="writtenby">{date}</Card.Subtitle>
+                  </Col>
+                </Row>
+              </Card>
+            </Card.Footer>
+          </Col>
         </Card>
       ) : (
         <Spinner animation="border" size="xl" className="mt-5" />
