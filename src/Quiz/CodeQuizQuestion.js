@@ -64,6 +64,10 @@ function CodeQuizQuestion({ question, idx, quiz_id }) {
       console.log("Error: " + response.status);
     }
   };
+<<<<<<< HEAD
+  
+=======
+>>>>>>> 3bb1a12c4c9add020e34479e52ba6bc7827967c3
 
   const runCodeHandler = () => {
     setIsLoaded(false);
@@ -133,6 +137,11 @@ function CodeQuizQuestion({ question, idx, quiz_id }) {
         <Card.Body>
           <Card.Text>
             <strong>{question.questionText}</strong>
+<<<<<<< HEAD
+            <p>{question.sampleInput_1}<br/>{question.sampleOutput_1}</p>
+            <p>{question.sampleInput_2}<br/>{question.sampleOutput_2}</p>
+=======
+>>>>>>> 3bb1a12c4c9add020e34479e52ba6bc7827967c3
           </Card.Text>
           <CodeEditor
             handleCode={handleCode}
@@ -242,4 +251,8 @@ function CodeQuizQuestion({ question, idx, quiz_id }) {
   );
 }
 
+<<<<<<< HEAD
 export default CodeQuizQuestion;
+=======
+export default CodeQuizQuestion;
+>>>>>>> 3bb1a12c4c9add020e34479e52ba6bc7827967c3

@@ -225,7 +225,18 @@ const FormContainer = (props) => {
         console.log(res.data);
       });
   };
-
+  function Translate(){
+    return (
+      <ReactTransliterate
+        size="lg"
+        type="input"
+        value={header}
+        onChange={(e) => setHeader(e.target.value)}
+        lang={lang}
+        className="rounded mb-3"
+      />
+    );
+  }
   return (
     <Container fluid>
       <Form>
@@ -244,6 +255,14 @@ const FormContainer = (props) => {
                   className="rounded mb-3"
                 />
               </Form.Group>
+<<<<<<< HEAD
+              <Form.Group controlId="" size="lg">
+                <Form.Label htmlFor="Header">Editor</Form.Label>
+                {/* This is the Text Editors */}
+                <ControlledEditor ref={textEditorRef} />
+                <br />
+              </Form.Group>
+=======
               <Form.Label htmlFor="Header">Editor</Form.Label>
               {/* This is the Text Editors */}
               <ControlledEditor ref={textEditorRef} />
@@ -264,6 +283,7 @@ const FormContainer = (props) => {
               </Form.Group>
               <br />
 
+>>>>>>> 3bb1a12c4c9add020e34479e52ba6bc7827967c3
               <CodeEditor
                 texteditor={code}
                 handleChange={(e) => setCode(e.target.value)}

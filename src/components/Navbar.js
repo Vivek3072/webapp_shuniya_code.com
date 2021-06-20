@@ -90,8 +90,11 @@ const NavComponent = () => {
             <NavDropdown.Item href="/class/class_9">Class 9</NavDropdown.Item>
             <NavDropdown.Item href="/class/class_10">Class 10</NavDropdown.Item>
           </NavDropdown>
-
-          {token && <Nav.Link href="/quiz">Attempt Quiz</Nav.Link>}
+          {token &&
+          <NavDropdown title="Quiz" id="basic-nav-dropdown">
+            <NavDropdown.Item href="/quiz">Quiz 1</NavDropdown.Item>
+            <NavDropdown.Item href="/quiz_2">Quiz 2</NavDropdown.Item>
+          </NavDropdown>}
         </Nav>
         <Nav>
           {!token ? (

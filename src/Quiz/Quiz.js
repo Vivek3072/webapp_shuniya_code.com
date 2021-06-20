@@ -6,8 +6,11 @@ import "./quiz.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import QuizResultsModal from "./QuizResultsModal";
+<<<<<<< HEAD
+=======
 import CodeQuestions from "./codeQuestionsList.json";
 import CodeQuizQuestion from "./CodeQuizQuestion";
+>>>>>>> 3bb1a12c4c9add020e34479e52ba6bc7827967c3
 
 // import questions from "./questionList.json";
 
@@ -210,6 +213,8 @@ function Quiz() {
             );
           })}
 
+<<<<<<< HEAD
+=======
           {CodeQuestions.questions.map((question, idx) => {
             return (
               <CodeQuizQuestion
@@ -220,6 +225,7 @@ function Quiz() {
             );
           })}
 
+>>>>>>> 3bb1a12c4c9add020e34479e52ba6bc7827967c3
           {submitError && (
             <Alert variant="danger">
               Error during submission. Please try again.
