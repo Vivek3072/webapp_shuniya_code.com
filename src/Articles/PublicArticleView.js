@@ -63,7 +63,7 @@ function ArticleView(props) {
   });
 
   return (
-    <Col className="text-center py-2">
+    <Col className="py-2">
       {isLoaded ? (
         <Card className="align-center">
           <Col lg={9} md={12} className="mx-auto">
@@ -101,7 +101,9 @@ function ArticleView(props) {
           </Col>
         </Card>
       ) : (
-        <Spinner animation="border" size="xl" className="mt-5" />
+        <Row>
+          <Spinner animation="border" size="xl" className="mt-5 mx-auto" />
+        </Row>
       )}
     </Col>
   );

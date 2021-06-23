@@ -96,7 +96,9 @@ function ArticleView(props) {
           </Col>
         </Card>
       ) : (
-        <Spinner animation="border" size="xl" className="mt-5" />
+        <Row>
+          <Spinner animation="border" size="xl" className="mt-5 mx-auto" />
+        </Row>
       )}
     </Col>
   );

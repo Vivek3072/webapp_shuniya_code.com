@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import getInputSelection, { setCaretPosition } from "./Translator/utils";
 import getCaretCoordinates from "textarea-caret";
 import classes from "./Translator/styles.module.css";
-// import { Form } from "react-bootstrap";
+
 
 // import { ReactTransliterate } from "./Translator/index";
 import { EditorState, ContentState, Modifier } from "draft-js";
 
-import { Editor } from "react-draft-wysiwyg";
+import { Editor} from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 // const KEY_UP = 38;
@@ -38,9 +38,14 @@ class CustomOption extends Component {
   };
 
   render() {
-    return <div onClick={this.addStar}>⭐</div>;
+    return (
+      <>
+        <div onClick={this.addStar}>⭐</div>
+      </>
+    );
   }
 }
+
 
 class ControlledEditor extends Component {
   constructor(props) {
@@ -184,11 +189,6 @@ class ControlledEditor extends Component {
     // console.log(editorState);
   };
 
-  changeContent = (contentState) => {
-    // console.log(contentState.blocks[0].text);
-    // console.log(ContentState.getCurrentContent());
-  };
-
   render() {
     const { editorState } = this.state;
     return (
@@ -200,7 +200,6 @@ class ControlledEditor extends Component {
           editorClassName="demo-editor"
           toolbarCustomButtons={[<CustomOption />]}
           onEditorStateChange={this.onEditorStateChange}
-          onContentStateChange={this.changeContent}
           onKeyDown={this.handleKeyDown}
           mention={{
             separator: " ",
