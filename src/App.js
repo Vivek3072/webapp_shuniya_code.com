@@ -35,6 +35,8 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import UserArticleView from "./Articles/UserArticleView";
 import PublicArticleView from "./Articles/PublicArticleView";
 import firebase from "firebase";
+import ManageQuizPage from "./Quiz_Instructor/ManageQuizPage";
+import CreateQuiz from "./Quiz_Instructor/CreateQuiz";
 
 firebase.initializeApp({
   apiKey: "AIzaSyC065TVIqadZfzSI8bVWlsUgYegZGSDlVE",
@@ -66,6 +68,8 @@ const App = () => {
               <Route exact path={"/articles"} component={PublicArticles} />
               <Route exact path={"/quiz"} component={Quiz} />
               <Route exact path={"/quiz_2"} component={Quiz_2} />
+              <Route exact path={"/manage-quiz"} component={ManageQuizPage} />
+              <Route exact path={"/create-quiz"} component={CreateQuiz} />
               <Route
                 exact
                 path={"/article/user/:user_id/:article_no"}
