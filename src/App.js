@@ -34,7 +34,6 @@ import { Container } from "react-bootstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import UserArticleView from "./Articles/UserArticleView";
 import PublicArticleView from "./Articles/PublicArticleView";
-import PublicArticles from "./Articles/PublicArticles";
 import firebase from "firebase";
 
 firebase.initializeApp({
