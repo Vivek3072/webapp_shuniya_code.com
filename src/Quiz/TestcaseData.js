@@ -34,6 +34,7 @@ function TestcaseData({ testCaseResults, testCaseNumber }) {
           undefined && (
           <>
             <Card.Text className=" my-2 mt-4 test-case-data-heading">{`Your Output: `}</Card.Text>
+            <Card.Text className=" my-2 mt-4 test-case-data-heading">{`Actual Output: `}</Card.Text>
             <Card.Text className="my-0 p-2 test-case-data">{`${atob(
               testCaseResults["test_case_user_output_" + testCaseNumber]
             )}`}</Card.Text>

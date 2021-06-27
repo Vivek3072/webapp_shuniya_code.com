@@ -136,6 +136,16 @@ function CodeQuizQuestion({ question, idx, quiz_id }) {
             <strong>{question.questionText}</strong>
             <p>{question.sampleInput_1}<br/>{question.sampleOutput_1}</p>
             <p>{question.sampleInput_2}<br/>{question.sampleOutput_2}</p>
+            <p>
+              {question.sampleInput_1}
+              <br />
+              {question.sampleOutput_1}
+            </p>
+            <p>
+              {question.sampleInput_2}
+              <br />
+              {question.sampleOutput_2}
+            </p>
           </Card.Text>
           <CodeEditor
             handleCode={handleCode}

@@ -6,6 +6,8 @@ import "./quiz.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import QuizResultsModal from "./QuizResultsModal";
+import CodeQuestions from "./codeQuestionsList.json";
+import CodeQuizQuestion from "./CodeQuizQuestion";
 
 // import questions from "./questionList.json";
 

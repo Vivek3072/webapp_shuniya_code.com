@@ -15,6 +15,9 @@ import BhavTutorial from "./BhavTutorial/BhavTutorial";
 import TutorialPage from "./BhavTutorial/components/TutorialPage";
 import Quiz from "./Quiz/Quiz";
 import Quiz_2 from "./Quiz/Quiz_2";
+import UserArticleList from "./Articles/UserArticleList";
+import PublicArticles from "./Articles/PublicArticles";
+import EditArticle from "./Articles/EditArticle";
 
 import Class from "./Pages/Class";
 
@@ -64,6 +67,26 @@ const App = () => {
               <Route exact path={"/articles"} component={PublicArticles} />
               <Route exact path={"/quiz"} component={Quiz} />
               <Route exact path={"/quiz_2"} component={Quiz_2} />
+              <Route
+                exact
+                path={"/article/user/:user_id/:article_no"}
+                component={UserArticleView}
+              ></Route>
+              <Route
+                exact
+                path={"/edit/:user_id/:article_no"}
+                component={EditArticle}
+              ></Route>
+              <Route
+                exact
+                path={"/article/public/:article_no"}
+                component={PublicArticleView}
+              ></Route>
+              <Route
+                exact
+                path={"/my-articles"}
+                component={UserArticleList}
+              ></Route>
               <Route exact path={"/homepage"} component={HomePage} />
               <Route exact path={"/write"} component={TextEditor} />
               <Route exact path={"/*"} component={NotFound} />
