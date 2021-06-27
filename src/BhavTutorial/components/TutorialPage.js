@@ -16,7 +16,9 @@ function TutorialPage(props) {
       >
         {disable ? "Hindi" : "English"}
       </button>
-      <MainHindi tutorialLink={props.match.params.tutorialTitle}></MainHindi>
+      {disable?
+        <MainHindi tutorialLink={props.match.params.tutorialTitle}></MainHindi>:
+        <Main tutorialLink={props.match.params.tutorialTitle}></Main>}
     </div>
   );
 }
