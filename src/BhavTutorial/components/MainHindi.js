@@ -16,7 +16,7 @@ import {
   Redirect,
 } from "react-router-dom";
 
-function Main({ tutorialLink }) {
+function MainHindi({ tutorialLink }) {
   const [showBars, setShowBars] = useState(false);
   
   const date = new Date();
@@ -43,16 +43,16 @@ function Main({ tutorialLink }) {
       <Row>
         {showBars || (
           <Col md={4} lg={3} className="px-2">
-            <TopicAccordion />
+            <TopicAccordionHindi />
           </Col>
         )}
 
         <Col sm={12} md={8} lg={9} xs={12} className="px-2">
-          <ArticleCard titleLink={tutorialLink}></ArticleCard>
+          <ArticleCardHindi titleLink={tutorialLink}></ArticleCardHindi>
         </Col>
       </Row>
     </Container>
   );
 }
 
-export default Main;
+export default MainHindi;

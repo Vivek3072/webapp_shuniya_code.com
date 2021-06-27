@@ -14,13 +14,7 @@ import HomePage from "./homepage";
 import BhavTutorial from "./BhavTutorial/BhavTutorial";
 import TutorialPage from "./BhavTutorial/components/TutorialPage";
 import Quiz from "./Quiz/Quiz";
-<<<<<<< HEAD
 import Quiz_2 from "./Quiz/Quiz_2";
-=======
-import UserArticleList from "./Articles/UserArticleList";
-import PublicArticles from "./Articles/PublicArticles";
-import EditArticle from "./Articles/EditArticle";
->>>>>>> 3bb1a12c4c9add020e34479e52ba6bc7827967c3
 
 import Class from "./Pages/Class";
 
@@ -37,6 +31,7 @@ import { Container } from "react-bootstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import UserArticleView from "./Articles/UserArticleView";
 import PublicArticleView from "./Articles/PublicArticleView";
+import PublicArticles from "./Articles/PublicArticles";
 import firebase from "firebase";
 
 firebase.initializeApp({
@@ -68,30 +63,7 @@ const App = () => {
               </Route>
               <Route exact path={"/articles"} component={PublicArticles} />
               <Route exact path={"/quiz"} component={Quiz} />
-<<<<<<< HEAD
               <Route exact path={"/quiz_2"} component={Quiz_2} />
-=======
-              <Route
-                exact
-                path={"/article/user/:user_id/:article_no"}
-                component={UserArticleView}
-              ></Route>
-              <Route
-                exact
-                path={"/edit/:user_id/:article_no"}
-                component={EditArticle}
-              ></Route>
-              <Route
-                exact
-                path={"/article/public/:article_no"}
-                component={PublicArticleView}
-              ></Route>
-              <Route
-                exact
-                path={"/my-articles"}
-                component={UserArticleList}
-              ></Route>
->>>>>>> 3bb1a12c4c9add020e34479e52ba6bc7827967c3
               <Route exact path={"/homepage"} component={HomePage} />
               <Route exact path={"/write"} component={TextEditor} />
               <Route exact path={"/*"} component={NotFound} />

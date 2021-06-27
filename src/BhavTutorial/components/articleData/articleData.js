@@ -107,7 +107,7 @@ const articles = [
     title: "Bhav for Loop",
     titleURL: "Bhav For Loop".replace(/\s+/g, "-").toLowerCase(),
     texts: [
-      "For loops, in general, are used for sequential traversal. It falls under the category of definite iteration. Definite iterations means the number of repetitions is specified explicitly in advance.",
+      "The for loop is used to iterate the statements or a part of the program several times. It is frequently used to traverse the data structures like list, tuple, or dictionary.",
     ],
   },
 ];

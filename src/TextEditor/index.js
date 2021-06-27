@@ -255,35 +255,12 @@ const FormContainer = (props) => {
                   className="rounded mb-3"
                 />
               </Form.Group>
-<<<<<<< HEAD
               <Form.Group controlId="" size="lg">
                 <Form.Label htmlFor="Header">Editor</Form.Label>
                 {/* This is the Text Editors */}
                 <ControlledEditor ref={textEditorRef} />
                 <br />
               </Form.Group>
-=======
-              <Form.Label htmlFor="Header">Editor</Form.Label>
-              {/* This is the Text Editors */}
-              <ControlledEditor ref={textEditorRef} />
-              <Form.Group>
-                <Form.Label htmlFor="TransliterationBox" className="mt-4">
-                  Transliteration Box: (Copy paste below content to editor to
-                  add to the article)
-                </Form.Label>
-                <ReactTransliterate
-                  size="md"
-                  type="textarea"
-                  value={editorContent}
-                  onChange={(e) => setEditorContent(e.target.value)}
-                  lang={lang}
-                  className="rounded mb-3 transliterate-box"
-                  placeholder="Enter text here to transliterate and paste in the editor above"
-                />
-              </Form.Group>
-              <br />
-
->>>>>>> 3bb1a12c4c9add020e34479e52ba6bc7827967c3
               <CodeEditor
                 texteditor={code}
                 handleChange={(e) => setCode(e.target.value)}

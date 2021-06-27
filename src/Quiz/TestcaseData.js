@@ -33,11 +33,7 @@ function TestcaseData({ testCaseResults, testCaseNumber }) {
         {testCaseResults["test_case_user_output_" + testCaseNumber] !==
           undefined && (
           <>
-<<<<<<< HEAD
             <Card.Text className=" my-2 mt-4 test-case-data-heading">{`Your Output: `}</Card.Text>
-=======
-            <Card.Text className=" my-2 mt-4 test-case-data-heading">{`Actual Output: `}</Card.Text>
->>>>>>> 3bb1a12c4c9add020e34479e52ba6bc7827967c3
             <Card.Text className="my-0 p-2 test-case-data">{`${atob(
               testCaseResults["test_case_user_output_" + testCaseNumber]
             )}`}</Card.Text>
@@ -48,8 +44,4 @@ function TestcaseData({ testCaseResults, testCaseNumber }) {
   );
 }
 
-<<<<<<< HEAD
 export default TestcaseData;
-=======
-export default TestcaseData;
->>>>>>> 3bb1a12c4c9add020e34479e52ba6bc7827967c3
