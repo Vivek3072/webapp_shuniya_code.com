@@ -21,6 +21,8 @@ function Quiz() {
   const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
   const [totalMcqCount, setTotalMcqCount] = useState(0);
   const [displayResultsModal, setdisplayResultsModal] = useState(false);
+  const [answerKeys, setAnswerKeys] = useState([]);
+  const [answers, setAnswers] = useState({});
 
   let history = useHistory();
 
@@ -100,25 +102,21 @@ function Quiz() {
       "http://कोड.com:8000/api/v1/get_quiz_questions/quiz_1/"
     );
     const questionsData = await response.data;
-
     setQuestionsList(questionsData.questions);
-
+    setAnswerKeys([...questionsList.map((question) => question.answer_key)]);
     setQuizID(questionsData.quiz_id);
+    setAnswers({
+      user_id: "",
+      quiz_id: quizID,
+      submission: [
+        questionsList.map((question) => {
+          return {
+            [question.question_serial_number]: "",
+          };
+        }),
+      ],
+    });
   }
-
-  const answerKeys = [...questionsList.map((question) => question.answer_key)];
-
-  const answers = {
-    user_id: "",
-    quiz_id: quizID,
-    submission: [
-      questionsList.map((question) => {
-        return {
-          [question.question_serial_number]: "",
-        };
-      }),
-    ],
-  };
 
   return (
     <Col id="top">
@@ -129,7 +127,7 @@ function Quiz() {
             e.preventDefault();
           }}
         >
-          {questionsList.map((question, idx) => {
+          {questionsList?.map((question, idx) => {
             return (
               <>
                 <Card
