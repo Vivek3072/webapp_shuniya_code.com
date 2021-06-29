@@ -14,45 +14,45 @@ function TopicAccordionHindi() {
           "भव भाषा लाभ",
           "भव मूल बातें",
           "भव के कीवर्ड",
-          "Namespace and Scope in Bhav",
-          "Statement, Indentation and Comments in Bhav",
-          "Assign Values to Variables in Bhav",
+          "भव में नेमस्पेस और स्कोप",
+          "भव में वक्तव्य, इंडेंटेशन और टिप्पणियाँ",
+          "भव में वैरिएबल को मान करें",
         ]}
         eventKey={"0"}
       ></AccordionCard>
       <AccordionCard
-        title={"Input/Output"}
+        title={"इनपुट/परिणाम"}
         links={[
-          "Taking input in Bhav",
-          "Taking input from console in Bhav",
-          "Taking multiple inputs from user in Bhav",
-          "Bhav | Output string using print() function",
-          "How to print without newline in Bhav?",
-          "Bhav end parameter in print()",
+          "भव में इनपुट लेना",
+          "भव में कंसोल से इनपुट लेना",
+          "भव में उपयोगकर्ता से कई इनपुट लेना",
+          "भव | पश्य () का उपयोग करके परिणाम",
+          "भव में न्यूलाइन के बिना पश्य कैसे करें?",
+          "पश्य में भव अंत पैरामीटर ()",
           "Bhav sep parameter in print()",
-          "Bhav | Output formatting",
+          "भव | परिणाम स्वरूपण",
         ]}
         eventKey={"1"}
       ></AccordionCard>
       <AccordionCard
-        title={"Operators"}
+        title={"ऑपरेटर्स"}
         links={[
-          "Bhav Operators",
-          "Ternary Operator in Bhav",
-          "Division Operators in Bhav",
-          "Operator Overloading in Bhav",
+          "भव ऑपरेटर्स",
+          "भव में टर्नरी ऑपरेटर",
+          "भव में डिवीजन ऑपरेटर्स",
+          "भव में ऑपरेटर ओवरलोडिंग",
         ]}
         eventKey={"2"}
       ></AccordionCard>
       <AccordionCard
-        title={"Control Flow"}
+        title={"भव लूप्स"}
         links={[
           "भव यद तद",
-          "Chaining comparison operators in Bhav",
-          "Bhav For Loop",
-          "Bhav While Loop",
-          "Bhav break statement",
-          "Bhav continue statement",
+          "भव में चेनिंग तुलना ऑपरेटर",
+          "भव फॉर लूप",
+          "भव while लूप",
+          "भव break स्टेटमेंट",
+          "भव continue स्टेटमेंट",
         ]}
         eventKey={"3"}
       ></AccordionCard>

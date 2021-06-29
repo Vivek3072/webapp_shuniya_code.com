@@ -6,19 +6,24 @@ import MainHindi from "./MainHindi";
 function TutorialPage(props) {
   const [disable, setDisable] = useState(true);
 
+  const clickHandle=(e)=>{
+    e.preventDefault();
+    setDisable(!disable);
+  }
+
   return (
     <div>
       <Header></Header>
       <button
         className="btn-dark rounded mb-4"
         style={{ height: "25px" }}
-        onClick={() => setDisable(!disable)}
+        onClick={clickHandle}
       >
         {disable ? "Hindi" : "English"}
       </button>
       {disable?
-        <MainHindi tutorialLink={props.match.params.tutorialTitle}></MainHindi>:
-        <Main tutorialLink={props.match.params.tutorialTitle}></Main>}
+        <MainHindi disable={disable} tutorialLink={props.match.params.tutorialTitle}></MainHindi>:
+        <Main disable={disable} tutorialLink={props.match.params.tutorialTitle}></Main>}
     </div>
   );
 }

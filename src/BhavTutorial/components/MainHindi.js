@@ -16,7 +16,7 @@ import {
   Redirect,
 } from "react-router-dom";
 
-function MainHindi({ tutorialLink }) {
+function MainHindi({ tutorialLink , disable}) {
   const [showBars, setShowBars] = useState(false);
   
   const date = new Date();
@@ -43,7 +43,9 @@ function MainHindi({ tutorialLink }) {
       <Row>
         {showBars || (
           <Col md={4} lg={3} className="px-2">
-            <TopicAccordionHindi />
+            {disable &&
+            <TopicAccordionHindi />}
+            {!disable && <TopicAccordion/>}
           </Col>
         )}
 
