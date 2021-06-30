@@ -30,6 +30,7 @@ import home from "./home";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import { Container } from "react-bootstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import UserArticleView from "./Articles/UserArticleView";
@@ -63,7 +64,7 @@ const App = () => {
                 component={TutorialPage}
               ></Route>
               <Route exact path="/bhav-tutorials">
-                <Redirect to="/tutorial/bhav-if-else"></Redirect>
+                <Redirect to="/tutorial/bhav-programming-language"></Redirect>
               </Route>
               <Route exact path={"/articles"} component={PublicArticles} />
               <Route exact path={"/quiz"} component={Quiz} />
@@ -97,6 +98,9 @@ const App = () => {
           </CSSTransition>
         </TransitionGroup>
       </Container>
+      <br/>
+      <br/>
+      <Footer/>
     </>
   );
 };

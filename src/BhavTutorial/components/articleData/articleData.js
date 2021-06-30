@@ -110,6 +110,13 @@ const articles = [
       "The for loop is used to iterate the statements or a part of the program several times. It is frequently used to traverse the data structures like list, tuple, or dictionary.",
     ],
   },
+  {
+    title: "Bhav Programming Language",
+    titleURL: "Bhav Programming Language".replace(/\s+/g, "-").toLowerCase(),
+    texts: [
+      "The for loop is used to iterate the statements or a part of the program several times. It is frequently used to traverse the data structures like list, tuple, or dictionary.",
+    ],
+  },
 ];
 
 export default articles;

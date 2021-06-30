@@ -13,7 +13,7 @@ function TutorialPage(props) {
 
   return (
     <div>
-      <Header></Header>
+      
       <button
         className="btn-dark rounded mb-4"
         style={{ height: "25px" }}

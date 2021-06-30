@@ -9,6 +9,7 @@ import LoginCard from "./LoginCard";
 
 import Axios from "axios";
 import firebase from "firebase";
+import './Footer.css';
 
 const NavComponent = () => {
   const token = localStorage.getItem("user-id");
@@ -71,7 +72,7 @@ const NavComponent = () => {
   };
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar className='navbar navbar-dark bg-dark' bg="light" expand="lg" style={{height:100}}>
       <Navbar.Brand href="/" className="fw-bold">
         <Code size={35} className="mr-1" />
         कोड
@@ -79,23 +80,24 @@ const NavComponent = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
         <Nav className="mr-auto">
-          <Nav.Link href="/homepage">Home</Nav.Link>
-          <Nav.Link href="/bhav-tutorials">Bhav Tutorials</Nav.Link>
           <Nav.Link href="/articles">Articles</Nav.Link>
-
-          <NavDropdown title="Class" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/class/class_6">Class 6</NavDropdown.Item>
-            <NavDropdown.Item href="/class/class_7">Class 7</NavDropdown.Item>
-            <NavDropdown.Item href="/class/class_8">Class 8</NavDropdown.Item>
-            <NavDropdown.Item href="/class/class_9">Class 9</NavDropdown.Item>
-            <NavDropdown.Item href="/class/class_10">Class 10</NavDropdown.Item>
-          </NavDropdown>
           {token && (
             <NavDropdown title="Quiz" id="basic-nav-dropdown">
               <NavDropdown.Item href="/quiz">Quiz 1</NavDropdown.Item>
               <NavDropdown.Item href="/quiz_2">Quiz 2</NavDropdown.Item>
             </NavDropdown>
           )}
+          <Nav.Link className='nav-item active' href="/homepage">Home</Nav.Link>
+          <NavDropdown title="Tutorials" id="basic-nav-dropdown">
+            <NavDropdown.Item href="/bhav-tutorials">Bhav Tutorials</NavDropdown.Item>
+          </NavDropdown>
+          <NavDropdown title="Class" id="basic-nav-dropdown">
+            <NavDropdown.Item href="/class/class_6">Class 6</NavDropdown.Item>
+            <NavDropdown.Item href="/class/class_7">Class 7</NavDropdown.Item>
+            <NavDropdown.Item href="/class/class_8">Class 8</NavDropdown.Item>
+            <NavDropdown.Item href="/class/class_9">Class 9</NavDropdown.Item>
+            <NavDropdown.Item href="/class/class_10">Class 10</NavDropdown.Item>
+          </NavDropdown> 
         </Nav>
         <Nav>
           {!token ? (
