@@ -16,7 +16,7 @@ function Footer(){
                     <h7 style={{color:'white'}}><a href="/homepage">Home</a></h7>
                 </Col>
                 {/*column 2*/}
-                <Col className="col-md-2 padding-0">
+                <Col className="col-md-2 padding-0" style={{textAlign:"center"}}>
                     <h7 style={{color:'white'}}><b>Tutorials</b></h7>
                     <ul className='list-unstyled'>
                         <li><a href="/bhav-tutorials">BhavTutorials</a></li>
@@ -25,7 +25,7 @@ function Footer(){
                     </ul>
                 </Col>
                 {/*column 3*/}
-                <Col className="col-md-2 padding-0">
+                <Col className="col-md-2 padding-0" style={{textAlign:"center"}}>
                     <h7 style={{color:'white'}}><b>Class</b></h7>
                     <ul className='list-unstyled'>
                         <li><a href="/class/class_6">6</a></li>
@@ -36,7 +36,7 @@ function Footer(){
                     </ul>
                 </Col>
                 {/*column 4*/}
-                <Col className="col-md-2 padding-0">
+                <Col className="col-md-2 padding-0" style={{textAlign:"center"}}>
                     <h7 style={{color:'white'}}><b>Write</b></h7>
                     <ul className='list-unstyled'>
                         <li><a href="/write">Write Article</a></li>
@@ -47,8 +47,8 @@ function Footer(){
                 </Col>
                 </Row>
                 </Col>
-
-                <Col md={4} className="mt-2 padding-0" fluid>
+                <Col md={2}></Col>
+                <Col className="col-md-2 padding-0 fw-bold">
                     <h1 className="fw-bold" 
                         style={{color:'white'}}>
                             <a href="/"><Code size={50} className="mr-1" />कोड</a>

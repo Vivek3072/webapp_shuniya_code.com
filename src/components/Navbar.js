@@ -72,7 +72,7 @@ const NavComponent = () => {
   };
 
   return (
-    <Navbar className='navbar navbar-dark bg-dark' bg="light" expand="lg" style={{height:100}}>
+    <Navbar className='navbar navbar-light bg-light' bg="light" expand="lg" style={{height:100}}>
       <Navbar.Brand href="/" className="fw-bold">
         <Code size={35} className="mr-1" />
         कोड
@@ -87,7 +87,7 @@ const NavComponent = () => {
               <NavDropdown.Item href="/quiz_2">Quiz 2</NavDropdown.Item>
             </NavDropdown>
           )}
-          <Nav.Link className='nav-item active' href="/homepage">Home</Nav.Link>
+          <Nav.Link href="/homepage">Home</Nav.Link>
           <NavDropdown title="Tutorials" id="basic-nav-dropdown">
             <NavDropdown.Item href="/bhav-tutorials">Bhav Tutorials</NavDropdown.Item>
           </NavDropdown>
