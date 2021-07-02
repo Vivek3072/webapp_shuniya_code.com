@@ -47,10 +47,10 @@ function TopicAccordionHindi() {
       <AccordionCard
         title={"भव लूप्स"}
         links={[
-          "भव यद तद",
+          "भव यद तद(if else)",
           "भव में चेनिंग तुलना ऑपरेटर",
-          "भव फॉर लूप",
-          "भव while लूप",
+          "भव हर(for) लूप",
+          "भव जबतक(while) लूप",
           "भव break स्टेटमेंट",
           "भव continue स्टेटमेंट",
         ]}

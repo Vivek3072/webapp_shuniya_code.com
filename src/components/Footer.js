@@ -42,7 +42,7 @@ function Footer(){
                         <li><a href="/write">Write Article</a></li>
                     </ul>
                 </Col>
-                <Col className="col-md-2 padding-0 fw-bold">
+                <Col className="col-md-2 padding-0 fw-bold" style={{textAlign:"center"}}>
                     <h7 style={{color:'white'}}>Language</h7>
                 </Col>
                 </Row>
