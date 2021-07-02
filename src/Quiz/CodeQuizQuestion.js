@@ -64,6 +64,7 @@ function CodeQuizQuestion({ question, idx, quiz_id }) {
       console.log("Error: " + response.status);
     }
   };
+  
 
   const runCodeHandler = () => {
     setIsLoaded(false);
@@ -133,6 +134,8 @@ function CodeQuizQuestion({ question, idx, quiz_id }) {
         <Card.Body>
           <Card.Text>
             <strong>{question.questionText}</strong>
+            <p>{question.sampleInput_1}<br/>{question.sampleOutput_1}</p>
+            <p>{question.sampleInput_2}<br/>{question.sampleOutput_2}</p>
             <p>
               {question.sampleInput_1}
               <br />

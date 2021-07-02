@@ -1,0 +1,6 @@
+.syntax {
+  background-color: rgb(252, 207, 156) !important;
+}
+.output {
+  box-shadow: 3px 3px 8px 2px rgb(19, 18, 18);
+}

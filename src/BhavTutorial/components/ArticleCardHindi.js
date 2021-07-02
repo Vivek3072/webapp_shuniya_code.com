@@ -13,7 +13,7 @@ import "./components.css";
 //   );
 // }
 
-class ArticleCard extends Component {
+class ArticleCardHindi extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +25,7 @@ class ArticleCard extends Component {
       showSnippet: false,
       isloaded: false,
       show: "",
-      article: articles.find((arti) => arti.titleURL === this.props.titleLink),
+      article: articlesHindi.find((arti) => arti.titleURL === this.props.titleLink),
       date: new Date(),
     };
     this.componentRef = React.createRef();
@@ -174,4 +174,4 @@ class ArticleCard extends Component {
   }
 }
 
-export default ArticleCard;
+export default ArticleCardHindi;

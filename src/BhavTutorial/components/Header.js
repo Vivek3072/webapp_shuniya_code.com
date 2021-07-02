@@ -8,10 +8,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Modal } from "react-bootstrap";
 import TopicAccordion from "./TopicAccordion";
+import TopicAccordionHindi from "./TopicAccordianHindi";
 
 function Header() {
   const [showBars, setShowBars] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [lang, setLang] = useState(TopicAccordionHindi);
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -52,10 +54,10 @@ function Header() {
         <Navbar.Brand href="/" className="mx-auto">
           कोड.com
         </Navbar.Brand>
-
         <Nav>
           <Nav.Link href="/homepage">Home</Nav.Link>
         </Nav>
+        
       </Container>
       <Modal
         show={showModal}

@@ -254,9 +254,13 @@ const FormContainer = (props) => {
                   className="rounded mb-3"
                 />
               </Form.Group>
-              <Form.Label htmlFor="Header">Editor</Form.Label>
-              {/* This is the Text Editors */}
-              <ControlledEditor ref={textEditorRef} />
+              <Form.Group controlId="" size="lg">
+                <Form.Label htmlFor="Header">Editor</Form.Label>
+                {/* This is the Text Editors */}
+                <ControlledEditor ref={textEditorRef} />
+                <br />
+              </Form.Group>
+            
               <Form.Group>
                 <Form.Label htmlFor="TransliterationBox" className="mt-4">
                   Transliteration Box: (Copy paste below content to editor to
