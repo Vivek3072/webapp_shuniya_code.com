@@ -21,3 +21,41 @@
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
 }
+
+.article-card {
+  background-color: rgb(224, 224, 224) !important;
+}
+
+.viewbtn {
+  background-color: rgb(1, 22, 39) !important;
+  border: none;
+  outline: 0;
+}
+
+.filter-btn {
+  background-color: rgb(224, 224, 224) !important;
+  color: black !important;
+  text-decoration: none !important;
+}
+
+#filter {
+  background-color: rgb(224, 224, 224) !important;
+  color: black !important;
+  text-decoration: none !important;
+}
+
+.filter-item {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.filter-item-box {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.checkbox {
+  width: 13px;
+  height: 100%;
+}

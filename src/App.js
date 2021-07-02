@@ -37,6 +37,7 @@ import PublicArticleView from "./Articles/PublicArticleView";
 import firebase from "firebase";
 import ManageQuizPage from "./Quiz_Instructor/ManageQuizPage";
 import CreateQuiz from "./Quiz_Instructor/CreateQuiz";
+import UpdateQuiz from "./Quiz_Instructor/UpdateQuiz";
 
 firebase.initializeApp({
   apiKey: "AIzaSyC065TVIqadZfzSI8bVWlsUgYegZGSDlVE",
@@ -70,6 +71,11 @@ const App = () => {
               <Route exact path={"/quiz_2"} component={Quiz_2} />
               <Route exact path={"/manage-quiz"} component={ManageQuizPage} />
               <Route exact path={"/create-quiz"} component={CreateQuiz} />
+              <Route
+                exact
+                path={"/update-quiz/:quiz_id"}
+                component={UpdateQuiz}
+              />
               <Route
                 exact
                 path={"/article/user/:user_id/:article_no"}

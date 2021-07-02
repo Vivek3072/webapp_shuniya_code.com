@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Card, Col, Row, Form, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import Multiselect from "multiselect-react-dropdown";
 import { FaRegCircle } from "react-icons/fa";
 import { BsX } from "react-icons/bs";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -7,10 +9,20 @@ import axios from "axios";
 import "./style.css";
 
 function CreateQuiz() {
-  const [questionType, setQuestionType] = useState("Multiple Choice");
   const [questionList, setQuestionList] = useState([]);
-  const [question, setQuestion] = useState({});
+  const [quizTitle, setQuizTitle] = useState("");
   const [userID, setUserID] = useState(localStorage.getItem("user-id"));
+  const [publishDate, setPublishDate] = useState("2021-01-01T00:00:00Z");
+  const [selected, setSelected] = useState([]);
+  const history = useHistory();
+
+  const options = [
+    { name: "Class 6", value: "class6" },
+    { name: "Class 7", value: "class7" },
+    { name: "Class 8", value: "class8" },
+    { name: "Class 9", value: "class9" },
+    { name: "Class 10", value: "class10" },
+  ];
 
   const addOption = (q_idx) => {
     const newQuestionList = questionList.map((question) => {
@@ -28,15 +40,28 @@ function CreateQuiz() {
     setQuestionList(newQuestionList);
   };
 
-  const submitHandler = async () => {
-    let quizData = JSON.stringify({ quiz_title: "", questions: questionList });
-    let blob = new Blob([quizData], { type: "application/json" });
-    let formData = new FormData();
+  const submitHandler = async (state) => {
+    const quizData = JSON.stringify({
+      quiz_title: quizTitle,
+      questions: questionList,
+      apllicable_batches: selected,
+    });
+
+    let batches = selected.map((option) => option.value);
+    const batchesStr = batches.join(",");
+
+    var formData = new FormData();
     formData.append("creator_id", userID);
-    formData.append("publish_time", "");
-    formData.append("applicable_batches", []);
-    formData.append("state", "save");
-    formData.append("data", blob);
+    formData.append("publish_time", publishDate);
+    formData.append("applicable_batches", `{${batchesStr}}`);
+    formData.append("state", state);
+    formData.append("data", quizData);
+
+    // for (var d in formData.entries()) {
+    //   console.log(d);
+    // }
+
+    // console.log(Array.from(formData));
 
     const headers = { "Content-Type": "mutipart/form-data" };
     const response = await axios.post(
@@ -44,7 +69,7 @@ function CreateQuiz() {
       formData,
       headers
     );
-    console.log(response.data);
+    if (response.status == 200) history.push("/manage-quiz");
   };
 
   const addMCQQuestion = () => {
@@ -172,12 +197,64 @@ function CreateQuiz() {
     ]);
   };
 
+  const handleSelect = (selectedList, selectItem) => {
+    setSelected([...selectedList]);
+  };
+
+  const handleRemove = (selectedList, removeItem) => {
+    const newList = selectedList.filter(
+      (item) => item.name !== removeItem.name
+    );
+    setSelected(newList);
+  };
+
   return (
     <Col lg={8} className="py-3 mx-auto">
       <Form>
         <Form.Group>
+          <Form.Label>Publish Date</Form.Label>
+          <Form.Control
+            type="date"
+            value={publishDate.slice(0, 10)}
+            onChange={(e) => {
+              const date = e.target.value;
+              setPublishDate(date + "T" + publishDate.slice(11, -1) + "Z");
+            }}
+          />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>Publish Time</Form.Label>
+          <Form.Control
+            type="time"
+            value={publishDate.slice(11, -1)}
+            onChange={(e) => {
+              const time = e.target.value;
+              setPublishDate(publishDate.slice(0, 11) + time + "Z");
+            }}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Applicable Batches</Form.Label>
+          <Multiselect
+            options={options}
+            displayValue="name"
+            onSelect={handleSelect}
+            onRemove={handleRemove}
+          />
+        </Form.Group>
+
+        <Form.Group>
           <Form.Label>Quiz Title</Form.Label>
-          <Form.Control type="text" placeholder="Untitled" size="lg" />
+          <Form.Control
+            type="text"
+            placeholder="Untitled"
+            size="lg"
+            value={quizTitle}
+            onChange={(e) => {
+              setQuizTitle(e.target.value);
+            }}
+          />
         </Form.Group>
 
         {questionList.map((q, idx) => {
@@ -292,7 +369,20 @@ function CreateQuiz() {
         <Button onClick={addMCQQuestion}>Add MCQ Question</Button>
         <Button onClick={addWriteUpQuestion}>Add Write Up Question</Button>
       </Form>
-      <Button onClick={submitHandler}>Submit</Button>
+      <Button
+        onClick={() => {
+          submitHandler("save");
+        }}
+      >
+        Save
+      </Button>
+      <Button
+        onClick={() => {
+          submitHandler("publish");
+        }}
+      >
+        Publish
+      </Button>
     </Col>
   );
 }

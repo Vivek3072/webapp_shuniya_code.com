@@ -99,7 +99,6 @@ const FormContainer = (props) => {
 
       const headers = { "Content-Type": "multipart/form-data" };
 
-      // console.log(formData);
       const response = axios
         .post(
           "http://कोड.com:8000/api/v1/article_review_demo/",
