@@ -11,12 +11,34 @@ import {
   ButtonGroup,
   InputGroup,
   FormControl,
+  Form,
   ListGroupItem,
 } from "react-bootstrap";
+
 import "./articlelist.css";
 
 function PublicArticles() {
   const [generalArticles, setGeneralArticles] = useState([]);
+  const [filterList, setFilterList] = useState([
+    "Function",
+    "List",
+    "String",
+    "Class",
+    "Variable",
+  ]);
+
+  const filterFunction = (item, checked) => {
+    if (checked) {
+      setFilterList([...filterList, item]);
+    } else {
+      let idx = filterList.indexOf(item);
+      const newList = filterList
+        .slice(0, idx)
+        .concat(filterList.slice(idx + 1));
+      setFilterList(newList);
+      console.log(newList);
+    }
+  };
 
   useEffect(() => {
     axios
@@ -38,16 +60,37 @@ function PublicArticles() {
             className="mx-4 px-0 py-0 ml-auto filter-btn"
             id="filter"
           >
-            <Dropdown.ItemText className="mx-0 px-0 my-0 py-0 filter-item-box">
-              <InputGroup className="filter-item my-0 py-0">
-                <InputGroup.Checkbox
-                  aria-label="Checkbox for following text input"
-                  className="checkbox"
+            {["Function", "List", "String", "Class", "Variable"].map((item) => (
+              <Dropdown.ItemText className="filter-item-box">
+                <Form.Check
+                  type="checkbox"
+                  id={item}
+                  label={item}
+                  value={item}
+                  defaultChecked
+                  onChange={(e) => {
+                    filterFunction(e.target.value, e.target.checked);
+                  }}
                 />
-                <InputGroup.Text>Function</InputGroup.Text>
-              </InputGroup>
+              </Dropdown.ItemText>
+            ))}
+            {/* <Dropdown.ItemText className="filter-item-box">
+              <Form.Check
+                type="checkbox"
+                id="Function"
+                label="Function"
+                value="Function"
+                defaultChecked
+                onChange={(e) => {
+                  console.log(e.target.value);
+                }}
+              />
             </Dropdown.ItemText>
+            <Dropdown.ItemText className="filter-item-box">
+              <Form.Check type="checkbox" id="Something" label="Something" />
+            </Dropdown.ItemText> */}
           </DropdownButton>
+
           <Button
             className="mx-4 ml-auto filter-btn btn-secondary"
             variant="link"
@@ -58,26 +101,28 @@ function PublicArticles() {
         </div>
       </Row>
       <Col>
-        {generalArticles.map((article, idx) => (
-          <Card key={`article-${idx}`} className="my-4 article-card">
-            <Card.Body className="article-title-card">
-              <Card.Title className="lg-font">{article.title}</Card.Title>
-              <Card.Subtitle className="date-modified my-3">
-                {article.user_id} | {article.timestamp.slice(0, 10)}
-              </Card.Subtitle>
+        {generalArticles
+          .filter((article) => filterList.includes(article.category))
+          .map((article, idx) => (
+            <Card key={`article-${idx}`} className="my-4 article-card">
+              <Card.Body className="article-title-card">
+                <Card.Title className="lg-font">{article.title}</Card.Title>
+                <Card.Subtitle className="date-modified my-3">
+                  {article.user_id} | {article.timestamp.slice(0, 10)}
+                </Card.Subtitle>
 
-              <div className="text-right">
-                <Card.Link href={`/article/public/${idx}`}>
-                  <Button className="mx-auto viewbtn btn-dark">View</Button>
-                </Card.Link>
-              </div>
-              <div>
-                {article.tags.split(",")[1]} | {article.category} |{" "}
-                {article.tags.split(",")[0]}
-              </div>
-            </Card.Body>
-          </Card>
-        ))}
+                <div className="text-right">
+                  <Card.Link href={`/article/public/${idx}`}>
+                    <Button className="mx-auto viewbtn btn-dark">View</Button>
+                  </Card.Link>
+                </div>
+                <div>
+                  {article.tags.split(",")[1]} | {article.category} |{" "}
+                  {article.tags.split(",")[0]}
+                </div>
+              </Card.Body>
+            </Card>
+          ))}
       </Col>
     </Container>
   );
