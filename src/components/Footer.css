@@ -16,7 +16,7 @@
     color: var(--mainWhite);
     width: 100%;
     position: relative;
-    bottom: 0rem;
+    bottom: 0;
 }
 li {
     margin: 0;
@@ -30,6 +30,7 @@ h1 a:hover,
 ul li a:hover,
 h7 a:hover{
     color:var(--mainLightGrey);
+    text-decoration: none;
 }
 h7{
     margin-bottom: 5rem;

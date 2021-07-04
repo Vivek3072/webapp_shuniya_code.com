@@ -72,7 +72,7 @@ const NavComponent = () => {
   };
 
   return (
-    <Navbar className='navbar navbar-light bg-light' bg="light" expand="lg" style={{height:100}}>
+    <Navbar className='navbar navbar-light bg-light' bg="light" expand="lg" >
       <Navbar.Brand href="/" className="fw-bold">
         <Code size={35} className="mr-1" />
         कोड

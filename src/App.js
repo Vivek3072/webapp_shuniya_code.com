@@ -48,7 +48,8 @@ const App = () => {
   const location = useLocation();
 
   return (
-    <>
+    <div className='page-container'>
+      <div className='content-wrap'>
       <Navbar />
       <Container fluid={true}>
         <TransitionGroup>
@@ -100,8 +101,9 @@ const App = () => {
       </Container>
       <br/>
       <br/>
+      </div>
       <Footer/>
-    </>
+    </div>
   );
 };
 
