@@ -35,11 +35,11 @@ function TopicAccordionHindi() {
         eventKey={"1"}
       ></AccordionCard>
       <AccordionCard
-        title={"ऑपरेटर्स"}
+        title={"कारक"}
         links={[
-          "भव ऑपरेटर्स",
-          "भव में टर्नरी ऑपरेटर",
-          "भव में डिवीजन ऑपरेटर्स",
+          "भव कारक(operator)",
+          "अंकगणित कारक(arithmetic operator)",
+          "संबंध कारक(relational operator)",
           "भव में ऑपरेटर ओवरलोडिंग",
         ]}
         eventKey={"2"}
@@ -47,12 +47,13 @@ function TopicAccordionHindi() {
       <AccordionCard
         title={"भव लूप्स"}
         links={[
-          "भव यद तद",
+          "भव यद तद(if else)",
           "भव में चेनिंग तुलना ऑपरेटर",
-          "भव फॉर लूप",
-          "भव while लूप",
-          "भव break स्टेटमेंट",
-          "भव continue स्टेटमेंट",
+          "भव हर(for) लूप",
+          "भव जबतक(while) लूप",
+          "भव खंडन(break) कथन",
+          "भव सतत(continue) कथन",
+          "भव जाना(pass) कथन",
         ]}
         eventKey={"3"}
       ></AccordionCard>

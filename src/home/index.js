@@ -4,6 +4,7 @@ import './Index.css'
 
 import CodeEditor from '../CodeEditor/CodeEditor';
 import QuestionList from "../components/QuestionList";
+import {Col, Row} from "react-bootstrap";
 
 
 
@@ -98,11 +99,9 @@ export default class home extends Component {
     return (  
       <>
         <div className="row page" >
-          <div className="col-sm-6 col-md-4 col-lg-4 flex-d justify-content-between">
-            
-            <QuestionList  handleCopy={this.handleCopy} code={this.state.texteditor}/>
-          </div>
-          <div className="col-sm-12 col-md-6 col-lg-6">
+          <Row>
+            <Col>
+            <div className='code'>
             <CodeEditor
             handleCode= {this.handleCode}
             texteditor ={this.state.texteditor}
@@ -119,15 +118,19 @@ export default class home extends Component {
             >
               <button
                 className="btn btn-lg btn-primary submit-btn"
-                style={{zIndex: 100}}
+                style={{zIndex: 100, backgroundColor: '#03182e'}}
                 onClick={this.submitHandler}
               >
                 चल कोड
                 </button>
             </div>
+            </div>
+            </Col>
+            <Col>
+            <h3>परिणाम</h3>
+            <div className='output_box'>
             {this.state.isSubmited ? (
               <div>
-                <h3>परिणाम</h3>
                 {this.state.isloaded ? (
                   <textarea className="sub textarea" readOnly={true} value={this.state.showtext}>
                     {" "}
@@ -142,7 +145,9 @@ export default class home extends Component {
             ) : (
               <h5>परिणाम देखने के लिए सबमिट करें</h5>
             )}
-          </div>
+            </div>
+            </Col>
+          </Row>
         </div>
         <div className="row">
           <div className="menu-bar"></div>
