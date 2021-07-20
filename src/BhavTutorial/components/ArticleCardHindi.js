@@ -136,8 +136,8 @@ class ArticleCardHindi extends Component {
               setcustomInput={this.setcustomInput}
             ></CodeEditor>
             <button
-              className="btn btn-primary submit-btn my-3"
-              style={{ zIndex: 100 }}
+              className="btn btn-primary my-3"
+              style={{ zIndex: 100, backgroundColor: '#03182e'}}
               onClick={this.submitHandler}
             >
               चल कोड

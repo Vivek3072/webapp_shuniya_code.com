@@ -117,17 +117,17 @@ export default class home extends Component {
               style={{ position: "relative", textAlign: "end" }}
             >
               <button
-                className="btn btn-lg btn-primary submit-btn"
+                className="btn btn-lg btn-primary"
                 style={{zIndex: 100, backgroundColor: '#03182e'}}
                 onClick={this.submitHandler}
               >
                 चल कोड
-                </button>
+              </button>
             </div>
             </div>
             </Col>
             <Col>
-            <h3>परिणाम</h3>
+            <h3><b>परिणाम</b></h3>
             <div className='output_box'>
             {this.state.isSubmited ? (
               <div>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component , useState} from "react";
 import {
   Switch,
   Route,
@@ -18,7 +18,7 @@ import Quiz_2 from "./Quiz/Quiz_2";
 import UserArticleList from "./Articles/UserArticleList";
 import PublicArticles from "./Articles/PublicArticles";
 import EditArticle from "./Articles/EditArticle";
-
+import {Row,Col,Button} from 'react-bootstrap';
 import Class from "./Pages/Class";
 
 import TextEditor from "./TextEditor";
@@ -31,6 +31,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import HindiFooter from "./components/HindiFooter";
 import { Container } from "react-bootstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import UserArticleView from "./Articles/UserArticleView";
