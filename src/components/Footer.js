@@ -13,11 +13,11 @@ function Footer(){
                 <Row>
                 {/*column 1*/}
                 <Col className="col-md-2 padding-0 fw-bold">
-                    <h7 style={{color:'white'}}><a href="/homepage">Home</a></h7>
+                    <h6 style={{color:'white'}}><a href="/homepage">Home</a></h6>
                 </Col>
                 {/*column 2*/}
                 <Col className="col-md-2 padding-0" style={{textAlign:"center"}}>
-                    <h7 style={{color:'white'}}><b>Tutorials</b></h7>
+                    <h6 style={{color:'white'}}><b>Tutorials</b></h6>
                     <ul className='list-unstyled'>
                         <li><a href="/bhav-tutorials">BhavTutorials</a></li>
                         <li>DataStructures</li>
@@ -26,7 +26,7 @@ function Footer(){
                 </Col>
                 {/*column 3*/}
                 <Col className="col-md-2 padding-0" style={{textAlign:"center"}}>
-                    <h7 style={{color:'white'}}><b>Class</b></h7>
+                    <h6 style={{color:'white'}}><b>Class</b></h6>
                     <ul className='list-unstyled'>
                         <li><a href="/class/class_6">6</a></li>
                         <li><a href="/class/class_7">7</a></li>
@@ -37,13 +37,13 @@ function Footer(){
                 </Col>
                 {/*column 4*/}
                 <Col className="col-md-2 padding-0" style={{textAlign:"center"}}>
-                    <h7 style={{color:'white'}}><b>Write</b></h7>
+                    <h6 style={{color:'white'}}><b>Write</b></h6>
                     <ul className='list-unstyled'>
                         <li><a href="/write">Write Article</a></li>
                     </ul>
                 </Col>
                 <Col className="col-md-2 padding-0 fw-bold" style={{textAlign:"center"}}>
-                    <h7 style={{color:'white'}}>Language</h7>
+                    <h6 style={{color:'white'}}>Language</h6>
                 </Col>
                 </Row>
                 </Col>
