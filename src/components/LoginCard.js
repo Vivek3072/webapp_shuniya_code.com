@@ -27,12 +27,12 @@ const LoginCard = () => {
         <Modal.Body>
           <Login />
         </Modal.Body>
-        <Modal.Footer>
+        {/* <Modal.Footer>
           <h4>Don't have an account?</h4>
           <Button variant="secondary" onClick={handleSubmit}>
             Signup
           </Button>
-        </Modal.Footer>
+        </Modal.Footer> */}
       </Modal>
     </>
   );

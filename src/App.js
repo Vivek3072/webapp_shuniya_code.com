@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import Login from "./components/Login";
-import Signup from "./components/Singup";
+import Signup from "./components/Signup";
 import HomePage from "./homepage";
 import BhavTutorial from "./BhavTutorial/BhavTutorial";
 import TutorialPage from "./BhavTutorial/components/TutorialPage";
@@ -40,11 +40,15 @@ import firebase from "firebase";
 import ManageQuizPage from "./Quiz_Instructor/ManageQuizPage";
 import CreateQuiz from "./Quiz_Instructor/CreateQuiz";
 import UpdateQuiz from "./Quiz_Instructor/UpdateQuiz";
+import Courses from '../src/Courses/Courses'
+import CoursePage from '../src/Courses/CoursePage'
+import Exam from '../src/Courses/exam/Exam'
+import Profile from "./components/Profile";
 
-firebase.initializeApp({
-  apiKey: "AIzaSyC065TVIqadZfzSI8bVWlsUgYegZGSDlVE",
-  authDomain: "xn--11by0j.firebaseapp.com",
-});
+// firebase.initializeApp({
+//   apiKey: "AIzaSyC065TVIqadZfzSI8bVWlsUgYegZGSDlVE",
+//   authDomain: "xn--11by0j.firebaseapp.com",
+// });
 
 const App = () => {
   const location = useLocation();
@@ -59,8 +63,9 @@ const App = () => {
             <Switch location={location}>
               <Route exact path="/" component={home} />
               <Route exact path={"/login/"} component={Login} />
-              <Route exact path={"/signup/"} component={Signup} />
+              <Route exact path={"/signup"} component={Signup} />
               <Route exact path={"/class/:id"} component={SecondLayout} />
+              <Route exact path={"/user/profile"} component={Profile} />
               <Route
                 exact
                 path={"/tutorial/:tutorialTitle"}
@@ -69,6 +74,9 @@ const App = () => {
               <Route exact path="/bhav-tutorials">
                 <Redirect to="/tutorial/bhav-programming-language"></Redirect>
               </Route>
+              <Route exact path={"/courses"} component={Courses} />
+              <Route exact path={"/courses/:course_id"} component={CoursePage} />
+              <Route exact path={"/courses/:course_id/:exam_id"} component={Exam} />
               <Route exact path={"/articles"} component={PublicArticles} />
               <Route exact path={"/quiz"} component={Quiz} />
               <Route exact path={"/quiz_2"} component={Quiz_2} />

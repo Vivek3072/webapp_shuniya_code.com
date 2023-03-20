@@ -1,175 +1,142 @@
-import React, { Component } from "react";
-import { Alert, Fade } from "react-bootstrap";
-import { Redirect } from "react-router-dom";
-import axiosInstance from "../axiosApi";
-import { withRouter } from "react-router-dom";
-import firebase from "firebase";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import React, { useState } from "react";
+import { firebase, auth, provider } from "./firebase";
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      password: "",
-      alert: false,
-      token: "",
-      isSignedIn: false,
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSubmitWThen = this.handleSubmitWThen.bind(this);
-  }
+import GoogleLogo from "../assets/GoogleLogo.png";
 
-  uiConfig = {
-    signInFlow: "popup",
-    signINOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      firebase.auth.GithubAuthProvider.PROVIDER_ID,
-      "yahoo.com",
-    ],
-    callbacks: {
-      signInFlow: "popup",
-      signInSuccessWithAuthResult: (result) => {
-        console.log(result);
+const Login = () => {
+  // Inputs
+  const [username, setUsername] = useState("");
+  const [mynumber, setnumber] = useState("");
+  const [otp, setotp] = useState("");
+  const [show, setshow] = useState(false);
+  const [final, setfinal] = useState("");
 
-        localStorage.setItem(
-          "user-id",
-          firebase.auth().currentUser.displayName
-            ? firebase
-                .auth()
-                .currentUser.displayName.toLowerCase()
-                .split(" ")
-                .join("")
-            : result.additionalUserInfo.username
-        );
-        this.props.history.push("/");
-      },
-    },
-  };
+  // Sent OTP
+  const signin = () => {
+    if (mynumber === "" || mynumber.length < 10) return;
 
-  handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-    localStorage.setItem("user-id", this.state.username);
-  }
-
-  handleSubmitWThen(event) {
-    event.preventDefault();
-
-    axiosInstance
-      .post("/token/obtain/", {
-        username: this.state.username,
-        password: this.state.password,
-      })
+    let verify = new firebase.auth.RecaptchaVerifier("recaptcha-container");
+    auth
+      .signInWithPhoneNumber(mynumber, verify)
       .then((result) => {
-        axiosInstance.defaults.headers["Authorization"] =
-          "JWT " + result.data.access;
-        localStorage.setItem("access_token", result.data.access);
-        localStorage.setItem("refresh_token", result.data.refresh);
+        setfinal(result);
+        alert("Code sent on the given number!");
+        setshow(true);
       })
-      .catch((error) => {
-        throw error;
+      .catch((err) => {
+        alert(err);
+        // window.location.reload()
       });
-  }
-
-  async handleSubmit(event) {
-    event.preventDefault();
-
-    try {
-      const response = await axiosInstance.post("/token/obtain/", {
-        username: this.state.username,
-        password: this.state.password,
+  };
+  const signInWithGoogle = () => {
+    provider.setCustomParameters({ prompt: "select_account" });
+    auth
+      .signInWithPopup(provider)
+      .then((result) => {
+        localStorage.setItem("user-id", result.user.displayName);
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
       });
-
-      if (response.data.access === undefined) {
-        this.setState({ alert: true });
-        setTimeout(() => {
-          this.setState({ alert: false });
-        }, 5000);
-      } else {
-        axiosInstance.defaults.headers["Authorization"] =
-          "JWT " + response.data.access;
-
-        localStorage.setItem("access_token", response.data.access);
-        localStorage.setItem("refresh_token", response.data.refresh);
-        this.setState({ token: localStorage.getItem("access_token") });
-        console.log(response.data);
-        this.props.history.push("/");
-      }
-
-      return response;
-    } catch (error) {
-      this.setState({ alert: true });
-      setTimeout(() => {
-        this.setState({ alert: false });
-      }, 5000);
-      throw error;
-    }
-  }
-
-  componentDidMount = () => {
-    firebase.auth().onAuthStateChanged((user) => {
-      this.setState({ isSignedIn: !!user });
-    });
   };
 
-  // componentDidUpdate = () => {
-  //   firebase.auth().onAuthStateChanged((user) => {
-  //     this.setState({ isSignedIn: !!user });
-  //   });
-  // };
+  // Validate OTP
+  const ValidateOtp = () => {
+    if (otp === null || final === null) return;
+    final
+      .confirm(otp)
+      .then((result) => {
+        alert("Login Successful!");
+        localStorage.setItem("user-id", username);
+        window.location.reload();
+        // success
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Incorrect OTP!");
+      });
+  };
 
-  render() {
-    return (
-      <div className="row">
-        <form
-          onSubmit={this.handleSubmit}
-          style={{ margin: " 0 auto", textAlign: "left", width: "800px" }}
-        >
-          <div className="form-group">
-            <label for="exampleInputEmail1">Username</label>
+  return (
+    <>
+      <div className="py-3">
+        {/* Phone Number Section Starts*/}
+        <center>
+          <div style={{ display: !show ? "block" : "none" }}>
+            <div className="username">
+              <input
+                value={username}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
+                placeholder="Enter username "
+                className="border rounded my-1"
+                style={{height:"fit-content"}}
+              />
+            </div>
+            <div className="input_box">
+              <input
+                value={mynumber}
+                onChange={(e) => {
+                  setnumber(e.target.value);
+                }}
+                placeholder="phone number"
+                className="border rounded my-1"
+                style={{height:"fit-content"}}
+              />
+            </div>
+            <div id="recaptcha-container"></div>
+            <button onClick={signin} className="btn btn-primary w-full px-auto my-3">
+              Send OTP
+            </button>
+          </div>
+        </center>
+        <div style={{ display: show ? "block" : "none" }}>
+          <center>
             <input
               type="text"
-              className="form-control"
-              aria-describedby="user"
-              name="username"
-              placeholder="Enter Username"
-              value={this.state.username}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label for="exampleInputPassword1">
-              Password ( must be more than 8 letters)
-            </label>
-            <input
-              type="password"
-              name="password"
-              className="form-control"
-              value={this.state.password}
-              onChange={this.handleChange}
-              id="exampleInputPassword1"
-              placeholder="Password"
-            />
-          </div>
+              placeholder={"Enter your OTP"}
+              onChange={(e) => {
+                setotp(e.target.value);
+              }}
+              className="border rounded"
+              style={{height:"fit-content"}}
+            ></input>
+            <br />
+            <br />
+            <button onClick={ValidateOtp} className="btn btn-primary">
+              Verify
+            </button>
+          </center>
+        </div>
+        {/* Phone Number Section Ends */}
 
-          {this.state.alert && (
-            <Alert variant="danger">Enter valid username and password</Alert>
-          )}
 
-          <button type="submit" className="btn btn-primary">
-            Login
-          </button>
-        </form>
-        <div className="text-center">OR</div>
-        <StyledFirebaseAuth
-          uiConfig={this.uiConfig}
-          firebaseAuth={firebase.auth()}
-        />
+        {/* GOOGLE SIGNIN SECTION STARTS */}
+       {!show && 
+       <>
+        <div className="text-center my-2">Or?</div>
+
+        <div className="google">
+          <center>
+            <button
+              className="border rounded px-3 py-2 shadow-sm mt-3 d-flex flex-row justify-content-center align-items-center"
+              style={{ backgroundColor: "white" }}
+              onClick={signInWithGoogle}
+              >
+              <img src={GoogleLogo} style={{ width: "20px" }} alt="" />
+              <span className="m-1">Sign In with Google </span>
+            </button>
+          </center>
+        </div>
+        </>
+        }
+        {/* GOOGLE SIGNIN SECTION ENDS */}
+
       </div>
-    );
-  }
-}
+    </>
+  );
+};
 
-export default withRouter(Login);
+export default Login;

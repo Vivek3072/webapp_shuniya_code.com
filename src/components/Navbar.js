@@ -59,6 +59,7 @@ const NavComponent = () => {
 
       axiosInstance.defaults.headers["Authorization"] = null;
       history.push("/");
+      window.location.reload()
       return response;
     } catch (e) {
       console.log(e);
@@ -69,6 +70,7 @@ const NavComponent = () => {
     firebase.auth().signOut();
     localStorage.removeItem("user-id");
     history.push("/");
+    window.location.reload()
   };
 
   return (
@@ -80,7 +82,6 @@ const NavComponent = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
         <Nav className="mr-auto">
-          <Nav.Link href="/articles">Articles</Nav.Link>
           {token && (
             <NavDropdown title="Quiz" id="basic-nav-dropdown">
               <NavDropdown.Item href="/quiz">Quiz 1</NavDropdown.Item>
@@ -90,14 +91,8 @@ const NavComponent = () => {
           <Nav.Link href="/homepage">Home</Nav.Link>
           <NavDropdown title="Tutorials" id="basic-nav-dropdown">
             <NavDropdown.Item href="/bhav-tutorials">Bhav Tutorials</NavDropdown.Item>
+            <NavDropdown.Item href="/courses">Courses</NavDropdown.Item>
           </NavDropdown>
-          <NavDropdown title="Class" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/class/class_6">Class 6</NavDropdown.Item>
-            <NavDropdown.Item href="/class/class_7">Class 7</NavDropdown.Item>
-            <NavDropdown.Item href="/class/class_8">Class 8</NavDropdown.Item>
-            <NavDropdown.Item href="/class/class_9">Class 9</NavDropdown.Item>
-            <NavDropdown.Item href="/class/class_10">Class 10</NavDropdown.Item>
-          </NavDropdown> 
         </Nav>
         <Nav>
           {!token ? (
@@ -126,23 +121,15 @@ const NavComponent = () => {
               </NavDropdown>
             </>
           )}
-          <NavDropdown title="Articles">
-            <NavDropdown.Item href="/write"> Write</NavDropdown.Item>
-            <NavDropdown.Item href="/my-articles">My Articles</NavDropdown.Item>
-          </NavDropdown>
-          <NavDropdown title="Instructor">
-            <NavDropdown.Item href="/manage-quiz">
-              Manage Quizzes
-            </NavDropdown.Item>
-          </NavDropdown>
-          <Button
-            type="button"
-            variant=""
-            onClick={paymentHandler}
-            className="ml-3 btn btn-dark fw-bold"
-          >
-            सदस्य बने{" "}
-          </Button>
+
+            <Button
+              type="button"
+              variant=""
+              onClick={paymentHandler}
+              className="ml-3 btn btn-dark fw-bold"
+            >
+              सदस्य बने
+            </Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
