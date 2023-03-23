@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { firebase, auth, provider } from "./firebase";
 
+import './Login.css'
 import GoogleLogo from "../assets/GoogleLogo.png";
 
 const Login = () => {
@@ -17,7 +18,7 @@ const Login = () => {
 
     let verify = new firebase.auth.RecaptchaVerifier("recaptcha-container");
     auth
-      .signInWithPhoneNumber(mynumber, verify)
+      .signInWithPhoneNumber("+91".concat(mynumber), verify)
       .then((result) => {
         setfinal(result);
         alert("Code sent on the given number!");
@@ -64,25 +65,24 @@ const Login = () => {
         {/* Phone Number Section Starts*/}
         <center>
           <div style={{ display: !show ? "block" : "none" }}>
-            <div className="username">
+            <div className="input_box">
               <input
                 value={username}
                 onChange={(e) => {
                   setUsername(e.target.value);
                 }}
                 placeholder="Enter username "
-                className="border rounded my-1"
                 style={{height:"fit-content"}}
               />
             </div>
-            <div className="input_box">
+            <div className="input_box d-flex flex-row justify-content-center align-items-center">
+              <span>+91</span>
               <input
                 value={mynumber}
                 onChange={(e) => {
                   setnumber(e.target.value);
                 }}
                 placeholder="phone number"
-                className="border rounded my-1"
                 style={{height:"fit-content"}}
               />
             </div>
@@ -94,17 +94,17 @@ const Login = () => {
         </center>
         <div style={{ display: show ? "block" : "none" }}>
           <center>
+            <div className="input_box" >
+
             <input
               type="text"
               placeholder={"Enter your OTP"}
               onChange={(e) => {
                 setotp(e.target.value);
               }}
-              className="border rounded"
               style={{height:"fit-content"}}
-            ></input>
-            <br />
-            <br />
+              ></input>
+              </div>
             <button onClick={ValidateOtp} className="btn btn-primary">
               Verify
             </button>

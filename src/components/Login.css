@@ -1,0 +1,12 @@
+.input_box{
+ padding: 0.5rem 1rem;
+ border-radius: 0.5rem;
+ border:1px solid grey;
+ margin:1rem 0.5rem;
+}
+
+.input_box input{
+    padding: 0.5rem;
+    border: none;
+    outline:none;
+}
