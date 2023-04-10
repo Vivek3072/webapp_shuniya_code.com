@@ -1,48 +1,53 @@
 import { Link } from "react-router-dom";
-import {
-  FaJava,
-  FaPython,
-  FaHtml5,
-  FaCss3,
-  FaAngular,
-  FaAws,
-} from "react-icons/fa";
+import CoursesData from "./Courses.json";
+import { FaStar } from "react-icons/fa";
 import "./Courses.css";
 
 export default function Courses() {
   return (
     <>
-      <div className="all_courses container my-2 d-flex align-items-center justify-content-center flex-wrap ">
-        <Link to="/courses/python">
-          <div className="  border  d-flex align-items-center justify-content-center m-2 flex-column p-3 shadow-sm rounded fs-3">
-            <FaPython /> Python
-          </div>
-        </Link>
-        <Link to="/courses/java">
-          <div className="  border  d-flex align-items-center justify-content-center m-2 flex-column p-3 shadow-sm rounded fs-3">
-            <FaJava /> Java
-          </div>
-        </Link>
-        <Link to="/courses/html5">
-          <div className="  border  d-flex align-items-center justify-content-center m-2 flex-column p-3 shadow-sm rounded fs-3">
-            <FaHtml5 /> HTML5
-          </div>
-        </Link>
-        <Link to="/courses/css3">
-          <div className="  border  d-flex align-items-center justify-content-center m-2 flex-column p-3 shadow-sm rounded fs-3">
-            <FaCss3 /> CSS3
-          </div>
-        </Link>
-        <Link to="/courses/angular">
-          <div className="  border  d-flex align-items-center justify-content-center m-2 flex-column p-3 shadow-sm rounded fs-3">
-            <FaAngular /> Angular
-          </div>
-        </Link>
-        <Link to="/courses/aws">
-          <div className="  border  d-flex align-items-center justify-content-center m-2 flex-column p-3 shadow-sm rounded fs-3">
-            <FaAws /> AWS
-          </div>
-        </Link>
+      <div className="all_courses container my-4 d-flex align-items-center justify-content-center flex-wrap ">
+        {CoursesData &&
+          CoursesData.map((data, index) => {
+            return (
+              <Link to={`/courses/${data.course_name}`} key={data.week_id}>
+                <div className="d-flex flex-column rounded shadow-sm p-1">
+                  <div className="d-flex justify-content-center align-items-center">
+                    <img
+                      className="rounded"
+                      src={data.course_thumbnail}
+                      alt="course"
+                      style={{width:"200px" , height:"200px"}}
+                    />
+                  </div>
+
+                  <div className="d-flex flex-row align-items-center justify-content-between">
+                    <span className="fs-4"> {data.course_name} </span>
+                    <span className="fs-6 mx-1 text-warning d-flex flex-row align-items-center">
+                      <span>{data.course_rating}</span>
+                      <span className="p-1">
+                        <FaStar />
+                      </span>
+                    </span>
+                  </div>
+                  <div> Price : Rs {data.course_price} </div>
+                  <div>
+                    Instructors :
+                    {data.course_instructor.map((instructor, index) => {
+                      return (
+                        <span
+                          key={instructor.course_instructor_id}
+                          className="mx-1"
+                        >
+                          {instructor.course_instructor_name},
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
       </div>
     </>
   );

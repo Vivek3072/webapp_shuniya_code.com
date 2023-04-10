@@ -1,6 +1,6 @@
 .all_courses a {
     text-decoration: none;
-    color: rgb(138, 143, 144);
+    color: rgb(87, 87, 87);
     margin-left: auto;
     margin-right: auto;
     width: 30%;
@@ -8,13 +8,25 @@
   }
   .all_courses a:hover {
     cursor: pointer;
-    color: rgb(49, 111, 128);
+    color: rgb(8, 143, 176);
   }
   .course_page {
     display: flex;
     align-items: self-start;
     justify-content:center;
     flex-direction: row;
+  }
+
+  .topic_list{
+    list-style: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 0 5px;
+    padding-left: 1rem;
+  }
+  .topic_list:hover{
+    color: rgb(0, 170, 255);
+    cursor: pointer;
   }
   .video_container {
     height: 85vh;
@@ -94,7 +106,7 @@
       width: 100%;
     }
     .course_videos {
-      width: 90%;
+      width: 100%;
     }
     .quiz_form{
       width: 90vw;

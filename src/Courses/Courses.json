@@ -1,0 +1,41 @@
+[
+    {
+        "course_id": 1,
+        "course_instructor": [
+            {
+                "course_instructor_id": 1,
+                "course_instructor_name": "Vivek",
+                "course_instructor_desc": "very good teacher"
+            },
+            {
+                "course_instructor_id": 2,
+                "course_instructor_name": "Abhay",
+                "course_instructor_desc": "very good teacher"
+            }
+        ],
+        "language": "hindi",
+        "course_name": "Java",
+        "course_rating": 5,
+        "course_thumbnail": "https://imgs.search.brave.com/rITL2gG3hJRS_ItpIxHnjHQiUppSW5yy49aKETdo9PU/rs:fit:1200:1200:1/g:ce/aHR0cDovL2ltZzMu/d2lraWEubm9jb29r/aWUubmV0L19fY2Iy/MDEyMDkwMjA3MzIy/NC9sb2dvcGVkaWEv/aW1hZ2VzLzIvMjYv/SmF2YS5wbmc",
+        "course_price": 6,
+        "number_of_weeks": 2,
+        "language_id": 1
+    },
+    {
+        "course_id": 2,
+        "course_instructor": [
+            {
+                "course_instructor_id": 1,
+                "course_instructor_name": "abhay",
+                "course_instructor_desc": "very good teacher"
+            }
+        ],
+        "language": "english",
+        "course_name": "python",
+        "course_rating": 2,
+        "course_thumbnail": "https://imgs.search.brave.com/APIzXxiV7kozwbm69Za0krpMjIwrrkZ_LXVVW5ZL9S8/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2UwL2Jj/LzlkL2UwYmM5ZGRj/MTk4MzRjYWExZGJl/NjlkNTY1M2ZlMjYx/LnBuZw",
+        "course_price": 5,
+        "number_of_weeks": 5,
+        "language_id": 2
+    }
+]

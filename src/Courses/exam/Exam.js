@@ -3,10 +3,16 @@ import { Link } from "react-router-dom";
 import questions from "./Questions";
 import { exportComponentAsJPEG } from 'react-component-export-image';
 import Certificate from "../Certificate";
+import { useParams } from "react-router-dom";
 
 export default function Exam() {
   const componentRef = useRef();
 
+  const courseId = useParams();
+  let coursePageData;
+  if (courseId.course_id === "Java/exam") coursePageData = "java";
+  else if (courseId.course_id === "python/exam") coursePageData = "python";
+  
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showCertificate, setShowCertificate] = useState(false);
   const [score, setScore] = useState(0);
@@ -36,7 +42,7 @@ export default function Exam() {
             {showCertificate ? (
               <>
               <div className="d-flex align-items-center justify-content-center">
-                <Certificate ref={componentRef} score={score} />
+                <Certificate ref={componentRef} score={score} coursePageData={coursePageData}/>
               </div>
 
                 <div className="d-flex flex-row justify-content-center my-4">

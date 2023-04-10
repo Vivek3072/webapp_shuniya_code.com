@@ -82,12 +82,12 @@ const NavComponent = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
         <Nav className="mr-auto">
-          {token && (
+          {/* {token && (
             <NavDropdown title="Quiz" id="basic-nav-dropdown">
               <NavDropdown.Item href="/quiz">Quiz 1</NavDropdown.Item>
               <NavDropdown.Item href="/quiz_2">Quiz 2</NavDropdown.Item>
             </NavDropdown>
-          )}
+          )} */}
           <Nav.Link href="/homepage">Home</Nav.Link>
           <NavDropdown title="Tutorials" id="basic-nav-dropdown">
             <NavDropdown.Item href="/bhav-tutorials">Bhav Tutorials</NavDropdown.Item>

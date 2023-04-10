@@ -42,6 +42,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.2",
     "react-simple-keyboard": "^3.0.73",
+    "react-switch": "^7.0.0",
     "react-transition-group": "^4.4.1",
     "react-transliterate": "^1.0.3",
     "redux": "^4.0.5",
@@ -55,6 +56,7 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
+    "local": "react-scripts start",
     "start": "PORT=80 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
