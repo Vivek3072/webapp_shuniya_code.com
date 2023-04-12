@@ -59,18 +59,7 @@
       cursor: pointer;
       color: #2f60ff;
   }
-  .exam_page{
-      display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .quiz_form{
-    width: 60vw;
-  }
-  .answer-section{
-    padding: 10px;
-    margin-left: 2rem;
-  }
+
   .certificate_container{
     background-image: url('../../src/assets/Certificate.png');
     /* background-image: url('../assets/Certificate.png'); */

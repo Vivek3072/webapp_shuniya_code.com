@@ -9,7 +9,7 @@ import LoginCard from "./LoginCard";
 
 import Axios from "axios";
 import firebase from "firebase";
-import './Footer.css';
+// import './Footer.css';
 
 const NavComponent = () => {
   const token = localStorage.getItem("user-id");
@@ -89,10 +89,11 @@ const NavComponent = () => {
             </NavDropdown>
           )} */}
           <Nav.Link href="/homepage">Home</Nav.Link>
-          <NavDropdown title="Tutorials" id="basic-nav-dropdown">
+          <Nav.Link href="/courses">Courses</Nav.Link>
+          {/* <NavDropdown title="Tutorials" id="basic-nav-dropdown">
             <NavDropdown.Item href="/bhav-tutorials">Bhav Tutorials</NavDropdown.Item>
             <NavDropdown.Item href="/courses">Courses</NavDropdown.Item>
-          </NavDropdown>
+          </NavDropdown> */}
         </Nav>
         <Nav>
           {!token ? (

@@ -1,0 +1,18 @@
+.quiz_form {
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  background-color: #fbfbfb;
+}
+.exam_page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quiz_form {
+  width: 70vw;
+}
+
+.answer-section {
+  padding: 10px;
+  margin-left: 2rem;
+}

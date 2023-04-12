@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
-import './Footer.css';
+// import './Footer.css';
 import { Code } from "react-bootstrap-icons";
 
 function HindiFooter(){

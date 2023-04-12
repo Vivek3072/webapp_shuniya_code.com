@@ -1,8 +1,7 @@
-import React, { Component , useState} from "react";
+import React from "react";
 import {
   Switch,
   Route,
-  Link,
   withRouter,
   useLocation,
   Redirect,
@@ -11,15 +10,15 @@ import {
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import HomePage from "./homepage";
-import BhavTutorial from "./BhavTutorial/BhavTutorial";
+// import BhavTutorial from "./BhavTutorial/BhavTutorial";
 import TutorialPage from "./BhavTutorial/components/TutorialPage";
 import Quiz from "./Quiz/Quiz";
 import Quiz_2 from "./Quiz/Quiz_2";
 import UserArticleList from "./Articles/UserArticleList";
 import PublicArticles from "./Articles/PublicArticles";
 import EditArticle from "./Articles/EditArticle";
-import {Row,Col,Button} from 'react-bootstrap';
-import Class from "./Pages/Class";
+// import {Row,Col,Button} from 'react-bootstrap';
+// import Class from "./Pages/Class";
 
 import TextEditor from "./TextEditor";
 import NotFound from "./components/NotFound";
@@ -31,12 +30,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import HindiFooter from "./components/HindiFooter";
+// import HindiFooter from "./components/HindiFooter";
 import { Container } from "react-bootstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import UserArticleView from "./Articles/UserArticleView";
 import PublicArticleView from "./Articles/PublicArticleView";
-import firebase from "firebase";
 import ManageQuizPage from "./Quiz_Instructor/ManageQuizPage";
 import CreateQuiz from "./Quiz_Instructor/CreateQuiz";
 import UpdateQuiz from "./Quiz_Instructor/UpdateQuiz";
@@ -44,11 +42,6 @@ import Courses from '../src/Courses/Courses'
 import CoursePage from '../src/Courses/CoursePage'
 import Exam from '../src/Courses/exam/Exam'
 import Profile from "./components/Profile";
-
-// firebase.initializeApp({
-//   apiKey: "AIzaSyC065TVIqadZfzSI8bVWlsUgYegZGSDlVE",
-//   authDomain: "xn--11by0j.firebaseapp.com",
-// });
 
 const App = () => {
   const location = useLocation();
