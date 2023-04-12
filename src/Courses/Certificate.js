@@ -4,7 +4,7 @@ import { Code } from "react-bootstrap-icons";
 import Medal from "../assets/Medal.png";
 const name = localStorage.getItem("user-id");
 
-const Certificate = React.forwardRef(( ref) => (
+const Certificate = React.forwardRef((props, ref) => (
   <div ref={ref} className="certificate_container shadow p-4 text-center">
     <div className="certificate">
       <div className="medal">
