@@ -6,11 +6,11 @@ function Footer() {
       <section className="">
         <div className="container text-center text-md-start mt-5">
           <div className="row mt-3">
-            <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-              <div className="text-uppercase fw-bold fs-3">
-                कोड.<span className="fs-6">com</span>
+            <div className="col-md-6 col-lg-6 col-xl-6 mx-auto mb-4">
+              <div className="text-uppercase text-left fw-bold fs-2">
+                कोड.<span className="fs-5">com</span>
               </div>
-              <div className="fs-6 ms-5">by Shuniyavigyan</div>
+              <div className="fs-6 text-left">by Shuniyavigyan</div>
               <div className="text-left text-secondary my-1">
                 We are an online platform who aim to teach students coding in
                 their native language.This is to help all those students out
@@ -31,10 +31,10 @@ function Footer() {
         </div>
       </section>
 
-      <div className="text-center p-4 bg-dark border border-t-secondary">
-        © 2023 Copyright:
+      <div className="text-center p-4 bg-dark border-top border-secondary">
+       <span className="text-secondary"> © 2023 Copyright: </span> 
         <a
-          className="text-reset fw-bold mx-1"
+          className="text-secondary mx-1"
           href="https://shiniyavigyan.com/"
           target="_blank"
           rel="noreferrer"

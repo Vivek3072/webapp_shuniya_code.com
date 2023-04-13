@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 
 import { Navbar, NavDropdown, Button, Nav } from "react-bootstrap";
 import { Code } from "react-bootstrap-icons";
@@ -75,26 +76,27 @@ const NavComponent = () => {
 
   return (
     <Navbar className='navbar navbar-light bg-light' bg="light" expand="lg" >
-      <Navbar.Brand href="/" className="fw-bold">
+      <Link to="/" className="fw-bold fs-3 text-primary my-2 mr-3">
         <Code size={35} className="mr-1" />
         कोड
-      </Navbar.Brand>
+      </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-        <Nav className="mr-auto">
+        <div className="mr-auto">
           {/* {token && (
             <NavDropdown title="Quiz" id="basic-nav-dropdown">
               <NavDropdown.Item href="/quiz">Quiz 1</NavDropdown.Item>
               <NavDropdown.Item href="/quiz_2">Quiz 2</NavDropdown.Item>
             </NavDropdown>
           )} */}
-          <Nav.Link href="/homepage">Home</Nav.Link>
-          <Nav.Link href="/courses">Courses</Nav.Link>
+          <Link to="/" className="text-dark my-1 mx-2">Home</Link>
+          <Link to="/editor" className="text-dark my-1 mx-2">Editor</Link>
+          <Link to="/courses" className="text-dark my-1 mx-2">Courses</Link>
           {/* <NavDropdown title="Tutorials" id="basic-nav-dropdown">
             <NavDropdown.Item href="/bhav-tutorials">Bhav Tutorials</NavDropdown.Item>
             <NavDropdown.Item href="/courses">Courses</NavDropdown.Item>
           </NavDropdown> */}
-        </Nav>
+        </div>
         <Nav>
           {!token ? (
             <>

@@ -2,8 +2,8 @@ import React, { Fragment, Component } from "react";
 import axios from "axios";
 import './Index.css'
 
-import CodeEditor from '../CodeEditor/CodeEditor';
-import QuestionList from "../components/QuestionList";
+import CodeEditor from '../../CodeEditor/CodeEditor';
+import QuestionList from "../QuestionList";
 import {Col, Row} from "react-bootstrap";
 
 
