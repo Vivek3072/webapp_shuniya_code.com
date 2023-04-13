@@ -25,7 +25,8 @@ import NotFound from "./components/NotFound";
 import SecondLayout from "./Layout/SecondLayout";
 // import Hello from "./hello";
 
-import home from "./home";
+import Editor from "./components/Editor/Editor";
+import Home from "./components/HomePage/HomePage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Navbar from "./components/Navbar";
@@ -54,7 +55,8 @@ const App = () => {
         <TransitionGroup>
           <CSSTransition key={location.key} classNames="fade" timeout={300}>
             <Switch location={location}>
-              <Route exact path="/" component={home} />
+              <Route exact path="/" component={Home} />
+              <Route exact path="/editor" component={Editor} />
               <Route exact path={"/login/"} component={Login} />
               <Route exact path={"/signup"} component={Signup} />
               <Route exact path={"/class/:id"} component={SecondLayout} />
