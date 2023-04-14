@@ -43,7 +43,7 @@
   },
   {
     "question_id": 4,
-    "questionText": "Where in the computer is a variable such as “x” stored after the following Python line finishes?, where x=123",
+    "questionText": "Where in the computer is a variable such as “x” stored after the following Python line finishes?",
     "answerOptions": [
       { "answerText": "Central processing unit", "isCorrect": false },
       { "answerText": "Main Memory", "isCorrect": true },
@@ -59,12 +59,16 @@
       { "answerText": "Coding is fun", "isCorrect": false },
       {
         "answerText": "Coding is about talking to computer in programming language",
-        "isCorrect": true
+        "isCorrect": false
       },
       { "answerText": "Coding is easy", "isCorrect": false },
       {
         "answerText": "Coding has high demanding jobs and lot of jobs",
         "isCorrect": false
+      },
+      {
+        "answerText": "All of the above",
+        "isCorrect": true
       }
     ]
   },
@@ -94,11 +98,11 @@
   },
   {
     "question_id": 8,
-    "questionText": "Choose below componenets of computer ",
+    "questionText": "Choose below which is not a componenet of computer?",
     "answerOptions": [
-      { "answerText": "CPU", "isCorrect": true },
+      { "answerText": "CPU", "isCorrect": false },
       { "answerText": "Main memory", "isCorrect": false },
-      { "answerText": "Pen drive", "isCorrect": false },
+      { "answerText": "Pen drive", "isCorrect": true },
       { "answerText": "Keyboard", "isCorrect": false }
     ]
   },
