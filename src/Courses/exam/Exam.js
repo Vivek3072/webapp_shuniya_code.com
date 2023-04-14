@@ -9,11 +9,9 @@ import ScoreCard from "../ScoreCard";
 
 export default function Exam() {
   // const componentRef = useRef();
-  const username = localStorage.getItem("user-id")
+  const username = localStorage.getItem("user-id");
   const [showCertificate, setShowCertificate] = useState(false);
   const [score, setScore] = useState(0);
-  
-  const passingMarks = Questions.length*(.70);
 
   const handleAnswerOptionClick = (isCorrect) => {
     console.log(score, isCorrect, "score , isCorrect");
@@ -21,25 +19,25 @@ export default function Exam() {
     console.log(score);
   };
   const handleSubmit = async () => {
-    if (score < passingMarks) {
-      alert("Score more than 75% to get a certificate! Your score=" + score);
-    } else {
-      setShowCertificate(true);
-    }
+    setShowCertificate(true);
 
-    const response = await axios.post("https://getform.io/f/db1827df-6f49-4a9c-bd87-2764b5f8b8d6", {
-      username:username,score:score,
-    }, 
-    { headers: {'Accept': 'application/json'}})
-    .then(response => console.log(response))
-    .catch(error => console.log(error))
-    console.log("Form response",response)
+    const response = await axios
+      .post(
+        "https://getform.io/f/db1827df-6f49-4a9c-bd87-2764b5f8b8d6",
+        {
+          username: username,
+          score: score,
+        },
+        { headers: { Accept: "application/json" } }
+      )
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+    console.log("Form response", response);
   };
-  useEffect(()=>{
+  useEffect(() => {
     handleAnswerOptionClick();
     //eslint-disable-next-line
-  })
-
+  });
 
   return (
     <>
