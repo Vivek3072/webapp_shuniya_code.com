@@ -1,42 +1,123 @@
 [
-    {
-      "question_id":1,
-      "questionText": "What is the capital of France?",
-      "answerOptions": [
-        { "answerText": "New York", "isCorrect": false },
-        { "answerText": "London", "isCorrect": false },
-        { "answerText": "Paris", "isCorrect": true },
-        { "answerText": "Dublin", "isCorrect": false }
-      ]
-    },
-    {
-      "question_id":2,
-      "questionText": "Who is CEO of Tesla?",
-      "answerOptions": [
-        { "answerText": "Jeff Bezos", "isCorrect": false },
-        { "answerText": "Elon Musk", "isCorrect": true },
-        { "answerText": "Bill Gates", "isCorrect": false },
-        { "answerText": "Tony Stark", "isCorrect": false }
-      ]
-    },
-    {
-      "question_id":3,
-      "questionText": "The iPhone was created by which company?",
-      "answerOptions": [
-        { "answerText": "Apple", "isCorrect": true },
-        { "answerText": "Intel", "isCorrect": false },
-        { "answerText": "Amazon", "isCorrect": false },
-        { "answerText": "Microsoft", "isCorrect": false }
-      ]
-    },
-    {
-      "question_id":4,
-      "questionText": "How many Harry Potter books are there?",
-      "answerOptions": [
-        { "answerText": "1", "isCorrect": false },
-        { "answerText": "4", "isCorrect": false },
-        { "answerText": "6", "isCorrect": false },
-        { "answerText": "7", "isCorrect": true }
-      ]
-    }
-  ]
+  {
+    "question_id": 1,
+    "questionText": "What is the function of the secondary memory in a computer?",
+    "answerOptions": [
+      {
+        "answerText": "Execute all of the computation and logic of the program",
+        "isCorrect": false
+      },
+      {
+        "answerText": "Retrieve web pages over the Internet",
+        "isCorrect": false
+      },
+      {
+        "answerText": "Store information for the long term, even beyond a power cycle",
+        "isCorrect": true
+      },
+      { "answerText": "Take input from the user", "isCorrect": false }
+    ]
+  },
+  {
+    "question_id": 2,
+    "questionText": "What is a program?",
+    "answerOptions": [
+      { "answerText": "English sentence ", "isCorrect": false },
+      { "answerText": "Hindi sentence", "isCorrect": false },
+      {
+        "answerText": "A line written in any programming language",
+        "isCorrect": true
+      },
+      { "answerText": "All chinese sentences", "isCorrect": false }
+    ]
+  },
+  {
+    "question_id": 3,
+    "questionText": "Which of the following contains machine code?",
+    "answerOptions": [
+      { "answerText": "The Python interpreter", "isCorrect": true },
+      { "answerText": "The keyboard", "isCorrect": false },
+      { "answerText": "Python source file", "isCorrect": false },
+      { "answerText": "A word processing document", "isCorrect": false }
+    ]
+  },
+  {
+    "question_id": 4,
+    "questionText": "Where in the computer is a variable such as “x” stored after the following Python line finishes?, where x=123",
+    "answerOptions": [
+      { "answerText": "Central processing unit", "isCorrect": false },
+      { "answerText": "Main Memory", "isCorrect": true },
+      { "answerText": "Secondary Memory", "isCorrect": false },
+      { "answerText": "Input Devices", "isCorrect": false },
+      { "answerText": "Output Devices", "isCorrect": false }
+    ]
+  },
+  {
+    "question_id": 5,
+    "questionText": "We should learn to code because",
+    "answerOptions": [
+      { "answerText": "Coding is fun", "isCorrect": false },
+      {
+        "answerText": "Coding is about talking to computer in programming language",
+        "isCorrect": true
+      },
+      { "answerText": "Coding is easy", "isCorrect": false },
+      {
+        "answerText": "Coding has high demanding jobs and lot of jobs",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "question_id": 6,
+    "questionText": "CPU interacts with main memory as",
+    "answerOptions": [
+      { "answerText": "Main memory is much faster", "isCorrect": true },
+      { "answerText": "Secondary memory is fatser", "isCorrect": false },
+      {
+        "answerText": "Main memory is chaper than secondary memory",
+        "isCorrect": false
+      },
+      {
+        "answerText": "Secondary memory is not useful in computer",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "question_id": 7,
+    "questionText": "Main memory works even if computer shuts down",
+    "answerOptions": [
+      { "answerText": "True", "isCorrect": false },
+      { "answerText": "False", "isCorrect": true }
+    ]
+  },
+  {
+    "question_id": 8,
+    "questionText": "Choose below componenets of computer ",
+    "answerOptions": [
+      { "answerText": "CPU", "isCorrect": true },
+      { "answerText": "Main memory", "isCorrect": false },
+      { "answerText": "Pen drive", "isCorrect": false },
+      { "answerText": "Keyboard", "isCorrect": false }
+    ]
+  },
+  {
+    "question_id": 9,
+    "questionText": "Coding is only possible in englsih ",
+    "answerOptions": [
+      { "answerText": "Yes", "isCorrect": false },
+      { "answerText": "No", "isCorrect": true }
+    ]
+  },
+  {
+    "question_id": 10,
+    "questionText": "Below which is not a programming language",
+    "answerOptions": [
+      { "answerText": "Hindi", "isCorrect": true },
+      { "answerText": "Java", "isCorrect": false },
+      { "answerText": "Python", "isCorrect": false },
+      { "answerText": "C", "isCorrect": false }
+    ]
+  }
+]

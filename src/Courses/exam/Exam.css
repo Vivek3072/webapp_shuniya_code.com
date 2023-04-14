@@ -1,4 +1,5 @@
 .quiz_form {
+  width: 70vw;
   border-radius: 1rem;
   padding: 1rem 2rem;
   background-color: #fbfbfb;
@@ -8,11 +9,19 @@
   align-items: center;
   justify-content: center;
 }
-.quiz_form {
-  width: 70vw;
-}
-
 .answer-section {
   padding: 10px;
   margin-left: 2rem;
+}
+@media only screen and (max-width: 900px) {
+  .quiz_form {
+    width: 90vw;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .quiz_form {
+    width: 95vw;
+    padding: 1rem 1rem;
+  }
 }

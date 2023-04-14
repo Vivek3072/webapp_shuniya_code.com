@@ -17,7 +17,7 @@ export default function Courses() {
                       className="rounded"
                       src={data.course_thumbnail}
                       alt="course"
-                      style={{width:"200px" , height:"200px"}}
+                      style={{width:"300px" , height:"200px"}}
                     />
                   </div>
 

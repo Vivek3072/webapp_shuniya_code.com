@@ -1,29 +1,45 @@
-import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+// import { Link } from "react-router-dom";
 import Questions from "./Questions.json";
-import { exportComponentAsJPEG } from "react-component-export-image";
-import Certificate from "../Certificate";
+// import { exportComponentAsJPEG } from "react-component-export-image";
+// import Certificate from "../Certificate";
 import "./Exam.css";
+import axios from "axios";
+import ScoreCard from "../ScoreCard";
 
 export default function Exam() {
-  const componentRef = useRef();
-
+  // const componentRef = useRef();
+  const username = localStorage.getItem("user-id")
   const [showCertificate, setShowCertificate] = useState(false);
   const [score, setScore] = useState(0);
+  
+  const passingMarks = Questions.length*(.70);
 
   const handleAnswerOptionClick = (isCorrect) => {
     console.log(score, isCorrect, "score , isCorrect");
-    if (isCorrect) setScore(score + 1);
+    isCorrect && setScore(score + 1);
     console.log(score);
   };
-
-  const handleSubmit = () => {
-    if (score < 3) {
+  const handleSubmit = async () => {
+    if (score < passingMarks) {
       alert("Score more than 75% to get a certificate! Your score=" + score);
     } else {
       setShowCertificate(true);
     }
+
+    const response = await axios.post("https://getform.io/f/db1827df-6f49-4a9c-bd87-2764b5f8b8d6", {
+      username:username,score:score,
+    }, 
+    { headers: {'Accept': 'application/json'}})
+    .then(response => console.log(response))
+    .catch(error => console.log(error))
+    console.log("Form response",response)
   };
+  useEffect(()=>{
+    handleAnswerOptionClick();
+    //eslint-disable-next-line
+  })
+
 
   return (
     <>
@@ -33,13 +49,14 @@ export default function Exam() {
             {showCertificate ? (
               <>
                 <div className="d-flex align-items-center justify-content-center">
-                  <Certificate
+                  <ScoreCard score={score} />
+                  {/* <Certificate
                     ref={componentRef}
                     // score={score}
-                  />
+                  /> */}
                 </div>
 
-                <div className="d-flex flex-row justify-content-center my-4">
+                {/* <div className="d-flex flex-row justify-content-center my-4">
                   <Link to="/courses">
                     <button className="btn btn-outline-primary mx-2">
                       Go to Course
@@ -54,7 +71,7 @@ export default function Exam() {
                   >
                     Download Certificate
                   </button>
-                </div>
+                </div> */}
               </>
             ) : (
               <>
@@ -63,7 +80,7 @@ export default function Exam() {
                     Questions.map((ques, index) => {
                       return (
                         <div key={index}>
-                          <div className="fs-5">
+                          <div className="fs-5 mt-3">
                             Q-{index + 1}.{ques.questionText}
                           </div>
                           {ques.answerOptions.map((answer, index) => {

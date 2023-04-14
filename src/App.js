@@ -43,10 +43,16 @@ import Courses from '../src/Courses/Courses'
 import CoursePage from '../src/Courses/CoursePage'
 import Exam from '../src/Courses/exam/Exam'
 import Profile from "./components/Profile";
+import axios from "axios";
 
 const App = () => {
   const location = useLocation();
 
+  const getData = async ()=>{
+  const response = await axios.get("http://43.204.229.206:8000/api/v1/courses/?format=json")
+    console.log(response,"getData")
+  }
+  getData();
   return (
     <div className='page-container'>
       <div className='content-wrap'>

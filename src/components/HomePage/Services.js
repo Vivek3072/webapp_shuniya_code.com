@@ -14,7 +14,7 @@ export default function Services() {
                 width="30"
                 height="30"
                 fill="currentColor"
-                class="bi bi-emoji-laughing"
+                className="bi bi-emoji-laughing"
                 viewBox="0 0 16 16"
               >
                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -32,7 +32,7 @@ export default function Services() {
                 width="30"
                 height="30"
                 fill="currentColor"
-                class="bi bi-laptop"
+                className="bi bi-laptop"
                 viewBox="0 0 16 16"
               >
                 <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z" />
@@ -49,7 +49,7 @@ export default function Services() {
                 width="30"
                 height="30"
                 fill="currentColor"
-                class="bi bi-translate"
+                className="bi bi-translate"
                 viewBox="0 0 16 16"
               >
                 <path d="M4.545 6.714 4.11 8H3l1.862-5h1.284L8 8H6.833l-.435-1.286H4.545zm1.634-.736L5.5 3.956h-.049l-.679 2.022H6.18z" />
