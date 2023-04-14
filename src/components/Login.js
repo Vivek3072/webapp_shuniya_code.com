@@ -21,7 +21,7 @@ const Login = () => {
       .signInWithPhoneNumber("+91".concat(mynumber), verify)
       .then((result) => {
         setfinal(result);
-        alert("Code sent on the given number!");
+        // alert("Code sent on the given number!");
         setshow(true);
       })
       .catch((err) => {
@@ -48,7 +48,7 @@ const Login = () => {
     final
       .confirm(otp)
       .then((result) => {
-        alert("Login Successful!");
+        // console.log("Login Successful!");
         localStorage.setItem("user-id", username);
         window.location.reload();
         // success
