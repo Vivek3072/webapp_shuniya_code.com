@@ -123,28 +123,38 @@ export const ReactTransliterate = ({
   const [matchStart, setMatchStart] = useState(-1);
   const [matchEnd, setMatchEnd] = useState(-1);
   const inputRef = useRef(null);
+  const[ text,setText]=useState("");
+
+  
 
 
   const getSuggestions = async (lastWord) => {
     // fetch suggestion from api
     // const url = `https://www.google.com/inputtools/request?ime=transliteration_en_${lang}&num=5&cp=0&cs=0&ie=utf-8&oe=utf-8&app=jsapi&text=${lastWord}`;
-    const url = `https://inputtools.google.com/request?text=${lastWord}&itc=${lang}-t-i0-und&num=13&cp=0&cs=1&ie=utf-8&oe=utf-8&app=demopage`;
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-      if (data && data[0] === "SUCCESS") {
-        let found = data[1][0][1];
-        found = found.slice(0, maxOptions);
-        setOptions(found);
-      }
-    } catch (e) {
-      // catch error
-      console.error("There was an error with transliteration", e);
-    }
+    // const url = `https://inputtools.google.com/request?text=${lastWord}&itc=${lang}-t-i0-und&num=13&cp=0&cs=1&ie=utf-8&oe=utf-8&app=demopage`;
+    // try {
+    //   const res = await fetch(url);
+    //   const data = await res.json();
+    //   if (data && data[0] === "SUCCESS") {
+    //     let found = data[1][0][1];
+    //     found = found.slice(0, maxOptions);
+    //     setOptions(found);
+    //   }
+    // } catch (e) {
+    //   // catch error
+    //   console.error("There was an error with transliteration", e);
+    // }
   };
 
   const handleChange = (e) => {
     const value = e.target.value;
+    // setText(value);
+    // console.log(text);
+
+  
+
+
+    // console.log("anshu",value)
 
     // bubble up event to the parent component
     onChange(e);
@@ -152,7 +162,11 @@ export const ReactTransliterate = ({
     // get the current index of the cursor
     const caret = getInputSelection(e.target).end;
     const input = inputRef.current;
+    
     const caretPos = getCaretCoordinates(input, caret);
+    console.log("anshu",caretPos,caret)
+
+    // console.log(caretPos);
 
     // search for the last occurence of the space character from
     // the cursor
@@ -180,10 +194,10 @@ export const ReactTransliterate = ({
       // and save it to state
       const top = caretPos.top + input.offsetTop;
       const left = Math.min(
-        caretPos.left + input.offsetLeft - OPTION_LIST_Y_OFFSET,
+        caretPos.left + input.offsetLeft-OPTION_LIST_Y_OFFSET ,
         input.offsetLeft + rect.width - OPTION_LIST_MIN_WIDTH,
       );
-
+// console.log(caretPos.left ,input.offsetLeft,OPTION_LIST_Y_OFFSET)
       setTop(top);
       setLeft(left);
     } else {
@@ -313,8 +327,15 @@ export const ReactTransliterate = ({
         onKeyDown={handleKeyDown}
         ref={inputRef}
         value={value}
+        
         {...rest}
-      /><pre
+      />
+      {/* <div>
+        {text.split("\n").map((line, index) => (
+    <div>{index + 1}.{line} </div>
+  ))}
+      </div> */}
+      <pre
       className={preClassName}
       aria-hidden="true"
       style={{ ...styles.editor, ...styles.highlight, ...contentStyle }}
@@ -350,6 +371,7 @@ export const ReactTransliterate = ({
           ))}
         </ul>
       ): null}
+      
     </div>
   );
 };

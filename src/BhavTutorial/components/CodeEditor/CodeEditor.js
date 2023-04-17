@@ -1,6 +1,7 @@
 import React, { Fragment, useRef, useState } from "react";
 import { ReactTransliterate } from "./Translator/index";
 
+
 import Highlight, { defaultProps } from "prism-react-renderer";
 import Dark from "prism-react-renderer/themes/nightOwl";
 import Light from "prism-react-renderer/themes/duotoneLight";
@@ -93,7 +94,7 @@ const CodeEditor = ({
             {disable ? "Hindi" : "English"}
           </button>
         </div>
-        <div>{/* <Keyboard/> */}</div>
+        {/* <div><Keyboard/></div> */}
         <div>
           <button className="btn-dark rounded" onClick={() => setDark(!dark)}>
             {dark ? <MoonFill /> : <BrightnessHigh />}
@@ -104,6 +105,7 @@ const CodeEditor = ({
       <ReactTransliterate
         language="python"
         Component="textarea"
+        input="number"
         highlight={highlight}
         translate={disable}
         value={texteditor}
@@ -129,11 +131,14 @@ const CodeEditor = ({
         </div>
       </div>
       {customInput ? (
+         
         <textarea
-          className="my-4 multi-input col-lg-5"
+          className="  my-4 multi-input col-lg-5 "
           value={input}
           onChange={handleInput}
+
         />
+       
       ) : null}
     </div>
   );

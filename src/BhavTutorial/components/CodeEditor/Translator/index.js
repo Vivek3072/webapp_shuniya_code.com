@@ -120,6 +120,8 @@ export const ReactTransliterate = ({
   const [matchStart, setMatchStart] = useState(-1);
   const [matchEnd, setMatchEnd] = useState(-1);
   const inputRef = useRef(null);
+  const[ text,setText]=useState("");
+  
 
   const getSuggestions = async (lastWord) => {
     // fetch suggestion from api
@@ -141,6 +143,8 @@ export const ReactTransliterate = ({
 
   const handleChange = (e) => {
     const value = e.target.value;
+   
+
 
     // bubble up event to the parent component
     onChange(e);
@@ -148,6 +152,7 @@ export const ReactTransliterate = ({
     // get the current index of the cursor
     const caret = getInputSelection(e.target).end;
     const input = inputRef.current;
+    console.log( "anshu",input)
     const caretPos = getCaretCoordinates(input, caret);
 
     // search for the last occurence of the space character from
@@ -308,9 +313,10 @@ export const ReactTransliterate = ({
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         ref={inputRef}
-        value={value}
+        // value={value}
         {...rest}
       />
+    
       <pre
         className={preClassName}
         aria-hidden="true"
