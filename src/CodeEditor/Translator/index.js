@@ -164,7 +164,7 @@ export const ReactTransliterate = ({
     const input = inputRef.current;
     
     const caretPos = getCaretCoordinates(input, caret);
-    console.log("anshu",caretPos,caret)
+    // console.log("anshu",caretPos,caret)
 
     // console.log(caretPos);
 
@@ -197,7 +197,8 @@ export const ReactTransliterate = ({
         caretPos.left + input.offsetLeft-OPTION_LIST_Y_OFFSET ,
         input.offsetLeft + rect.width - OPTION_LIST_MIN_WIDTH,
       );
-// console.log(caretPos.left ,input.offsetLeft,OPTION_LIST_Y_OFFSET)
+console.log(left,caretPos.left ,input.offsetLeft,OPTION_LIST_Y_OFFSET)
+console.log(input.offsetLeft , rect.width , OPTION_LIST_MIN_WIDTH)
       setTop(top);
       setLeft(left);
     } else {
