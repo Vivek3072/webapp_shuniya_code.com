@@ -58,33 +58,14 @@ const CodeEditor = ({
   // )
 
   return (
-    <div className="mt-5">
-      <div className="">
-        <div className="mb-4 fs-3 fw-semibold"> Write your code below... </div>
-        {/* <div className="d-flex justify-content-between mt-5">
-        <div className="d-flex ">
-          <button
-            className="btn-dark rounded mb-4"
-            style={{ height: "25px" }}
-            onClick={() => setDisable(!disable)}
-          >
-            {disable ? "Hindi" : "English"}
-          </button>
-        </div>
-        <div>
-          <button className="btn-dark rounded" onClick={() => setDark(!dark)}>
-            {dark ? <MoonFill /> : <BrightnessHigh />}
-          </button>
-        </div>
-      </div> */}
+    <>
+      <textarea
+        value={texteditor}
+        onChange={handleChange}
+        className="editor_class mt-1 multi-input p-1"
+      ></textarea>
 
-        <textarea
-          value={texteditor}
-          onChange={handleChange}
-          className="editor_class mt-1 multi-input p-1"
-        ></textarea>
-
-        {/* <ReactTransliterate
+      {/* <ReactTransliterate
         language="python"
         Component="textarea"
         highlight={highlight}
@@ -98,27 +79,24 @@ const CodeEditor = ({
         className="rounded mb-3"
       /> */}
 
-        <div
-          className="d-flex justify-content-between"
-        >
-          <div>Custom Input</div>
-          <div onClick={setcustomInput}>
-            {customInput ? (
-              <FileCheck color="green" size={20} />
-            ) : (
-              <File size={20} />
-            )}
-          </div>
+      <div className="d-flex justify-content-between">
+        <div>Custom Input</div>
+        <div onClick={setcustomInput}>
+          {customInput ? (
+            <FileCheck color="green" size={20} />
+          ) : (
+            <File size={20} />
+          )}
         </div>
-        {customInput ? (
-          <textarea
-            className="custom_input mt-1 multi-input p-1"
-            value={input}
-            onChange={handleInput}
-          />
-        ) : null}
       </div>
-    </div>
+      {customInput ? (
+        <textarea
+          className="custom_input mt-1 multi-input p-1"
+          value={input}
+          onChange={handleInput}
+        />
+      ) : null}
+    </>
   );
 };
 
