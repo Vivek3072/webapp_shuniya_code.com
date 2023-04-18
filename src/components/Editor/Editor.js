@@ -115,7 +115,7 @@ export default class home extends Component {
                   className="btn btn-primary d-block ms-2 my-2"
                   onClick={this.submitHandler}
                 >
-                  कोड चलायें
+                  चल
                 </button>
               </div>
             </div>
