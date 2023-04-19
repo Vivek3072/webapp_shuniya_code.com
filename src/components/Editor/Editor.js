@@ -125,9 +125,9 @@ export default class home extends Component {
                 {this.state.isSubmited ? (
                   <div>
                     {this.state.isloaded ? (
-                      <div className="output_textarea">
+                      <textarea className="output_textarea">
                         {this.state.showtext}
-                      </div>
+                      </textarea>
                     ) : (
                       // <textarea
                       //   className="output_textarea"
