@@ -79,11 +79,11 @@ const CodeEditor = ({
         className="rounded mb-3"
       /> */}
 
-      <div className="d-flex justify-content-between">
-        <div>Custom Input</div>
+      <div className="d-flex justify-content-start">
+        <div>यूजर इनपुट </div>
         <div onClick={setcustomInput}>
           {customInput ? (
-            <FileCheck color="green" size={20} />
+            <FileCheck color="green" size={20}/>
           ) : (
             <File size={20} />
           )}
