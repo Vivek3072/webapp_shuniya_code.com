@@ -6,6 +6,10 @@ textarea.editor_class {
   border-radius: 0.3rem;
   padding: 0.5rem;
 }
+.line-numbers {
+height: 300px;
+overflow: hidden;
+}
 
 textarea.custom_input {
   width: 100%;
