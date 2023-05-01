@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useRef} from "react";
 // import { ReactTransliterate } from "./Translator/index";
 // import Highlight, { defaultProps } from "prism-react-renderer";
 // import Dark from "prism-react-renderer/themes/nightOwl";
@@ -11,6 +11,7 @@ import {
   // MoonFill,
 } from "react-bootstrap-icons";
 import "./CodeEditor.css";
+import { Row } from "react-bootstrap";
 // import { languages } from './languages';
 
 const CodeEditor = ({
@@ -23,6 +24,38 @@ const CodeEditor = ({
   customInput,
   setcustomInput,
 }) => {
+  const [lines, setLines] = useState(1);
+  const handleLineChange = (event) => {
+    const lines = event.target.value.split("\n").length;
+    setLines(lines);
+    handleChange(event);
+  };
+
+  const lineNumbers = [];
+  for (let i = 1; i <= lines; i++) {
+    lineNumbers.push(<div key={i}>{i}</div>);
+  }
+  const firstDivRef = useRef();
+  const secondDivRef = useRef();
+ 
+  const handleScrollFirst = scroll => {
+    secondDivRef.current.scrollTop = scroll.target.scrollTop;
+  };
+  
+  const handleScrollSecond = scroll => {
+    firstDivRef.current.scrollTop = scroll.target.scrollTop;
+  }
+  //manish hessa
+  // function MyComponent() {
+  //   const numTabs = 3;
+  //   const tabs = "\t".repeat(numTabs);
+  //   return (
+  //     <div>
+  //       <p>{tabs}</p>
+  //     </div>
+  //   );
+  // }
+
   // const [lang, setLang] = useState("hi");
   // const [dark, setDark] = useState(true);
   // const [disable, setDisable] = useState(true);
@@ -58,12 +91,23 @@ const CodeEditor = ({
   // )
 
   return (
-    <>
+    <div className="code-editor-container row ">
+      {/* {<MyComponent />} */}
+      <div className="line-numbers col-1 mt-1" onScroll={handleScrollFirst} ref={firstDivRef}>{lineNumbers}</div>
       <textarea
+      onScroll={handleScrollSecond} ref={secondDivRef}
+        rows={lines}
         value={texteditor}
-        onChange={handleChange}
-        className="editor_class mt-1 multi-input p-1"
+        onChange={handleLineChange}
+        className="editor_class mt-1 multi-input p-1 col-10"
       ></textarea>
+
+
+      {/* <div>
+        <span>First item</span>
+        {"\t"}
+        <span>Second item</span>
+      </div> */}
 
       {/* <ReactTransliterate
         language="python"
@@ -96,7 +140,7 @@ const CodeEditor = ({
           onChange={handleInput}
         />
       ) : null}
-    </>
+    </div>
   );
 };
 
