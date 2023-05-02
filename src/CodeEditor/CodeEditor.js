@@ -45,16 +45,20 @@ const CodeEditor = ({
   const handleScrollSecond = scroll => {
     firstDivRef.current.scrollTop = scroll.target.scrollTop;
   }
-  //manish hessa
-  // function MyComponent() {
-  //   const numTabs = 3;
-  //   const tabs = "\t".repeat(numTabs);
-  //   return (
-  //     <div>
-  //       <p>{tabs}</p>
-  //     </div>
-  //   );
-  // }
+//input tab key wala 
+  const inputRef = useRef(null);
+
+  function handleKeyDown(event){
+    if(event.key === 'Tab') {
+      event.preventDefault();//prevent default behaviour
+      const { current } = inputRef;
+      const {selectionStart, selectionEnd } = current;
+      const value = current.value;
+      current.value = value.substring(0, selectionStart) + '     ' + value.substring(selectionEnd);
+      current.selectionStart=current.selectionEnd=selectionStart + 4;
+    }
+  }
+
 
   // const [lang, setLang] = useState("hi");
   // const [dark, setDark] = useState(true);
@@ -92,10 +96,10 @@ const CodeEditor = ({
 
   return (
     <div className="code-editor-container row ">
-      {/* {<MyComponent />} */}
       <div className="line-numbers col-1 mt-1" onScroll={handleScrollFirst} ref={firstDivRef}>{lineNumbers}</div>
       <textarea
-      onScroll={handleScrollSecond} ref={secondDivRef}
+      onScroll={handleScrollSecond} //ref={secondDivRef}
+      ref={inputRef} type="text" onKeyDown={handleKeyDown}
         rows={lines}
         value={texteditor}
         onChange={handleLineChange}
