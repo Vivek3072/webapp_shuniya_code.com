@@ -1,0 +1,16 @@
+.overview_bg {
+  width: 100%;
+  margin: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(40, 89, 133) 2%,
+    rgba(65, 132, 217, 1) 35%,
+    rgb(33, 216, 216) 100%
+  );
+}
+
+@media screen and(max-width:900px) {
+  .overview_bg {
+    padding: 0.5rem;
+  }
+}
