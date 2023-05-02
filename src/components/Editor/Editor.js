@@ -49,6 +49,7 @@ export default class home extends Component {
           isloaded: true,
         });
       });
+      console.log(res,"our res backend")
   };
 
   handleInput = (e) => {
@@ -125,7 +126,7 @@ export default class home extends Component {
                 {this.state.isSubmited ? (
                   <div>
                     {this.state.isloaded ? (
-                      <textarea className="output_textarea">
+                      <textarea className="output_textarea" readOnly>
                         {this.state.showtext}
                       </textarea>
                     ) : (

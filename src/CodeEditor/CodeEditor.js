@@ -11,7 +11,6 @@ import {
   // MoonFill,
 } from "react-bootstrap-icons";
 import "./CodeEditor.css";
-import { Row } from "react-bootstrap";
 // import { languages } from './languages';
 
 const CodeEditor = ({
