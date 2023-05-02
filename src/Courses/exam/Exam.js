@@ -1,15 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
-// import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import Questions from "./Questions.json";
-// import { exportComponentAsJPEG } from "react-component-export-image";
-// import Certificate from "../Certificate";
 import "./Exam.css";
 import axios from "axios";
 import ScoreCard from "../ScoreCard";
 
 export default function Exam() {
-  // const componentRef = useRef();
-  const username = localStorage.getItem("user-id");
   const [showCertificate, setShowCertificate] = useState(false);
   const [score, setScore] = useState(0);
 
@@ -22,16 +17,17 @@ export default function Exam() {
     setShowCertificate(true);
 
     const response = await axios
-      .post(
-        "https://getform.io/f/db1827df-6f49-4a9c-bd87-2764b5f8b8d6",
-        {
-          username: username,
+      .post("http://43.204.229.206:8000/api/v1/quiz/submit/", {
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          quiz_id: 3,
+          user_id: 2,
           score: score,
-        },
-        { headers: { Accept: "application/json" } }
-      )
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+        }),
+      })
+      
+      // .then((response) => console.log(response)).then((data)=>console.log(data))
+      // .catch((error) => console.log(error));
     console.log("Form response", response);
   };
   useEffect(() => {
@@ -48,28 +44,7 @@ export default function Exam() {
               <>
                 <div className="d-flex align-items-center justify-content-center">
                   <ScoreCard score={score} />
-                  {/* <Certificate
-                    ref={componentRef}
-                    // score={score}
-                  /> */}
                 </div>
-
-                {/* <div className="d-flex flex-row justify-content-center my-4">
-                  <Link to="/courses">
-                    <button className="btn btn-outline-primary mx-2">
-                      Go to Course
-                    </button>
-                  </Link>
-                  <button
-                    className="btn btn-primary mx-2"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      exportComponentAsJPEG(componentRef);
-                    }}
-                  >
-                    Download Certificate
-                  </button>
-                </div> */}
               </>
             ) : (
               <>

@@ -1,107 +1,76 @@
 .all_courses a {
-    text-decoration: none;
-    color: rgb(87, 87, 87);
-    margin-left: auto;
-    margin-right: auto;
-    /* width: 30%; */
-    padding: 5px;
-  }
-  .all_courses a:hover {
-    cursor: pointer;
-    color: rgb(8, 143, 176);
-  }
+  text-decoration: none;
+  color: rgb(87, 87, 87);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+}
+.all_courses a:hover {
+  cursor: pointer;
+  color: rgb(0, 132, 203);
+}
+.course_page {
+  display: flex;
+  align-items: self-start;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.topic_list {
+  list-style: none;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 0 5px;
+  padding-left: 1rem;
+}
+.topic_list:hover {
+  color: rgb(0, 170, 255);
+  cursor: pointer;
+}
+
+.video_container {
+  height: 85vh;
+  overflow-y: scroll;
+  position: sticky;
+  top: 0;
+  /* overflow: hidden; */
+  margin: 10px;
+}
+.video_container video {
+  width: 100%;
+  border-radius: 10px;
+  border: 5px solid rgb(84, 80, 80);
+  height: fit-content;
+}
+.video_container .tv_stand {
+  width: 100%;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border: 5px solid rgb(84, 80, 80);
+  height: 15px;
+  background-color: rgb(84, 80, 80);
+}
+
+.accordion-body ul li:hover {
+  cursor: pointer;
+  color: #2f60ff;
+}
+
+@media only screen and (max-width: 900px) {
   .course_page {
-    display: flex;
-    align-items: self-start;
-    justify-content:center;
-    flex-direction: row;
-  }
-
-  .topic_list{
-    list-style: none;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 0 5px;
-    padding-left: 1rem;
-  }
-  .topic_list:hover{
-    color: rgb(0, 170, 255);
-    cursor: pointer;
-  }
-  .video_container {
-    height: 85vh;
-    overflow-y: scroll;
-    position: sticky;
-    top: 0;
-    /* overflow: hidden; */
-    margin: 10px;
-  }
-  .video_container video {
-    width: 100%;
-    border-radius: 10px;
-    border: 5px solid rgb(84, 80, 80);
-    height: fit-content;
-  }
-  .video_container .tv_stand {
-    width: 100%;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    border: 5px solid rgb(84, 80, 80);
-    height: 15px;
-    background-color: rgb(84, 80, 80);
-  }
-  /* .course_videos {
-    width: 100%;
-  } */
-  .accordion-body ul li:hover{
-      cursor: pointer;
-      color: #2f60ff;
-  }
-
-  .certificate_container{
-    background-image: url('../../src/assets/Certificate.png');
-    /* background-image: url('../assets/Certificate.png'); */
-    background-size: cover;
-    width: 600px;
-    height: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 2px;
-  }
-  .certificate{
-    border-radius: 2px;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    padding: 10px;
-    position: relative;
   }
-  .certificate .medal{
-    position: absolute;
-    top: -20px;
-    right: -20px;
+
+  .video_container {
+    width: 100%;
+    position: inherit;
   }
-  
-  
-  @media only screen and (max-width: 900px) {
-    .course_page {
-      flex-direction: column;
-    }
-    .video_container {
-      width: 100%;
-    }
-    .course_videos {
-      width: 100%;
-    }
-    .quiz_form{
-      width: 90vw;
-    }
-    .certificate_container{
-      width: 90vw;
-    }
+  .course_videos {
+    width: 100%;
   }
-  
+  .quiz_form {
+    width: 90vw;
+  }
+}
