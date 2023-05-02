@@ -23,6 +23,7 @@
     "jspdf": "^2.5.1",
     "markdown-draft-js": "^2.2.1",
     "mdb-react-ui-kit": "^1.0.0-beta7",
+    "monaco-editor": "^0.37.1",
     "multiselect-react-dropdown": "^2.0.1",
     "prism-react-renderer": "^1.2.0",
     "prismjs": "^1.23.0",
