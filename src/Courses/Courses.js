@@ -24,9 +24,8 @@ export default function Courses() {
   return (
     <>
       <div className="all_courses container my-4 d-flex align-items-center justify-content-center flex-wrap rounded">
-        {(ourData.length>0 && !loading) ? (
+        {ourData.length > 0 && !loading ? (
           ourData.map((data) => {
-            console.log(data.course_thumbnail)
             return (
               <Link to={`/course/${data.course_id}`} key={data.week_id}>
                 <div className="d-flex flex-column rounded shadow-sm  px-1 overflow-hidden">
@@ -62,12 +61,9 @@ export default function Courses() {
                   <div className="px-2"> Price : Rs {data.course_price} </div>
                   <div className="px-2">
                     Instructors :
-                    {data.course_instructor.map((instructor,index) => {
+                    {data.course_instructor.map((instructor, index) => {
                       return (
-                        <span
-                          key={index}
-                          className="mx-1"
-                        >
+                        <span key={index} className="mx-1">
                           {instructor.course_instructor_name},
                         </span>
                       );

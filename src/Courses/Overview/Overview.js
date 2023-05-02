@@ -42,7 +42,7 @@ export default function Overview() {
       "http://43.204.229.206:8000/api/v1/payment_initiation_donation/",
       {
         mobile_number: "9140823654",
-        order_amount: "500",
+        order_amount: "5000",
         order_currency: "INR",
         receipt: "11_deo_ar_receipt_1",
         email: "abhayptsr@gmail.com",
