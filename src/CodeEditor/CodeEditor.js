@@ -1,4 +1,4 @@
-import React,{useState,useRef} from "react";
+import React,{useState,useRef, useEffect} from "react";
 // import { ReactTransliterate } from "./Translator/index";
 // import Highlight, { defaultProps } from "prism-react-renderer";
 // import Dark from "prism-react-renderer/themes/nightOwl";
@@ -25,15 +25,22 @@ const CodeEditor = ({
   setcustomInput,
 }) => {
   const [lines, setLines] = useState(1);
+  const [currentLine, setCurrentLine] = useState(1);
   const handleLineChange = (event) => {
     const lines = event.target.value.split("\n").length;
     setLines(lines);
     handleChange(event);
+
+    // if (lines > lastLine) {
+    //   setlastLine(lines);
+    // }
+    
   };
 
   const lineNumbers = [];
   for (let i = 1; i <= lines; i++) {
-    lineNumbers.push(<div key={i}>{i}</div>);
+    const style = i === currentLine ? {fontWeight: "bold"} : {};
+    lineNumbers.push(<div key={i} style={style} >{i}</div>);
   }
   const firstDivRef = useRef();
   const secondDivRef = useRef();
@@ -92,12 +99,20 @@ const CodeEditor = ({
   //       </Fragment>
   //     )}
   //   </Highlight>
-  // )
+  // )  
+        const textArea = document.querySelector("#code")
+        if ( textArea ){
+          const linenumber = textArea.value.substr(0, textArea.selectionStart).split("\n").length;
+          console.log(linenumber)
+          if ( linenumber !== currentLine )
+          setCurrentLine(linenumber)
+        }
 
   return (
     <div className="code-editor-container row ">
       <div className="line-numbers col-1 mt-1" onScroll={handleScrollFirst} ref={firstDivRef}>{lineNumbers}</div>
       <textarea
+      id="code"
       onScroll={handleScrollSecond} //ref={secondDivRef}
       ref={inputRef} type="text" onKeyDown={handleKeyDown}
         rows={lines}
