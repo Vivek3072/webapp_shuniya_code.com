@@ -4,7 +4,7 @@ import "./Exam.css";
 import axios from "axios";
 import ScoreCard from "../ScoreCard";
 
-export default function Exam() {
+export default function Quiz() {
   const [showCertificate, setShowCertificate] = useState(false);
   const [score, setScore] = useState(0);
 
@@ -14,20 +14,21 @@ export default function Exam() {
     console.log(score);
   };
   const handleSubmit = async () => {
-    setShowCertificate(true);
-
-    const response = await axios
-      .post("http://43.204.229.206:8000/api/v1/quiz/submit/", {
+    const response = await axios.post(
+      "http://43.204.229.206:8000/api/v1/quiz/submit/",
+      {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           quiz_id: 3,
           user_id: 2,
           score: score,
         }),
-      })
-      
-      // .then((response) => console.log(response)).then((data)=>console.log(data))
-      // .catch((error) => console.log(error));
+      }
+    );
+
+    setShowCertificate(true);
+    // .then((response) => console.log(response)).then((data)=>console.log(data))
+    // .catch((error) => console.log(error));
     console.log("Form response", response);
   };
   useEffect(() => {

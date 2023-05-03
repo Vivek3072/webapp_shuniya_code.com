@@ -32,7 +32,7 @@ import CreateQuiz from "./Quiz_Instructor/CreateQuiz";
 import UpdateQuiz from "./Quiz_Instructor/UpdateQuiz";
 import Courses from "../src/Courses/Courses";
 import CoursePage from "../src/Courses/CoursePage";
-import Exam from "../src/Courses/exam/Exam";
+import Exam from "./Courses/exam/Quiz";
 import Profile from "./components/Profile";
 import Overview from "./Courses/Overview/Overview";
 import Contact from "./components/Contact/Contact";
@@ -79,7 +79,7 @@ const App = () => {
               />
               <Route
                 exact
-                path={"/course/:course_id/:exam_id"}
+                path={"/course/:course_id/:quiz_id"}
                 component={username ? Exam : Home}
               />
               <Route exact path={"/articles"} component={PublicArticles} />
