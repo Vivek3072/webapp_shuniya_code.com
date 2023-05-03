@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -20,11 +21,17 @@ function Footer() {
             </div>
 
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-              <h6 className="text-uppercase fw-bold mb-2">Contact</h6>
+              <h6 className="text-uppercase fw-bold mb-2">Legals</h6>
               <ul className="text-left">
-                <li className="p-1">Boring Road, Patna, Bihar</li>
-                <li className="p-1">ankit@shuniyavigyan.com</li>
-                <li className="p-1">+91 74780 95666</li>
+                <Link to="/contact">
+                  <li className="p-1">Contact Us</li>
+                </Link>
+                <Link to="/privacy-policy">
+                  <li className="p-1">Privacy Policy</li>
+                </Link>
+                <Link to="/terms-conditions">
+                  <li className="p-1">Terms & Conditions</li>
+                </Link>
               </ul>
             </div>
           </div>
@@ -32,7 +39,7 @@ function Footer() {
       </section>
 
       <div className="text-center p-4 bg-dark border-top border-secondary">
-       <span className="text-secondary"> © 2023 Copyright: </span> 
+        <span className="text-secondary"> © 2023 Copyright: </span>
         <a
           className="text-secondary mx-1"
           href="https://shiniyavigyan.com/"

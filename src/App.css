@@ -57,7 +57,7 @@ a{
 }
 a:hover{
   text-decoration: none;
-  color: rgb(0, 255, 0);
+  color: rgb(40, 137, 255);
 }
 .page-container{
   display: flex;

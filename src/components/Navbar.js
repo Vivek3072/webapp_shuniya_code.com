@@ -92,6 +92,7 @@ const NavComponent = () => {
           <Link to="/" className="text-dark my-1 mx-2">Home</Link>
           <Link to="/editor" className="text-dark my-1 mx-2">Editor</Link>
           <Link to="/courses" className="text-dark my-1 mx-2">Courses</Link>
+          <Link to="/contact" className="text-dark my-1 mx-2">Contact-Us</Link>
           {/* <NavDropdown title="Tutorials" id="basic-nav-dropdown">
             <NavDropdown.Item href="/bhav-tutorials">Bhav Tutorials</NavDropdown.Item>
             <NavDropdown.Item href="/courses">Courses</NavDropdown.Item>

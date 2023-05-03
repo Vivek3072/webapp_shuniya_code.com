@@ -35,78 +35,91 @@ import CoursePage from "../src/Courses/CoursePage";
 import Exam from "../src/Courses/exam/Exam";
 import Profile from "./components/Profile";
 import Overview from "./Courses/Overview/Overview";
+import Contact from "./components/Contact/Contact";
+import PrivacyPolicy from "./components/LegalDocs/PrivacyPolicy";
+import TermsConditions from "./components/LegalDocs/TermsConditions";
 
 const App = () => {
   const location = useLocation();
-  const username = localStorage.getItem('user-id')
+  const username = localStorage.getItem("user-id");
   return (
     <div className="page-container">
       <div className="content-wrap">
         <Navbar />
-          <TransitionGroup>
-            <CSSTransition key={location.key} classNames="fade" timeout={300}>
-              <Switch location={location}>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/editor" component={Editor} />
-                <Route exact path={"/login/"} component={Login} />
-                <Route exact path={"/signup"} component={Signup} />
-                {/* <Route exact path={"/class/:id"} component={SecondLayout} /> */}
-                <Route exact path={"/user/profile"} component={username ? Profile : Login} />
-                <Route
-                  exact
-                  path={"/tutorial/:tutorialTitle"}
-                  component={TutorialPage}
-                ></Route>
-                <Route exact path="/bhav-tutorials">
-                  <Redirect to="/tutorial/bhav-programming-language"></Redirect>
-                </Route>
-                <Route exact path={"/courses"} component={Courses} />
-                <Route exact path={"/course/:course_id"} component={username ? CoursePage : Overview} />
-                <Route
-                  exact
-                  path={"/course/:course_id/course_overview"}
-                  component={Overview }
-                />
-                <Route
-                  exact
-                  path={"/course/:course_id/:exam_id"}
-                  component={username ? Exam : Home}
-                />
-                <Route exact path={"/articles"} component={PublicArticles} />
-                <Route exact path={"/quiz"} component={Quiz} />
-                <Route exact path={"/quiz_2"} component={Quiz_2} />
-                <Route exact path={"/manage-quiz"} component={ManageQuizPage} />
-                <Route exact path={"/create-quiz"} component={CreateQuiz} />
-                <Route
-                  exact
-                  path={"/update-quiz/:quiz_id"}
-                  component={UpdateQuiz}
-                />
-                <Route
-                  exact
-                  path={"/article/user/:user_id/:article_no"}
-                  component={UserArticleView}
-                ></Route>
-                <Route
-                  exact
-                  path={"/edit/:user_id/:article_no"}
-                  component={EditArticle}
-                ></Route>
-                <Route
-                  exact
-                  path={"/article/public/:article_no"}
-                  component={PublicArticleView}
-                ></Route>
-                <Route
-                  exact
-                  path={"/my-articles"}
-                  component={UserArticleList}
-                ></Route>
-                <Route exact path={"/write"} component={TextEditor} />
-                <Route exact path={"/*"} component={NotFound} />
-              </Switch>
-            </CSSTransition>
-          </TransitionGroup>
+        <TransitionGroup>
+          <CSSTransition key={location.key} classNames="fade" timeout={300}>
+            <Switch location={location}>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/editor" component={Editor} />
+              <Route exact path={"/login/"} component={Login} />
+              <Route exact path={"/signup"} component={Signup} />
+              <Route
+                exact
+                path={"/user/profile"}
+                component={username ? Profile : Login}
+              />
+              <Route
+                exact
+                path={"/tutorial/:tutorialTitle"}
+                component={TutorialPage}
+              ></Route>
+              <Route exact path="/bhav-tutorials">
+                <Redirect to="/tutorial/bhav-programming-language"></Redirect>
+              </Route>
+              <Route exact path={"/courses"} component={Courses} />
+              <Route
+                exact
+                path={"/course/:course_id"}
+                component={username ? CoursePage : Overview}
+              />
+              <Route
+                exact
+                path={"/course/:course_id/course_overview"}
+                component={Overview}
+              />
+              <Route
+                exact
+                path={"/course/:course_id/:exam_id"}
+                component={username ? Exam : Home}
+              />
+              <Route exact path={"/articles"} component={PublicArticles} />
+              <Route exact path={"/quiz"} component={Quiz} />
+              <Route exact path={"/quiz_2"} component={Quiz_2} />
+              <Route exact path={"/manage-quiz"} component={ManageQuizPage} />
+              <Route exact path={"/create-quiz"} component={CreateQuiz} />
+              <Route
+                exact
+                path={"/update-quiz/:quiz_id"}
+                component={UpdateQuiz}
+              />
+              <Route
+                exact
+                path={"/article/user/:user_id/:article_no"}
+                component={UserArticleView}
+              ></Route>
+              <Route
+                exact
+                path={"/edit/:user_id/:article_no"}
+                component={EditArticle}
+              ></Route>
+              <Route
+                exact
+                path={"/article/public/:article_no"}
+                component={PublicArticleView}
+              ></Route>
+              <Route
+                exact
+                path={"/my-articles"}
+                component={UserArticleList}
+              ></Route>
+              <Route exact path={"/write"} component={TextEditor} />
+              <Route exact path={"/contact"} component={Contact} />
+              <Route exact path={"/privacy-policy"} component={PrivacyPolicy} />
+              <Route exact path={"/terms-conditions"} component={TermsConditions} />
+              <Route exact path={"/*"} component={NotFound} />
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
         <br />
         <br />
       </div>
