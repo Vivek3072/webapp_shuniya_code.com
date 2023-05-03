@@ -50,9 +50,10 @@ export default function HomePage() {
           <div className="col-lg-12 col-sm-6 d-flex justify-content-center align-items-center">
             <span className="fs-5 mx-2"> Having technical issues? </span>
             <a
-              className="text-info fs-5 link-underline-info"
+              className="text-info fs-5"
               href="mailto:ankit@shuniyavigyan.com"
               subject="कोड.com Problems"
+              style={{ textDecoration: "underline" }}
             >
               Mail us your query!
             </a>
