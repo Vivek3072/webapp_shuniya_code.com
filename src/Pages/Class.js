@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ListGroup, Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import SecondLayout from './../Layout/SecondLayout';
+// import SecondLayout from './../Layout/SecondLayout';
 const Class = (props) => {
     const [data, setData] = useState([]);
     let { id } = useParams();

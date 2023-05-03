@@ -61,7 +61,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="py-3">
+      <div className="py-5 px-2 my-5 container shadow-sm rounded">
         {/* Phone Number Section Starts*/}
         <center>
           <div style={{ display: !show ? "block" : "none" }}>
