@@ -1,53 +1,38 @@
-import React, { Component } from "react";
-import axiosInstance from "../axiosApi";
+import axios from "axios";
+import React, { useState } from "react";
 
-class Signup extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      password: "",
-      email: "",
-      errors: {},
-    };
+export default function Signup() {
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  const registerUser = async (e) => {
+    e.preventDefault();
+    const response = await axios.post(
+      "http://43.204.229.206:8000/api/v1/register/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          username,
+          first_name: "Vivek",
+          last_name: "Srivastava",
+        }),
+      }
+    );
+    console.log(response, "response");
+    // setError(response.email);
+  };
 
-  handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
-  async handleSubmit(event) {
-    console.log(this.state);
-    event.preventDefault();
-    try {
-      const response = await axiosInstance.post("/user/create/", {
-        username: this.state.username,
-        email: this.state.email,
-        password: this.state.password,
-      });
-      console.log(response.data);
-      alert("Signup was successful. Please login.");
-      this.props.history.push("/");
-
-      return response;
-    } catch (error) {
-      console.log(error.stack);
-      this.setState({
-        errors: error.response.data,
-      });
-    }
-  }
-
-  render() {
-    return (
+  return (
+    <>
       <div className="row">
-        <form
-          onSubmit={this.handleSubmit}
-          style={{ margin: " 0 auto", textAlign: "left", width: "800px" }}
-        >
+        <form style={{ margin: " 0 auto", textAlign: "left", width: "800px" }}>
           <div className="form-group">
             <label for="exampleInputEmail1">Username</label>
             <input
@@ -56,10 +41,9 @@ class Signup extends Component {
               aria-describedby="user"
               name="username"
               placeholder="Enter Username"
-              value={this.state.username}
-              onChange={this.handleChange}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
-            {this.state.errors.username ? this.state.errors.username : null}
           </div>
           <div className="form-group">
             <label for="exampleInputPassword1">Email</label>
@@ -68,10 +52,9 @@ class Signup extends Component {
               name="email"
               type="email"
               placeholder="Email"
-              value={this.state.email}
-              onChange={this.handleChange}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
-            {this.state.errors.email ? this.state.errors.email : null}
           </div>
           <div className="form-group">
             <label for="exampleInputPassword1">Password</label>
@@ -79,20 +62,22 @@ class Signup extends Component {
               type="password"
               name="password"
               className="form-control"
-              value={this.state.password}
-              onChange={this.handleChange}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               id="exampleInputPassword1"
               placeholder="Password"
             />
-            {this.state.errors.password ? this.state.errors.password : null}
           </div>
-          <button type="submit" className="btn btn-primary" href="/">
+          {error && error}
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={registerUser}
+          >
             Singup
           </button>
         </form>
       </div>
-    );
-  }
+    </>
+  );
 }
-
-export default Signup;
