@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function CoursePage() {
-  const courseId = useParams();
+  const { course_id, user_id } = useParams();
 
   const [loading, setLoading] = useState(true);
 
@@ -20,9 +20,9 @@ export default function CoursePage() {
 
   const getData = async () => {
     const response = await axios.get(
-      `http://43.204.229.206:8000/api/v1/course/${courseId.course_id}/?format=json`
+      `http://43.204.229.206:8000/api/v1/course/${course_id}/${user_id}/?format=json`
     );
-    setCourseData(response.data);
+    setCourseData(response.data.data);
     setLoading(false);
   };
 
@@ -69,7 +69,7 @@ export default function CoursePage() {
                   setContent={setContent}
                 />
               ) : (
-                <h4 className="p-2"> Loading course module... </h4>
+                <div className="p-2"> Loading course module... </div>
               )}
             </>
           )}

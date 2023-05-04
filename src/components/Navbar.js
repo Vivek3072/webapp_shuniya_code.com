@@ -1,51 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Navbar, NavDropdown, Button, Nav } from "react-bootstrap";
+import { Navbar, NavDropdown, Nav } from "react-bootstrap";
 import { Code } from "react-bootstrap-icons";
 import { useHistory } from "react-router-dom";
 
 import axiosInstance from "./../axiosApi";
 import LoginCard from "./LoginCard";
 
-import Axios from "axios";
 import firebase from "firebase";
-// import './Footer.css';
 
 const NavComponent = () => {
   const token = localStorage.getItem("user-id");
   const refreshToken = localStorage.getItem("refresh_token");
 
   let history = useHistory();
-
-  const paymentHandler = async (e) => {
-    const API_URL = "http://localhost:8000/";
-    e.preventDefault();
-    const orderUrl = `${API_URL}order`;
-    const response = await Axios.get(orderUrl);
-    const { data } = response;
-    const options = {
-      key: process.env.RAZOR_PAY_TEST_KEY,
-      name: "Your App Name",
-      description: "Some Description",
-      order_id: data.id,
-      handler: async (response) => {
-        try {
-          const paymentId = response.razorpay_payment_id;
-          const url = `${API_URL}capture/${paymentId}`;
-          const captureResponse = await Axios.post(url, {});
-          console.log(captureResponse.data);
-        } catch (err) {
-          console.log(err);
-        }
-      },
-      theme: {
-        color: "#686CFD",
-      },
-    };
-    const rzp1 = new window.Razorpay(options);
-    rzp1.open();
-  };
 
   const handleLogout = async () => {
     try {
@@ -60,7 +29,7 @@ const NavComponent = () => {
 
       axiosInstance.defaults.headers["Authorization"] = null;
       history.push("/");
-      window.location.reload()
+      window.location.reload();
       return response;
     } catch (e) {
       console.log(e);
@@ -71,11 +40,11 @@ const NavComponent = () => {
     firebase.auth().signOut();
     localStorage.removeItem("user-id");
     history.push("/");
-    window.location.reload()
+    window.location.reload();
   };
 
   return (
-    <Navbar className='navbar navbar-light bg-light' bg="light" expand="lg" >
+    <Navbar className="navbar navbar-light bg-light" bg="light" expand="lg">
       <Link to="/" className="fw-bold fs-3 text-primary my-2 mr-3">
         <Code size={35} className="mr-1" />
         कोड
@@ -83,20 +52,18 @@ const NavComponent = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
         <div className="mr-auto">
-          {/* {token && (
-            <NavDropdown title="Quiz" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/quiz">Quiz 1</NavDropdown.Item>
-              <NavDropdown.Item href="/quiz_2">Quiz 2</NavDropdown.Item>
-            </NavDropdown>
-          )} */}
-          <Link to="/" className="text-dark my-1 mx-2">Home</Link>
-          <Link to="/editor" className="text-dark my-1 mx-2">Editor</Link>
-          <Link to="/courses" className="text-dark my-1 mx-2">Courses</Link>
-          <Link to="/contact" className="text-dark my-1 mx-2">Contact-Us</Link>
-          {/* <NavDropdown title="Tutorials" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/bhav-tutorials">Bhav Tutorials</NavDropdown.Item>
-            <NavDropdown.Item href="/courses">Courses</NavDropdown.Item>
-          </NavDropdown> */}
+          <Link to="/" className="text-dark my-1 mx-2">
+            Home
+          </Link>
+          <Link to="/editor" className="text-dark my-1 mx-2">
+            Editor
+          </Link>
+          <Link to="/courses" className="text-dark my-1 mx-2">
+            Courses
+          </Link>
+          <Link to="/contact" className="text-dark my-1 mx-2">
+            Contact-Us
+          </Link>
         </div>
         <Nav>
           {!token ? (
@@ -107,8 +74,7 @@ const NavComponent = () => {
             <>
               <NavDropdown title="Account" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/user/profile">
-                  {" "}
-                  Profile{" "}
+                  Profile
                 </NavDropdown.Item>
                 {!!refreshToken ? (
                   <NavDropdown.Item type="button" onClick={handleLogout}>
@@ -125,15 +91,9 @@ const NavComponent = () => {
               </NavDropdown>
             </>
           )}
-
-            <Button
-              type="button"
-              variant=""
-              onClick={paymentHandler}
-              className="ml-3 btn btn-dark fw-bold"
-            >
-              सदस्य बने
-            </Button>
+          <Link to="/signup" className="btn btn-primary text-white my-1 mx-2">
+            Sign Up
+          </Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

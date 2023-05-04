@@ -27,7 +27,7 @@ export default function Courses() {
         {ourData.length > 0 && !loading ? (
           ourData.map((data) => {
             return (
-              <Link to={`/course/${data.course_id}`} key={data.week_id}>
+              <Link to={`/course/${data.course_id}/2`} key={data.week_id}>
                 <div className="d-flex flex-column rounded shadow-sm  px-1 overflow-hidden">
                   <div className="d-flex justify-content-center align-items-center">
                     <img
@@ -74,7 +74,7 @@ export default function Courses() {
             );
           })
         ) : (
-          <h2> Loading all courses... </h2>
+          <div> Loading all courses... </div>
         )}
       </div>
     </>
