@@ -49,7 +49,9 @@ export default function CourseStructure(props) {
                   </div>
                 );
               })}
-              <Link to={`/course/${course_module.course_id}/quiz?=${course_module.quiz_id}`}>
+              <Link
+                to={`/course/${course_module.course_id}/2/quiz?=${course_module.quiz_id}`}
+              >
                 <div className="text-info text-center rounded m-1 border border-info px-3 py-2">
                   Quiz Week {course_module.quiz_id} &rarr;
                 </div>

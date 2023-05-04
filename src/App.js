@@ -67,7 +67,7 @@ const App = () => {
               />
               <Route
                 exact
-                path={"/course/:course_id/:quiz_id"}
+                path={"/course/:course_id/:user_id/:quiz_id"}
                 component={username ? Quiz : Home}
               />
               <Route exact path={"/contact"} component={Contact} />
