@@ -1,14 +1,25 @@
+.editor_main {
+  background-color: rgb(235, 235, 235);
+  color: #313131;
+  display: flex;
+  align-items: self-start;
+  justify-content: start;
+  flex-direction: row;
+  border-radius: 0.3rem;
+}
 textarea.editor_class {
+  background-color: rgb(235, 235, 235);
   width: 100%;
   height: 300px;
-  background-color: #081424;
-  color: #eee;
-  border-radius: 0.3rem;
   padding: 0.5rem;
+  outline: none;
+  border: none;
 }
 .line-numbers {
-height: 300px;
-overflow: hidden;
+  width: 30px;
+  border-right: 1px solid rgb(162, 162, 162);
+  height: 300px;
+  overflow: hidden;
 }
 
 textarea.custom_input {
