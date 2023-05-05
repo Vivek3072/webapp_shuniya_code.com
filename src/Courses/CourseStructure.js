@@ -1,20 +1,7 @@
-import { useState } from "react";
 import { RiArrowRightSFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 export default function CourseStructure(props) {
-  const [topicCompleteArray, setTopicCompleteArray] = useState(
-    Array(10).fill(false)
-  );
-
-  const setTopicCompleteHandler = (topic_id) => {
-    setTopicCompleteArray((prevArray) => {
-      const newArray = [...prevArray];
-      newArray[topic_id] = true;
-      return newArray;
-    });
-  };
-
   return (
     <>
       <div className="mt-3"></div>
@@ -32,13 +19,8 @@ export default function CourseStructure(props) {
                 return (
                   <div key={index}>
                     <li
-                      className={
-                        topicCompleteArray[topic.topic_id]
-                          ? "text-success topic_list"
-                          : "topic_list"
-                      }
+                      className="topic_list"
                       onClick={() => {
-                        setTopicCompleteHandler(topic.topic_id);
                         props.setVideo(topic.video_link);
                         props.setTitle((prev) => (prev = topic.topics_title));
                         props.setContent(topic.content);
@@ -49,9 +31,7 @@ export default function CourseStructure(props) {
                   </div>
                 );
               })}
-              <Link
-                to={`/course/${course_module.course_id}/2/quiz?=${course_module.quiz_id}`}
-              >
+              <Link to={`/course/${course_module.course_id}/2/3`}>
                 <div className="text-info text-center rounded m-1 border border-info px-3 py-2">
                   Quiz Week {course_module.quiz_id} &rarr;
                 </div>

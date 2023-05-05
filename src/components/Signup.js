@@ -1,34 +1,6 @@
-import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
 
 export default function Signup() {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const registerUser = async (e) => {
-    e.preventDefault();
-    const response = await axios.post(
-      "http://43.204.229.206:8000/api/v1/register/",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-          username,
-          first_name: "Vivek",
-          last_name: "Srivastava",
-        }),
-      }
-    );
-    console.log(response, "response");
-    // setError(response.email);
-  };
-
   return (
     <>
       <div className="row">
@@ -41,8 +13,6 @@ export default function Signup() {
               aria-describedby="user"
               name="username"
               placeholder="Enter Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -52,8 +22,6 @@ export default function Signup() {
               name="email"
               type="email"
               placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -62,18 +30,11 @@ export default function Signup() {
               type="password"
               name="password"
               className="form-control"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               id="exampleInputPassword1"
               placeholder="Password"
             />
           </div>
-          {error && error}
-          <button
-            type="submit"
-            className="btn btn-primary"
-            onClick={registerUser}
-          >
+          <button type="submit" className="btn btn-primary">
             Singup
           </button>
         </form>
