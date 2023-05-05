@@ -194,7 +194,7 @@ export default function Overview() {
                   </div>
 
                   <div className="d-flex flex-column align-items-center justify-content-center my-5">
-                    <div className="fs-3">About Shuniyavigyan</div>
+                    <div className="fs-3 my-1">About this course..</div>
                     <iframe
                       width="90%"
                       height="400"
