@@ -14,6 +14,7 @@ export default function Quiz() {
     console.log(score);
   };
   const handleSubmit = async () => {
+    setShowCertificate(true);
     const response = await axios.post(
       "http://43.204.229.206:8000/api/v1/quiz/submit/",
       {
@@ -26,7 +27,6 @@ export default function Quiz() {
       }
     );
 
-    setShowCertificate(true);
     // .then((response) => console.log(response)).then((data)=>console.log(data))
     // .catch((error) => console.log(error));
     console.log("Form response", response);
