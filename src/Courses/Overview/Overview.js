@@ -85,7 +85,7 @@ export default function Overview() {
       },
       prefill: {
         name: username,
-        email: "itsvvkhere@gmail.com",
+        email: "itabhda@gmail.com",
         contact: "9999999999",
       },
       notes: {
@@ -191,6 +191,17 @@ export default function Overview() {
                         );
                       })}
                     </div>
+                  </div>
+
+                  <div className="d-flex flex-column align-items-center justify-content-center my-5">
+                    <div className="fs-3">About Shuniyavigyan</div>
+                    <iframe
+                      width="90%"
+                      height="400"
+                      src="https://www.youtube.com/embed/I303j4YqPb0"
+                      autoPlay
+                      title="About Shuniyavigyan"
+                    ></iframe>
                   </div>
 
                   <div>
