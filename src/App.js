@@ -58,7 +58,7 @@ const App = () => {
               <Route
                 exact
                 path={"/course/course_id=:course_id&user_id=:user_id"}
-                component={current_user_id ? CoursePage : Overview}
+                component={CoursePage}
               />
               <Route
                 exact

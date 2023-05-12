@@ -10,7 +10,7 @@ export default function Courses() {
   const [ourData, setData] = useState([]);
 
   const current_user_id = localStorage.getItem('user_id')
-  console.log(current_user_id,"current_user_id")
+  
   const getData = async () => {
     const response = await axios.get(
       "http://43.204.229.206:8000/api/v1/courses/?format=json"
