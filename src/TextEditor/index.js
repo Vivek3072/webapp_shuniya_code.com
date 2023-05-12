@@ -86,7 +86,7 @@ const FormContainer = (props) => {
       var formData = new FormData();
       formData.append("file", blob, "ts.md");
       formData.append("article_id", "new_article");
-      formData.append("user_id", localStorage.getItem("user-id"));
+      formData.append("user_id", localStorage.getItem("username"));
       formData.append("feedback", "");
       formData.append("remarks", "");
       formData.append("title", header);
@@ -128,7 +128,7 @@ const FormContainer = (props) => {
       var formData = new FormData();
       formData.append("file", blob, "ts.md");
       formData.append("article_id", "new_article");
-      formData.append("user_id", localStorage.getItem("user-id"));
+      formData.append("user_id", localStorage.getItem("username"));
       formData.append("feedback", "");
       formData.append("remarks", "");
       formData.append("title", header);
@@ -170,7 +170,7 @@ const FormContainer = (props) => {
       var formData = new FormData();
       formData.append("file", blob, "ts.md");
       formData.append("article_id", "new_article");
-      formData.append("user_id", localStorage.getItem("user-id"));
+      formData.append("user_id", localStorage.getItem("username"));
       formData.append("feedback", "");
       formData.append("remarks", "");
       formData.append("title", header);

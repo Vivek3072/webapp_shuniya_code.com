@@ -8,29 +8,25 @@ export default function Quiz() {
   const [showCertificate, setShowCertificate] = useState(false);
   const [score, setScore] = useState(0);
 
+  const [globalRank, setGlobalRank] = useState('');
+
   const handleAnswerOptionClick = (isCorrect) => {
-    console.log(score, isCorrect, "score , isCorrect");
     isCorrect && setScore(score + 1);
-    console.log(score);
   };
   const handleSubmit = async () => {
-    setShowCertificate(true);
     const response = await axios.post(
       "http://43.204.229.206:8000/api/v1/quiz/submit/",
       {
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          quiz_id: 3,
-          user_id: 2,
-          score: score,
-        }),
-      }
-    );
-
-    // .then((response) => console.log(response)).then((data)=>console.log(data))
-    // .catch((error) => console.log(error));
-    console.log("Form response", response);
+        quiz_id: 3,
+        user_id: 2,
+        score: score,
+      },
+      { headers: { "Content-Type": "application/json" } }
+      );
+      setGlobalRank(response.data.global_rank);
+      setShowCertificate(true);
   };
+
   useEffect(() => {
     handleAnswerOptionClick();
     //eslint-disable-next-line
@@ -44,7 +40,7 @@ export default function Quiz() {
             {showCertificate ? (
               <>
                 <div className="d-flex align-items-center justify-content-center">
-                  <ScoreCard score={score} />
+                  <ScoreCard score={score} globalRank={globalRank} />
                 </div>
               </>
             ) : (
