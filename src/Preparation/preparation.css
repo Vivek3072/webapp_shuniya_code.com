@@ -111,22 +111,35 @@
   padding: 10px;
   width: 70px;
   height: 70px;
-  background-color: rgb(181, 185, 181);
-  margin-left: 12px;
+  /* background-color: rgb(181, 185, 181); */
+  /* margin-left: 12px; */
   border-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .badge .icon {
   position: absolute;
-  top: 5px;
+  /* top: 5px;
   left: 17px;
+  margin-left: 20px;
   font-size: 40px;
-  color: black;
+  color: black; */
+}
+.badge .icon img {
+  width: 60px;
+  text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .badge .text {
   position: relative;
-  bottom: -38px;
+  /* bottom: -38px; */
+  top: 7px;
+  left: 5px;
   color: black !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.badge .text i {
+  font-size: 30px;
 }
 /* .ui-badge {
   position: relative;
@@ -177,6 +190,7 @@
   overflow: hidden;
   border: 1px solid #eaeaec !important;
   border-radius: 0.5rem;
+  /* margin-bottom: 10px; */
 }
 .track_contest {
   background-color: #fff;
@@ -299,6 +313,7 @@
   overflow: hidden;
   border: 1px solid #eaeaec !important;
   border-radius: 0.5rem;
+  margin-bottom: 10px;
 }
 .first-challenge .content--list-v2 {
   border-top: none;
@@ -318,7 +333,7 @@
 .challenge-name-details {
   flex: 1;
   box-sizing: border-box;
-  margin-right: 60px;
+  margin-right: 5px;
   width: auto;
   /* font-weight: 300; */
 }
@@ -341,9 +356,9 @@
 
 /* // right panel css  */
 .right-panel {
-  width: 25%;
+  /* width: 25%; */
 
-  /* width: 280px; */
+  width: 280px;
   /* background-color: blue; */
 }
 .outer_wrapper {
@@ -442,4 +457,19 @@
 }
 div.label {
   margin-left: 5px;
+}
+
+/* // Responsiveness  */
+
+@media (max-width: 800px) {
+  .content_section {
+    display: flex;
+    flex-direction: column;
+  }
+  .left-panel {
+    max-width: 100%;
+  }
+  .right-panel {
+    width: 100%;
+  }
 }
