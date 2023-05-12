@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const Profile = () => {
-    const userID = localStorage.getItem("user-id")
+    const userID = localStorage.getItem("username")
     return (
         <>
             <div className='fs-1 text-center mt-4'>

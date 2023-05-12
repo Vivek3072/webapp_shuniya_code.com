@@ -11,7 +11,7 @@ import LoginCard from "./LoginCard";
 import firebase from "firebase";
 
 const NavComponent = () => {
-  const token = localStorage.getItem("user-id");
+  const token = localStorage.getItem("username");
   const refreshToken = localStorage.getItem("refresh_token");
 
   let history = useHistory();
@@ -25,7 +25,8 @@ const NavComponent = () => {
 
       localStorage.removeItem("access_token");
       localStorage.removeItem("refresh_token");
-      localStorage.removeItem("user-id");
+      localStorage.removeItem("user_id");
+      localStorage.removeItem("username");
 
       axiosInstance.defaults.headers["Authorization"] = null;
       history.push("/");
@@ -38,7 +39,8 @@ const NavComponent = () => {
 
   const handleFirebaseLogout = () => {
     firebase.auth().signOut();
-    localStorage.removeItem("user-id");
+    localStorage.removeItem("username");
+    localStorage.removeItem("user_id");
     history.push("/");
     window.location.reload();
   };

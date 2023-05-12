@@ -11,6 +11,7 @@ const Login = () => {
   const [otp, setotp] = useState("");
   const [show, setshow] = useState(false);
   const [final, setfinal] = useState("");
+  
 
   // Sent OTP
   const signin = () => {
@@ -34,7 +35,9 @@ const Login = () => {
     auth
       .signInWithPopup(provider)
       .then((result) => {
-        localStorage.setItem("user-id", result.user.displayName);
+        // console.log(result,"result")
+        localStorage.setItem("user_id",result.user.uid)
+        localStorage.setItem("username", result.user.displayName);
         window.location.reload();
       })
       .catch((err) => {
@@ -49,7 +52,8 @@ const Login = () => {
       .confirm(otp)
       .then((result) => {
         // console.log("Login Successful!");
-        localStorage.setItem("user-id", username);
+        localStorage.setItem("user_id",result.user.uid)
+        localStorage.setItem("username", username);
         window.location.reload();
         // success
       })

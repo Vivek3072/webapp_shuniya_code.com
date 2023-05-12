@@ -2,13 +2,18 @@ import React, { useEffect } from "react";
 import "./Overview.css";
 import axios from "axios";
 import { useState } from "react";
+import { useParams,useHistory } from "react-router-dom";
 
 export default function Overview() {
-  const username = localStorage.getItem("user-id") || "Unknown";
+  let history = useHistory();
+  const { course_id } = useParams();
+  const username = localStorage.getItem("username") || "Unknown";
+  const current_user = localStorage.getItem("user_id");
+
   const [overviewData, setOverviewData] = useState([]);
   const getOverviewData = async () => {
     const response = await axios.get(
-      "http://43.204.229.206:8000/api/v1/course/id/course_overview/"
+      'http://43.204.229.206:8000/api/v1/course/id/course_overview/'
     );
     setOverviewData(response.data);
   };
@@ -28,6 +33,8 @@ export default function Overview() {
   }
 
   async function displayRazorpay() {
+
+    if(!current_user) {history.push("/login"); return;}
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
@@ -41,7 +48,7 @@ export default function Overview() {
     const result = await axios.post(
       "http://43.204.229.206:8000/api/v1/payment_initiation_donation/",
       {
-        mobile_number: "9140823654",
+        user_id: current_user,
         order_amount: "5000",
         order_currency: "INR",
         receipt: "11_deo_ar_receipt_1",
@@ -63,17 +70,18 @@ export default function Overview() {
       amount: amount.toString(),
       currency: currency,
       name: username,
-      description: "Test Transaction",
+      description: "Course Transaction",
       // image: { logo },
       order_id: id,
       handler: async function (response) {
         console.log(response, "response");
         const data = {
-          orderCreationId: id,
           status: "success",
-          razorpayPaymentId: response.razorpay_payment_id,
-          razorpayOrderId: response.razorpay_order_id,
-          razorpaySignature: response.razorpay_signature,
+          user_id: current_user,
+          course_id: course_id,
+          razorpay_payment_id: response.razorpay_payment_id,
+          razorpay_order_id: response.razorpay_order_id,
+          razorpay_signature: response.razorpay_signature,
         };
 
         const result = await axios.post(

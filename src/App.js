@@ -29,7 +29,7 @@ import TermsConditions from "./components/LegalDocs/TermsConditions";
 
 const App = () => {
   const location = useLocation();
-  const username = localStorage.getItem("user-id");
+  const current_user_id = localStorage.getItem("user_id");
   return (
     <div className="page-container">
       <div className="content-wrap">
@@ -44,7 +44,7 @@ const App = () => {
               <Route
                 exact
                 path={"/user/profile"}
-                component={username ? Profile : Login}
+                component={current_user_id ? Profile : Login}
               />
               <Route
                 exact
@@ -57,8 +57,8 @@ const App = () => {
               <Route exact path={"/courses"} component={Courses} />
               <Route
                 exact
-                path={"/course/:course_id/2"}
-                component={username ? CoursePage : Overview}
+                path={"/course/course_id=:course_id&user_id=:user_id"}
+                component={current_user_id ? CoursePage : Overview}
               />
               <Route
                 exact
@@ -68,7 +68,7 @@ const App = () => {
               <Route
                 exact
                 path={"/course/:course_id/:user_id/:quiz_id"}
-                component={username ? Quiz : Home}
+                component={current_user_id ? Quiz : Home}
               />
               <Route exact path={"/contact"} component={Contact} />
               <Route exact path={"/privacy-policy"} component={PrivacyPolicy} />
