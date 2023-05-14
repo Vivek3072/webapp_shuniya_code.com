@@ -11,8 +11,6 @@ import "./CodeEditor.css";
 const CodeEditor = ({
   texteditor,
   handleChange,
-  // handleKeyDown,
-  // handleCode,
   input,
   handleInput,
   customInput,
@@ -81,10 +79,11 @@ const CodeEditor = ({
         >
           {lineNumbers}
         </div>
+
         <textarea
           id="code"
-          onScroll={handleScrollSecond} //ref={secondDivRef}
-          ref={inputRef}
+          onScroll={handleScrollSecond}
+          ref={secondDivRef}
           type="text"
           onKeyDown={handleKeyDown}
           rows={lines}
@@ -93,20 +92,6 @@ const CodeEditor = ({
           className="editor_class mt-1 multi-input p-1 col-10"
         ></textarea>
       </div>
-
-      {/* <ReactTransliterate
-        language="python"
-        Component="textarea"
-        highlight={highlight}
-        translate={disable}
-        value={texteditor}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        padding={14}
-        style={styles.root}
-        lang={lang}
-        className="rounded mb-3"
-      /> */}
 
       <div className="d-flex justify-content-start">
         <div>यूजर इनपुट </div>
