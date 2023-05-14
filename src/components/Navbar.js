@@ -63,8 +63,8 @@ const NavComponent = () => {
           <Link to="/courses" className="text-dark my-1 mx-2">
             Courses
           </Link>
-          <Link to="/contact" className="text-dark my-1 mx-2">
-            Contact-Us
+          <Link to="/about" className="text-dark my-1 mx-2">
+            About-Us
           </Link>
         </div>
         <Nav>

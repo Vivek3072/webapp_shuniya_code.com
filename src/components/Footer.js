@@ -29,6 +29,9 @@ function Footer() {
                 <Link to="/privacy-policy">
                   <li className="p-1">Privacy Policy</li>
                 </Link>
+                <Link to="/refund-policy">
+                  <li className="p-1">Refund Policy</li>
+                </Link>
                 <Link to="/terms-conditions">
                   <li className="p-1">Terms & Conditions</li>
                 </Link>

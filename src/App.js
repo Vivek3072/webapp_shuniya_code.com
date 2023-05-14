@@ -26,6 +26,8 @@ import Overview from "./Courses/Overview/Overview";
 import Contact from "./components/Contact/Contact";
 import PrivacyPolicy from "./components/LegalDocs/PrivacyPolicy";
 import TermsConditions from "./components/LegalDocs/TermsConditions";
+import About from "./components/About/About";
+import RefundPolicy from "./components/LegalDocs/RefundPolicy";
 
 const App = () => {
   const location = useLocation();
@@ -41,6 +43,7 @@ const App = () => {
               <Route exact path="/editor" component={Editor} />
               <Route exact path={"/login/"} component={Login} />
               <Route exact path={"/signup"} component={Signup} />
+              <Route exact path={"/about"} component={About} />
               <Route
                 exact
                 path={"/user/profile"}
@@ -72,6 +75,7 @@ const App = () => {
               />
               <Route exact path={"/contact"} component={Contact} />
               <Route exact path={"/privacy-policy"} component={PrivacyPolicy} />
+              <Route exact path={"/refund-policy"} component={RefundPolicy} />
               <Route
                 exact
                 path={"/terms-conditions"}
