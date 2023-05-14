@@ -174,7 +174,7 @@ export default function Overview() {
                 <div className="container d-flex flex-column ">
                   <div className="d-flex flex-column my-2">
                     <div className="fs-3">Instructor's details - </div>
-                    <div key={index} className="d-flex flex-row">
+                    <div key={index} className="d-flex flex-wrap">
                       {overview.instructors.map((instructor, index) => {
                         return (
                           <div
