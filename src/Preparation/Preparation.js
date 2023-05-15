@@ -216,16 +216,18 @@ const Preparation = () => {
                             <div className="cta-container">
                               <div className="ctas">
                                 <div className="challenge-submit-btn">
-                                  <button className="ui-btn ui-btn-normal primary-cta ui-btn-line-primary ui-btn-styled solve-btn">
-                                    <div className="ui-content align-icon-right">
-                                      <span
-                                        className="ui-text"
-                                        aria-hidden="false"
-                                      >
-                                        Solve Challenge
-                                      </span>
-                                    </div>
-                                  </button>
+                                  <Link to={`/challenge/${question.ques_id}`}>
+                                    <button className="ui-btn ui-btn-normal primary-cta ui-btn-line-primary ui-btn-styled solve-btn">
+                                      <div className="ui-content align-icon-right">
+                                        <span
+                                          className="ui-text"
+                                          aria-hidden="false"
+                                        >
+                                          Solve Challenge
+                                        </span>
+                                      </div>
+                                    </button>
+                                  </Link>
                                 </div>
                               </div>
                             </div>
