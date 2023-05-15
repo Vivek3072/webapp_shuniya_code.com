@@ -26,6 +26,8 @@ import Overview from "./Courses/Overview/Overview";
 import Contact from "./components/Contact/Contact";
 import PrivacyPolicy from "./components/LegalDocs/PrivacyPolicy";
 import TermsConditions from "./components/LegalDocs/TermsConditions";
+import Preparation from "./Preparation/Preparation";
+import CodeRunner from "./CodeRunner/CodeRunner";
 
 const App = () => {
   const location = useLocation();
@@ -54,6 +56,12 @@ const App = () => {
               <Route exact path="/bhav-tutorials">
                 <Redirect to="/tutorial/bhav-programming-language"></Redirect>
               </Route>
+              <Route
+                exact
+                path={"/challenge/:questionCode"}
+                component={CodeRunner}
+              />
+              <Route exact path={"/preparation"} component={Preparation} />
               <Route exact path={"/courses"} component={Courses} />
               <Route
                 exact
