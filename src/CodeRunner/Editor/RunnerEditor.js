@@ -124,7 +124,7 @@ export default class home extends Component {
                     className="btn btn-lg btn-primary"
                     style={{
                       zIndex: 100,
-                      backgroundColor: "#03182e",
+                      backgroundColor: "#007bff",
                       marginTop: "10px",
                     }}
                     onClick={this.submitHandler}
