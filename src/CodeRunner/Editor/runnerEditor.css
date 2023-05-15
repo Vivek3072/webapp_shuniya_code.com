@@ -1,0 +1,88 @@
+/* // editor css  */
+/* .code .row.page .row:nth-child(2) {
+  display: none !important;
+}
+.output_box {
+  display: none;
+} */
+
+.output_box {
+  /* width: 90%; */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.codeScreens {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.output_window {
+  width: 100%;
+  /* background-color: red; */
+}
+.test_cases {
+  font-size: 17px;
+  line-height: 2.5;
+}
+.actualCase,
+.userCase {
+  padding-left: 15px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 5px;
+}
+.actualCase span {
+  /* display: flex; */
+}
+.resultkey {
+  font-weight: normal !important;
+  font-size: 16px !important;
+}
+.resultVal {
+  padding-left: 15px;
+  background-color: #72f196;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 100%;
+  display: inline-flex;
+}
+.correct {
+  background-color: #72f196;
+}
+.inCorrect {
+  background-color: #ff6a91 !important;
+}
+
+.test_cases .test_case1 span,
+.test_cases .test_case2 span,
+.final_result span {
+  font-size: 18px;
+  font-weight: bold;
+}
+.final_result {
+  font-size: 18px;
+}
+.final_result span i.fa-circle-check {
+  display: inline-flex;
+  width: 40px !important;
+  height: 40px !important;
+  color: green;
+}
+.final_result i.fa-circle-xmark {
+  color: red;
+}
+/* // scrollbar css  */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
