@@ -108,7 +108,7 @@ const CodeEditor = ({
         className="rounded mb-3"
       /> */}
 
-      <div className="d-flex justify-content-start">
+      <div className="d-flex justify-content-start" style={{ padding: "5px" }}>
         <div>यूजर इनपुट </div>
         <div onClick={setcustomInput}>
           {customInput ? (
