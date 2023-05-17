@@ -1,5 +1,9 @@
+.code-editor-container {
+  /* margin-right: 0; */
+  margin-left: -5px;
+}
 .editor_main {
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(246 246 246);
   color: #313131;
   display: flex;
   max-width: 96%;
@@ -7,9 +11,10 @@
   justify-content: start;
   flex-direction: row;
   border-radius: 0.3rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 textarea.editor_class {
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(246 246 246);
   width: 100%;
   height: 300px;
   padding: 0.5rem;
@@ -30,11 +35,12 @@ textarea.custom_input {
 .output_box {
   width: 100%;
   padding: 0.5rem;
-  background-color: rgb(235, 235, 235);
+  background: #fcf9f9;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 0.3rem;
   height: 330px;
   overflow-y: auto;
-  border: 5px solid rgba(232, 232, 232, 0.845);
+  border: 1px solid #e1dfdf;
 }
 .output_textarea {
   width: 100%;
