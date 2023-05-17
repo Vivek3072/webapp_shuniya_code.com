@@ -6,7 +6,8 @@ import "./runnerEditor.css";
 import CodeEditor from "./CodeEditor.js";
 // import QuestionList from "../QuestionList";
 import { Col, Row } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import data from "../data.json";
+import RunnerEditorOutput from "./RunnerEditorOutput";
 
 // import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 export default class home extends Component {
@@ -15,23 +16,44 @@ export default class home extends Component {
     this.state = {
       texteditor: "",
       showtext: "",
-
+      ques_id: this.props.ques_id,
       input: "",
       customInput: false,
       isSubmited: false,
       showSnippet: false,
       isloaded: false,
+      data: [],
       show: "",
       output: "hello",
     };
+    this.fetchData();
+
     this.componentRef = React.createRef();
+    console.log("data this ", this.data);
   }
+
+  // fetching the data################
+  fetchData = async () => {
+    try {
+      console.log("inside fetchData");
+      const response = await axios.get("../data.json");
+      // setData(response.data);
+      console.log("this data ", response.data);
+      this.data = response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  // this.fetchData();
+
+  // fetching the data################
 
   submitHandler = () => {
     this.setState({
       isloaded: false,
       isSubmited: true,
     });
+    console.log("inside submitHandler");
     var getText = this.state.texteditor;
     var code_text_b64 = btoa(unescape(encodeURIComponent(getText)));
 
@@ -44,19 +66,24 @@ export default class home extends Component {
       code_text_b64: code_text_b64,
       input_flag: input_flag,
     };
+
     console.log(postBody);
     var postContent = JSON.stringify(postBody);
     const headers = {
       "Content-Type": "application/json",
     };
     const res = axios
-      .post("http://कोड.com:8000/api/v1/web_ide/", postContent, headers)
+      .post(
+        `http://कोड.com:8000/api/v1/web_ide/`,
+        // `http://कोड.com:8000/api/v1/web_ide/${this.ques_id}`,
+        postContent,
+        headers
+      )
       .then((res) => {
         this.setState({
           showtext: res.data,
           isloaded: true,
         });
-        console.log(this.state.showtext);
       });
   };
 
@@ -148,83 +175,7 @@ export default class home extends Component {
                 <div className="output_box">
                   <div>
                     {this.state.isloaded ? (
-                      <div className="output_window">
-                        {/* <textarea
-                        className="sub textarea"
-                        readOnly={true}
-                        value={
-                          this.state.showtext == "hello"
-                            ? this.state.showtext
-                            : "Wrong Answer"
-                        }
-                      ></textarea> */}
-                        <div className="test_cases">
-                          <div className="test_case1">
-                            Test Case 1:<span> passed</span>
-                            {/* // input box  */}
-                            <div className="inputCase">
-                              <span className="resultkey">Input:</span>
-
-                              <span className="inputVal">1 4 5</span>
-                            </div>
-                            {/* // actual and Expected output box  */}
-                            <div className="actualCase">
-                              <span className="resultkey">
-                                Expected Output:
-                              </span>
-
-                              <span className="resultVal">25</span>
-                            </div>
-                            {/* // User code output val  */}
-                            <div className="userCase">
-                              <span className="resultkey">Your Output: </span>
-                              <span
-                                className={`resultVal ${
-                                  35 == 35 ? "correct" : "inCorrect"
-                                }`}
-                              >
-                                25
-                              </span>
-                            </div>
-                          </div>
-                          <hr style={{ marginTop: "10px" }} />
-                          <div className="test_case2">
-                            Test Case 2:<span> fail</span>
-                            <div className="inputCase">
-                              <span className="resultkey">Input:</span>
-
-                              <span className="inputVal">1 4 5</span>
-                            </div>
-                            <div className="actualCase">
-                              <span className="resultkey">
-                                Expected Output:
-                              </span>
-
-                              <span className="resultVal">25</span>
-                            </div>
-                            <div className="userCase">
-                              <span className="resultkey">Your Output: </span>
-                              <span
-                                className={`resultVal ${
-                                  35 == 43 ? "correct" : "inCorrect"
-                                }`}
-                              >
-                                24
-                              </span>
-                            </div>
-                          </div>
-                          <hr style={{ marginTop: "10px" }} />
-
-                          <div className="final_result">
-                            Overall Result :
-                            <span>
-                              Passed/fail
-                              {/* <i className="fa-solid fa-circle-check"></i> */}
-                              <i className="fa-solid fa-circle-xmark"></i>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
+                      <RunnerEditorOutput data={this.data} />
                     ) : (
                       <div>
                         <h6>प्रोसेसिंग....................</h6>
