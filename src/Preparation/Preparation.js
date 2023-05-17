@@ -150,10 +150,13 @@ const Preparation = () => {
                       <div className="cta-container">
                         <div className="ctas">
                           <div className="challenge-submit-btn">
-                            <button className="ui-btn ui-btn-normal primary-cta ui-btn-primary ui-btn-styled">
+                            <button
+                              className="ui-btn ui-btn-normal ui-btn-primary ui-btn-styled"
+                              style={{ backgroundColor: "#007bff" }}
+                            >
                               <div className="ui-content align-icon-right">
                                 <span className="ui-text" aria-hidden="false">
-                                  Solve Challenge
+                                  Solve Question
                                 </span>
                               </div>
                             </button>
@@ -223,7 +226,7 @@ const Preparation = () => {
                                           className="ui-text"
                                           aria-hidden="false"
                                         >
-                                          Solve Challenge
+                                          Solve Question
                                         </span>
                                       </div>
                                     </button>
@@ -241,128 +244,6 @@ const Preparation = () => {
                     </div>
                   );
                 })}
-              {/* <div className="single-item challenges-list-view-v2 first-challenge cursor">
-                <div
-                  id="contest-challenges-problem"
-                  className="individual-challenge-card-v2 content--list-v2 track_content"
-                >
-                  <div className="content--list_body">
-                    <header className="content--list_header-v2">
-                      <div className="challenge-name-details ">
-                        <div className="pull-left inline-block">
-                          <h4 className="challengecard-title">
-                            Python If-Else
-                            <div className="card-details pmT">
-                              <span className="difficulty easy detail-item">
-                                Easy
-                              </span>
-                              <span className="skill detail-item">
-                                Python (Basic)
-                              </span>
-                              <span className="max-score detail-item">
-                                Max Score: 10
-                              </span>
-                              <span className="success-ratio detail-item">
-                                Success Rate: 90.39%
-                              </span>
-                            </div>
-                          </h4>
-                        </div>
-                      </div>
-                      <span className="bookmark-cta">
-                        <button
-                          className="ui-btn star-button"
-                          aria-label="Add bookmark"
-                        >
-                          <div className="ui-content align-icon-right">
-                            <span className="ui-text" aria-hidden="false">
-                              <i className="fa-regular fa-star"></i>
-                            </span>
-                          </div>
-                        </button>
-                      </span>
-                      <div className="cta-container">
-                        <div className="ctas">
-                          <div className="challenge-submit-btn">
-                            <button className="ui-btn ui-btn-normal primary-cta ui-btn-line-primary ui-btn-styled solve-btn">
-                              <div className="ui-content align-icon-right">
-                                <span className="ui-text" aria-hidden="false">
-                                  Solve Challenge
-                                </span>
-                              </div>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </header>
-                  </div>
-                </div>
-                <div
-                  className="__react_component_tooltip place-top type-dark "
-                  data-id="tooltip"
-                ></div>
-              </div> */}
-              {/* <div className="single-item challenges-list-view-v2 first-challenge cursor">
-                <div
-                  id="contest-challenges-problem"
-                  className="individual-challenge-card-v2 content--list-v2 track_content"
-                >
-                  <div className="content--list_body">
-                    <header className="content--list_header-v2">
-                      <div className="challenge-name-details ">
-                        <div className="pull-left inline-block">
-                          <h4 className="challengecard-title">
-                            Python If-Else
-                            <div className="card-details pmT">
-                              <span className="difficulty easy detail-item">
-                                Easy
-                              </span>
-                              <span className="skill detail-item">
-                                Python (Basic)
-                              </span>
-                              <span className="max-score detail-item">
-                                Max Score: 10
-                              </span>
-                              <span className="success-ratio detail-item">
-                                Success Rate: 90.39%
-                              </span>
-                            </div>
-                          </h4>
-                        </div>
-                      </div>
-                      <span className="bookmark-cta">
-                        <button
-                          className="ui-btn star-button"
-                          aria-label="Add bookmark"
-                        >
-                          <div className="ui-content align-icon-right">
-                            <span className="ui-text" aria-hidden="false">
-                              <i className="fa-regular fa-star"></i>
-                            </span>
-                          </div>
-                        </button>
-                      </span>
-                      <div className="cta-container">
-                        <div className="ctas">
-                          <div className="challenge-submit-btn">
-                            <button className="ui-btn ui-btn-normal primary-cta ui-btn-line-primary ui-btn-styled solve-btn">
-                              <div className="ui-content align-icon-right">
-                                <span className="ui-text" aria-hidden="false">
-                                  Solve Challenge
-                                </span>
-                              </div>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </header>
-                  </div>
-                </div>
-                <div
-                  className="__react_component_tooltip place-top type-dark "
-                  data-id="tooltip"
-                ></div>
-              </div> */}
             </div>
           </div>
           {/* // Right panel  */}
