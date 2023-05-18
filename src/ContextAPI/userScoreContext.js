@@ -1,5 +1,13 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 
-const userScoreContext = createContext();
+export const userScoreContext = createContext();
 
-export default userScoreContext;
+export function ScoreFunctionProvider({ children }) {
+  const [value, setValue] = useState(100);
+
+  return (
+    <userScoreContext.Provider value={{ value, setValue }}>
+      {children}
+    </userScoreContext.Provider>
+  );
+}
