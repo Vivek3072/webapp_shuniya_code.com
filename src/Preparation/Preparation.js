@@ -1,17 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./preparation.css";
 import { Link } from "react-router-dom";
 import image from "./images/pentagon_bg.svg";
 import axios from "axios";
-const baseURL = "http://43.204.229.206:8000/api/v1/programmingAssignment/1/";
+import { userScoreContext } from "../ContextAPI/userScoreContext";
+import FiltersPanel from "./Filters/FiltersPanel";
+// const baseURL = "http://43.204.229.206:8000/api/v1/programmingAssignment/1/";
+const baseURL = "http://43.204.229.206:8000/api/v1/programmingQuestion/1/";
 
 const Preparation = () => {
   const [questions, setQuestions] = useState([]);
+  const [scoreValue, setScoreValue] = useState();
+  const value = useContext(userScoreContext);
   console.log(questions);
+
+  console.log("value :", value);
+
   const getQuestions = async () => {
     try {
       axios.get(baseURL).then((response) => {
-        // console.log(response.data.assignments);
+        console.log(response.data.assignments);
         const outputData = response.data.assignments;
         setQuestions(outputData);
       });
@@ -22,6 +30,8 @@ const Preparation = () => {
 
   useEffect(() => {
     getQuestions();
+
+    setScoreValue(value.value);
   }, []);
   if (questions === []) return null;
 
@@ -43,7 +53,7 @@ const Preparation = () => {
                       <Link to="/">Home</Link>
                     </li>
                     <li className="breadcrumb-item active" aria-current="page">
-                      Library
+                      Preparation
                     </li>
                   </ol>
                   <div className="page_label_wrapper">
@@ -57,8 +67,11 @@ const Preparation = () => {
                   <div className="badge-progress">
                     <div className="remaining">
                       <div className="point-left-wrap">
-                        <span className="point-left">35 more points</span> to
-                        get your first star!
+                        <span className="point-left">
+                          {/* 35 more points</span> to
+                        get your first star! */}
+                          Points: <span className="value">{scoreValue}</span>
+                        </span>
                       </div>
                       <div className="track-progress-bar">
                         <div className="ui-progress-bar progress-bar theme-default">
@@ -72,10 +85,10 @@ const Preparation = () => {
                         <span className="current-rank">
                           Rank: <span className="value">2565897</span>
                         </span>
-                        <span className="pipe">|</span>
-                        <span className="current-points">
+                        <span className="pipe"></span>
+                        {/* <span className="current-points">
                           Points: <span className="value">0/35</span>
-                        </span>
+                        </span> */}
                         <a
                           className="scoring-link"
                           data-analytics="BadgeLearnMoreLink"
@@ -106,6 +119,7 @@ const Preparation = () => {
         <div className="container content_section">
           {/* // Left panel  */}
           <div className="practice_panel left-panel">
+            <FiltersPanel />
             {/* // recommended challenge for new user  */}
             <div className="recommended_challenge">
               <div className="single_item">
@@ -171,6 +185,7 @@ const Preparation = () => {
             {/* // All challenges list  */}
             <div className="challenges-list">
               {questions !== [] &&
+                questions &&
                 questions.map((question, i) => {
                   return (
                     <div

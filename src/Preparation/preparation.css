@@ -69,6 +69,9 @@
 .track-badge-progress .remaining {
   text-align: right;
 }
+.point-left-wrap {
+  text-align: left;
+}
 .track-badge-progress .point-left {
   color: #d0883c;
 }
