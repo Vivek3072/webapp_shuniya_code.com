@@ -124,7 +124,7 @@ const CodeRunner = () => {
                   <div className="left_panel_wrapper">
                     <div className="headings">
                       <h4>Problem:</h4>
-                      <hr />
+                      <hr style={{ marginBottom: "20px" }} />
                       <h6>{item.title}</h6>
                       <p>
                         {/* Binary search implementation using the appropriate method. */}

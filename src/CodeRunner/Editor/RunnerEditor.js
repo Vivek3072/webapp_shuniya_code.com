@@ -4,12 +4,11 @@ import axios from "axios";
 import "./runnerEditor.css";
 
 import CodeEditor from "./CodeEditor.js";
+import RunnerEditorOutput from "./runnerEditorOutput";
 // import QuestionList from "../QuestionList";
 import { Col, Row } from "react-bootstrap";
 import data from "../data.json";
-import RunnerEditorOutput from "./RunnerEditorOutput";
 
-// import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 export default class home extends Component {
   constructor(props) {
     super(props);
@@ -44,7 +43,7 @@ export default class home extends Component {
       console.error(error);
     }
   };
-  // this.fetchData();
+  //  this.fetchData();
 
   // fetching the data################
 
