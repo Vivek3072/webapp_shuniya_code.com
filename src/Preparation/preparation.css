@@ -59,6 +59,7 @@
   padding-left: 10px;
 }
 .track-badge-progress {
+  display: none;
   font-weight: 500;
   font-size: 14px;
 }
@@ -144,29 +145,7 @@
 .badge .text i {
   font-size: 30px;
 }
-/* .ui-badge {
-  position: relative;
-  width: 70%;
-}
-.ui-badge .ui-badge-wrap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.ui-badge:after {
-  display: block;
-  padding-top: 112%;
-  content: "";
-}
-.fa-brands.fa-python {
-  font-size: 35px;
-} */
-/* .points {
-  flex: 0 0 auto;
-  padding-left: 10px;
-} */
+
 /* // Content section  */
 .content_section {
   display: flex;
@@ -241,7 +220,7 @@
   color: #738f93;
   margin-left: 5px;
 }
-.max-score::after,
+/* .max-score::after, */
 .difficulty::after {
   content: ",";
   position: relative;
@@ -356,6 +335,20 @@
   background-color: #007bff;
   color: white;
 }
+.buttonBox {
+  text-align: center;
+}
+.loadMore {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: #449af5;
+  color: #fff;
+  transition: 0.2s;
+  border: none;
+}
+.loadMore:hover {
+  background: #007bff;
+}
 
 /* // right panel css  */
 .right-panel {
@@ -365,7 +358,7 @@
   /* background-color: blue; */
 }
 .outer_wrapper {
-  height: 1100px;
+  max-height: 1100px;
 }
 .inner_wrapper {
   position: relative;
@@ -373,7 +366,7 @@
   width: 100%;
 }
 .challenge_list_filter {
-  border-radius: 3px;
+  border-radius: 5px;
   font-size: 14px;
   background: #eff1f3;
   font-weight: 500;

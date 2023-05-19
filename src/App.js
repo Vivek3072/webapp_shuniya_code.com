@@ -58,7 +58,7 @@ const App = () => {
               </Route>
               <Route
                 exact
-                path={"/challenge/:questionCode"}
+                path={"/challenge/:questionCode/:language"}
                 component={CodeRunner}
               />
               <Route exact path={"/preparation"} component={Preparation} />

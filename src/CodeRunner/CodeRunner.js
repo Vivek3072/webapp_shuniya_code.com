@@ -12,7 +12,7 @@ const CodeRunner = () => {
   const mainM = useRef(null);
   const editor = useRef(null);
 
-  const { questionCode } = useParams();
+  const { questionCode, language } = useParams();
   // states
   const [items, setItems] = useState([]);
   const [filteredItem, setFilteredItem] = useState([]);
@@ -53,7 +53,7 @@ const CodeRunner = () => {
     //console.log(resizer);
     setTimeout(() => {
       resizer.addEventListener("mousedown", rs_mousedownHandler);
-    }, 500);
+    }, 100);
   }
 
   useEffect(() => {
@@ -67,8 +67,6 @@ const CodeRunner = () => {
     );
   }, []);
 
-  // console.log("questionCode", questionCode);
-
   const [size, setSize] = useState({
     x: 400,
     y: 200,
@@ -77,26 +75,23 @@ const CodeRunner = () => {
 
   // ###### Window resize code ends
 
+  // Parameters
+  // console.log("questionCode", questionCode);
+  // console.log("language", language);
+
   // function to get question details with parameters
   useEffect(() => {
     const fetchItem = async () => {
       try {
-        fetch(`http://43.204.229.206:8000/api/v1/programmingAssignment/1/`)
+        fetch(
+          `http://43.204.229.206:8000/api/v1/programmingQuestion/?id=${questionCode}&language=${language}`
+        )
           .then((response) => response.json())
           .then((data) => {
-            setItems(data.assignments);
-            console.log(data.assignments);
-            const item = data.assignments.filter((item) => {
-              //console.log(item);
-              return item.ques_id === parseInt(questionCode);
-            });
-            setFilteredItem(item);
+            // setItems(data);
+            console.log(data);
+            setFilteredItem(data);
           });
-
-        setTimeout(() => {
-          //console.log("items", items);
-          //console.log("filtered item", filteredItem);
-        }, 500);
       } catch (error) {
         // Handle error
         alert(error.message, "Please try again");
@@ -106,7 +101,11 @@ const CodeRunner = () => {
     fetchItem();
   }, []);
   if (!filteredItem) {
-    return <div className="loading">Loading</div>;
+    return (
+      <div className="loading">
+        <b>Loading...</b>
+      </div>
+    );
   }
 
   return (
@@ -123,7 +122,7 @@ const CodeRunner = () => {
                 <div className="left_panel" key={index}>
                   <div className="left_panel_wrapper">
                     <div className="headings">
-                      <h4>Problem:</h4>
+                      <h4>Problem</h4>
                       <hr style={{ marginBottom: "20px" }} />
                       <h6>{item.title}</h6>
                       <p>
@@ -144,7 +143,7 @@ const CodeRunner = () => {
                     <hr />
                     <div className="input_format">
                       <h4>Input format</h4>
-                      <p>{item.test_cases[1].input_format}</p>
+                      <p>{item.input_format}</p>
                     </div>
                   </div>
                 </div>
@@ -152,37 +151,39 @@ const CodeRunner = () => {
                   <div className="right_panel_wrapper">
                     <div className="output_format">
                       <h4>Output format</h4>
-                      <p>{item.test_cases[1].output_format}</p>
+                      <p>{item.output_format}</p>
                     </div>
                     <hr />
                     <div className="sample_input">
                       {/* // test cases sample data section  */}
-                      {item.test_cases.map((testCase, i) => {
-                        return (
-                          <div key={i}>
-                            <div className="sample_input_title">
-                              Sample Input {testCase.test_case_id}
-                            </div>
-                            <div className="sample_input_output">
-                              {testCase.sample_input}
-                            </div>
-                            <div
-                              className="sample_input_title sample_output_title"
-                              style={{ marginTop: "20px" }}
-                            >
-                              Sample output {testCase.test_case_id}
-                            </div>
-                            <div className="sample_input_output sample_output_output">
-                              {testCase.sample_output}
-                            </div>
-                            <div className="sample_input_explanation">
-                              <h4>Explanation</h4>
-                              <p>{testCase.explanation}</p>
-                            </div>
-                            <hr />
-                          </div>
-                        );
-                      })}
+                      {/* {item.test_cases.map((testCase, i) => {
+                        return ( */}
+                      <div>
+                        <div className="sample_input_title">
+                          Sample Input
+                          {/* {testCase.test_case_id} */}
+                        </div>
+                        <div className="sample_input_output">
+                          {item.sample_input}
+                        </div>
+                        <div
+                          className="sample_input_title sample_output_title"
+                          style={{ marginTop: "20px" }}
+                        >
+                          Sample output
+                          {/* {testCase.test_case_id} */}
+                        </div>
+                        <div className="sample_input_output sample_output_output">
+                          {item.sample_output}
+                        </div>
+                        <div className="sample_input_explanation">
+                          <h4>Explanation</h4>
+                          <p>{item.explanation}</p>
+                        </div>
+                        <hr />
+                      </div>
+                      {/* ); */}
+                      {/* })} */}
                     </div>
                     {/* // constraints section  */}
                     <div className="constraints">
@@ -192,7 +193,7 @@ const CodeRunner = () => {
                           className="constVal"
                           style={{ fontWeight: "normal" }}
                         >
-                          {item.test_cases[1].input_constraints}
+                          {item.input_constrains}
                         </div>
                       </div>
                       <div className="outputConstraints">
@@ -201,7 +202,7 @@ const CodeRunner = () => {
                           className="constVal"
                           style={{ fontWeight: "normal" }}
                         >
-                          {item.test_cases[1].output_constraints}
+                          {item.output_constrains}
                         </div>
                       </div>
                     </div>
@@ -222,7 +223,12 @@ const CodeRunner = () => {
         ></button>
         {/* <Editor /> */}
 
-        <RunnerEditor size={size.z} editor={editor} ques_id={questionCode} />
+        <RunnerEditor
+          size={size.z}
+          editor={editor}
+          ques_id={questionCode}
+          language={language}
+        />
       </div>
       <div className="Evaluation"></div>
     </div>

@@ -7,7 +7,7 @@ import CodeEditor from "./CodeEditor.js";
 import RunnerEditorOutput from "./runnerEditorOutput";
 // import QuestionList from "../QuestionList";
 import { Col, Row } from "react-bootstrap";
-import data from "../data.json";
+// import data from "../data.json";
 
 export default class home extends Component {
   constructor(props) {
@@ -16,6 +16,7 @@ export default class home extends Component {
       texteditor: "",
       showtext: "",
       ques_id: this.props.ques_id,
+      language: this.props.language,
       input: "",
       customInput: false,
       isSubmited: false,
@@ -23,27 +24,12 @@ export default class home extends Component {
       isloaded: false,
       data: [],
       show: "",
+      submitted: false,
       output: "hello",
     };
-    this.fetchData();
 
     this.componentRef = React.createRef();
-    console.log("data this ", this.data);
   }
-
-  // fetching the data################
-  fetchData = async () => {
-    try {
-      console.log("inside fetchData");
-      const response = await axios.get("../data.json");
-      // setData(response.data);
-      console.log("this data ", response.data);
-      this.data = response.data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  //  this.fetchData();
 
   // fetching the data################
 
@@ -64,6 +50,8 @@ export default class home extends Component {
       code_input_b64: this.state.customInput ? code_input_b64 : null,
       code_text_b64: code_text_b64,
       input_flag: input_flag,
+      ques_id: this.state.ques_id,
+      language: this.state.language,
     };
 
     console.log(postBody);
@@ -73,17 +61,19 @@ export default class home extends Component {
     };
     const res = axios
       .post(
-        `http://कोड.com:8000/api/v1/web_ide/`,
-        // `http://कोड.com:8000/api/v1/web_ide/${this.ques_id}`,
+        `http://43.204.229.206:8000/api/v1/programmingQSubmissions/`,
         postContent,
         headers
       )
       .then((res) => {
-        this.setState({
-          showtext: res.data,
-          isloaded: true,
-        });
+        // console.log("data in response", res.data);
+        // this.setState({
+        //   showtext: res.data,
+        //   isloaded: true,
+        // });
       });
+    this.setState({ submitted: true });
+    alert("Your code has been submitted.👍");
   };
 
   handleInput = (e) => {
@@ -158,15 +148,17 @@ export default class home extends Component {
                       zIndex: 100,
                       backgroundColor: "#007bff",
                       marginTop: "10px",
+                      fontSize: "0.95rem",
                     }}
                     onClick={this.submitHandler}
                   >
-                    चल कोड
+                    {this.state.submitted ? "Submitted" : "चल कोड"}
                   </button>
                 </div>
               </div>
             </Col>
-            {this.state.isSubmited ? (
+            {/* // Test cases component  */}
+            {/* {this.state.isSubmited ? (
               <Col>
                 <h3>
                   <b>परिणाम</b>
@@ -184,7 +176,7 @@ export default class home extends Component {
                   </div>
                 </div>
               </Col>
-            ) : null}
+            ) : null} */}
           </Row>
         </div>
         <div className="row">
