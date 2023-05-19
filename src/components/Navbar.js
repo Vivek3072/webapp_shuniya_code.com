@@ -66,6 +66,9 @@ const NavComponent = () => {
           <Link to="/about" className="text-dark my-1 mx-2">
             About-Us
           </Link>
+          <Link to="/preparation" className="text-dark my-1 mx-2">
+            Preparation
+          </Link>
         </div>
         <Nav>
           {!token ? (

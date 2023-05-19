@@ -1,10 +1,13 @@
 import React, { Fragment, Component } from "react";
 import axios from "axios";
-import "./Index.css";
+// import './Index.css'
+import "./runnerEditor.css";
 
-import CodeEditor from "../../CodeEditor/CodeEditor";
-import QuestionList from "../QuestionList";
+import CodeEditor from "./CodeEditor.js";
+import RunnerEditorOutput from "./runnerEditorOutput";
+// import QuestionList from "../QuestionList";
 import { Col, Row } from "react-bootstrap";
+// import data from "../data.json";
 
 export default class home extends Component {
   constructor(props) {
@@ -12,21 +15,30 @@ export default class home extends Component {
     this.state = {
       texteditor: "",
       showtext: "",
+      ques_id: this.props.ques_id,
+      language: this.props.language,
       input: "",
       customInput: false,
       isSubmited: false,
       showSnippet: false,
       isloaded: false,
+      data: [],
       show: "",
+      submitted: false,
+      output: "hello",
     };
+
     this.componentRef = React.createRef();
   }
+
+  // fetching the data################
 
   submitHandler = () => {
     this.setState({
       isloaded: false,
       isSubmited: true,
     });
+    console.log("inside submitHandler");
     var getText = this.state.texteditor;
     var code_text_b64 = btoa(unescape(encodeURIComponent(getText)));
 
@@ -38,20 +50,30 @@ export default class home extends Component {
       code_input_b64: this.state.customInput ? code_input_b64 : null,
       code_text_b64: code_text_b64,
       input_flag: input_flag,
+      ques_id: this.state.ques_id,
+      language: this.state.language,
     };
+
     console.log(postBody);
     var postContent = JSON.stringify(postBody);
     const headers = {
       "Content-Type": "application/json",
     };
     const res = axios
-      .post("http://कोड.com:8000/api/v1/web_ide/", postContent, headers)
+      .post(
+        `http://43.204.229.206:8000/api/v1/programmingQSubmissions/`,
+        postContent,
+        headers
+      )
       .then((res) => {
-        this.setState({
-          showtext: res.data,
-          isloaded: true,
-        });
+        // console.log("data in response", res.data);
+        // this.setState({
+        //   showtext: res.data,
+        //   isloaded: true,
+        // });
       });
+    this.setState({ submitted: true });
+    alert("Your code has been submitted.👍");
   };
 
   handleInput = (e) => {
@@ -91,9 +113,20 @@ export default class home extends Component {
   render() {
     return (
       <>
-        <div className="row page">
-          <Row>
+        {/* <hr style={{ marginBottom: "30px" }} /> */}
+        <div
+          className="row page"
+          ref={this.props.editor}
+          style={{
+            width: window.innerWidth > 800 ? this.props.size + "px" : "inherit",
+          }}
+        >
+          <Row className="codeScreens">
             <Col>
+              <h3>
+                <b>Code Editor</b>
+              </h3>
+
               <div className="code">
                 <CodeEditor
                   handleCode={this.handleCode}
@@ -107,43 +140,43 @@ export default class home extends Component {
                 />
                 <div
                   className="menu-bar"
-                  style={{ position: "relative", textAlign: "end" }}
+                  style={{ position: "relative", textAlign: "center" }}
                 >
                   <button
                     className="btn btn-lg btn-primary"
-                    style={{ zIndex: 100, backgroundColor: "#03182e" }}
+                    style={{
+                      zIndex: 100,
+                      backgroundColor: "#007bff",
+                      marginTop: "10px",
+                      fontSize: "0.95rem",
+                    }}
                     onClick={this.submitHandler}
                   >
-                    चल कोड
+                    {this.state.submitted ? "Submitted" : "चल कोड"}
                   </button>
                 </div>
               </div>
             </Col>
-            <Col>
-              <h3>
-                <b>परिणाम</b>
-              </h3>
-              <div className="output_box">
-                {this.state.isSubmited ? (
+            {/* // Test cases component  */}
+            {/* {this.state.isSubmited ? (
+              <Col>
+                <h3>
+                  <b>परिणाम</b>
+                </h3>
+                <div className="output_box">
                   <div>
                     {this.state.isloaded ? (
-                      <textarea
-                        className="sub textarea"
-                        readOnly={true}
-                        value={this.state.showtext}
-                      ></textarea>
+                      <RunnerEditorOutput data={this.data} />
                     ) : (
                       <div>
-                        <h6>प्रोसेसिंग...................</h6>
+                        <h6>प्रोसेसिंग....................</h6>
                         <div className="loader"></div>
                       </div>
                     )}
                   </div>
-                ) : (
-                  <h5>परिणाम देखने के लिए सबमिट करें</h5>
-                )}
-              </div>
-            </Col>
+                </div>
+              </Col>
+            ) : null} */}
           </Row>
         </div>
         <div className="row">
