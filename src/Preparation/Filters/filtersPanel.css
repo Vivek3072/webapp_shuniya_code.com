@@ -3,7 +3,7 @@
   position: relative;
   background-color: transparent;
   background-color: #eff1f3;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin-bottom: 20px;
 }
@@ -24,18 +24,18 @@
   flex-wrap: nowrap;
 }
 .filter {
-  width: fit-content;
+  min-width: max-content;
   padding: 5px 10px;
   margin: 5px 10px;
-  background-color: #4aa1ff;
+  background-color: #fbfbfb;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   cursor: pointer;
   transition: 0.3s;
 }
 .filter:hover {
-  padding: 5px 12px;
-  background-color: #3494fa;
+  /* padding: 5px 12px; */
+  background-color: #8abff9;
 }
 .expender {
   position: absolute;

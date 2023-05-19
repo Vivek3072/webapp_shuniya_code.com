@@ -19,14 +19,14 @@ const FiltersPanel = () => {
         }
       >
         <div className="filter">Array</div>
-        <div className="filter">Arrayhgfhrt</div>
-        <div className="filter">Array</div>
-        <div className="filter">Arrayr45</div>
-        <div className="filter">Array</div>
-        <div className="filter">Arrayghr</div>
-        <div className="filter">Array</div>
-        <div className="filter">Array</div>
-        <div className="filter">Array</div>
+        <div className="filter">String</div>
+        <div className="filter">Linked List </div>
+        <div className="filter">Recursion</div>
+        <div className="filter">Tree</div>
+        <div className="filter">Graph</div>
+        <div className="filter">DP</div>
+        <div className="filter">DFS</div>
+        <div className="filter">BFS</div>
         <div className="filter">Array</div>
         <div className="filter">Array</div>
       </div>
@@ -34,7 +34,8 @@ const FiltersPanel = () => {
         className="expender"
         onClick={() => setToggleFilters(!toggleFilters)}
       >
-        <i className="fas fa-solid fa-chevrons-down"></i>Expend
+        <i className="fas fa-solid fa-chevrons-down"></i>{" "}
+        {toggleFilters ? "Collapse" : "Expand"}
         <FontAwesomeIcon icon="fa-solid fa-chevrons-down" />
       </div>
     </div>
