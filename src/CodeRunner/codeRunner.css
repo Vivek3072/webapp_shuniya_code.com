@@ -3,6 +3,7 @@
   margin-top: 15px;
   padding: 0;
   display: flex;
+  justify-content: center;
   flex-direction: row;
 }
 
@@ -25,7 +26,8 @@
   /* flex-direction: column; */
   margin: 1%;
   border-radius: 1px;
-  background: #fcf9f9;
+  /* background: #fcf9f9; */
+  background-color: #eaedfe;
   box-shadow: rgba(72, 72, 72, 0.24) 0px 3px 8px;
 }
 .left_panel {
@@ -121,9 +123,9 @@ hr {
   background-color: #807e7e;
   left: -13px;
   width: 8px;
-  border: 1px solid #706f6f;
+  border: none;
   /* border-radius: 5px; */
-  height: 100vh;
+  height: 600px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   cursor: ew-resize;
 }

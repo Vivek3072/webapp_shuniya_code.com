@@ -10,7 +10,7 @@
   align-items: self-start;
   justify-content: start;
   flex-direction: row;
-  border-radius: 1px;
+  border-radius: 1px !important;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 textarea.editor_class {
@@ -37,7 +37,7 @@ textarea.custom_input {
   padding: 0.5rem;
   background: #fcf9f9;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  border-radius: 0.3rem;
+  border-radius: 1px;
   height: 330px;
   overflow-y: auto;
   border: 1px solid #e1dfdf;
