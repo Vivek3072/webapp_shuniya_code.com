@@ -4,35 +4,50 @@ import { Link } from "react-router-dom";
 import image from "./images/pentagon_bg.svg";
 import axios from "axios";
 import { userScoreContext } from "../ContextAPI/userScoreContext";
-import FiltersPanel from "./Filters/FiltersPanel";
-// const baseURL = "http://43.204.229.206:8000/api/v1/programmingAssignment/1/";
-const baseURL = "http://43.204.229.206:8000/api/v1/programmingQuestion/1/";
+// import FiltersPanel from "./Filters/FiltersPanel";
+
+const baseURL =
+  "http://43.204.229.206:8000/api/v1/programmingAssignment/1/2/3/";
 
 const Preparation = () => {
   const [questions, setQuestions] = useState([]);
+  const [limit, setLimit] = useState(10);
+  const [loadingIcon, setloadingIcon] = useState(false);
   const [scoreValue, setScoreValue] = useState();
   const value = useContext(userScoreContext);
-  console.log(questions);
+  // console.log(questions);
 
-  console.log("value :", value);
-
+  // getting all questions logic
   const getQuestions = async () => {
     try {
       axios.get(baseURL).then((response) => {
-        console.log(response.data.assignments);
-        const outputData = response.data.assignments;
-        setQuestions(outputData);
+        // console.log(response.data);
+        // console.log(response.data.question_selected);
+        setQuestions(response.data.question_selected);
       });
     } catch (error) {
       alert("Some error occurred. Please refresh the page");
     }
   };
 
+  // more conten loading logic
+  const loadMore = () => {
+    console.log("setting loading");
+    setloadingIcon(true);
+    setLimit(limit + 10);
+    setTimeout(() => {
+      console.log("Unsetting loading");
+      setloadingIcon(false);
+    }, 100);
+  };
+
   useEffect(() => {
     getQuestions();
-
-    setScoreValue(value.value);
   }, []);
+  useEffect(() => {
+    setScoreValue(value.value);
+  }, [value.value]);
+
   if (questions === []) return null;
 
   return (
@@ -119,7 +134,7 @@ const Preparation = () => {
         <div className="container content_section">
           {/* // Left panel  */}
           <div className="practice_panel left-panel">
-            <FiltersPanel />
+            {/* <FiltersPanel /> */}
             {/* // recommended challenge for new user  */}
             <div className="recommended_challenge">
               <div className="single_item">
@@ -135,11 +150,11 @@ const Preparation = () => {
                                 Easy
                               </span>
                               <span className="max-score detail-item">
-                                Max Score: 5
+                                Total points: 100
                               </span>
-                              <span className="success-ratio detail-item">
+                              {/* <span className="success-ratio detail-item">
                                 Success Rate: 96.72%
-                              </span>
+                              </span> */}
                             </div>
                           </h4>
                         </div>
@@ -186,7 +201,7 @@ const Preparation = () => {
             <div className="challenges-list">
               {questions !== [] &&
                 questions &&
-                questions.map((question, i) => {
+                questions.slice(0, limit).map((question, i) => {
                   return (
                     <div
                       className="single-item challenges-list-view-v2 first-challenge cursor"
@@ -204,17 +219,21 @@ const Preparation = () => {
                                   <div>{question.title}</div>
                                   <div className="card-details pmT">
                                     <span className="difficulty easy detail-item">
-                                      {question.difficulty}
+                                      {question.difficulty < 6
+                                        ? "Easy"
+                                        : question.difficulty < 10
+                                        ? "Medium"
+                                        : "Hard"}
                                     </span>
                                     <span className="skill detail-item">
                                       &nbsp; {question.programming_language}
                                     </span>
                                     <span className="max-score detail-item">
-                                      Max Score: 10
+                                      Total Points: {question.total_points}
                                     </span>
-                                    <span className="success-ratio detail-item">
+                                    {/* <span className="success-ratio detail-item">
                                       Success Rate: 90.39%
-                                    </span>
+                                    </span> */}
                                   </div>
                                 </h4>
                               </div>
@@ -234,7 +253,9 @@ const Preparation = () => {
                             <div className="cta-container">
                               <div className="ctas">
                                 <div className="challenge-submit-btn">
-                                  <Link to={`/challenge/${question.ques_id}`}>
+                                  <Link
+                                    to={`/challenge/${question.programming_ques_id}/${question.language}`}
+                                  >
                                     <button className="ui-btn ui-btn-normal primary-cta ui-btn-line-primary ui-btn-styled solve-btn">
                                       <div className="ui-content align-icon-right">
                                         <span
@@ -259,6 +280,20 @@ const Preparation = () => {
                     </div>
                   );
                 })}
+              {limit < questions.length && (
+                <div className="buttonBox">
+                  <button className="button loadMore" onClick={loadMore}>
+                    Load More &nbsp;
+                    <i
+                      className={
+                        loadingIcon
+                          ? "fa-sharp fa-regular fa-loader"
+                          : "fa-solid fa-angles-down"
+                      }
+                    ></i>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
           {/* // Right panel  */}
