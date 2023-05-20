@@ -1,16 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import "./codeRunner.css";
 import { useParams } from "react-router-dom";
 // import axios from "axios";
 // import Editor from "../Editor/Editor";
 import RunnerEditor from "./Editor/RunnerEditor";
 import "./data";
+import { userScoreContext } from "../ContextAPI/userScoreContext";
 
 const CodeRunner = () => {
   const resize = useRef();
   const menu = useRef(null);
   const mainM = useRef(null);
   const editor = useRef(null);
+
+  const { userScore, scoreInc } = useContext(userScoreContext);
 
   const { questionCode, language } = useParams();
   // states
@@ -228,6 +231,7 @@ const CodeRunner = () => {
           editor={editor}
           ques_id={questionCode}
           language={language}
+          scoreInc={scoreInc}
         />
       </div>
       <div className="Evaluation"></div>
