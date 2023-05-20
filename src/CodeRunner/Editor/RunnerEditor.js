@@ -72,6 +72,7 @@ export default class home extends Component {
         //   isloaded: true,
         // });
       });
+    console.log(res);
     this.setState({ submitted: true });
     alert("Your code has been submitted.👍");
   };

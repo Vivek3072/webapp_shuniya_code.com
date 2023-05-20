@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./codeRunner.css";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 // import Editor from "../Editor/Editor";
 import RunnerEditor from "./Editor/RunnerEditor";
 import "./data";
@@ -14,7 +14,7 @@ const CodeRunner = () => {
 
   const { questionCode, language } = useParams();
   // states
-  const [items, setItems] = useState([]);
+
   const [filteredItem, setFilteredItem] = useState([]);
 
   // ###### Window resize code starts
