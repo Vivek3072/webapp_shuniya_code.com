@@ -13,8 +13,8 @@ const Preparation = () => {
   const [questions, setQuestions] = useState([]);
   const [limit, setLimit] = useState(10);
   const [loadingIcon, setloadingIcon] = useState(false);
-  const [scoreValue, setScoreValue] = useState();
-  const value = useContext(userScoreContext);
+  // const [scoreValue, setScoreValue] = useState();
+  const { userScore } = useContext(userScoreContext);
   // console.log(questions);
 
   // getting all questions logic
@@ -32,11 +32,9 @@ const Preparation = () => {
 
   // more conten loading logic
   const loadMore = () => {
-    console.log("setting loading");
     setloadingIcon(true);
     setLimit(limit + 10);
     setTimeout(() => {
-      console.log("Unsetting loading");
       setloadingIcon(false);
     }, 100);
   };
@@ -44,9 +42,6 @@ const Preparation = () => {
   useEffect(() => {
     getQuestions();
   }, []);
-  useEffect(() => {
-    setScoreValue(value.value);
-  }, [value.value]);
 
   if (questions === []) return null;
 
@@ -85,7 +80,7 @@ const Preparation = () => {
                         <span className="point-left">
                           {/* 35 more points</span> to
                         get your first star! */}
-                          Points: <span className="value">{scoreValue}</span>
+                          Points: <span className="value">{userScore}</span>
                         </span>
                       </div>
                       <div className="track-progress-bar">

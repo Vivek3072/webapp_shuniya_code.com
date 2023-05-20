@@ -74,6 +74,7 @@ export default class home extends Component {
       });
     console.log(res);
     this.setState({ submitted: true });
+    this.props.scoreInc(100);
     alert("Your code has been submitted.👍");
   };
 

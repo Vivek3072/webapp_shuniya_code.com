@@ -59,7 +59,7 @@
   padding-left: 10px;
 }
 .track-badge-progress {
-  display: none;
+  /* display: none; */
   font-weight: 500;
   font-size: 14px;
 }
