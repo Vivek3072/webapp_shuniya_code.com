@@ -9,8 +9,6 @@ export default function Courses() {
   const [loading, setLoading] = useState(true);
   const [ourData, setData] = useState([]);
 
-  const current_user_id = localStorage.getItem('user_id')
-  
   const getData = async () => {
     const response = await axios.get(
       "http://43.204.229.206:8000/api/v1/courses/?format=json"
@@ -29,7 +27,7 @@ export default function Courses() {
         {ourData.length > 0 && !loading ? (
           ourData.map((data) => {
             return (
-              <Link to={`/course/course_id=${data.course_id}&user_id=${current_user_id}`} key={data.week_id}>
+              <Link to={`/course/${data.course_id}/course_overview`} key={data.week_id}>
                 <div className="d-flex flex-column rounded shadow-sm  px-1 overflow-hidden">
                   <div className="d-flex justify-content-center align-items-center">
                     <img

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./Overview.css";
 import axios from "axios";
 import { useState } from "react";
-import { useParams,useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 
 export default function Overview() {
   let history = useHistory();
@@ -13,7 +13,7 @@ export default function Overview() {
   const [overviewData, setOverviewData] = useState([]);
   const getOverviewData = async () => {
     const response = await axios.get(
-      'http://43.204.229.206:8000/api/v1/course/id/course_overview/'
+      "http://43.204.229.206:8000/api/v1/course/id/course_overview/"
     );
     setOverviewData(response.data);
   };
@@ -33,8 +33,10 @@ export default function Overview() {
   }
 
   async function displayRazorpay() {
-
-    if(!current_user) {history.push("/login"); return;}
+    if (!current_user) {
+      history.push("/login");
+      return;
+    }
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
@@ -145,12 +147,17 @@ export default function Overview() {
                   </div>
                   <div className="container d-flex flex-wrap justify-content-start align-items-center text-white">
                     <button
-                      className="btn btn-info my-2 p-2 rounded text-white"
+                      className="btn btn-info me-2 p-2 rounded text-white"
                       onClick={displayRazorpay}
                     >
-                      Enroll Now
+                      Enroll Now - {overview.price}
                     </button>
-                    <div className="m-2 fs-5">Price : {overview.price} </div>
+                    <Link
+                      to={`/course/${course_id}`}
+                      className="border border-2 border-white rounded m-2 p-2 rounded text-white"
+                    >
+                      View Course
+                    </Link>
                   </div>
 
                   <div className="container text-white d-flex flex-wrap">
