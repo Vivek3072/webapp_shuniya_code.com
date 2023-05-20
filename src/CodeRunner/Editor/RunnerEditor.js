@@ -4,7 +4,7 @@ import axios from "axios";
 import "./runnerEditor.css";
 
 import CodeEditor from "./CodeEditor.js";
-import RunnerEditorOutput from "./runnerEditorOutput";
+// import RunnerEditorOutput from "./RunnerEditorOutput";
 // import QuestionList from "../QuestionList";
 import { Col, Row } from "react-bootstrap";
 // import data from "../data.json";
@@ -72,6 +72,7 @@ export default class home extends Component {
         //   isloaded: true,
         // });
       });
+    console.log(res);
     this.setState({ submitted: true });
     alert("Your code has been submitted.👍");
   };
