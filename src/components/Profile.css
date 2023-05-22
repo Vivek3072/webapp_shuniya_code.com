@@ -1,0 +1,64 @@
+.details {
+  width: 500px;
+  justify-content: center;
+  background: rgb(235, 235, 235);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: rgba(150, 229, 222, 0.2) 0px 7px 29px 0px;
+}
+.userDetails {
+  /* padding: 10px; */
+  display: flex;
+  flex-direction: column;
+}
+.name,
+.email,
+.score {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px;
+  font-size: 20px;
+}
+.table {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.table td {
+  padding-left: 30px;
+}
+.edit_buttons {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.edit_buttons button {
+  margin: 0 10px;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.96rem;
+  background-color: #419cfd;
+}
+.edit_buttons button:hover {
+  margin: 0 10px;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+}
+.table-responsive {
+  overflow-x: visible;
+}
+@media (max-width: 600px) {
+  .edit_buttons,
+  .details {
+    width: 95%;
+  }
+  .table-responsive {
+    overflow-x: auto;
+  }
+}
