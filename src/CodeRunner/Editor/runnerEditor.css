@@ -132,3 +132,9 @@
 .allSubmissions .table tbody {
   /* overflow: auto; */
 }
+.table tbody tr {
+  border-bottom: 1px solid #aba7a7;
+}
+.table tbody tr td {
+  border: none;
+}
