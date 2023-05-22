@@ -16,7 +16,10 @@
 }
 .output_window {
   width: 100%;
-  /* background-color: red; */
+  padding: 10px;
+  min-height: 350px;
+  background: #fff;
+  /* overflow-y: scroll; */
 }
 .test_cases {
   font-size: 17px;
@@ -38,7 +41,7 @@
 .inputVal {
   padding-left: 15px;
   background-color: #ffffff;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 10px;
   width: 100%;
   display: inline-flex;
@@ -51,7 +54,7 @@
 .resultVal {
   padding-left: 15px;
   background-color: #b4f7c7;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 10px;
   width: 100%;
   display: inline-flex;
@@ -95,4 +98,37 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+/* // result tabs section css  */
+.submissions.nav-tabs li {
+  padding-bottom: 0;
+  cursor: pointer;
+}
+.submissions.nav-tabs li:nth-child(1) {
+  padding-left: 0;
+}
+
+/* // submissions details section css  */
+.submissions {
+  width: 100%;
+  height: auto;
+  /* overflow-y: scroll; */
+}
+.allSubmissions {
+  width: 100%;
+  height: auto;
+}
+.allSubmissions .title {
+  color: #94c6a2;
+  text-transform: uppercase;
+}
+.allSubmissions .table {
+  background: transparent;
+  border: none;
+  height: auto;
+  padding: 5px;
+  margin-left: 0;
+}
+.allSubmissions .table tbody {
+  /* overflow: auto; */
 }
