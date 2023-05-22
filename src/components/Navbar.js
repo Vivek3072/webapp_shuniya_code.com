@@ -63,9 +63,9 @@ const NavComponent = () => {
           <Link to="/courses" className="text-dark my-1 mx-2">
             Courses
           </Link>
-          <Link to="/about" className="text-dark my-1 mx-2">
+          {/* <Link to="/about" className="text-dark my-1 mx-2">
             About-Us
-          </Link>
+          </Link> */}
           <Link to="/preparation" className="text-dark my-1 mx-2">
             Preparation
           </Link>
