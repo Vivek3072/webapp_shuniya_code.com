@@ -92,9 +92,9 @@ const Preparation = () => {
                         </div>
                       </div>
                       <div className="score-info">
-                        <span className="current-rank">
+                        {/* <span className="current-rank">
                           Rank: <span className="value">2565897</span>
-                        </span>
+                        </span> */}
                         <span className="pipe"></span>
                         {/* <span className="current-points">
                           Points: <span className="value">0/35</span>
