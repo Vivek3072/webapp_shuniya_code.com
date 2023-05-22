@@ -152,6 +152,7 @@
   flex-wrap: wrap;
   position: relative;
   margin-top: 30px;
+  justify-content: center;
 }
 /* // left panel css  */
 .left-panel {
@@ -353,7 +354,7 @@
 /* // right panel css  */
 .right-panel {
   /* width: 25%; */
-
+  display: none;
   width: 280px;
   /* background-color: blue; */
 }
