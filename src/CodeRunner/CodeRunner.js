@@ -128,13 +128,11 @@ const CodeRunner = () => {
                       <h4>Problem</h4>
                       <hr style={{ marginBottom: "20px" }} />
                       <h6>{item.title}</h6>
-                      <p>
-                        {/* Binary search implementation using the appropriate method. */}
-                        :- {item.description}
-                      </p>
+                      <p>{item.description}</p>
                     </div>
                     <hr />
-                    <div className="task">
+                    {/* // task box  */}
+                    {/* <div className="task">
                       <h4>Task</h4>
                       <ul>
                         <li>Task 1</li>
@@ -142,8 +140,8 @@ const CodeRunner = () => {
                         <li>Task 3</li>
                         <li>Task 4</li>
                       </ul>
-                    </div>
-                    <hr />
+                    </div> */}
+                    {/* <hr /> */}
                     <div className="input_format">
                       <h4>Input format</h4>
                       <p>{item.input_format}</p>
@@ -158,14 +156,8 @@ const CodeRunner = () => {
                     </div>
                     <hr />
                     <div className="sample_input">
-                      {/* // test cases sample data section  */}
-                      {/* {item.test_cases.map((testCase, i) => {
-                        return ( */}
                       <div>
-                        <div className="sample_input_title">
-                          Sample Input
-                          {/* {testCase.test_case_id} */}
-                        </div>
+                        <div className="sample_input_title">Sample Input</div>
                         <div className="sample_input_output">
                           {item.sample_input}
                         </div>
@@ -174,7 +166,6 @@ const CodeRunner = () => {
                           style={{ marginTop: "20px" }}
                         >
                           Sample output
-                          {/* {testCase.test_case_id} */}
                         </div>
                         <div className="sample_input_output sample_output_output">
                           {item.sample_output}
@@ -185,8 +176,6 @@ const CodeRunner = () => {
                         </div>
                         <hr />
                       </div>
-                      {/* ); */}
-                      {/* })} */}
                     </div>
                     {/* // constraints section  */}
                     <div className="constraints">

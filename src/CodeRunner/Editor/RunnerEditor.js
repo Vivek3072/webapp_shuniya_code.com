@@ -4,7 +4,7 @@ import axios from "axios";
 import "./runnerEditor.css";
 
 import CodeEditor from "./CodeEditor.js";
-// import RunnerEditorOutput from "./RunnerEditorOutput";
+import RunnerEditorOutput from "./RunnerEditorOutput";
 // import QuestionList from "../QuestionList";
 import { Col, Row } from "react-bootstrap";
 // import data from "../data.json";
@@ -160,14 +160,14 @@ export default class home extends Component {
               </div>
             </Col>
             {/* // Test cases component  */}
-            {/* {this.state.isSubmited ? (
+            {!this.state.isSubmited ? (
               <Col>
                 <h3>
                   <b>परिणाम</b>
                 </h3>
                 <div className="output_box">
                   <div>
-                    {this.state.isloaded ? (
+                    {!this.state.isloaded ? (
                       <RunnerEditorOutput data={this.data} />
                     ) : (
                       <div>
@@ -178,7 +178,7 @@ export default class home extends Component {
                   </div>
                 </div>
               </Col>
-            ) : null} */}
+            ) : null}
           </Row>
         </div>
         <div className="row">

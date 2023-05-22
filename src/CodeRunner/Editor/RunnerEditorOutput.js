@@ -28,14 +28,15 @@ const RunnerEditorOutput = ({ data }) => {
             Test Cases
           </span>
         </li>
-        <li className="nav-item" onClick={toggleTabs}>
+        {/* // Submission tab  */}
+        {/* <li className="nav-item" onClick={toggleTabs}>
           <span
             className={`nav-link ${tabs === "submissions" ? " active" : ""}`}
             href="#"
           >
             Submissions
           </span>
-        </li>
+        </li> */}
       </ul>
       {/* // output window of test cases  */}
       <div>
@@ -127,7 +128,7 @@ const RunnerEditorOutput = ({ data }) => {
                 {/* <div className="submission"></div> */}
                 <div className="title">All Submissions</div>
                 <div className="table-responsive">
-                  <table className="table">
+                  <table className="table table-hover">
                     <thead>
                       <tr>
                         <th scope="col">Submission Date</th>
@@ -137,45 +138,11 @@ const RunnerEditorOutput = ({ data }) => {
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
+                        <td>28/4/2023</td>
+                        <td>Python(en)</td>
+                        <td style={{ color: "#1a1" }}>Passed</td>
                       </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-
-                        <td>@fat55</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td colSpan="2">Larry the Bird</td>
-                      </tr>
+                      {/* <hr /> */}
                     </tbody>
                   </table>
                 </div>
