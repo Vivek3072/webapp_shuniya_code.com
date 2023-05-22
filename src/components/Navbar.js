@@ -45,6 +45,15 @@ const NavComponent = () => {
     window.location.reload();
   };
 
+  const style = {
+    scoreBox: {
+      color: "orange",
+      fontSize: "14px",
+      textTransform: "uppercase",
+      borderBottom: "1px solid #aaf",
+    },
+  };
+
   return (
     <Navbar className="navbar navbar-light bg-light" bg="light" expand="lg">
       <Link to="/" className="fw-bold fs-3 text-primary my-2 mr-3">
@@ -78,6 +87,9 @@ const NavComponent = () => {
           ) : (
             <>
               <NavDropdown title="Account" id="basic-nav-dropdown">
+                <NavDropdown.Item className="scoreBox" style={style.scoreBox}>
+                  Score : 400
+                </NavDropdown.Item>
                 <NavDropdown.Item href="/user/profile">
                   Profile
                 </NavDropdown.Item>
