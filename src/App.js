@@ -67,11 +67,7 @@ const App = () => {
               />
               <Route exact path={"/preparation"} component={Preparation} />
               <Route exact path={"/courses"} component={Courses} />
-              <Route
-                exact
-                path={"/course/course_id=:course_id&user_id=:user_id"}
-                component={CoursePage}
-              />
+              <Route exact path={"/course/:course_id"} component={CoursePage} />
               <Route
                 exact
                 path={"/course/:course_id/course_overview"}
@@ -79,7 +75,7 @@ const App = () => {
               />
               <Route
                 exact
-                path={"/course/:course_id/:user_id/:quiz_id"}
+                path={"/course/:course_id/:quiz_id"}
                 component={current_user_id ? Quiz : Home}
               />
               <Route exact path={"/contact"} component={Contact} />
