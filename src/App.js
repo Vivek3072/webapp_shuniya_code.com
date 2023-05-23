@@ -59,9 +59,10 @@ const App = () => {
               <Route exact path="/bhav-tutorials">
                 <Redirect to="/tutorial/bhav-programming-language"></Redirect>
               </Route>
+              {/* //solve challenge code editor page route  */}
               <Route
                 exact
-                path={"/challenge/:questionCode/:language"}
+                path={"/challenge/:questionCode/:limit"}
                 component={CodeRunner}
               />
               <Route exact path={"/preparation"} component={Preparation} />
