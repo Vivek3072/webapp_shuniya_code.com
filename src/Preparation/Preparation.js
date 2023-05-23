@@ -7,7 +7,7 @@ import { userScoreContext } from "../ContextAPI/userScoreContext";
 // import FiltersPanel from "./Filters/FiltersPanel";
 
 const baseURL =
-  "http://43.204.229.206:8000/api/v1/programmingAssignment/1/2/3/";
+  "http://43.204.229.206:8000/api/v1/programming-questions/1/2/3/?difficulty=1";
 
 const Preparation = () => {
   const [questions, setQuestions] = useState([]);
@@ -21,7 +21,7 @@ const Preparation = () => {
   const getQuestions = async () => {
     try {
       axios.get(baseURL).then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
         // console.log(response.data.question_selected);
         setQuestions(response.data.question_selected);
       });
