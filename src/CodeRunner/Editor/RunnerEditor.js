@@ -14,7 +14,6 @@ export default class home extends Component {
     super(props);
     this.state = {
       texteditor: "",
-      showtext: "",
       ques_id: this.props.ques_id,
       language: this.props.language,
       input: "",
@@ -44,38 +43,41 @@ export default class home extends Component {
 
     const code_input_b64 = btoa(unescape(encodeURIComponent(this.state.input)));
 
-    const input_flag = this.state.customInput ? "PRESENT" : "ABSENT";
+    // input_flag = this.state.customInput ? "PRESENT" : "ABSENT";
     const postBody = {
-      code_file_name: "a.py",
-      code_input_b64: this.state.customInput ? code_input_b64 : null,
-      code_text_b64: code_text_b64,
-      input_flag: input_flag,
-      ques_id: this.state.ques_id,
-      language: this.state.language,
+      content: code_text_b64,
     };
+    if (code_text_b64 == "") {
+      alert("Please enter some code before submitting");
+      window.location.reload();
+      return;
+    }
 
-    console.log(postBody);
+    // console.log(postBody);
     var postContent = JSON.stringify(postBody);
     const headers = {
       "Content-Type": "application/json",
     };
-    const res = axios
-      .post(
-        `http://43.204.229.206:8000/api/v1/programmingQSubmissions/`,
-        postContent,
-        headers
-      )
-      .then((res) => {
-        // console.log("data in response", res.data);
-        // this.setState({
-        //   showtext: res.data,
-        //   isloaded: true,
-        // });
-      });
-    console.log(res);
-    this.setState({ submitted: true });
-    this.props.scoreInc(100);
-    alert("Your code has been submitted.👍");
+    try {
+      const res = axios
+        .post(
+          `http://43.204.229.206:8000/api/v1/check/${this.props.ques_id}/`,
+          postContent,
+          headers
+        )
+        .then((res) => {
+          console.log("data in response", res.data);
+          this.setState({
+            data: res.data,
+            isloaded: true,
+          });
+        });
+    } catch (error) {
+      console.log("Error: " + error);
+    }
+    // console.log(res);
+    // this.setState({ submitted: true });
+    // this.props.scoreInc(100);
   };
 
   handleInput = (e) => {
@@ -160,15 +162,15 @@ export default class home extends Component {
               </div>
             </Col>
             {/* // Test cases component  */}
-            {!this.state.isSubmited ? (
+            {this.state.isSubmited ? (
               <Col>
                 <h3>
                   <b>परिणाम</b>
                 </h3>
                 <div className="output_box">
                   <div>
-                    {!this.state.isloaded ? (
-                      <RunnerEditorOutput data={this.data} />
+                    {this.state.isloaded ? (
+                      <RunnerEditorOutput data={this.state.data} />
                     ) : (
                       <div>
                         <h6>प्रोसेसिंग....................</h6>
