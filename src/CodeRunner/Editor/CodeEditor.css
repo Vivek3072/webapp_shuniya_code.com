@@ -1,12 +1,13 @@
 .code-editor-container {
   /* margin-right: 0; */
   margin-left: -5px;
+  width: 100%;
 }
 .editor_main {
   background-color: rgb(246 246 246);
   color: #313131;
   display: flex;
-  max-width: 96%;
+  max-width: 100%;
   align-items: self-start;
   justify-content: flex-start;
   flex-direction: row;
@@ -56,5 +57,10 @@ textarea.custom_input {
 @media screen and(max-width:600px) {
   textarea.editor_class {
     padding: 0.1rem;
+  }
+}
+@media screen and(max-width:910px) {
+  .editor_main {
+    max-width: 90% !important;
   }
 }

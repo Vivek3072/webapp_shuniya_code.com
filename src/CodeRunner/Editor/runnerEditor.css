@@ -42,7 +42,7 @@
   padding-left: 15px;
   background-color: #ffffff;
   /* border: 1px solid black; */
-  border-radius: 10px;
+  border-radius: 2px;
   width: 100%;
   display: inline-flex;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -55,7 +55,7 @@
   padding-left: 15px;
   background-color: #b4f7c7;
   /* border: 1px solid black; */
-  border-radius: 10px;
+  border-radius: 2px;
   width: 100%;
   display: inline-flex;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
