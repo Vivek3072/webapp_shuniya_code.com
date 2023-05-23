@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 // import axios from "axios";
 // import Editor from "../Editor/Editor";
 import RunnerEditor from "./Editor/RunnerEditor";
-import "./data";
+// import "./data";
 import { userScoreContext } from "../ContextAPI/userScoreContext";
 
 const CodeRunner = () => {
@@ -15,7 +15,7 @@ const CodeRunner = () => {
 
   const { userScore, scoreInc } = useContext(userScoreContext);
 
-  const { questionCode, language } = useParams();
+  const { questionCode, limit } = useParams();
   // states
 
   const [filteredItem, setFilteredItem] = useState([]);
@@ -78,22 +78,26 @@ const CodeRunner = () => {
 
   // ###### Window resize code ends
 
-  // Parameters
+  // Parameters values
   // console.log("questionCode", questionCode);
-  // console.log("language", language);
+  // console.log("limit", limit);
 
   // function to get question details with parameters
   useEffect(() => {
     const fetchItem = async () => {
       try {
         fetch(
-          `http://43.204.229.206:8000/api/v1/programmingQuestion/?id=${questionCode}&language=${language}`
+          `http://43.204.229.206:8000/api/v1/programming-questions/1/1/${limit}/`
         )
           .then((response) => response.json())
           .then((data) => {
             // setItems(data);
-            console.log(data);
-            setFilteredItem(data);
+            // console.log("data", data.question_selected);
+            const individualQuestion = data.question_selected.filter((item) => {
+              return item.programming_ques_id == questionCode;
+            });
+            // console.log(individualQuestion);
+            setFilteredItem(individualQuestion);
           });
       } catch (error) {
         // Handle error
@@ -121,8 +125,8 @@ const CodeRunner = () => {
         <div className="statement_wrapper">
           {filteredItem.map((item, index) => {
             return (
-              <>
-                <div className="left_panel" key={index}>
+              <div key={index}>
+                <div className="left_panel">
                   <div className="left_panel_wrapper">
                     <div className="headings">
                       <h4>Problem</h4>
@@ -201,7 +205,7 @@ const CodeRunner = () => {
                   </div>
                 </div>
                 {/* </div> */}
-              </>
+              </div>
             );
           })}
         </div>
@@ -219,7 +223,6 @@ const CodeRunner = () => {
           size={size.z}
           editor={editor}
           ques_id={questionCode}
-          language={language}
           scoreInc={scoreInc}
         />
       </div>
