@@ -15,7 +15,7 @@ const Profile = () => {
       <div className="details container">
         <div className="userDetails">
           <div className="table-responsive">
-            <table class="table">
+            <table className="table">
               <thead>
                 <tr></tr>
               </thead>
@@ -38,7 +38,7 @@ const Profile = () => {
         </div>
       </div>
       <div className="edit_buttons container">
-        <button>Edit Profile</button>
+        <button disabled>Edit Profile</button>
         <button onClick={() => history.goBack()}>Go Back</button>
       </div>
     </>
