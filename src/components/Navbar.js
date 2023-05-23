@@ -88,7 +88,7 @@ const NavComponent = () => {
             <>
               <NavDropdown title="Account" id="basic-nav-dropdown">
                 <NavDropdown.Item className="scoreBox" style={style.scoreBox}>
-                  Score : 400
+                  Score : 0
                 </NavDropdown.Item>
                 <NavDropdown.Item href="/user/profile">
                   Profile
