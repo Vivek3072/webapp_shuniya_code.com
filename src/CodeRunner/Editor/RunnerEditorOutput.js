@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import "./runnerEditor.css";
+import { set } from "immutable";
 
 const RunnerEditorOutput = ({ data }) => {
   const [datas] = useState(data);
+  // const [overall, setOverall] = useState("True");
   const [tabs, setTabs] = useState("test");
   console.log("data is here: ", data);
 
   const toggleTabs = () => {
-    if (tabs === "test") {
-      setTabs("submissions");
-    } else {
-      setTabs("test");
-    }
-    console.log(tabs);
+    // if (tabs === "test") {
+    //   setTabs("submissions");
+    // } else {
+    //   setTabs("test");
+    // }
+    // console.log(tabs);
   };
+  var overall = "True";
 
   return (
     <>
@@ -47,35 +50,21 @@ const RunnerEditorOutput = ({ data }) => {
             console.log("item data is", item);
             return ( */}
               <div>
-                <div className="test_case1">
-                  Test Case 1:
-                  <span> Passed</span>
-                  {/* // input box  */}
-                  <div className="inputCase">
-                    <span className="resultkey">Input:</span>
-
-                    <span className="inputVal">2 3 4 5</span>
-                  </div>
-                  {/* // actual and Expected output box  */}
-                  <div className="actualCase">
-                    <span className="resultkey">Expected Output:</span>
-
-                    <span className="resultVal">10</span>
-                  </div>
-                  {/* // User code output val  */}
-                  <div className="userCase">
-                    <span className="resultkey">Your Output: </span>
-                    <span
-                    // className={`resultVal ${
-                    //   item.test_cases_result[0].expected_output ===
-                    //   item.test_cases_result[0].user_output
-                    //     ? "correct"
-                    //     : "inCorrect"
-                    // }`}
-                    >
-                      10
-                    </span>
-                  </div>
+                <div className="testCasesWrapper">
+                  {datas &&
+                    datas.result.map((item, i) => {
+                      {
+                        /* console.log("item data is", item); */
+                      }
+                      if (item.Passed == "False") {
+                        overall = "False";
+                      }
+                      return (
+                        <div className="testCase" key={i}>
+                          Test Case {i + 1}: {item.Passed}
+                        </div>
+                      );
+                    })}
                 </div>
                 <hr style={{ marginTop: "10px" }} />
                 {/* <div className="test_case2">
@@ -101,13 +90,13 @@ const RunnerEditorOutput = ({ data }) => {
                     </span>
                   </div>
                 </div> */}
-                <div className="output">kfefjoiewhfiewhfio</div>
-                <hr style={{ marginTop: "10px" }} />
+                {/* <div className="output">kfefjoiewhfiewhfio</div>
+                <hr style={{ marginTop: "10px" }} /> */}
               </div>
               {/* );
           })} */}
               <div className="final_result">
-                Overall Result :
+                Overall Result : {overall}
                 <span>
                   {/* {datas.overall_result} */}
                   {/* {item.overall_result === "Passed" ? (
