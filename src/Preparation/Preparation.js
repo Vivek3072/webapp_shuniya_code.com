@@ -4,10 +4,8 @@ import { Link } from "react-router-dom";
 import image from "./images/pentagon_bg.svg";
 import axios from "axios";
 import { userScoreContext } from "../ContextAPI/userScoreContext";
-// import FiltersPanel from "./Filters/FiltersPanel";
 
-const baseURL =
-  "http://43.204.229.206:8000/api/v1/programming-questions/1/2/3/?difficulty=1";
+// import FiltersPanel from "./Filters/FiltersPanel";
 
 const Preparation = () => {
   const [questions, setQuestions] = useState([]);
@@ -16,7 +14,11 @@ const Preparation = () => {
   // const [scoreValue, setScoreValue] = useState();
   const { userScore } = useContext(userScoreContext);
   // console.log(questions);
-
+  const baseURL =
+    "http://43.204.229.206:8000/api/v1/programming-questions/1/1/" +
+    limit +
+    "/";
+  // console.log(baseURL);
   // getting all questions logic
   const getQuestions = async () => {
     try {
@@ -249,7 +251,7 @@ const Preparation = () => {
                               <div className="ctas">
                                 <div className="challenge-submit-btn">
                                   <Link
-                                    to={`/challenge/${question.programming_ques_id}/${question.language}`}
+                                    to={`/challenge/${question.programming_ques_id}/${limit}`}
                                   >
                                     <button className="ui-btn ui-btn-normal primary-cta ui-btn-line-primary ui-btn-styled solve-btn">
                                       <div className="ui-content align-icon-right">
