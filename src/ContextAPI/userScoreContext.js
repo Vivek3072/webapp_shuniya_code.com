@@ -4,7 +4,9 @@ export const userScoreContext = createContext();
 
 export function ScoreFunctionProvider({ children }) {
   //   const [value, setValue] = useState(100);
-  const [userScore, setUserScore] = useState(localStorage.getItem("userScore"));
+  const [userScore, setUserScore] = useState(
+    parseInt(localStorage.getItem("userScore")) || 0
+  );
 
   // fetch the logged in user
   // var user = {
