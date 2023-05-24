@@ -147,7 +147,7 @@ const Preparation = () => {
                                 Easy
                               </span>
                               <span className="max-score detail-item">
-                                Total points: 0
+                                Total points: {userScore}
                               </span>
                               {/* <span className="success-ratio detail-item">
                                 Success Rate: 96.72%

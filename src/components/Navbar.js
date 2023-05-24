@@ -9,8 +9,11 @@ import axiosInstance from "./../axiosApi";
 import LoginCard from "./LoginCard";
 
 import firebase from "firebase";
+import { useContext } from "react";
+import { userScoreContext } from "../ContextAPI/userScoreContext";
 
 const NavComponent = () => {
+  const { userScore } = useContext(userScoreContext);
   const token = localStorage.getItem("username");
   const refreshToken = localStorage.getItem("refresh_token");
 
@@ -88,7 +91,7 @@ const NavComponent = () => {
             <>
               <NavDropdown title="Account" id="basic-nav-dropdown">
                 <NavDropdown.Item className="scoreBox" style={style.scoreBox}>
-                  Score : 0
+                  Score : {userScore}
                 </NavDropdown.Item>
                 <NavDropdown.Item href="/user/profile">
                   Profile
