@@ -4,25 +4,33 @@ export const userScoreContext = createContext();
 
 export function ScoreFunctionProvider({ children }) {
   //   const [value, setValue] = useState(100);
-  const [userScore, setUserScore] = useState(500);
+  const [userScore, setUserScore] = useState(localStorage.getItem("userScore"));
 
   // fetch the logged in user
-  var user = {
-    id: 1,
-    name: "Sahil",
-    score: 500,
-    questions_solved: [1, 4, 5],
-  };
+  // var user = {
+  //   id: 1,
+  //   name: "Sahil",
+  //   score: 500,
+  //   questions_solved: [1, 4, 5],
+  // };
+
+  const localScore = localStorage.getItem("userScore");
+  if (!localScore) {
+    localStorage.setItem("userScore", 0);
+  } else {
+    // const localScr = localStorage.getItem("userScore");
+    // setUserScore(localScr);
+  }
+
   function scoreInc(plus) {
-    console.log("plus value: " + plus);
-    setUserScore(userScore + plus);
-    console.log("userScore: " + userScore);
+    //   console.log("plus value: " + plus);
+    setUserScore(userScore + parseInt(plus));
+    localStorage.setItem("userScore", userScore + parseInt(plus));
+    //   console.log("userScore: " + userScore);
   }
 
   return (
-    <userScoreContext.Provider
-      value={{ user, userScore, setUserScore, scoreInc }}
-    >
+    <userScoreContext.Provider value={{ userScore, setUserScore, scoreInc }}>
       {children}
     </userScoreContext.Provider>
   );
