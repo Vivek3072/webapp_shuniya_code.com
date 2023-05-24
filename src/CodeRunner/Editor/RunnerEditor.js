@@ -72,12 +72,12 @@ export default class home extends Component {
             isloaded: true,
           });
         });
+      this.props.scoreInc(100);
     } catch (error) {
       console.log("Error: " + error);
     }
     // console.log(res);
     // this.setState({ submitted: true });
-    // this.props.scoreInc(100);
   };
 
   handleInput = (e) => {
