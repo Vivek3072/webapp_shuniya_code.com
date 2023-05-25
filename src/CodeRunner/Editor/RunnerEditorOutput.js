@@ -53,9 +53,6 @@ const RunnerEditorOutput = ({ data }) => {
                 <div className="testCasesWrapper">
                   {datas &&
                     datas.result.map((item, i) => {
-                      {
-                        /* console.log("item data is", item); */
-                      }
                       if (item.Passed == "False") {
                         overall = "False";
                       }
