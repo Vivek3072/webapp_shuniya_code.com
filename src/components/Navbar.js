@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { Navbar, NavDropdown, Nav } from "react-bootstrap";
@@ -11,10 +11,17 @@ import LoginCard from "./LoginCard";
 import firebase from "firebase";
 import { useContext } from "react";
 import { userScoreContext } from "../ContextAPI/userScoreContext";
+
+// toggle icons import
+import EnglishPic from "./Images/Navbar Images/english.png";
+import HindiPIc from "./Images/Navbar Images/Hindi.png";
 // redux imports for language toggling
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "./state/index";
+// toggle icon
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 const NavComponent = () => {
   const { userScore } = useContext(userScoreContext);
@@ -24,11 +31,41 @@ const NavComponent = () => {
   let history = useHistory();
 
   // language toggle functions
-  const dispatch = useDispatch();
-  const language = useSelector((state) => state.language);
-  console.log(language);
+  const dispatch = useDispatch(); // for setting the lang.
+  const language = useSelector((state) => state.language); // for getting the lang.
+  console.log("Getting the state from store ", language);
   const { toggleLanguage } = bindActionCreators(actionCreators, dispatch);
 
+  // toggle button logic starts here...
+  // state for getting the language
+  const [alignment, setAlignment] = React.useState(
+    localStorage.getItem("LanguagePreference") || JSON.stringify(language)
+  );
+
+  // function for changing the state of the language preference
+  const handleChange = (event, newAlignment) => {
+    setAlignment(newAlignment);
+
+    if (newAlignment !== null) {
+      localStorage.setItem("LanguagePreference", JSON.stringify(newAlignment));
+      // toggleLanguage(newAlignment);
+    }
+  };
+
+  useEffect(() => {
+    // checking localstorage for Choosed language.
+    const LanguagePreference = localStorage.getItem("LanguagePreference");
+    // console.log("parsing data ", LanguagePreference);
+    if (LanguagePreference == null) {
+      localStorage.setItem("LanguagePreference", JSON.stringify(language));
+    }
+
+    setAlignment(JSON.parse(localStorage.getItem("LanguagePreference")));
+    toggleLanguage(JSON.parse(localStorage.getItem("LanguagePreference")));
+  }, []);
+  // toggle button logic ends here...
+
+  // logout
   const handleLogout = async () => {
     try {
       // console.log(localStorage.getItem("refresh_token"));
@@ -91,21 +128,52 @@ const NavComponent = () => {
           <Link to="/preparation" className="text-dark my-1 mx-2">
             Preparation
           </Link>
-          {/* // toggle buttons  */}
-          <button
-            onClick={() => toggleLanguage("ENG")}
-            className="text-dark my-1 mx-2"
-          >
-            Eng
-          </button>
-          <button
-            onClick={() => toggleLanguage("HIN")}
-            className="text-dark my-1 mx-2"
-          >
-            Hin
-          </button>
         </div>
         <Nav>
+          <div className="toggleBtns">
+            <ToggleButtonGroup
+              color="primary"
+              value={alignment}
+              exclusive
+              style={{ marginTop: "2px", marginRight: "30px" }}
+              onChange={handleChange}
+              aria-label="Platform"
+            >
+              <ToggleButton
+                style={
+                  alignment == "ENG"
+                    ? { padding: "5px", background: "rgb(250 225 111)" }
+                    : { padding: "5px" }
+                }
+                value="ENG"
+                onClick={() => toggleLanguage("ENG")}
+              >
+                <img
+                  src={EnglishPic}
+                  alt="Switch to English"
+                  width="25"
+                  title="Switch to English Language"
+                />
+              </ToggleButton>
+
+              <ToggleButton
+                style={
+                  alignment == "HI"
+                    ? { padding: "5px", background: "rgb(250 225 111)" }
+                    : { padding: "5px" }
+                }
+                value="HI"
+                onClick={() => toggleLanguage("HI")}
+              >
+                <img
+                  src={HindiPIc}
+                  alt="Switch to Hindi"
+                  width="25"
+                  title="Switch to Hindi Language"
+                />
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </div>
           {!token ? (
             <>
               <LoginCard />
