@@ -4,14 +4,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-
 import { ScoreFunctionProvider } from "./ContextAPI/userScoreContext";
+import { Provider } from "react-redux";
+import { store } from "./components/state/store";
+
 ReactDOM.render(
-  <ScoreFunctionProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </ScoreFunctionProvider>,
+  <Provider store={store}>
+    <ScoreFunctionProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ScoreFunctionProvider>
+  </Provider>,
   document.getElementById("root")
 );
 
