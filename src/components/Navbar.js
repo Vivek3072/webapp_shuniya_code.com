@@ -11,6 +11,10 @@ import LoginCard from "./LoginCard";
 import firebase from "firebase";
 import { useContext } from "react";
 import { userScoreContext } from "../ContextAPI/userScoreContext";
+// redux imports for language toggling
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators } from "./state/index";
 
 const NavComponent = () => {
   const { userScore } = useContext(userScoreContext);
@@ -18,6 +22,12 @@ const NavComponent = () => {
   const refreshToken = localStorage.getItem("refresh_token");
 
   let history = useHistory();
+
+  // language toggle functions
+  const dispatch = useDispatch();
+  const language = useSelector((state) => state.language);
+  console.log(language);
+  const { toggleLanguage } = bindActionCreators(actionCreators, dispatch);
 
   const handleLogout = async () => {
     try {
@@ -81,6 +91,19 @@ const NavComponent = () => {
           <Link to="/preparation" className="text-dark my-1 mx-2">
             Preparation
           </Link>
+          {/* // toggle buttons  */}
+          <button
+            onClick={() => toggleLanguage("ENG")}
+            className="text-dark my-1 mx-2"
+          >
+            Eng
+          </button>
+          <button
+            onClick={() => toggleLanguage("HIN")}
+            className="text-dark my-1 mx-2"
+          >
+            Hin
+          </button>
         </div>
         <Nav>
           {!token ? (
