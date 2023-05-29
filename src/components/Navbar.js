@@ -126,7 +126,7 @@ const NavComponent = () => {
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <div className="mr-auto">
             <Link to="/" className="text-dark my-1 mx-2">
-              {language === "ENG" ? "HOME" : "मुखपृष्ठ"}
+              {language === "ENG" ? "Home" : "मुखपृष्ठ"}
             </Link>
             <Link to="/editor" className="text-dark my-1 mx-2">
               {language === "ENG" ? "Editor" : "संपादक"}
