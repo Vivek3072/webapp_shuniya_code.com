@@ -12,6 +12,9 @@ import firebase from "firebase";
 import { useContext } from "react";
 import { userScoreContext } from "../ContextAPI/userScoreContext";
 
+// radium for inline styling
+import Radium, { StyleRoot } from "radium";
+
 // toggle icons import
 import EnglishPic from "./Images/Navbar Images/english.png";
 import HindiPIc from "./Images/Navbar Images/Hindi.png";
@@ -22,6 +25,7 @@ import { actionCreators } from "./state/index";
 // toggle icon
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { width } from "@mui/system";
 
 const NavComponent = () => {
   const { userScore } = useContext(userScoreContext);
@@ -65,6 +69,13 @@ const NavComponent = () => {
   }, []);
   // toggle button logic ends here...
 
+  const styles = {
+    // Adding media query..
+    "@media (max-width: 993px)": {
+      padding: "10px",
+    },
+  };
+
   // logout
   const handleLogout = async () => {
     try {
@@ -105,109 +116,122 @@ const NavComponent = () => {
   };
 
   return (
-    <Navbar className="navbar navbar-light bg-light" bg="light" expand="lg">
-      <Link to="/" className="fw-bold fs-3 text-primary my-2 mr-3">
-        <Code size={35} className="mr-1" />
-        कोड
-      </Link>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-        <div className="mr-auto">
-          <Link to="/" className="text-dark my-1 mx-2">
-            Home
-          </Link>
-          <Link to="/editor" className="text-dark my-1 mx-2">
-            Editor
-          </Link>
-          <Link to="/courses" className="text-dark my-1 mx-2">
-            Courses
-          </Link>
-          {/* <Link to="/about" className="text-dark my-1 mx-2">
+    <StyleRoot>
+      <Navbar className="navbar navbar-light bg-light" bg="light" expand="lg">
+        <Link to="/" className="fw-bold fs-3 text-primary my-2 mr-3">
+          <Code size={35} className="mr-1" />
+          कोड
+        </Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+          <div className="mr-auto">
+            <Link to="/" className="text-dark my-1 mx-2">
+              {language === "ENG" ? "HOME" : "मुखपृष्ठ"}
+            </Link>
+            <Link to="/editor" className="text-dark my-1 mx-2">
+              {language === "ENG" ? "Editor" : "संपादक"}
+            </Link>
+            <Link to="/courses" className="text-dark my-1 mx-2">
+              {language === "ENG" ? "Courses" : "पाठ्यक्रम"}
+            </Link>
+            {/* <Link to="/about" className="text-dark my-1 mx-2">
             About-Us
           </Link> */}
-          <Link to="/preparation" className="text-dark my-1 mx-2">
-            Preparation
-          </Link>
-        </div>
-        <Nav>
-          <div className="toggleBtns">
-            <ToggleButtonGroup
-              color="primary"
-              value={alignment}
-              exclusive
-              style={{ marginTop: "2px", marginRight: "30px" }}
-              onChange={handleChange}
-              aria-label="Platform"
-            >
-              <ToggleButton
-                style={
-                  alignment == "ENG"
-                    ? { padding: "5px", background: "rgb(250 225 111)" }
-                    : { padding: "5px" }
-                }
-                value="ENG"
-                onClick={() => toggleLanguage("ENG")}
-              >
-                <img
-                  src={EnglishPic}
-                  alt="Switch to English"
-                  width="25"
-                  title="Switch to English Language"
-                />
-              </ToggleButton>
-
-              <ToggleButton
-                style={
-                  alignment == "HI"
-                    ? { padding: "5px", background: "rgb(250 225 111)" }
-                    : { padding: "5px" }
-                }
-                value="HI"
-                onClick={() => toggleLanguage("HI")}
-              >
-                <img
-                  src={HindiPIc}
-                  alt="Switch to Hindi"
-                  width="25"
-                  title="Switch to Hindi Language"
-                />
-              </ToggleButton>
-            </ToggleButtonGroup>
+            <Link to="/preparation" className="text-dark my-1 mx-2">
+              {language === "ENG" ? "Preparation" : "सामग्री"}
+            </Link>
           </div>
-          {!token ? (
-            <>
-              <LoginCard />
-            </>
-          ) : (
-            <>
-              <NavDropdown title="Account" id="basic-nav-dropdown">
-                <NavDropdown.Item className="scoreBox" style={style.scoreBox}>
-                  Score : {userScore}
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/user/profile">
-                  Profile
-                </NavDropdown.Item>
-                {!!refreshToken ? (
-                  <NavDropdown.Item type="button" onClick={handleLogout}>
-                    LogOut
+          <Nav>
+            {/* //Language  Toggle buttons  */}
+            <div className="toggleBtns" style={styles}>
+              <ToggleButtonGroup
+                color="primary"
+                value={alignment}
+                exclusive
+                style={{ marginTop: "2px", marginRight: "30px" }}
+                onChange={handleChange}
+                aria-label="Platform"
+              >
+                <ToggleButton
+                  style={
+                    alignment == "ENG"
+                      ? { padding: "5px", background: "rgb(250 225 111)" }
+                      : { padding: "5px" }
+                  }
+                  value="ENG"
+                  onClick={() => toggleLanguage("ENG")}
+                >
+                  <img
+                    src={EnglishPic}
+                    alt="Switch to English"
+                    width="25"
+                    title="Switch to English Language"
+                  />
+                </ToggleButton>
+
+                <ToggleButton
+                  style={
+                    alignment == "HI"
+                      ? { padding: "5px", background: "rgb(250 225 111)" }
+                      : { padding: "5px" }
+                  }
+                  value="HI"
+                  onClick={() => toggleLanguage("HI")}
+                >
+                  <img
+                    src={HindiPIc}
+                    alt="Switch to Hindi"
+                    width="25"
+                    title="Switch to Hindi Language"
+                  />
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </div>
+            {!token ? (
+              <>
+                <LoginCard />
+              </>
+            ) : (
+              <>
+                <NavDropdown
+                  title={language === "ENG" ? "Account" : "जानकारी"}
+                  id="basic-nav-dropdown"
+                >
+                  <NavDropdown.Item className="scoreBox" style={style.scoreBox}>
+                    {language === "ENG" ? "Score" : "अंक"} : {userScore}
                   </NavDropdown.Item>
-                ) : (
-                  <NavDropdown.Item
-                    type="button"
-                    onClick={handleFirebaseLogout}
-                  >
-                    LogOut
+                  <NavDropdown.Item href="/user/profile">
+                    {language === "ENG" ? "Profile" : "प्रोफ़ाइल"}
                   </NavDropdown.Item>
-                )}
-              </NavDropdown>
-            </>
-          )}
-          <Link to="/signup" className="btn btn-primary text-white my-1 mx-2">
-            Sign Up
-          </Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+                  {!!refreshToken ? (
+                    <NavDropdown.Item
+                      type="button"
+                      onClick={handleLogout}
+                      style={{ color: "#f00" }}
+                    >
+                      LogOut
+                      {/* {language === "ENG" ? "LogOut" : "LogOut/लॉग आउट"} */}
+                    </NavDropdown.Item>
+                  ) : (
+                    <NavDropdown.Item
+                      type="button"
+                      onClick={handleFirebaseLogout}
+                      style={{ color: "#f00" }}
+                    >
+                      LogOut
+                      {/* {language === "ENG" ? "LogOut" : "LogOut/लॉग आउट"} */}
+                    </NavDropdown.Item>
+                  )}
+                </NavDropdown>
+              </>
+            )}
+            <Link to="/signup" className="btn btn-primary text-white my-1 mx-2">
+              Sign Up
+            </Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    </StyleRoot>
   );
 };
 
