@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import image from "./images/pentagon_bg.svg";
 import axios from "axios";
 import { userScoreContext } from "../ContextAPI/userScoreContext";
+import { useSelector } from "react-redux";
 
 // import FiltersPanel from "./Filters/FiltersPanel";
 
@@ -13,6 +14,9 @@ const Preparation = () => {
   const [loadingIcon, setloadingIcon] = useState(false);
   // const [scoreValue, setScoreValue] = useState();
   const { userScore } = useContext(userScoreContext);
+
+  const language = useSelector((state) => state.language); // for getting the lang.
+
   // console.log(questions);
   const baseURL =
     "http://43.204.229.206:8000/api/v1/programming-questions/1/1/" +
@@ -82,7 +86,7 @@ const Preparation = () => {
                         <span className="point-left">
                           {/* 35 more points</span> to
                         get your first star! */}
-                          Points: <span className="value">{userScore}</span>
+                          {/* Points: <span className="value">{userScore}</span> */}
                         </span>
                       </div>
                       <div className="track-progress-bar">
@@ -213,7 +217,12 @@ const Preparation = () => {
                             <div className="challenge-name-details ">
                               <div className="pull-left inline-block">
                                 <h4 className="challengecard-title">
-                                  <div>{question.title}</div>
+                                  <div>
+                                    {question.title}
+                                    {language === "ENG"
+                                      ? question.title
+                                      : question.title_hi}
+                                  </div>
                                   <div className="card-details pmT">
                                     <span className="difficulty easy detail-item">
                                       {question.difficulty < 6
