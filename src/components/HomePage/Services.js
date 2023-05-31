@@ -8,7 +8,9 @@ export default function Services() {
     <div>
       <section id="services" className="services">
         <div className="container">
-          <h2 className="text-center mt-4">Services</h2>
+          <h2 className="text-center mt-4">
+            {language === "ENG" ? "Services" : "सेवाएं"}
+          </h2>
           <div className="row d-flex flex-wrap justify-content-center">
             <div className="col-md-6 col-lg-3 mx-2 shadow-sm rounded d-flex flex-column  align-items-stretch mb-5 mb-lg-0 text-success">
               <svg

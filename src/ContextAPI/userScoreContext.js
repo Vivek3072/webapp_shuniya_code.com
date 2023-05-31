@@ -3,18 +3,36 @@ import React, { createContext, useState } from "react";
 export const userScoreContext = createContext();
 
 export function ScoreFunctionProvider({ children }) {
-  //   const [value, setValue] = useState(100);
+  const [user, setUser] = useState({});
   const [userScore, setUserScore] = useState(
     parseInt(localStorage.getItem("userScore")) || 0
   );
 
   // fetch the logged in user
-  // var user = {
-  //   id: 1,
+  // var userData = {
   //   name: "Sahil",
   //   score: 500,
   //   questions_solved: [1, 4, 5],
   // };
+  // async function getData() {
+  //   const token = localStorage.getItem("Authorization");
+  //   console.log("token: " + token);
+  //   if (token) {
+  //     const response = await fetch("http://43.204.229.206:8000/api/v1/user", {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: token,
+  //       },
+  //     })
+  //       .then((response) => response.json())
+  //       .then((response) => {
+  //         console.log("response of user data is ", response);
+  //         // setUser(response);
+  //       })
+  //       .catch((err) => console.error(err));
+  //   }
+  // }
+  // getData();
 
   const localScore = localStorage.getItem("userScore");
   if (!localScore) {

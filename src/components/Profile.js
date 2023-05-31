@@ -1,8 +1,12 @@
 import React from "react";
 import "./Profile.css";
 import { useHistory } from "react-router-dom";
+// userscore context
+import { userScoreContext } from "../ContextAPI/userScoreContext";
+import { useContext } from "react";
 const Profile = () => {
   let history = useHistory();
+  const { userScore } = useContext(userScoreContext); // user score
   const userID = localStorage.getItem("username");
   return (
     <>
@@ -22,15 +26,15 @@ const Profile = () => {
               <tbody>
                 <tr>
                   <td>Name</td>
-                  <td>Sahil</td>
+                  <td>{userID && userID}</td>
                 </tr>
-                <tr>
+                {/* <tr>
                   <td>Email</td>
                   <td>email.com</td>
-                </tr>
+                </tr> */}
                 <tr>
                   <td>Score</td>
-                  <td>300</td>
+                  <td>{userScore}</td>
                 </tr>
               </tbody>
             </table>
