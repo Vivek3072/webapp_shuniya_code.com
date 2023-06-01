@@ -14,6 +14,8 @@ const Preparation = () => {
   const [loadingIcon, setloadingIcon] = useState(false);
   // const [scoreValue, setScoreValue] = useState();
   const { userScore } = useContext(userScoreContext);
+  // state for toggling the cards of questions
+  const [programmingCard, setProgrammingCard] = useState(false);
 
   const language = useSelector((state) => state.language); // for getting the lang.
 
@@ -131,465 +133,534 @@ const Preparation = () => {
             </div>
           </div>
         </div>
-        {/* // Content section  */}
-        <div className="container content_section">
-          {/* // Left panel  */}
-          <div className="practice_panel left-panel">
-            {/* <FiltersPanel /> */}
-            {/* // recommended challenge for new user  */}
-            <div className="recommended_challenge">
-              <div className="single_item">
-                <div className="track_contest">
-                  <div className="content_body">
-                    <div className="content_list_header">
-                      <div className="challenge_name_details">
-                        <div className="inline_block">
-                          <h4 className="challenge_title">
-                            Say "Hello, World!" With Python
-                            <div className="card-details pmT">
-                              <span className="difficulty easy detail-item">
-                                Easy
-                              </span>
-                              <span className="max-score detail-item">
-                                Total points: {userScore}
-                              </span>
-                              {/* <span className="success-ratio detail-item">
+        {/* // cards for programming and other questions  */}
+        {!programmingCard && (
+          <div className="cards container">
+            {/* // Programming section  */}
+            <div className="programming_section">
+              <h1>Programming Questions</h1>
+              <hr />
+              <div className="cards_area">
+                {/* // Individual card  */}
+                <div className="card" onClick={() => setProgrammingCard(true)}>
+                  <div className="head"></div>
+                  <div className="card_content_area">
+                    <h3>Programming Questions</h3>
+                    <h4>level: Intermediate</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* <hr /> */}
+            {/* // coding normal questions section  */}
+            <div className="programming_section Coding_Questions_section">
+              <h1>Coding Questions</h1>
+              <hr />
+              <div className="cards_area">
+                {/* // Individual card  */}
+                <div className="card Coding_section">
+                  <div className="head Coding_section"></div>
+                  <div className="card_content_area">
+                    <h3>Coding Questions</h3>
+                    <h4>level: Easy</h4>
+                  </div>
+                </div>
+                {/* // duplicate data  */}
+                <div className="card Coding_section">
+                  <div className="head Coding_section"></div>
+                  <div className="card_content_area">
+                    <h3>Coding Questions</h3>
+                    <h4>level: Easy</h4>
+                  </div>
+                </div>
+                <div className="card Coding_section">
+                  <div className="head Coding_section">
+                    <div className="class">Class 6</div>
+                  </div>
+                  <div className="card_content_area">
+                    <h3>Coding Questions</h3>
+                    <h4>level: Easy</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        {/* //Programming question Content section  */}
+        {programmingCard && (
+          <>
+            <div
+              className="backButton container mt-4"
+              onClick={() => setProgrammingCard(false)}
+            >
+              <i class="fa-solid fa-circle-arrow-left" title="Back to menu"></i>
+            </div>
+            <div className="container content_section">
+              {/* // Left panel  */}
+              <div className="practice_panel left-panel">
+                {/* <FiltersPanel /> */}
+                {/* // recommended challenge for new user  */}
+                <div className="recommended_challenge">
+                  <div className="single_item">
+                    <div className="track_contest">
+                      <div className="content_body">
+                        <div className="content_list_header">
+                          <div className="challenge_name_details">
+                            <div className="inline_block">
+                              <h4 className="challenge_title">
+                                Say "Hello, World!" With Python
+                                <div className="card-details pmT">
+                                  <span className="difficulty easy detail-item">
+                                    Easy
+                                  </span>
+                                  <span className="max-score detail-item">
+                                    Total points: {userScore}
+                                  </span>
+                                  {/* <span className="success-ratio detail-item">
                                 Success Rate: 96.72%
                               </span> */}
+                                </div>
+                              </h4>
                             </div>
-                          </h4>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="content_preview_box">
-                      <div className="preview-content">
-                        Get started with Python by printing to stdout.
-                      </div>
-                      <span className="bookmark-cta">
-                        <button
-                          className=" star-button"
-                          aria-label="Add bookmark"
-                        >
-                          <div className="ui-content align-icon-right">
-                            <span className="ui-text" aria-hidden="false">
-                              <i className="fa-regular fa-star"></i>
-                            </span>
                           </div>
-                        </button>
-                      </span>
-                      <div className="cta-container">
-                        <div className="ctas">
-                          <div className="challenge-submit-btn">
+                        </div>
+                        <div className="content_preview_box">
+                          <div className="preview-content">
+                            Get started with Python by printing to stdout.
+                          </div>
+                          <span className="bookmark-cta">
                             <button
-                              className="ui-btn ui-btn-normal ui-btn-primary ui-btn-styled"
-                              style={{ backgroundColor: "#007bff" }}
+                              className=" star-button"
+                              aria-label="Add bookmark"
                             >
                               <div className="ui-content align-icon-right">
                                 <span className="ui-text" aria-hidden="false">
-                                  Solve Question
+                                  <i className="fa-regular fa-star"></i>
                                 </span>
                               </div>
                             </button>
+                          </span>
+                          <div className="cta-container">
+                            <div className="ctas">
+                              <div className="challenge-submit-btn">
+                                <button
+                                  className="ui-btn ui-btn-normal ui-btn-primary ui-btn-styled"
+                                  style={{ backgroundColor: "#007bff" }}
+                                >
+                                  <div className="ui-content align-icon-right">
+                                    <span
+                                      className="ui-text"
+                                      aria-hidden="false"
+                                    >
+                                      Solve Question
+                                    </span>
+                                  </div>
+                                </button>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            {/* // All challenges list  */}
-            <div className="challenges-list">
-              {questions !== [] &&
-                questions &&
-                questions.slice(0, limit).map((question, i) => {
-                  return (
-                    <div
-                      className="single-item challenges-list-view-v2 first-challenge cursor"
-                      key={i}
-                    >
-                      <div
-                        id="contest-challenges-problem"
-                        className="individual-challenge-card-v2 content--list-v2 track_content"
-                      >
-                        <div className="content--list_body">
-                          <header className="content--list_header-v2">
-                            <div className="challenge-name-details ">
-                              <div className="pull-left inline-block">
-                                <h4 className="challengecard-title">
-                                  <div>
-                                    {question.title}
-                                    {language === "ENG"
-                                      ? question.title
-                                      : question.title_hi}
-                                  </div>
-                                  <div className="card-details pmT">
-                                    <span className="difficulty easy detail-item">
-                                      {question.difficulty < 6
-                                        ? "Easy"
-                                        : question.difficulty < 10
-                                        ? "Medium"
-                                        : "Hard"}
-                                    </span>
-                                    <span className="skill detail-item">
-                                      &nbsp; {question.programming_language}
-                                    </span>
-                                    <span className="max-score detail-item">
-                                      Total Points: {question.total_points}
-                                    </span>
-                                    {/* <span className="success-ratio detail-item">
+                {/* // All challenges list  */}
+                <div className="challenges-list">
+                  {questions !== [] &&
+                    questions &&
+                    questions.slice(0, limit).map((question, i) => {
+                      return (
+                        <div
+                          className="single-item challenges-list-view-v2 first-challenge cursor"
+                          key={i}
+                        >
+                          <div
+                            id="contest-challenges-problem"
+                            className="individual-challenge-card-v2 content--list-v2 track_content"
+                          >
+                            <div className="content--list_body">
+                              <header className="content--list_header-v2">
+                                <div className="challenge-name-details ">
+                                  <div className="pull-left inline-block">
+                                    <h4 className="challengecard-title">
+                                      <div>
+                                        {question.title}
+                                        {language === "ENG"
+                                          ? question.title
+                                          : question.title_hi}
+                                      </div>
+                                      <div className="card-details pmT">
+                                        <span className="difficulty easy detail-item">
+                                          {question.difficulty < 6
+                                            ? "Easy"
+                                            : question.difficulty < 10
+                                            ? "Medium"
+                                            : "Hard"}
+                                        </span>
+                                        <span className="skill detail-item">
+                                          &nbsp; {question.programming_language}
+                                        </span>
+                                        <span className="max-score detail-item">
+                                          Total Points: {question.total_points}
+                                        </span>
+                                        {/* <span className="success-ratio detail-item">
                                       Success Rate: 90.39%
                                     </span> */}
-                                  </div>
-                                </h4>
-                              </div>
-                            </div>
-                            <span className="bookmark-cta">
-                              <button
-                                className="ui-btn star-button"
-                                aria-label="Add bookmark"
-                              >
-                                <div className="ui-content align-icon-right">
-                                  <span className="ui-text" aria-hidden="false">
-                                    <i className="fa-regular fa-star"></i>
-                                  </span>
-                                </div>
-                              </button>
-                            </span>
-                            <div className="cta-container">
-                              <div className="ctas">
-                                <div className="challenge-submit-btn">
-                                  <Link
-                                    to={`/challenge/${question.programming_ques_id}/${limit}`}
-                                  >
-                                    <button className="ui-btn ui-btn-normal primary-cta ui-btn-line-primary ui-btn-styled solve-btn">
-                                      <div className="ui-content align-icon-right">
-                                        <span
-                                          className="ui-text"
-                                          aria-hidden="false"
-                                        >
-                                          Solve Question
-                                        </span>
                                       </div>
-                                    </button>
-                                  </Link>
+                                    </h4>
+                                  </div>
                                 </div>
-                              </div>
+                                <span className="bookmark-cta">
+                                  <button
+                                    className="ui-btn star-button"
+                                    aria-label="Add bookmark"
+                                  >
+                                    <div className="ui-content align-icon-right">
+                                      <span
+                                        className="ui-text"
+                                        aria-hidden="false"
+                                      >
+                                        <i className="fa-regular fa-star"></i>
+                                      </span>
+                                    </div>
+                                  </button>
+                                </span>
+                                <div className="cta-container">
+                                  <div className="ctas">
+                                    <div className="challenge-submit-btn">
+                                      <Link
+                                        to={`/challenge/${question.programming_ques_id}/${limit}`}
+                                      >
+                                        <button className="ui-btn ui-btn-normal primary-cta ui-btn-line-primary ui-btn-styled solve-btn">
+                                          <div className="ui-content align-icon-right">
+                                            <span
+                                              className="ui-text"
+                                              aria-hidden="false"
+                                            >
+                                              Solve Question
+                                            </span>
+                                          </div>
+                                        </button>
+                                      </Link>
+                                    </div>
+                                  </div>
+                                </div>
+                              </header>
                             </div>
-                          </header>
+                          </div>
+                          <div
+                            className="__react_component_tooltip place-top type-dark "
+                            data-id="tooltip"
+                          ></div>
                         </div>
-                      </div>
-                      <div
-                        className="__react_component_tooltip place-top type-dark "
-                        data-id="tooltip"
-                      ></div>
+                      );
+                    })}
+                  {limit < questions.length && (
+                    <div className="buttonBox">
+                      <button className="button loadMore" onClick={loadMore}>
+                        Load More &nbsp;
+                        <i
+                          className={
+                            loadingIcon
+                              ? "fa-sharp fa-regular fa-loader"
+                              : "fa-solid fa-angles-down"
+                          }
+                        ></i>
+                      </button>
                     </div>
-                  );
-                })}
-              {limit < questions.length && (
-                <div className="buttonBox">
-                  <button className="button loadMore" onClick={loadMore}>
-                    Load More &nbsp;
-                    <i
-                      className={
-                        loadingIcon
-                          ? "fa-sharp fa-regular fa-loader"
-                          : "fa-solid fa-angles-down"
-                      }
-                    ></i>
-                  </button>
+                  )}
                 </div>
-              )}
-            </div>
-          </div>
-          {/* // Right panel  */}
-          <div className="filters_panel right-panel">
-            <div className="outer_wrapper">
-              <div className="inner_wrapper">
-                <div className="filter_wrap">
-                  <div className="challenge_list_filter">
-                    {/* ################## Status*/}
-                    <div className="filter-group">
-                      <div className="group-label">Status</div>
-                      <div className="filters">
-                        <div className="ui-checklist" role="group">
-                          <div className="ui-checklist-list">
-                            <div className="ui-checklist-list-item">
-                              <div className="ui-checklist-item-wrap">
-                                <div className="ui-checkbox theme-m">
-                                  <label className="label-wrap">
-                                    <div className="checkbox-wrap">
-                                      <input
-                                        type="checkbox"
-                                        className="checkbox-input"
-                                        value="solved"
-                                      />
-                                      <span className="custom-holder outset">
-                                        <svg
-                                          viewBox="0 0 24 24"
-                                          width="1em"
-                                          height="1em"
-                                          className="checkbox__check-icon ui-svg-icon"
-                                          fill="currentColor"
-                                        >
-                                          <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
-                                        </svg>
-                                      </span>
+              </div>
+              {/* // Right panel  */}
+              <div className="filters_panel right-panel">
+                <div className="outer_wrapper">
+                  <div className="inner_wrapper">
+                    <div className="filter_wrap">
+                      <div className="challenge_list_filter">
+                        {/* ################## Status*/}
+                        <div className="filter-group">
+                          <div className="group-label">Status</div>
+                          <div className="filters">
+                            <div className="ui-checklist" role="group">
+                              <div className="ui-checklist-list">
+                                <div className="ui-checklist-list-item">
+                                  <div className="ui-checklist-item-wrap">
+                                    <div className="ui-checkbox theme-m">
+                                      <label className="label-wrap">
+                                        <div className="checkbox-wrap">
+                                          <input
+                                            type="checkbox"
+                                            className="checkbox-input"
+                                            value="solved"
+                                          />
+                                          <span className="custom-holder outset">
+                                            <svg
+                                              viewBox="0 0 24 24"
+                                              width="1em"
+                                              height="1em"
+                                              className="checkbox__check-icon ui-svg-icon"
+                                              fill="currentColor"
+                                            >
+                                              <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
+                                            </svg>
+                                          </span>
+                                        </div>
+                                        <div className="label">Solved</div>
+                                      </label>
                                     </div>
-                                    <div className="label">Solved</div>
-                                  </label>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>
-                            <div className="ui-checklist-list-item">
-                              <div className="ui-checklist-item-wrap">
-                                <div className="ui-checkbox theme-m">
-                                  <label className="label-wrap">
-                                    <div className="checkbox-wrap">
-                                      <input
-                                        type="checkbox"
-                                        className="checkbox-input"
-                                        value="unsolved"
-                                      />
-                                      <span className="custom-holder outset">
-                                        <svg
-                                          viewBox="0 0 24 24"
-                                          width="1em"
-                                          height="1em"
-                                          className="checkbox__check-icon ui-svg-icon"
-                                          fill="currentColor"
-                                        >
-                                          <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
-                                        </svg>
-                                      </span>
+                                <div className="ui-checklist-list-item">
+                                  <div className="ui-checklist-item-wrap">
+                                    <div className="ui-checkbox theme-m">
+                                      <label className="label-wrap">
+                                        <div className="checkbox-wrap">
+                                          <input
+                                            type="checkbox"
+                                            className="checkbox-input"
+                                            value="unsolved"
+                                          />
+                                          <span className="custom-holder outset">
+                                            <svg
+                                              viewBox="0 0 24 24"
+                                              width="1em"
+                                              height="1em"
+                                              className="checkbox__check-icon ui-svg-icon"
+                                              fill="currentColor"
+                                            >
+                                              <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
+                                            </svg>
+                                          </span>
+                                        </div>
+                                        <div className="label">Unsolved</div>
+                                      </label>
                                     </div>
-                                    <div className="label">Unsolved</div>
-                                  </label>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                    {/* ################## Skills */}
+                        {/* ################## Skills */}
 
-                    <div className="filter-group">
-                      <div className="group-label">Skills</div>
-                      <div className="filters">
-                        <div className="ui-checklist" role="group">
-                          <div className="ui-checklist-list">
-                            <div className="ui-checklist-list-item">
-                              <div className="ui-checklist-item-wrap">
-                                <div className="ui-checkbox theme-m">
-                                  <label className="label-wrap">
-                                    <div className="checkbox-wrap">
-                                      <input
-                                        type="checkbox"
-                                        className="checkbox-input"
-                                        value="Problem Solving (Basic)"
-                                      />
-                                      <span className="custom-holder outset">
-                                        <svg
-                                          viewBox="0 0 24 24"
-                                          width="1em"
-                                          height="1em"
-                                          className="checkbox__check-icon ui-svg-icon"
-                                          fill="currentColor"
-                                        >
-                                          <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
-                                        </svg>
-                                      </span>
+                        <div className="filter-group">
+                          <div className="group-label">Skills</div>
+                          <div className="filters">
+                            <div className="ui-checklist" role="group">
+                              <div className="ui-checklist-list">
+                                <div className="ui-checklist-list-item">
+                                  <div className="ui-checklist-item-wrap">
+                                    <div className="ui-checkbox theme-m">
+                                      <label className="label-wrap">
+                                        <div className="checkbox-wrap">
+                                          <input
+                                            type="checkbox"
+                                            className="checkbox-input"
+                                            value="Problem Solving (Basic)"
+                                          />
+                                          <span className="custom-holder outset">
+                                            <svg
+                                              viewBox="0 0 24 24"
+                                              width="1em"
+                                              height="1em"
+                                              className="checkbox__check-icon ui-svg-icon"
+                                              fill="currentColor"
+                                            >
+                                              <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
+                                            </svg>
+                                          </span>
+                                        </div>
+                                        <div className="label">
+                                          Problem Solving (Basic)
+                                        </div>
+                                      </label>
                                     </div>
-                                    <div className="label">
-                                      Problem Solving (Basic)
-                                    </div>
-                                  </label>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>
-                            <div className="ui-checklist-list-item">
-                              <div className="ui-checklist-item-wrap">
-                                <div className="ui-checkbox theme-m">
-                                  <label className="label-wrap">
-                                    <div className="checkbox-wrap">
-                                      <input
-                                        type="checkbox"
-                                        className="checkbox-input"
-                                        value="Python (Basic)"
-                                      />
-                                      <span className="custom-holder outset">
-                                        <svg
-                                          viewBox="0 0 24 24"
-                                          width="1em"
-                                          height="1em"
-                                          className="checkbox__check-icon ui-svg-icon"
-                                          fill="currentColor"
-                                        >
-                                          <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
-                                        </svg>
-                                      </span>
+                                <div className="ui-checklist-list-item">
+                                  <div className="ui-checklist-item-wrap">
+                                    <div className="ui-checkbox theme-m">
+                                      <label className="label-wrap">
+                                        <div className="checkbox-wrap">
+                                          <input
+                                            type="checkbox"
+                                            className="checkbox-input"
+                                            value="Python (Basic)"
+                                          />
+                                          <span className="custom-holder outset">
+                                            <svg
+                                              viewBox="0 0 24 24"
+                                              width="1em"
+                                              height="1em"
+                                              className="checkbox__check-icon ui-svg-icon"
+                                              fill="currentColor"
+                                            >
+                                              <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
+                                            </svg>
+                                          </span>
+                                        </div>
+                                        <div className="label">
+                                          Python (Basic)
+                                        </div>
+                                      </label>
                                     </div>
-                                    <div className="label">Python (Basic)</div>
-                                  </label>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>
-                            <div className="ui-checklist-list-item">
-                              <div className="ui-checklist-item-wrap">
-                                <div className="ui-checkbox theme-m">
-                                  <label className="label-wrap">
-                                    <div className="checkbox-wrap">
-                                      <input
-                                        type="checkbox"
-                                        className="checkbox-input"
-                                        value="Problem Solving (Advanced)"
-                                      />
-                                      <span className="custom-holder outset">
-                                        <svg
-                                          viewBox="0 0 24 24"
-                                          width="1em"
-                                          height="1em"
-                                          className="checkbox__check-icon ui-svg-icon"
-                                          fill="currentColor"
-                                        >
-                                          <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
-                                        </svg>
-                                      </span>
+                                <div className="ui-checklist-list-item">
+                                  <div className="ui-checklist-item-wrap">
+                                    <div className="ui-checkbox theme-m">
+                                      <label className="label-wrap">
+                                        <div className="checkbox-wrap">
+                                          <input
+                                            type="checkbox"
+                                            className="checkbox-input"
+                                            value="Problem Solving (Advanced)"
+                                          />
+                                          <span className="custom-holder outset">
+                                            <svg
+                                              viewBox="0 0 24 24"
+                                              width="1em"
+                                              height="1em"
+                                              className="checkbox__check-icon ui-svg-icon"
+                                              fill="currentColor"
+                                            >
+                                              <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
+                                            </svg>
+                                          </span>
+                                        </div>
+                                        <div className="label">
+                                          Problem Solving (Advanced)
+                                        </div>
+                                      </label>
                                     </div>
-                                    <div className="label">
-                                      Problem Solving (Advanced)
-                                    </div>
-                                  </label>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>
-                            <div className="ui-checklist-list-item">
-                              <div className="ui-checklist-item-wrap">
-                                <div className="ui-checkbox theme-m">
-                                  <label className="label-wrap">
-                                    <div className="checkbox-wrap">
-                                      <input
-                                        type="checkbox"
-                                        className="checkbox-input"
-                                        value="Python (Intermediate)"
-                                      />
-                                      <span className="custom-holder outset">
-                                        <svg
-                                          viewBox="0 0 24 24"
-                                          width="1em"
-                                          height="1em"
-                                          className="checkbox__check-icon ui-svg-icon"
-                                          fill="currentColor"
-                                        >
-                                          <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
-                                        </svg>
-                                      </span>
+                                <div className="ui-checklist-list-item">
+                                  <div className="ui-checklist-item-wrap">
+                                    <div className="ui-checkbox theme-m">
+                                      <label className="label-wrap">
+                                        <div className="checkbox-wrap">
+                                          <input
+                                            type="checkbox"
+                                            className="checkbox-input"
+                                            value="Python (Intermediate)"
+                                          />
+                                          <span className="custom-holder outset">
+                                            <svg
+                                              viewBox="0 0 24 24"
+                                              width="1em"
+                                              height="1em"
+                                              className="checkbox__check-icon ui-svg-icon"
+                                              fill="currentColor"
+                                            >
+                                              <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
+                                            </svg>
+                                          </span>
+                                        </div>
+                                        <div className="label">
+                                          Python (Intermediate)
+                                        </div>
+                                      </label>
                                     </div>
-                                    <div className="label">
-                                      Python (Intermediate)
-                                    </div>
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    {/* ################## Difficulty */}
-                    <div className="filter-group">
-                      <div className="group-label">Difficulty</div>
-                      <div className="filters">
-                        <div className="ui-checklist" role="group">
-                          <div className="ui-checklist-list">
-                            <div className="ui-checklist-list-item">
-                              <div className="ui-checklist-item-wrap">
-                                <div className="ui-checkbox theme-m">
-                                  <label className="label-wrap">
-                                    <div className="checkbox-wrap">
-                                      <input
-                                        type="checkbox"
-                                        className="checkbox-input"
-                                        value="Easy"
-                                      />
-                                      <span className="custom-holder outset">
-                                        <svg
-                                          viewBox="0 0 24 24"
-                                          width="1em"
-                                          height="1em"
-                                          className="checkbox__check-icon ui-svg-icon"
-                                          fill="currentColor"
-                                        >
-                                          <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
-                                        </svg>
-                                      </span>
-                                    </div>
-                                    <div className="label">Easy</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="ui-checklist-list-item">
-                              <div className="ui-checklist-item-wrap">
-                                <div className="ui-checkbox theme-m">
-                                  <label className="label-wrap">
-                                    <div className="checkbox-wrap">
-                                      <input
-                                        type="checkbox"
-                                        className="checkbox-input"
-                                        value="Medium"
-                                      />
-                                      <span className="custom-holder outset">
-                                        <svg
-                                          viewBox="0 0 24 24"
-                                          width="1em"
-                                          height="1em"
-                                          className="checkbox__check-icon ui-svg-icon"
-                                          fill="currentColor"
-                                        >
-                                          <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
-                                        </svg>
-                                      </span>
-                                    </div>
-                                    <div className="label">Medium</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="ui-checklist-list-item">
-                              <div className="ui-checklist-item-wrap">
-                                <div className="ui-checkbox theme-m">
-                                  <label className="label-wrap">
-                                    <div className="checkbox-wrap">
-                                      <input
-                                        type="checkbox"
-                                        className="checkbox-input"
-                                        value="Hard"
-                                      />
-                                      <span className="custom-holder outset">
-                                        <svg
-                                          viewBox="0 0 24 24"
-                                          width="1em"
-                                          height="1em"
-                                          className="checkbox__check-icon ui-svg-icon"
-                                          fill="currentColor"
-                                        >
-                                          <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
-                                        </svg>
-                                      </span>
-                                    </div>
-                                    <div className="label">Hard</div>
-                                  </label>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                    {/* ################## */}
-                    {/* <div className="filter-group">
+                        {/* ################## Difficulty */}
+                        <div className="filter-group">
+                          <div className="group-label">Difficulty</div>
+                          <div className="filters">
+                            <div className="ui-checklist" role="group">
+                              <div className="ui-checklist-list">
+                                <div className="ui-checklist-list-item">
+                                  <div className="ui-checklist-item-wrap">
+                                    <div className="ui-checkbox theme-m">
+                                      <label className="label-wrap">
+                                        <div className="checkbox-wrap">
+                                          <input
+                                            type="checkbox"
+                                            className="checkbox-input"
+                                            value="Easy"
+                                          />
+                                          <span className="custom-holder outset">
+                                            <svg
+                                              viewBox="0 0 24 24"
+                                              width="1em"
+                                              height="1em"
+                                              className="checkbox__check-icon ui-svg-icon"
+                                              fill="currentColor"
+                                            >
+                                              <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
+                                            </svg>
+                                          </span>
+                                        </div>
+                                        <div className="label">Easy</div>
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="ui-checklist-list-item">
+                                  <div className="ui-checklist-item-wrap">
+                                    <div className="ui-checkbox theme-m">
+                                      <label className="label-wrap">
+                                        <div className="checkbox-wrap">
+                                          <input
+                                            type="checkbox"
+                                            className="checkbox-input"
+                                            value="Medium"
+                                          />
+                                          <span className="custom-holder outset">
+                                            <svg
+                                              viewBox="0 0 24 24"
+                                              width="1em"
+                                              height="1em"
+                                              className="checkbox__check-icon ui-svg-icon"
+                                              fill="currentColor"
+                                            >
+                                              <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
+                                            </svg>
+                                          </span>
+                                        </div>
+                                        <div className="label">Medium</div>
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="ui-checklist-list-item">
+                                  <div className="ui-checklist-item-wrap">
+                                    <div className="ui-checkbox theme-m">
+                                      <label className="label-wrap">
+                                        <div className="checkbox-wrap">
+                                          <input
+                                            type="checkbox"
+                                            className="checkbox-input"
+                                            value="Hard"
+                                          />
+                                          <span className="custom-holder outset">
+                                            <svg
+                                              viewBox="0 0 24 24"
+                                              width="1em"
+                                              height="1em"
+                                              className="checkbox__check-icon ui-svg-icon"
+                                              fill="currentColor"
+                                            >
+                                              <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"></path>
+                                            </svg>
+                                          </span>
+                                        </div>
+                                        <div className="label">Hard</div>
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        {/* ################## */}
+                        {/* <div className="filter-group">
                       <div className="group-label">Status</div>
                       <div className="filters">
                         <div className="ui-checklist" role="group">
@@ -652,14 +723,16 @@ const Preparation = () => {
                         </div>
                       </div>
                     </div> */}
-                    {/* ################## */}
-                    {/* ################## */}
+                        {/* ################## */}
+                        {/* ################## */}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </>
   );
