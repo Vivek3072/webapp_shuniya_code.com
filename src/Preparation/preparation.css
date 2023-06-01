@@ -145,6 +145,68 @@
 .badge .text i {
   font-size: 30px;
 }
+/* // cards section  */
+.programming_section,
+.Coding_Questions_section {
+  width: 100%;
+}
+.programming_section h1 {
+  font-size: 22px;
+  margin-top: 20px;
+  /* text-decoration: underline; */
+}
+.cards_area {
+  width: 100%;
+  min-height: 140px;
+  display: flex;
+  /* background-color: green; */
+}
+.card {
+  min-width: 200px;
+  width: max-content;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  background-image: url("./images/card_bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-clip: border-box;
+  cursor: pointer;
+}
+.card:hover {
+  transform: scale(1.01);
+}
+.head.Coding_section {
+  background-color: #febd19;
+}
+.head.Coding_section .class {
+  font-size: 13px;
+  padding-left: 10px;
+}
+
+.head {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background-color: #449af5;
+}
+.card_content_area {
+  margin-top: 20px;
+}
+.card_content_area h3 {
+  font-size: 20px;
+}
+.card_content_area h4 {
+  font-size: 14px;
+}
 
 /* // Content section  */
 .content_section {
@@ -154,6 +216,19 @@
   margin-top: 30px;
   justify-content: center;
 }
+.backButton {
+  padding-left: 2rem;
+}
+.backButton i {
+  font-size: 35px;
+  color: rgb(0, 0, 0);
+}
+.backButton i:hover {
+  font-size: 35px;
+  color: green;
+  transform: scale(1.01);
+}
+
 /* // left panel css  */
 .left-panel {
   flex: 1;
