@@ -13,7 +13,7 @@ import { useContext } from "react";
 import { userScoreContext } from "../ContextAPI/userScoreContext";
 
 // radium for inline styling
-import Radium, { StyleRoot } from "radium";
+import { StyleRoot } from "radium";
 
 // toggle icons import
 import EnglishPic from "./Images/Navbar Images/english.png";
@@ -25,7 +25,7 @@ import { actionCreators } from "./state/index";
 // toggle icon
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { width } from "@mui/system";
+// import { width } from "@mui/system";
 
 const NavComponent = () => {
   const { userScore } = useContext(userScoreContext);
@@ -154,7 +154,7 @@ const NavComponent = () => {
               >
                 <ToggleButton
                   style={
-                    alignment == "ENG"
+                    alignment === "ENG"
                       ? { padding: "5px", background: "rgb(250 225 111)" }
                       : { padding: "5px" }
                   }
@@ -171,7 +171,7 @@ const NavComponent = () => {
 
                 <ToggleButton
                   style={
-                    alignment == "HI"
+                    alignment === "HI"
                       ? { padding: "5px", background: "rgb(250 225 111)" }
                       : { padding: "5px" }
                   }
