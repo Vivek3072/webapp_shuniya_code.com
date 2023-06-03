@@ -30,7 +30,7 @@ const PracticeQuestions = () => {
                     </Link>
                     <Link to="#">
                       <div className="question">
-                        <span className="no">1.</span> This is the question
+                        <span className="no">1.</span> Thisthe is the question
                       </div>
                     </Link>
                     <div className="question">

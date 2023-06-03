@@ -29,7 +29,7 @@ const Preparation = () => {
   const getQuestions = async () => {
     try {
       axios.get(baseURL).then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         // console.log(response.data.question_selected);
         setQuestions(response.data.question_selected);
       });
@@ -218,7 +218,10 @@ const Preparation = () => {
               className="backButton container mt-4"
               onClick={() => setProgrammingCard(false)}
             >
-              <i class="fa-solid fa-circle-arrow-left" title="Back to menu"></i>
+              <i
+                className="fa-solid fa-circle-arrow-left"
+                title="Back to menu"
+              ></i>
             </div>
             <div className="container content_section">
               {/* // Left panel  */}
