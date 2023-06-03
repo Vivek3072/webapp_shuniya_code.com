@@ -68,14 +68,16 @@ const Preparation = () => {
                 <div className="headerName">
                   <ol className="ol breadcrumb">
                     <li className="breadcrumb-item">
-                      <Link to="/">Home</Link>
+                      <Link to="/">
+                        {language === "ENG" ? "Home" : "मुखपृष्ठ"}
+                      </Link>
                     </li>
                     <li className="breadcrumb-item active" aria-current="page">
-                      Preparation
+                      {language === "ENG" ? "Preparation" : "अभ्यास"}
                     </li>
                   </ol>
                   <div className="page_label_wrapper">
-                    <h1 className="page_label">Python</h1>
+                    {/* <h1 className="page_label">Python</h1> */}
                   </div>
                 </div>
               </nav>
@@ -107,15 +109,15 @@ const Preparation = () => {
                         {/* <span className="current-points">
                           Points: <span className="value">0/35</span>
                         </span> */}
-                        <a
+                        {/* <a
                           className="scoring-link"
                           data-analytics="BadgeLearnMoreLink"
                           data-attr1="python"
                           target="_blank"
-                          href="/scoring"
+                          href=""
                         >
                           <i className="fa-regular fa-circle-info"></i>
-                        </a>
+                        </a> */}
                       </div>
                     </div>
                     <div className="badge">
@@ -138,15 +140,27 @@ const Preparation = () => {
           <div className="cards container">
             {/* // Programming section  */}
             <div className="programming_section">
-              <h1>Programming Questions</h1>
+              <h1>
+                {language === "ENG"
+                  ? "Programming Questions"
+                  : "प्रोग्रामिंग प्रश्न"}
+              </h1>
               <hr />
               <div className="cards_area">
                 {/* // Individual card  */}
                 <div className="card" onClick={() => setProgrammingCard(true)}>
                   <div className="head"></div>
                   <div className="card_content_area">
-                    <h3>Programming Questions</h3>
-                    <h4>level: Intermediate</h4>
+                    <h3>
+                      {language === "ENG"
+                        ? "Programming Questions"
+                        : "प्रोग्रामिंग प्रश्न"}
+                    </h3>
+                    <h4>
+                      {language === "ENG"
+                        ? "level: Intermediate"
+                        : "स्तर: इंटरमीडिएट"}
+                    </h4>
                   </div>
                 </div>
               </div>
@@ -154,32 +168,38 @@ const Preparation = () => {
             {/* <hr /> */}
             {/* // coding normal questions section  */}
             <div className="programming_section Coding_Questions_section">
-              <h1>Coding Questions</h1>
+              <h1>
+                {language === "ENG" ? "Coding Questions" : "कोडिंग प्रश्न"}
+              </h1>
               <hr />
               <div className="cards_area">
                 {/* // Individual card  */}
-                <Link to="/practice_questions">
-                  <div className="card Coding_section">
-                    <div className="head Coding_section"></div>
-                    <div className="card_content_area">
-                      <h3>Coding Questions</h3>
-                      <h4>level: Easy</h4>
-                    </div>
-                  </div>
-                </Link>
-                {/* // duplicate data  */}
-                <Link to="/practice_questions">
-                  <div className="card Coding_section">
-                    <div className="head Coding_section"></div>
-                    <div className="card_content_area">
-                      <h3>Coding Questions</h3>
-                      <h4>level: Easy</h4>
-                    </div>
-                  </div>
-                </Link>
+                {/* <Link to="/practice_questions"> */}
                 <div className="card Coding_section">
                   <div className="head Coding_section">
                     <div className="class">Class 6</div>
+                  </div>
+                  <div className="card_content_area">
+                    <h3>Coding Questions</h3>
+                    <h4>level: Easy</h4>
+                  </div>
+                </div>
+                {/* </Link> */}
+                {/* // duplicate data  */}
+                {/* <Link to="/practice_questions"> */}
+                <div className="card Coding_section">
+                  <div className="head Coding_section">
+                    <div className="class">Class 7</div>
+                  </div>
+                  <div className="card_content_area">
+                    <h3>Coding Questions</h3>
+                    <h4>level: Easy</h4>
+                  </div>
+                </div>
+                {/* </Link> */}
+                <div className="card Coding_section">
+                  <div className="head Coding_section">
+                    <div className="class">Class 8</div>
                   </div>
                   <div className="card_content_area">
                     <h3>Coding Questions</h3>
@@ -190,6 +210,7 @@ const Preparation = () => {
             </div>
           </div>
         )}
+
         {/* //Programming question Content section  */}
         {programmingCard && (
           <>
@@ -204,7 +225,7 @@ const Preparation = () => {
               <div className="practice_panel left-panel">
                 {/* <FiltersPanel /> */}
                 {/* // recommended challenge for new user  */}
-                <div className="recommended_challenge">
+                {/* <div className="recommended_challenge">
                   <div className="single_item">
                     <div className="track_contest">
                       <div className="content_body">
@@ -218,11 +239,11 @@ const Preparation = () => {
                                     Easy
                                   </span>
                                   <span className="max-score detail-item">
-                                    Total points: {userScore}
+                                    Total points: 100
                                   </span>
-                                  {/* <span className="success-ratio detail-item">
+                                  <span className="success-ratio detail-item">
                                 Success Rate: 96.72%
-                              </span> */}
+                              </span>
                                 </div>
                               </h4>
                             </div>
@@ -267,7 +288,7 @@ const Preparation = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 {/* // All challenges list  */}
                 <div className="challenges-list">
                   {questions !== [] &&
@@ -288,7 +309,6 @@ const Preparation = () => {
                                   <div className="pull-left inline-block">
                                     <h4 className="challengecard-title">
                                       <div>
-                                        {question.title}
                                         {language === "ENG"
                                           ? question.title
                                           : question.title_hi}
@@ -341,7 +361,9 @@ const Preparation = () => {
                                               className="ui-text"
                                               aria-hidden="false"
                                             >
-                                              Solve Question
+                                              {language === "ENG"
+                                                ? "Solve Question"
+                                                : "प्रश्न हल करें"}
                                             </span>
                                           </div>
                                         </button>
