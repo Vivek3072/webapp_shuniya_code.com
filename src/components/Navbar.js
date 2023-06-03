@@ -37,7 +37,7 @@ const NavComponent = () => {
   // language toggle functions
   const dispatch = useDispatch(); // for setting the lang.
   const language = useSelector((state) => state.language); // for getting the lang.
-  console.log("Getting the state from store ", language);
+  // console.log("Getting the state from store ", language);
   const { toggleLanguage } = bindActionCreators(actionCreators, dispatch);
 
   // toggle button logic starts here...
@@ -138,7 +138,7 @@ const NavComponent = () => {
             About-Us
           </Link> */}
             <Link to="/preparation" className="text-dark my-1 mx-2">
-              {language === "ENG" ? "Preparation" : "सामग्री"}
+              {language === "ENG" ? "Preparation" : "अभ्यास"}
             </Link>
           </div>
           <Nav>
