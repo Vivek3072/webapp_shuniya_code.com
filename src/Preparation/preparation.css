@@ -159,11 +159,14 @@
   width: 100%;
   min-height: 140px;
   display: flex;
+  flex-wrap: wrap;
   /* background-color: green; */
 }
 .card {
   min-width: 200px;
   width: max-content;
+  min-height: 120px;
+  color: rgb(0, 0, 0);
   padding: 10px;
   display: flex;
   flex-direction: column;
