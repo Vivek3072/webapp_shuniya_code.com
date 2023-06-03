@@ -158,21 +158,25 @@ const Preparation = () => {
               <hr />
               <div className="cards_area">
                 {/* // Individual card  */}
-                <div className="card Coding_section">
-                  <div className="head Coding_section"></div>
-                  <div className="card_content_area">
-                    <h3>Coding Questions</h3>
-                    <h4>level: Easy</h4>
+                <Link to="/practice_questions">
+                  <div className="card Coding_section">
+                    <div className="head Coding_section"></div>
+                    <div className="card_content_area">
+                      <h3>Coding Questions</h3>
+                      <h4>level: Easy</h4>
+                    </div>
                   </div>
-                </div>
+                </Link>
                 {/* // duplicate data  */}
-                <div className="card Coding_section">
-                  <div className="head Coding_section"></div>
-                  <div className="card_content_area">
-                    <h3>Coding Questions</h3>
-                    <h4>level: Easy</h4>
+                <Link to="/practice_questions">
+                  <div className="card Coding_section">
+                    <div className="head Coding_section"></div>
+                    <div className="card_content_area">
+                      <h3>Coding Questions</h3>
+                      <h4>level: Easy</h4>
+                    </div>
                   </div>
-                </div>
+                </Link>
                 <div className="card Coding_section">
                   <div className="head Coding_section">
                     <div className="class">Class 6</div>
