@@ -54,7 +54,7 @@ export default class home extends Component {
     }
 
     // console.log(postBody);
-    var postContent = JSON.stringify(postBody);
+    var content = JSON.stringify(postBody);
     const headers = {
       "Content-Type": "application/json",
     };
@@ -62,7 +62,7 @@ export default class home extends Component {
       const res = axios
         .post(
           `http://43.204.229.206:8000/api/v1/check/${this.props.ques_id}/`,
-          postContent,
+          content,
           headers
         )
         .then((res) => {
@@ -71,10 +71,14 @@ export default class home extends Component {
             data: res.data,
             isloaded: true,
           });
+          this.props.scoreInc(100);
         });
-      this.props.scoreInc(100);
     } catch (error) {
       console.log("Error: " + error);
+      this.setState({
+        // isloaded: false,
+        isSubmited: false,
+      });
     }
     // console.log(res);
     // this.setState({ submitted: true });

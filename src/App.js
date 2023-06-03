@@ -30,6 +30,7 @@ import About from "./components/About/About";
 import RefundPolicy from "./components/LegalDocs/RefundPolicy";
 import Preparation from "./Preparation/Preparation";
 import CodeRunner from "./CodeRunner/CodeRunner";
+import PracticeQuestions from "./Preparation/Practice questions/PracticeQuestions";
 
 const App = () => {
   const location = useLocation();
@@ -66,6 +67,12 @@ const App = () => {
                 component={CodeRunner}
               />
               <Route exact path={"/preparation"} component={Preparation} />
+              <Route
+                exact
+                path={"/practice_questions"}
+                component={PracticeQuestions}
+              />
+
               <Route exact path={"/courses"} component={Courses} />
               <Route exact path={"/course/:course_id"} component={CoursePage} />
               <Route

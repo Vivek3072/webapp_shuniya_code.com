@@ -85,6 +85,8 @@
 .final_result i.fa-circle-xmark {
   color: red;
 }
+
+/* //  These scrollbar properties used in this css file going to affect whole project scrollbars globally. Best practice is to apply them in module. */
 /* // scrollbar css  */
 ::-webkit-scrollbar {
   width: 5px;

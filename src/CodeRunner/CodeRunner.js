@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import RunnerEditor from "./Editor/RunnerEditor";
 // import "./data";
 import { userScoreContext } from "../ContextAPI/userScoreContext";
+import { useSelector } from "react-redux";
 
 const CodeRunner = () => {
   const resize = useRef();
@@ -14,6 +15,8 @@ const CodeRunner = () => {
   const editor = useRef(null);
 
   const { userScore, scoreInc } = useContext(userScoreContext);
+  // language toggle state
+  const language = useSelector((state) => state.language); // for getting the lang.
 
   const { questionCode, limit } = useParams();
   // states
@@ -131,8 +134,12 @@ const CodeRunner = () => {
                     <div className="headings">
                       <h4>Problem</h4>
                       <hr style={{ marginBottom: "20px" }} />
-                      <h6>{item.title}</h6>
-                      <p>{item.description}</p>
+                      <h6>{language === "ENG" ? item.title : item.title_hi}</h6>
+                      <p>
+                        {language === "ENG"
+                          ? item.description
+                          : item.description_hi}
+                      </p>
                     </div>
                     <hr />
                     {/* // task box  */}
@@ -148,7 +155,12 @@ const CodeRunner = () => {
                     {/* <hr /> */}
                     <div className="input_format">
                       <h4>Input format</h4>
-                      <p>{item.input_format}</p>
+                      <p>
+                        {}
+                        {language === "ENG"
+                          ? item.input_format
+                          : item.input_format_hi}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -156,7 +168,11 @@ const CodeRunner = () => {
                   <div className="right_panel_wrapper">
                     <div className="output_format">
                       <h4>Output format</h4>
-                      <p>{item.output_format}</p>
+                      <p>
+                        {language === "ENG"
+                          ? item.output_format
+                          : item.output_format_hi}
+                      </p>
                     </div>
                     <hr />
                     <div className="sample_input">
@@ -189,7 +205,9 @@ const CodeRunner = () => {
                           className="constVal"
                           style={{ fontWeight: "normal" }}
                         >
-                          {item.input_constrains}
+                          {language === "ENG"
+                            ? item.input_constraints
+                            : item.input_constraints_hi}
                         </div>
                       </div>
                       <div className="outputConstraints">
@@ -198,7 +216,9 @@ const CodeRunner = () => {
                           className="constVal"
                           style={{ fontWeight: "normal" }}
                         >
-                          {item.output_constrains}
+                          {language === "ENG"
+                            ? item.output_constraints
+                            : item.output_constraints_hi}
                         </div>
                       </div>
                     </div>
