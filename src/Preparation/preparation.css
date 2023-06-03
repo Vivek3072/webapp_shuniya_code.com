@@ -223,6 +223,7 @@
   padding-left: 2rem;
 }
 .backButton i {
+  cursor: pointer;
   font-size: 35px;
   color: rgb(0, 0, 0);
 }
@@ -546,5 +547,14 @@ div.label {
   }
   .right-panel {
     width: 100%;
+  }
+}
+
+@media (max-width: 468px) {
+  .cards_area {
+    justify-content: center;
+  }
+  .card {
+    width: 80%;
   }
 }
