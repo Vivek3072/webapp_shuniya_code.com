@@ -22,6 +22,7 @@ import { actionCreators } from "./state/index";
 // toggle icon
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+// import { width } from "@mui/system";
 
 const NavComponent = () => {
   const { userScore } = useContext(userScoreContext);
