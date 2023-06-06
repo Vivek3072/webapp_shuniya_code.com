@@ -1,10 +1,4 @@
 /* // editor css  */
-/* .code .row.page .row:nth-child(2) {
-  display: none !important;
-}
-.output_box {
-  display: none;
-} */
 
 .output_box {
   /* width: 90%; */
@@ -90,6 +84,7 @@
 /* // scrollbar css  */
 ::-webkit-scrollbar {
   width: 5px;
+  /* display: none; */
 }
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
