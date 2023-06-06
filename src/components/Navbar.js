@@ -68,8 +68,8 @@ const NavComponent = () => {
 
   const styles = {
     // Adding media query..
-    "@media (max-width: 993px)": {
-      padding: "10px",
+    "@media (maxWidth: 993px)": {
+      padding: "10px !important",
     },
   };
 
@@ -85,6 +85,8 @@ const NavComponent = () => {
       localStorage.removeItem("refresh_token");
       localStorage.removeItem("user_id");
       localStorage.removeItem("username");
+
+      sessionStorage.removeItem("proSelections");
 
       axiosInstance.defaults.headers["Authorization"] = null;
       history.push("/");
@@ -113,13 +115,13 @@ const NavComponent = () => {
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
         <div className="mr-auto">
           <Link to="/" className="text-dark my-1 mx-2">
-            {language === "ENG" ? "Home" : "मुखपृष्ठ"}
+            {language === "ENG" ? "Home" : "होम"}
           </Link>
           <Link to="/editor" className="text-dark my-1 mx-2">
-            {language === "ENG" ? "Editor" : "संपादक"}
+            {language === "ENG" ? "Editor" : "कोङिग"}
           </Link>
           <Link to="/courses" className="text-dark my-1 mx-2">
-            {language === "ENG" ? "Courses" : "पाठ्यक्रम"}
+            {language === "ENG" ? "Courses" : "कोर्स"}
           </Link>
           {/* <Link to="/about" className="text-dark my-1 mx-2">
             About-Us

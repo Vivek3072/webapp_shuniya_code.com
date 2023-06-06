@@ -16,7 +16,7 @@ const Preparation = () => {
   const { userScore } = useContext(userScoreContext);
   // state for toggling the cards of questions
   const [programmingCard, setProgrammingCard] = useState(
-    JSON.parse(localStorage.getItem("proSelections")) || false
+    JSON.parse(sessionStorage.getItem("proSelections")) || false
   );
 
   const language = useSelector((state) => state.language); // for getting the lang.
@@ -52,7 +52,7 @@ const Preparation = () => {
   // toggleProgrammingSection
   const toggleProgrammingSection = (value) => {
     setProgrammingCard(value);
-    localStorage.setItem("proSelections", value);
+    sessionStorage.setItem("proSelections", value);
   };
 
   useEffect(() => {

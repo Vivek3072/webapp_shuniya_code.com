@@ -218,11 +218,17 @@
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  margin-top: 30px;
+  margin-top: 20px;
   justify-content: center;
 }
 .backButton {
-  padding-left: 2rem;
+  padding-left: 4rem;
+  padding-top: 2rem;
+  position: absolute;
+  margin: 1rem;
+  /* text-align: center; */
+  margin-left: 1rem;
+  z-index: 5;
 }
 .backButton i {
   cursor: pointer;
@@ -554,6 +560,10 @@ div.label {
   }
   .right-panel {
     width: 100%;
+  }
+  .backButton {
+    position: relative;
+    padding-top: 0;
   }
 }
 
