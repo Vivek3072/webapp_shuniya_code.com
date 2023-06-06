@@ -9,7 +9,8 @@
 }
 
 .question_statement {
-  width: 400px;
+  width: 550px;
+  /* width: 40%; */
   height: auto;
   min-height: 200px;
   /* margin: 10px; */
@@ -119,7 +120,7 @@ hr {
   padding: 10px;
   display: flex;
   flex-direction: column;
-  width: calc(100% - 420px);
+  width: calc(100% - 550px);
 }
 #draghandle {
   position: absolute;
