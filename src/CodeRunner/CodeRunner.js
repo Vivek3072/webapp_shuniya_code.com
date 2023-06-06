@@ -74,9 +74,9 @@ const CodeRunner = () => {
   }, []);
 
   const [size, setSize] = useState({
-    x: 400,
+    x: 500,
     y: 200,
-    z: window.innerWidth - 400,
+    z: window.innerWidth - 500,
   });
 
   // ###### Window resize code ends
@@ -206,8 +206,8 @@ const CodeRunner = () => {
                           style={{ fontWeight: "normal" }}
                         >
                           {language === "ENG"
-                            ? item.input_constraints
-                            : item.input_constraints_hi}
+                            ? item.input_constrains
+                            : item.input_constrains_hi}
                         </div>
                       </div>
                       <div className="outputConstraints">
@@ -217,8 +217,8 @@ const CodeRunner = () => {
                           style={{ fontWeight: "normal" }}
                         >
                           {language === "ENG"
-                            ? item.output_constraints
-                            : item.output_constraints_hi}
+                            ? item.output_constrains
+                            : item.output_constrains_hi}
                         </div>
                       </div>
                     </div>
