@@ -97,8 +97,8 @@ const App = () => {
             </Switch>
           </CSSTransition>
         </TransitionGroup>
-        <br />
-        <br />
+        {/* <br />
+        <br /> */}
       </div>
       <Footer />
     </div>

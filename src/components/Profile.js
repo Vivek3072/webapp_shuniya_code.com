@@ -12,7 +12,7 @@ const Profile = () => {
 
   const language = useSelector((state) => state.language); // for getting the lang.
   return (
-    <>
+    <div className="main">
       <div className="fs-1 text-center mt-4">
         {language === "ENG" ? "Hello" : "नमस्ते"}
         👋 , <span className="text-success"> {userID && userID} </span>
@@ -52,7 +52,7 @@ const Profile = () => {
         <button disabled>Edit Profile</button>
         <button onClick={() => history.goBack()}>Go Back</button>
       </div>
-    </>
+    </div>
   );
 };
 

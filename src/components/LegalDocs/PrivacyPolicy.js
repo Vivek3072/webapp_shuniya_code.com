@@ -2,7 +2,7 @@ import React from "react";
 
 export default function PrivacyPolicy() {
   return (
-    <div className="container">
+    <div className="container" div style={{ paddingBottom: "50px" }}>
       <h1>Privacy Policy</h1>
       <p>Last updated: [insert date]</p>
       <p>

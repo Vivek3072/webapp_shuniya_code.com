@@ -8,7 +8,7 @@ export default function HomePage() {
   // getting language state
   const language = useSelector((state) => state.language); // for getting the lang.
   return (
-    <>
+    <div style={{ paddingBottom: "50px" }}>
       <section id="hero" className="d-flex align-items-center">
         <div className="container">
           <div className="row">
@@ -75,6 +75,6 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

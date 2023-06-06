@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 export default function Contact() {
   const language = useSelector((state) => state.language);
   return (
-    <div>
+    <div style={{ paddingBottom: "50px" }}>
       <section className="mb-4">
         <h2 className="h1-responsive font-weight-bold text-center my-4">
           {language === "ENG" ? "Contact us" : "संपर्क करें"}

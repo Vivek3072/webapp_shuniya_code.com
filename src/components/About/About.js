@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 export default function About() {
   const language = useSelector((state) => state.language);
   return (
-    <>
+    <div style={{ paddingBottom: "50px" }}>
       <div className="container px-10 md:px-15 py-auto mb-auto mt-5">
         <h1 className="headline text-3xl lg:text-5xl text-[#157D9E] mb-5">
           {language === "ENG"
@@ -20,6 +20,6 @@ export default function About() {
         </div>
       </div>
       <Services />
-    </>
+    </div>
   );
 }

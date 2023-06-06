@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 export default function RefundPolicy() {
   const language = useSelector((state) => state.language);
   return (
-    <div className="container my-5">
+    <div className="container my-5" div style={{ paddingBottom: "50px" }}>
       <h1> {language === "ENG" ? "Refund Policy" : "भुगतान वापसी की नीति"}</h1>
       <p>
         {language === "ENG"

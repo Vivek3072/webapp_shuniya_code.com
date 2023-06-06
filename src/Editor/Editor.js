@@ -90,7 +90,7 @@ export default class home extends Component {
   };
   render() {
     return (
-      <>
+      <div style={{ paddingBottom: "50px" }}>
         <div className="row page">
           <Row>
             <Col>
@@ -149,7 +149,7 @@ export default class home extends Component {
         <div className="row">
           <div className="menu-bar"></div>
         </div>
-      </>
+      </div>
     );
   }
 }

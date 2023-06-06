@@ -2,7 +2,7 @@ import React from "react";
 
 export default function TermsConditions() {
   return (
-    <div className="container">
+    <div className="container" div style={{ paddingBottom: "50px" }}>
       <h1>Terms and Conditions</h1>
       <p>
         Please read these Terms and Conditions ("Terms", "Terms and Conditions")

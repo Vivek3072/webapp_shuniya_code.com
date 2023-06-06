@@ -6,7 +6,7 @@ export default function Discussions() {
   // const [readMore , setReadMore]=useState(100)
 
   return (
-    <>
+    <div style={{ paddingBottom: "50px" }}>
       <div className="d-flex flex-column">
         <div className="form-floating">
           <textarea
@@ -14,11 +14,13 @@ export default function Discussions() {
             placeholder="Leave a comment here"
             id="floatingTextarea2"
             style={{ height: "100px" }}
-            ></textarea>
+          ></textarea>
           <label htmlFor="floatingTextarea2" className="text-secondary">
             Comments
           </label>
-          <button className="btn btn-outline-secondary d-block ms-auto mt-1 mb-2">Add comment</button>
+          <button className="btn btn-outline-secondary d-block ms-auto mt-1 mb-2">
+            Add comment
+          </button>
         </div>
 
         <div className="flex flex-column">
@@ -47,15 +49,24 @@ export default function Discussions() {
                       {data.name}{" "}
                       <span className="fs-6 text-secondary">{data.time}</span>
                     </div>
-                    <div className="fs-6 ps-4">{data.comment.length<=0 ? <div className="bg-opacity-50 py-2 px-3 rounded text-white fst-italic" style={{backgroundColor:"#c6c6c6"}}>This comment has been deleted </div> :
-                   ( data.comment)
-                    }</div>
+                    <div className="fs-6 ps-4">
+                      {data.comment.length <= 0 ? (
+                        <div
+                          className="bg-opacity-50 py-2 px-3 rounded text-white fst-italic"
+                          style={{ backgroundColor: "#c6c6c6" }}
+                        >
+                          This comment has been deleted{" "}
+                        </div>
+                      ) : (
+                        data.comment
+                      )}
+                    </div>
                   </div>
                 </>
               );
             })}
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -31,7 +31,7 @@ export default function CoursePage() {
   }, [video]);
 
   return (
-    <>
+    <div style={{ paddingBottom: "50px" }}>
       <div className="container-fluid course_page mt-3">
         <div className="order-2 order-sm-2 order-lg-1 col-lg-4 col-md-12 col-sm-6 course_videos container d-flex flex-column justify-content-center my-2">
           <div className="d-flex flex-row align-items-center ">
@@ -88,6 +88,6 @@ export default function CoursePage() {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }

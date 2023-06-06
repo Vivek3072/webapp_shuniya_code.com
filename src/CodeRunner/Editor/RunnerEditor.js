@@ -37,7 +37,7 @@ export default class home extends Component {
       isloaded: false,
       isSubmited: true,
     });
-    console.log("inside submitHandler");
+
     var getText = this.state.texteditor;
     var code_text_b64 = btoa(unescape(encodeURIComponent(getText)));
 
@@ -47,7 +47,7 @@ export default class home extends Component {
     const postBody = {
       content: code_text_b64,
     };
-    if (code_text_b64 == "") {
+    if (code_text_b64 === "") {
       alert("Please enter some code before submitting");
       window.location.reload();
       return;
