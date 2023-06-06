@@ -14,7 +14,7 @@ const Profile = () => {
   return (
     <div className="main">
       {/* // greeting section  */}
-      <div className="fs-1 text-center mt-4">
+      <div className="fs-1 text-center pt-4">
         {language === "ENG" ? "Hello" : "नमस्ते"}
         👋 , <span className="text-success"> {userID && userID} </span>
       </div>
