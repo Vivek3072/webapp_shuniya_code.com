@@ -15,7 +15,9 @@ const Preparation = () => {
   // const [scoreValue, setScoreValue] = useState();
   const { userScore } = useContext(userScoreContext);
   // state for toggling the cards of questions
-  const [programmingCard, setProgrammingCard] = useState(false);
+  const [programmingCard, setProgrammingCard] = useState(
+    JSON.parse(localStorage.getItem("proSelections")) || false
+  );
 
   const language = useSelector((state) => state.language); // for getting the lang.
 
@@ -47,6 +49,12 @@ const Preparation = () => {
     }, 100);
   };
 
+  // toggleProgrammingSection
+  const toggleProgrammingSection = (value) => {
+    setProgrammingCard(value);
+    localStorage.setItem("proSelections", value);
+  };
+
   useEffect(() => {
     getQuestions();
   }, []);
@@ -75,6 +83,16 @@ const Preparation = () => {
                     <li className="breadcrumb-item active" aria-current="page">
                       {language === "ENG" ? "Preparation" : "अभ्यास"}
                     </li>
+                    {programmingCard && (
+                      <li
+                        className="breadcrumb-item active"
+                        aria-current="page"
+                      >
+                        {language === "ENG"
+                          ? "Programming Questions"
+                          : "प्रोग्रामिंग प्रश्न"}
+                      </li>
+                    )}
                   </ol>
                   <div className="page_label_wrapper">
                     {/* <h1 className="page_label">Python</h1> */}
@@ -148,7 +166,10 @@ const Preparation = () => {
               <hr />
               <div className="cards_area">
                 {/* // Individual card  */}
-                <div className="card" onClick={() => setProgrammingCard(true)}>
+                <div
+                  className="card"
+                  onClick={() => toggleProgrammingSection(true)}
+                >
                   <div className="head"></div>
                   <div className="card_content_area">
                     <h3>
@@ -216,7 +237,7 @@ const Preparation = () => {
           <>
             <div
               className="backButton container mt-4"
-              onClick={() => setProgrammingCard(false)}
+              onClick={() => toggleProgrammingSection(false)}
             >
               <i
                 className="fa-solid fa-circle-arrow-left"
