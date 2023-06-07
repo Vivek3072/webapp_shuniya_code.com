@@ -68,8 +68,10 @@
   background-color: #e7e5e5;
   border-radius: 5px;
 }
+/* .leftPanel .profileSection {
+  background-color: red;
+} */
 .leftPanel .profileSection .image {
-  /* background-color: blue; */
   width: 100%;
   position: relative;
   border-radius: 10px;
@@ -78,7 +80,7 @@
   width: 50%;
   height: 50%;
   margin: 0.5rem;
-  border: 2px solid gray;
+  border: 2px solid rgb(50, 182, 87);
   border-radius: 50%;
 }
 .leftPanel .buttons {
@@ -86,13 +88,20 @@
   /* background-color: green; */
   align-items: center;
 }
+
 .leftPanel .buttons button {
+  cursor: pointer;
   margin: 14px 10px;
   padding: 5px 25px;
   border: none;
+  z-index: 5;
   border-radius: 5px;
   font-size: 0.96rem;
-  background-color: #419cfd;
+  /* background-color: #419cfd; */
+  background-color: rgb(50, 182, 87);
+}
+.leftPanel .buttons button:hover {
+  background-color: rgb(39, 172, 77);
 }
 /* //  User details css  */
 .rightPanel {
@@ -126,9 +135,63 @@
   font-size: 16px;
   border-bottom: 1px solid rgb(50, 182, 87);
   padding: 5px;
+  padding-left: 10px;
   background-color: #e9e8e8;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+}
+
+/* // update modal  */
+.updateModal {
+  padding-top: 2%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 5;
+}
+
+.updateModal .backDiv {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  height: 100vh;
+  background-color: rgb(65, 59, 59);
+  opacity: 0.6;
+  z-index: -0;
+}
+.updateModal .modal-dialog,
+.dialog {
+  max-width: 70%;
+  margin: auto;
+}
+
+.updateModal .modal-content {
+  z-index: 10;
+  background-color: #f5f5f5;
+}
+.updateModal .modal-content .modal-body {
+  z-index: 10;
+  max-height: 70vh;
+  overflow: scroll;
+  background-color: #f5f5f5;
+}
+
+.updateForm input,
+.updateForm textarea,
+.updateForm .input-group input,
+.updateForm .input-group-prepend {
+  border: none !important;
+  outline: none !important;
+  border-top-right-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+}
+.updateForm input:focus {
+  border: none !important;
+  outline: none !important;
 }
 
 @media (max-width: 769px) {
@@ -150,5 +213,8 @@
   }
   .table-responsive {
     overflow-x: auto;
+  }
+  .updateModal .modal-dialog {
+    width: 90%;
   }
 }
