@@ -41,11 +41,7 @@ const Profile = () => {
 
   // function for toggling modal
   const toggleModalFunc = () => {
-    console.log("Clicking");
     settoggleModal(!toggleModal);
-    setTimeout(() => {
-      console.log(toggleModal);
-    }, 1000);
   };
   return (
     <div className="main">
