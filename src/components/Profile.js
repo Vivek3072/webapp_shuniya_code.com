@@ -156,13 +156,13 @@ const Profile = () => {
               </div>
               <div className="modal-body">
                 {/* // #### body  */}
-                <form class="updateForm">
-                  <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <label for="firstName">First name</label>
+                <form className="updateForm">
+                  <div className="row">
+                    <div className="col-md-6 mb-3">
+                      <label htmlFor="firstName">First name</label>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         id="firstName"
                         placeholder=""
                         name="first_name"
@@ -170,15 +170,15 @@ const Profile = () => {
                         value={updateUserDetails.first_name}
                         required=""
                       />
-                      <div class="invalid-feedback">
+                      <div className="invalid-feedback">
                         Valid first name is required.
                       </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                      <label for="lastName">Last name</label>
+                    <div className="col-md-6 mb-3">
+                      <label htmlFor="lastName">Last name</label>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         id="lastName"
                         placeholder=""
                         name="last_name"
@@ -186,21 +186,21 @@ const Profile = () => {
                         value={updateUserDetails.last_name}
                         required=""
                       />
-                      <div class="invalid-feedback">
+                      <div className="invalid-feedback">
                         Valid last name is required.
                       </div>
                     </div>
                   </div>
                   {/* // userName  */}
-                  <div class="mb-3">
-                    <label for="username">Username</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">👤</span>
+                  <div className="mb-3">
+                    <label htmlFor="username">Username</label>
+                    <div className="input-group">
+                      <div className="input-group-prepend">
+                        <span className="input-group-text">👤</span>
                       </div>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         id="username"
                         placeholder="your Username"
                         name="user_name"
@@ -208,21 +208,24 @@ const Profile = () => {
                         value={updateUserDetails.user_name}
                         required=""
                       />
-                      <div class="invalid-feedback" style={{ width: "100%" }}>
+                      <div
+                        className="invalid-feedback"
+                        style={{ width: "100%" }}
+                      >
                         Your username is required.
                       </div>
                     </div>
                   </div>
                   {/* // Email identity  */}
-                  <div class="mb-3">
-                    <label for="username">Email Id</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">@</span>
+                  <div className="mb-3">
+                    <label htmlFor="username">Email Id</label>
+                    <div className="input-group">
+                      <div className="input-group-prepend">
+                        <span className="input-group-text">@</span>
                       </div>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         id="username"
                         placeholder="Your Email id"
                         name="email_Id"
@@ -230,22 +233,25 @@ const Profile = () => {
                         value={updateUserDetails.email_Id}
                         required=""
                       />
-                      <div class="invalid-feedback" style={{ width: "100%" }}>
+                      <div
+                        className="invalid-feedback"
+                        style={{ width: "100%" }}
+                      >
                         Your username is required.
                       </div>
                     </div>
                   </div>
                   {/* // Mobile No  */}
                   {/* // 1 */}
-                  <div class="mb-3">
-                    <label for="username">Contact No.</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">📱</span>
+                  <div className="mb-3">
+                    <label htmlFor="username">Contact No.</label>
+                    <div className="input-group">
+                      <div className="input-group-prepend">
+                        <span className="input-group-text">📱</span>
                       </div>
                       <input
                         type="number"
-                        class="form-control"
+                        className="form-control"
                         id="username"
                         placeholder="Your contact Number 1"
                         name="contact_no_1"
@@ -253,23 +259,27 @@ const Profile = () => {
                         value={updateUserDetails.contact_no_1}
                         required=""
                       />
-                      <div class="invalid-feedback" style={{ width: "100%" }}>
+                      <div
+                        className="invalid-feedback"
+                        style={{ width: "100%" }}
+                      >
                         Your username is required.
                       </div>
                     </div>
                   </div>
                   {/* // 2 */}
-                  <div class="mb-3">
-                    <label for="username">
-                      Contact No. 2<span class="text-muted">(Optional)</span>
+                  <div className="mb-3">
+                    <label htmlFor="username">
+                      Contact No. 2
+                      <span className="text-muted">(Optional)</span>
                     </label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">📱</span>
+                    <div className="input-group">
+                      <div className="input-group-prepend">
+                        <span className="input-group-text">📱</span>
                       </div>
                       <input
                         type="number"
-                        class="form-control"
+                        className="form-control"
                         id="username"
                         placeholder="Your contact Number 2"
                         name="contact_no_2"
@@ -277,20 +287,23 @@ const Profile = () => {
                         value={updateUserDetails.contact_no_2}
                         required=""
                       />
-                      <div class="invalid-feedback" style={{ width: "100%" }}>
+                      <div
+                        className="invalid-feedback"
+                        style={{ width: "100%" }}
+                      >
                         Your username is required.
                       </div>
                     </div>
                   </div>
-                  <div class="mb-3">
-                    <label for="username">Address</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">🏠</span>
+                  <div className="mb-3">
+                    <label htmlFor="username">Address</label>
+                    <div className="input-group">
+                      <div className="input-group-prepend">
+                        <span className="input-group-text">🏠</span>
                       </div>
                       <textarea
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         id="username"
                         placeholder="Your address"
                         name="address"
@@ -298,7 +311,10 @@ const Profile = () => {
                         value={updateUserDetails.address}
                         required=""
                       ></textarea>
-                      <div class="invalid-feedback" style={{ width: "100%" }}>
+                      <div
+                        className="invalid-feedback"
+                        style={{ width: "100%" }}
+                      >
                         Your username is required.
                       </div>
                     </div>
