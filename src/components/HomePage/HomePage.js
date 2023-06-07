@@ -40,7 +40,7 @@ export default function HomePage() {
                     className="border border-secondary rounded rounded-5 px-3 py-2 text-secondary text-center"
                     style={{ width: "fit-content" }}
                   >
-                    {language === "ENG" ? "View Courses" : "पाठ्यक्रम देखें"}
+                    {language === "ENG" ? "View Courses" : "कोर्स देखें"}
                   </div>
                 </Link>
               </div>

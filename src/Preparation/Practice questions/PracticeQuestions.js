@@ -7,7 +7,7 @@ const PracticeQuestions = () => {
     <div>
       <div className="main container">
         <div className="heading_section">
-          <h1 className="title">Practice questions</h1>
+          <h1 className="title">Practice questions for class 7</h1>
           <div className="desc">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
             doloribus iste molestiae. Lorem ipsum dolor sit, amet consectetur
@@ -25,16 +25,12 @@ const PracticeQuestions = () => {
                   <div className="questions">
                     <Link to="#">
                       <div className="question">
-                        This is the question This is the question
-                      </div>
-                    </Link>
-                    <Link to="#">
-                      <div className="question">
-                        <span className="no">1.</span> Thisthe is the question
+                        <span className="no">1.</span> This is the question
                       </div>
                     </Link>
                     <div className="question">
-                      <span className="no">2.</span>This is the question
+                      <span className="no">2.</span>This is the question and it
+                      can cover multiple lines.
                     </div>
                     <div className="question">
                       <span className="no">3.</span>This is the question
@@ -48,7 +44,7 @@ const PracticeQuestions = () => {
               {/* // dummy  */}
               <div className="topic_box">
                 <div className="topic_box_inner">
-                  <div className="topic_title">Arrays</div>
+                  <div className="topic_title">Strings</div>
                   <div className="questions">
                     <div className="question">This is the question</div>
                   </div>
@@ -56,7 +52,7 @@ const PracticeQuestions = () => {
               </div>{" "}
               <div className="topic_box">
                 <div className="topic_box_inner">
-                  <div className="topic_title">Arrays</div>
+                  <div className="topic_title">Linked List</div>
                   <div className="questions">
                     <div className="question">This is the question</div>
                     <div className="question">This is the question</div>
@@ -67,7 +63,7 @@ const PracticeQuestions = () => {
               </div>
               <div className="topic_box">
                 <div className="topic_box_inner">
-                  <div className="topic_title">Arrays</div>
+                  <div className="topic_title">Recursion</div>
                   <div className="questions">
                     <div className="question">This is the question</div>
                   </div>
@@ -75,7 +71,7 @@ const PracticeQuestions = () => {
               </div>
               <div className="topic_box">
                 <div className="topic_box_inner">
-                  <div className="topic_title">Arrays</div>
+                  <div className="topic_title">Tree</div>
                   <div className="questions">
                     <div className="question">This is the question</div>
                     <div className="question">This is the question</div>
