@@ -24,9 +24,11 @@ const PracticeQuestions = () => {
                   <h1 className="topic_title">Arrays</h1>
                   <div className="questions">
                     <Link to="#">
-                      <div className="question">
-                        <span className="no">1.</span> This is the question
-                      </div>
+                      <Link to="/practice_editor">
+                        <div className="question">
+                          <span className="no">1.</span> This is the question
+                        </div>
+                      </Link>
                     </Link>
                     <div className="question">
                       <span className="no">2.</span>This is the question and it
