@@ -151,6 +151,7 @@
 .programming_section,
 .Coding_Questions_section {
   width: 100%;
+  margin-top: 25px;
 }
 .programming_section h1 {
   font-size: 22px;
@@ -165,7 +166,7 @@
   /* background-color: green; */
 }
 .card {
-  min-width: 200px;
+  min-width: 270px;
   width: max-content;
   min-height: 120px;
   color: rgb(0, 0, 0);
@@ -189,10 +190,19 @@
 }
 .head.Coding_section {
   background-color: #febd19;
+  padding: 4px 0;
+  height: 30px;
 }
 .head.Coding_section .class {
+  background-color: #febd19;
+  margin: 0;
+  padding: 4px 0;
+  text-align: center;
+  height: 26px;
   font-size: 13px;
-  padding-left: 10px;
+  font-weight: 600;
+  /* color: #068932; */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .head {
@@ -204,7 +214,7 @@
   background-color: #449af5;
 }
 .card_content_area {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 .card_content_area h3 {
   font-size: 20px;
@@ -225,10 +235,13 @@
   padding-left: 4rem;
   padding-top: 2rem;
   position: absolute;
+  width: 100px;
+  /* background-color: red; */
   margin: 1rem;
   /* text-align: center; */
   margin-left: 1rem;
   z-index: 5;
+  user-select: none;
 }
 .backButton i {
   cursor: pointer;
@@ -571,7 +584,7 @@ div.label {
   .cards_area {
     justify-content: center;
   }
-  .card {
+  /* .card {
     width: 80%;
-  }
+  } */
 }

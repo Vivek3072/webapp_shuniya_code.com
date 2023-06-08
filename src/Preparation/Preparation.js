@@ -12,14 +12,26 @@ const Preparation = () => {
   const [questions, setQuestions] = useState([]);
   const [limit, setLimit] = useState(10);
   const [loadingIcon, setloadingIcon] = useState(false);
-  // const [scoreValue, setScoreValue] = useState();
+  const [colorValue, setColorValue] = useState({
+    red: "",
+    green: "",
+    blue: "",
+  });
   const { userScore } = useContext(userScoreContext);
   // state for toggling the cards of questions
   const [programmingCard, setProgrammingCard] = useState(
     JSON.parse(sessionStorage.getItem("proSelections")) || false
   );
 
-  const language = useSelector((state) => state.language); // for getting the lang.
+  const language = useSelector((state) => state.language);
+
+  // function for changing the cards header color
+  const colorExt = async () => {
+    const red = await Math.floor(Math.random(11) * 255);
+    const blue = await Math.floor(Math.random(11) * 255);
+    const green = await Math.floor(Math.random(11) * 255);
+    await setColorValue({ red: red, green: green, blue: blue });
+  };
 
   // console.log(questions);
   const baseURL =
@@ -56,6 +68,7 @@ const Preparation = () => {
   };
 
   useEffect(() => {
+    colorExt();
     getQuestions();
   }, []);
 
@@ -170,7 +183,13 @@ const Preparation = () => {
                   className="card"
                   onClick={() => toggleProgrammingSection(true)}
                 >
-                  <div className="head"></div>
+                  <div
+                    className="head"
+                    style={{
+                      background:
+                        "linear-gradient(20deg, blue 40%, white 60%,purple 76%,white 90%, blue 98%)",
+                    }}
+                  ></div>
                   <div className="card_content_area">
                     <h3>
                       {language === "ENG"
@@ -197,8 +216,20 @@ const Preparation = () => {
                 {/* // Individual card  */}
                 <Link to="/practice_questions">
                   <div className="card Coding_section">
-                    <div className="head Coding_section">
-                      <div className="class">Class 6</div>
+                    <div
+                      className="head Coding_section"
+                      style={{
+                        background: `linear-gradient(20deg, rgb(${colorValue.red},${colorValue.green},${colorValue.blue}) 30%, white 70%, rgb(${colorValue.red},44,55))`,
+                      }}
+                    >
+                      <div
+                        className="class"
+                        style={{
+                          background: "transparent",
+                        }}
+                      >
+                        Class 6
+                      </div>
                     </div>
                     <div className="card_content_area">
                       <h3>Coding Questions</h3>
@@ -209,8 +240,20 @@ const Preparation = () => {
                 {/* // duplicate data  */}
                 <Link to="/practice_questions">
                   <div className="card Coding_section">
-                    <div className="head Coding_section">
-                      <div className="class">Class 7</div>
+                    <div
+                      className="head Coding_section"
+                      style={{
+                        background: `linear-gradient(20deg, rgb(${colorValue.blue},${colorValue.green},${colorValue.red}) 30%, white 70%, rgb(${colorValue.blue},44,55))`,
+                      }}
+                    >
+                      <div
+                        className="class"
+                        style={{
+                          background: "transparent",
+                        }}
+                      >
+                        Class 6
+                      </div>
                     </div>
                     <div className="card_content_area">
                       <h3>Coding Questions</h3>
@@ -218,15 +261,29 @@ const Preparation = () => {
                     </div>
                   </div>
                 </Link>
-                <div className="card Coding_section">
-                  <div className="head Coding_section">
-                    <div className="class">Class 8</div>
+                <Link to="/practice_questions">
+                  <div className="card Coding_section">
+                    <div
+                      className="head Coding_section"
+                      style={{
+                        background: `linear-gradient(20deg, rgb(${colorValue.green},${colorValue.red},${colorValue.blue}) 30%, white 70%, rgb(${colorValue.green},44,55))`,
+                      }}
+                    >
+                      <div
+                        className="class"
+                        style={{
+                          background: "transparent",
+                        }}
+                      >
+                        Class 6
+                      </div>
+                    </div>
+                    <div className="card_content_area">
+                      <h3>Coding Questions</h3>
+                      <h4>level: Easy</h4>
+                    </div>
                   </div>
-                  <div className="card_content_area">
-                    <h3>Coding Questions</h3>
-                    <h4>level: Easy</h4>
-                  </div>
-                </div>
+                </Link>
               </div>
             </div>
           </div>
