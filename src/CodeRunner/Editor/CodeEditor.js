@@ -7,6 +7,7 @@ import {
   // MoonFill,
 } from "react-bootstrap-icons";
 import "./CodeEditor.css";
+import { useSelector } from "react-redux";
 
 const CodeEditor = ({
   texteditor,
@@ -25,6 +26,9 @@ const CodeEditor = ({
     setLines(lines);
     handleChange(event);
   };
+
+  // language toggle state
+  const language = useSelector((state) => state.language);
 
   const lineNumbers = [];
   for (let i = 1; i <= lines; i++) {
@@ -109,7 +113,7 @@ const CodeEditor = ({
       /> */}
 
       <div className="d-flex justify-content-start" style={{ padding: "5px" }}>
-        <div>यूजर इनपुट </div>
+        <div> {language === "ENG" ? "User Input" : "यूजर इनपुट"}</div>
         <div onClick={setcustomInput}>
           {customInput ? (
             <FileCheck color="green" size={20} />

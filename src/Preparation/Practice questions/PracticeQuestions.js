@@ -24,7 +24,7 @@ const PracticeQuestions = () => {
                   <h1 className="topic_title">Arrays</h1>
                   <div className="questions">
                     <Link to="#">
-                      <Link to="/practice_editor">
+                      <Link to={`/challenge/id/limit`}>
                         <div className="question">
                           <span className="no">1.</span> This is the question
                         </div>

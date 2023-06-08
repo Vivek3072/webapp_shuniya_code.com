@@ -7,6 +7,7 @@ import CodeEditor from "./CodeEditor.js";
 import RunnerEditorOutput from "./RunnerEditorOutput";
 // import QuestionList from "../QuestionList";
 import { Col, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
 // import data from "../data.json";
 
 export default class home extends Component {
@@ -31,6 +32,7 @@ export default class home extends Component {
   }
 
   // fetching the data################
+  // language toggle state
 
   submitHandler = () => {
     this.setState({
@@ -132,7 +134,9 @@ export default class home extends Component {
           <Row className="codeScreens">
             <Col>
               <h3>
-                <b>Code Editor</b>
+                <b>
+                  {this.props.language === "ENG" ? "Code Editor" : "कोड एडीटर"}
+                </b>
               </h3>
 
               <div className="code">
@@ -160,7 +164,13 @@ export default class home extends Component {
                     }}
                     onClick={this.submitHandler}
                   >
-                    {this.state.submitted ? "Submitted" : "चल कोड"}
+                    {this.state.submitted
+                      ? this.props.language === "ENG"
+                        ? "Submitted"
+                        : "Submitted"
+                      : this.props.language === "ENG"
+                      ? "Run Code"
+                      : "चल कोड"}
                   </button>
                 </div>
               </div>
@@ -169,7 +179,7 @@ export default class home extends Component {
             {this.state.isSubmited ? (
               <Col>
                 <h3>
-                  <b>परिणाम</b>
+                  <b>{this.props.language === "ENG" ? "Result" : "परिणाम"}</b>
                 </h3>
                 <div className="output_box">
                   <div>
@@ -177,7 +187,11 @@ export default class home extends Component {
                       <RunnerEditorOutput data={this.state.data} />
                     ) : (
                       <div>
-                        <h6>प्रोसेसिंग....................</h6>
+                        <h6>
+                          {this.props.language === "ENG"
+                            ? "Processing...................."
+                            : "प्रोसेसिंग...................."}
+                        </h6>
                         <div className="loader"></div>
                       </div>
                     )}
