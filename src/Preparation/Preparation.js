@@ -187,7 +187,7 @@ const Preparation = () => {
                     className="head"
                     style={{
                       background:
-                        "linear-gradient(20deg, blue 40%, white 60%,purple 76%,white 90%, blue 98%)",
+                        "linear-gradient(20deg, blue 25%, white 58%, purple 78%, white 98%, blue 100%)",
                     }}
                   ></div>
                   <div className="card_content_area">
@@ -252,7 +252,7 @@ const Preparation = () => {
                           background: "transparent",
                         }}
                       >
-                        Class 6
+                        Class 7
                       </div>
                     </div>
                     <div className="card_content_area">
@@ -275,7 +275,7 @@ const Preparation = () => {
                           background: "transparent",
                         }}
                       >
-                        Class 6
+                        Class 8
                       </div>
                     </div>
                     <div className="card_content_area">

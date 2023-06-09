@@ -184,6 +184,7 @@
   background-repeat: no-repeat;
   background-clip: border-box;
   cursor: pointer;
+  border: 1px solid #fff;
 }
 .card:hover {
   transform: scale(1.01);
