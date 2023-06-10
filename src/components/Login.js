@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { firebase, auth, provider } from "./firebase";
 
 import "./Login.css";
 import GoogleLogo from "../assets/GoogleLogo.png";
+import { userScoreContext } from "../ContextAPI/userScoreContext";
 
 const Login = () => {
   // Inputs
@@ -12,56 +13,86 @@ const Login = () => {
   const [show, setshow] = useState(false);
   const [final, setfinal] = useState("");
 
-  // backend data save code starts here
-  // async function saveData(name, id, email) {
-  //   console.log("Saving the data...");
-  //   // const userId = localStorage.getItem("user_id");
-  //   try {
-  //     // getting the user with firebase id of user exist.
-  //     const userFound = await fetch(
-  //       "http://43.204.229.206:8000/api/v1/get-user-id/" + id,
-  //       {
-  //         method: "GET", // or 'PUT'
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
+  // getting user context
+  const { setUser, userScore, setUserScore } = useContext(userScoreContext);
 
-  //     if (userFound) {
-  //       //  setting the user state to  userfound
-  //     } else {
-  //       const rand = Math.floor(Math.random() * 1000);
-  //       const data = {
-  //         email: email,
-  //         password: rand + rand,
-  //         username: name,
-  //         first_name: name,
-  //         last_name: name,
-  //         score: 0,
-  //         user_firebase_id: id,
-  //       };
+  // backend data save code starts here####
+  async function saveData(name, id, email, picURL) {
+    console.log("Saving the data...");
 
-  //       // Registering the new user into the DB
-  //       const response = await fetch(
-  //         "http://43.204.229.206:8000/api/v1/register",
-  //         {
-  //           method: "POST", // or 'PUT'
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //           body: JSON.stringify(data),
-  //         }
-  //       );
-  //       const result = await response.json();
-  //       console.log("Success:", result);
-  //       // Setting the state var to data variable;
-  //     }
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //   }
-  // }
-  // backend data save code ends here
+    try {
+      // getting the user with firebase id if user exist.
+      const response = await fetch(
+        "http://43.204.229.206:8000/api/v1/get-user-id/" + id,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("firebaseid" + id);
+      const res = await response.json();
+      console.log("get api response ", res);
+      // console.log(typeof res.id);
+
+      // if user does not exist we create new user
+      if (res.id === "Not Found") {
+        const rand = Math.floor(Math.random() * 1000);
+        const data = {
+          user_firebase_id: id,
+          // first_name: name,
+          // last_name: "",
+          username: name,
+          email: email,
+          password: "password" + rand + rand + rand,
+          // score: 0,
+          questions_solved: [],
+          // contact_no_1: "",
+          // contact_no_2: "",
+          // profilePic_url: picURL,
+          // address: "",
+        };
+        console.log("Data to be saved", data);
+        // Registering the new user into the DB
+        const response = await fetch(
+          "http://43.204.229.206:8000/api/v1/register",
+          {
+            method: "POST", // or 'PUT'
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
+        const res = await response.json();
+        // console.log("Success:", result);
+        // Setting the state var to data variable;
+        setUser(res);
+        localStorage.setItem("user_profile", JSON.stringify(res));
+      } else {
+        // if your already registered we get its data
+        // alert("user found");
+        // console.log("user data after login", res);
+        setUser(res);
+        localStorage.setItem("user_profile", JSON.stringify(res));
+      }
+
+      // getting score field from another collection
+
+      const scoreFields = await fetch(
+        "http://43.204.229.206:8000/api/v1/programmers-ranks/" + res.id + "/"
+      );
+
+      const output = await scoreFields.json();
+      // console.log("Score fields output", output);
+      setUserScore(output.points);
+      localStorage.setItem("user_score", output.points);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+  // backend data save code ends here#####
   // Sent OTP
   const signin = () => {
     if (mynumber === "" || mynumber.length < 10) return;
@@ -87,10 +118,15 @@ const Login = () => {
         console.log(result, "result");
         localStorage.setItem("user_id", result.user.uid);
         localStorage.setItem("username", result.user.displayName);
-        //saveData(result.user.displayName, result.user.uid, result.user.email);
+        saveData(
+          result.user.displayName,
+          result.user.uid,
+          result.user.email,
+          result.user.photoURL
+        );
         //console.log("uid from firebase: ", result.user.uid);
         setTimeout(() => {
-          window.location.reload();
+          // window.location.reload();
         }, 1000);
       })
       .catch((err) => {
@@ -107,9 +143,9 @@ const Login = () => {
         // console.log("Login Successful!");
         localStorage.setItem("user_id", result.user.uid);
         localStorage.setItem("username", username);
-        //saveData(username, result.user.uid, result.user.email);
+        saveData(username, result.user.uid, result.user.email, "");
         setTimeout(() => {
-          window.location.reload();
+          // window.location.reload();
         }, 1000);
         // success
       })
