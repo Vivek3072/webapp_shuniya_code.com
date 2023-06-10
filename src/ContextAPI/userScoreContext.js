@@ -1,19 +1,20 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const userScoreContext = createContext();
-
+// userContext for handling the state of user data globally in the project
 export function ScoreFunctionProvider({ children }) {
   const [user, setUser] = useState({});
-  const [userScore, setUserScore] = useState(
-    parseInt(localStorage.getItem("userScore")) || 0
-  );
+  const [userScore, setUserScore] = useState(0);
 
-  // fetch the logged in user
-  // var userData = {
-  //   name: "Sahil",
-  //   score: 500,
-  //   questions_solved: [1, 4, 5],
-  // };
+  useEffect(() => {
+    const userLocalData = JSON.parse(localStorage.getItem("user_profile"));
+    const userLocalScore = JSON.parse(localStorage.getItem("user_score"));
+    setUser(userLocalData);
+    setUserScore(userLocalScore);
+  }, []);
+
+  if (user) {
+  }
   // async function getData() {
   //   const token = localStorage.getItem("Authorization");
   //   console.log("token: " + token);
@@ -34,13 +35,13 @@ export function ScoreFunctionProvider({ children }) {
   // }
   // getData();
 
-  const localScore = localStorage.getItem("userScore");
-  if (!localScore) {
-    localStorage.setItem("userScore", 0);
-  } else {
-    // const localScr = localStorage.getItem("userScore");
-    // setUserScore(localScr);
-  }
+  // const localScore = localStorage.getItem("userScore");
+  // if (!localScore) {
+  //   localStorage.setItem("userScore", 0);
+  // } else {
+  //   // const localScr = localStorage.getItem("userScore");
+  //   // setUserScore(localScr);
+  // }
 
   function scoreInc(plus) {
     //   console.log("plus value: " + plus);
@@ -50,7 +51,9 @@ export function ScoreFunctionProvider({ children }) {
   }
 
   return (
-    <userScoreContext.Provider value={{ userScore, setUserScore, scoreInc }}>
+    <userScoreContext.Provider
+      value={{ userScore, setUserScore, user, setUser, scoreInc }}
+    >
       {children}
     </userScoreContext.Provider>
   );

@@ -85,6 +85,8 @@ const NavComponent = () => {
       localStorage.removeItem("refresh_token");
       localStorage.removeItem("user_id");
       localStorage.removeItem("username");
+      localStorage.removeItem("user_profile");
+      localStorage.removeItem("user_score");
 
       sessionStorage.removeItem("proSelections");
 
@@ -101,6 +103,8 @@ const NavComponent = () => {
     firebase.auth().signOut();
     localStorage.removeItem("username");
     localStorage.removeItem("user_id");
+    localStorage.removeItem("user_profile");
+    localStorage.removeItem("user_score");
     history.push("/");
     window.location.reload();
   };
