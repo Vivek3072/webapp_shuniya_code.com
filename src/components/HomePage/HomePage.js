@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Coding from "../../../src/assets/Coding.svg";
 import Services from "./Services";
 import { useSelector } from "react-redux";
+import { useContext } from "react";
+import { userScoreContext } from "../../ContextAPI/userScoreContext";
 
 export default function HomePage() {
   // getting language state

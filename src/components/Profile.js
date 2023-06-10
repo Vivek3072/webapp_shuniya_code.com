@@ -13,7 +13,7 @@ const Profile = () => {
   const [updateUserDetails, setUpdateUserDetails] = useState({
     first_name: "",
     last_name: "",
-    user_name: "",
+    username: "",
     contact_no_1: "",
     contact_no_2: "",
     email_Id: "",
@@ -94,8 +94,16 @@ const Profile = () => {
                   <div className="Fieldname justify-content-md-start col-md-3">
                     {language === "ENG" ? "Contact No." : "संपर्क नंबर"}
                   </div>
-                  <div className="value col-md-7">+91 9876543210</div>
+                  <div className="col-md-7 d-lg-flex  flex-row align-items-center justify-content-between">
+                    <div className="value col-lg-5 col-sm-12 my-2">
+                      +91 9876543210
+                    </div>
+                    <div className="value col-lg-5 col-sm-12">
+                      +91 987656655
+                    </div>
+                  </div>
                 </div>
+
                 <div className="field row">
                   <div className="Fieldname justify-content-md-start col-md-3">
                     {language === "ENG" ? "Email Id" : "ईमेल आईडी"}
@@ -142,7 +150,7 @@ const Profile = () => {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="updateModalLabel">
-                  Update your Personal data
+                  Update your Personal Information
                 </h5>
                 <button
                   type="button"
@@ -203,7 +211,7 @@ const Profile = () => {
                         className="form-control"
                         id="username"
                         placeholder="your Username"
-                        name="user_name"
+                        name="username"
                         onChange={onUpdateChange}
                         value={updateUserDetails.user_name}
                         required=""
