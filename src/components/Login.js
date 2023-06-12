@@ -31,7 +31,7 @@ const Login = () => {
           },
         }
       );
-      console.log("firebaseid" + id);
+      // console.log("firebaseid" + id);
       const res = await response.json();
       console.log("get api response ", res);
       // console.log(typeof res.id);
