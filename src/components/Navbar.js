@@ -134,6 +134,12 @@ const NavComponent = () => {
             {language === "ENG" ? "Preparation" : "अभ्यास"}
           </Link>
         </div>
+        <Link
+          to="/voice_recognition"
+          className="btn btn-primary text-white my-1 mx-2"
+        >
+          Voice
+        </Link>
         <Nav>
           {/* //Language  Toggle buttons  */}
           <div className="toggleBtns" style={styles}>

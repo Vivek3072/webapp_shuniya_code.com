@@ -32,6 +32,7 @@ import Preparation from "./Preparation/Preparation";
 import CodeRunner from "./CodeRunner/CodeRunner";
 import PracticeQuestions from "./Preparation/Practice questions/PracticeQuestions";
 import PracticeEditor from "./Preparation/PracticeEditor/PracticeEditor";
+import IndexVoice from "./voice_recognition/IndexVoice";
 
 const App = () => {
   const location = useLocation();
@@ -78,6 +79,9 @@ const App = () => {
                 path={"/practice_editor"}
                 component={PracticeEditor}
               />
+
+              {/* // voice recognition */}
+              <Route exact path={"/voice_recognition"} component={IndexVoice} />
 
               <Route exact path={"/courses"} component={Courses} />
               <Route exact path={"/course/:course_id"} component={CoursePage} />
