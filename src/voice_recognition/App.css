@@ -1,0 +1,9 @@
+.labelinput {
+    display: flex;
+    flex-direction: column;
+    color: red;
+}
+
+.App {
+    margin-left: 10px;
+}
