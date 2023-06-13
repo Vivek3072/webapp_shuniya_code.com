@@ -1,37 +1,41 @@
-:root{
-    --mainDark: #343a40;
-    --mainGrey: rgba(109,109,109);
-    --mainLightGrey: rgba(172,172,172);
-    --mainWhite: #fff;
-    --mainBlue: #007bff;
-    --mainDarkBlue: #03182e;
-    --mainNavyBlue: #2596be;
+:root {
+  --mainDark: #343a40;
+  --mainGrey: rgba(109, 109, 109);
+  --mainLightGrey: rgba(172, 172, 172);
+  --mainWhite: #fff;
+  --mainBlue: #007bff;
+  --mainDarkBlue: #03182e;
+  --mainNavyBlue: #2596be;
 }
-.footer-middle{
-    margin: 0;
-    padding-top: 4rem;
-    padding-left: 1rem;
-    padding-bottom: 7rem;
-    background: var(--mainDarkBlue);
-    color: var(--mainWhite);
-    width: 100%;
-    position: relative;
-    bottom: 0;
+.footer {
+  z-index: 0 !important;
+  position: relative;
+}
+.footer-middle {
+  margin: 0;
+  padding-top: 4rem;
+  padding-left: 1rem;
+  padding-bottom: 7rem;
+  background: var(--mainDarkBlue);
+  color: var(--mainWhite);
+  width: 100%;
+  position: relative;
+  bottom: 0;
 }
 li {
-    margin: 0;
-    padding: 0.2rem;
+  margin: 0;
+  padding: 0.2rem;
 }
-ul{
-    margin:0;
-    padding:1rem;
+ul {
+  margin: 0;
+  padding: 1rem;
 }
 h1 a:hover,
 ul li a:hover,
-h7 a:hover{
-    color:var(--mainLightGrey);
-    text-decoration: none;
+h7 a:hover {
+  color: var(--mainLightGrey);
+  text-decoration: none;
 }
-h7{
-    margin-bottom: 5rem;
+h7 {
+  margin-bottom: 5rem;
 }
