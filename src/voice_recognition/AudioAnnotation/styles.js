@@ -1,17 +1,16 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const WaveformContianer = styled.div`
-  display: flex;  
-  flex-direction: row;  
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 100px;  width: 100%;
+  height: 100px;
+  width: 95%;
   background: transparent;
 `;
 
-export const AudioContainer = styled.div`
-
-`
+export const AudioContainer = styled.div``;
 
 export const Wave = styled.div`
   width: 100%;
@@ -19,9 +18,9 @@ export const Wave = styled.div`
 `;
 
 export const Timeline = styled.div`
-    width: 100%;
-    height: 10px
-    `
+  width: 100%;
+  height: 10px;
+`;
 
 export const PlayButton = styled.button`
   display: flex;
@@ -29,16 +28,13 @@ export const PlayButton = styled.button`
   align-items: center;
   width: 60px;
   height: 60px;
-  background: #EFEFEF;
+  background: rgb(47 213 86);
   border-radius: 50%;
   border: none;
   outline: none;
   cursor: pointer;
   padding-bottom: 3px;
   &:hover {
-    background: #DDD;
+    background: rgb(31 199 51);
   }
 `;
-
-
-

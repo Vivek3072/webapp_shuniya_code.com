@@ -394,7 +394,7 @@ class AudioSpectrum extends Component {
             ) : null}
           </div>
           <WaveformContianer>
-            <Wave id="waveform" ref={this.WaveForm} />
+            <Wave id="waveform" ref={this.WaveForm} style={{ width: "99%" }} />
             <audio
               id="track"
               src={this.state.url}
@@ -406,7 +406,7 @@ class AudioSpectrum extends Component {
 
           {/* <div id="Spectograph" /> */}
         </AudioContainer>
-        <div className="labelForm">
+        <div className="labelForm my-4">
           <PlayButton onClick={this.handlePlayPause}>
             {!this.state.playing ? "Play" : "Pause"}
           </PlayButton>
@@ -416,6 +416,9 @@ class AudioSpectrum extends Component {
               opacity: 0,
               transition: "opacity 300ms linear",
               margin: "10px 0",
+              width: "200px",
+              marginRight: "auto",
+              marginLeft: "auto",
             }}
           >
             <div className="form-group">
@@ -435,13 +438,24 @@ class AudioSpectrum extends Component {
           </form>
         </div>
         {/* <img src={Image} height="300px" width="100%" alt="spectrograph" /> */}
-        <img
-          src={this.state.spectogram}
-          height="300px"
-          width="100%"
-          alt="newdata"
-        />
-        <Timeline id="timeline" />
+        <div
+          className="specto_image"
+          style={{
+            width: "95%",
+            marginLeft: "auto",
+            marginRight: "auto",
+            marginBottom: "40px",
+          }}
+        >
+          <img
+            src={this.state.spectogram}
+            style={{}}
+            height="300px"
+            width="100%"
+            alt="newdata"
+          />
+          <Timeline id="timeline" />
+        </div>
       </>
     );
   }
