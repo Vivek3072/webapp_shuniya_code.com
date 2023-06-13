@@ -31,8 +31,6 @@ import RefundPolicy from "./components/LegalDocs/RefundPolicy";
 import Preparation from "./Preparation/Preparation";
 import CodeRunner from "./CodeRunner/CodeRunner";
 import PracticeQuestions from "./Preparation/Practice questions/PracticeQuestions";
-import PracticeEditor from "./Preparation/PracticeEditor/PracticeEditor";
-import IndexVoice from "./voice_recognition/IndexVoice";
 
 const App = () => {
   const location = useLocation();
@@ -73,11 +71,6 @@ const App = () => {
                 exact
                 path={"/practice_questions"}
                 component={PracticeQuestions}
-              />
-              <Route
-                exact
-                path={"/practice_editor"}
-                component={PracticeEditor}
               />
 
               {/* // voice recognition */}
