@@ -227,7 +227,7 @@ class AudioSpectrum extends Component {
         let regionElement = document.querySelectorAll("region");
         regionElement.forEach((el) => {
           if (el.getAttribute("data-id") === region.id) {
-            let label = '<li class="region-label">' + region.data + "</li>";
+            let label = '<li className="region-label">' + region.data + "</li>";
             return el.insertAdjacentHTML("beforeend", label);
           }
         });

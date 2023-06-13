@@ -81,7 +81,7 @@ const App = () => {
               />
 
               {/* // voice recognition */}
-              <Route exact path={"/voice_recognition"} component={IndexVoice} />
+              {/* <Route exact path={"/voice_recognition"} component={IndexVoice} /> */}
 
               <Route exact path={"/courses"} component={Courses} />
               <Route exact path={"/course/:course_id"} component={CoursePage} />

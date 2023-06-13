@@ -63,6 +63,8 @@ a:hover {
 }
 .content-wrap {
   flex: 1;
+  overflow-x: hidden;
+  /* position: relative; */
 }
 
 /* // global scrollbar design  */

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./navbar.css";
 
 import { Navbar, NavDropdown, Nav } from "react-bootstrap";
 import { Code } from "react-bootstrap-icons";
@@ -22,12 +23,26 @@ import { actionCreators } from "./state/index";
 // toggle icon
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { AudioRecorder } from "react-audio-voice-recorder";
+import { useState } from "react";
 // import { width } from "@mui/system";
+
+// voice recog imports from
+import { axiosIns } from "../voice_recognition/Api/axiosInstance";
+import AudioSpectrum from "../voice_recognition/AudioAnnotation/AudioSpectrum";
+import "../voice_recognition/App.css";
 
 const NavComponent = () => {
   const { userScore } = useContext(userScoreContext);
   const token = localStorage.getItem("username");
   const refreshToken = localStorage.getItem("refresh_token");
+
+  //  voice recognition
+  const [toggleVoiceRecog, settoggleVoiceRecog] = useState(false);
+  const [url, setUrl] = useState("");
+  const [spectogram, setSpectogram] = useState("");
+  const [filedata, setFiledata] = useState({});
+  const [loading, setLoading] = useState(false);
 
   let history = useHistory();
 
@@ -109,6 +124,71 @@ const NavComponent = () => {
     window.location.reload();
   };
 
+  // voice  recognition logic starts here #######################
+  const addAudioElement = async (blob) => {
+    setLoading(true);
+    settoggleVoiceRecog(true);
+    console.log("blob", blob);
+    try {
+      const formData = new FormData();
+      formData.append("audio", blob);
+      const response = await fetch(
+        "http://43.204.229.206:8000/api/v1/get_data/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      alert(response);
+
+      const responseData = await response.json();
+      console.log(responseData);
+      setLoading(false);
+      // console.log(responseData);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  useEffect(() => {
+    // axiosIns.get("get_data/").then((result) => {
+    //   const data = result.data;
+    //   // console.log(result.data);
+    //   setUrl(data.sound_url);
+    //   //setUrl("https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav");
+    //   console.log(data.sound_url);
+    //   setSpectogram(data.spectogram_url);
+    //   // setSpectogram(
+    //   //   "https://en.wikipedia.org/wiki/Spectrogram#/media/File:Spectrogram-19thC.png"
+    //   //);
+    //   setFiledata({
+    //     table: data.table,
+    //     index: data.index,
+    //     serial: data.serial,
+    //   });
+    //   // setFiledata({
+    //   //   table: "table data",
+    //   //   index: "data.index",
+    //   //   serial: "data.serial",
+    //   // });
+    //   setTimeout(() => {
+    //     console.log("sound url", url);
+    //     if (url) {
+    //       setLoading(false);
+    //     }
+    //   }, 2000);
+    // });
+  }, []);
+
+  const handleRefresh = () => {
+    window.location.reload();
+  };
+
+  // voice  recognition logic ends here #######################
+
   return (
     <Navbar className="navbar navbar-light bg-light" bg="light" expand="lg">
       <Link to="/" className="fw-bold fs-3 text-primary my-2 mr-3">
@@ -134,12 +214,18 @@ const NavComponent = () => {
             {language === "ENG" ? "Preparation" : "अभ्यास"}
           </Link>
         </div>
-        <Link
-          to="/voice_recognition"
-          className="btn btn-primary text-white my-1 mx-2"
-        >
-          Voice
-        </Link>
+        <div className="audioElm mx-4">
+          <AudioRecorder
+            className="mx-4 audio_icon"
+            onRecordingComplete={addAudioElement}
+            audioTrackConstraints={{
+              noiseSuppression: true,
+              echoCancellation: true,
+            }}
+            // downloadOnSavePress={true}
+            downloadFileExtension="wav"
+          />
+        </div>
         <Nav>
           {/* //Language  Toggle buttons  */}
           <div className="toggleBtns" style={styles}>
@@ -237,6 +323,47 @@ const NavComponent = () => {
           </Link>
         </Nav>
       </Navbar.Collapse>
+      {/* // voice recognition panel starts */}
+      {toggleVoiceRecog && (
+        <>
+          <div
+            className="blackBackground"
+            onClick={() => settoggleVoiceRecog(false)}
+          ></div>
+          <div className="App voice_panel">
+            <div className="close_btn">
+              <i
+                className="fa-solid fa-square-xmark"
+                onClick={() => settoggleVoiceRecog(false)}
+              ></i>
+            </div>
+            {!loading ? (
+              <div className="folderid">
+                {filedata.table + "/" + filedata.index + "/" + filedata.serial}{" "}
+              </div>
+            ) : null}
+
+            {!loading ? (
+              url && spectogram ? (
+                <AudioSpectrum
+                  url={url}
+                  spectogram={spectogram}
+                  filedata={filedata}
+                />
+              ) : null
+            ) : null}
+            {loading ? (
+              <div className="spinner flex-column">
+                <div className="text-center my-4">Loading...</div>
+                <div className=" spinner-border text-primary" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div>
+              </div>
+            ) : null}
+          </div>
+        </>
+      )}
+      {/* // voice recognition panel ends */}
     </Navbar>
   );
 };

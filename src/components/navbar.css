@@ -1,0 +1,81 @@
+.navbar {
+  z-index: 6;
+  position: relative;
+}
+#basic-navbar-nav.show {
+  z-index: 6;
+  background-color: #fff;
+}
+.blackBackground {
+  position: absolute;
+  width: 100%;
+  background: rgb(0, 0, 0);
+  left: 0;
+  top: 75px;
+  right: 0;
+  bottom: 0;
+  box-shadow: 0px 1px 1000px 1000px #000000;
+  overflow-x: hidden;
+  opacity: 0.8;
+  z-index: 1;
+}
+/* .audioElm {
+  background-color: cyan !important;
+  border-radius: 3px;
+}
+.audio_icon {
+  background-color: cyan !important;
+} */
+.voice_panel {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 10px;
+  width: 97%;
+  padding: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(198, 202, 202);
+  height: calc(100vh - 50px);
+  overflow-y: scroll;
+  border: 3px solid gray;
+  border-radius: 10px;
+  overflow-x: hidden;
+  z-index: 4;
+}
+.close_btn {
+  position: sticky;
+  right: 10px;
+  top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.close_btn i {
+  font-size: 28px;
+  margin-right: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  color: rgb(234, 97, 97);
+}
+.close_btn i:hover {
+  /* font-size: 29px; */
+  color: rgb(255, 9, 9);
+}
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 200px);
+  font-size: 22px;
+}
+.spinner .spinner-border {
+  width: 4rem;
+  height: 4rem;
+}
+
+@media (max-width: 993px) {
+  .audioElm {
+    margin: 10px;
+  }
+}
