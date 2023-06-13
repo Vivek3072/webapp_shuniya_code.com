@@ -1,13 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./runnerEditor.css";
-import { set } from "immutable";
+// import { set } from "immutable";
+import { useContext } from "react";
+import { userScoreContext } from "../../ContextAPI/userScoreContext";
 
-const RunnerEditorOutput = ({ data }) => {
+const RunnerEditorOutput = ({ data, testCases, updatingUserScore }) => {
+  // output value from the api of test cases
   const [datas] = useState(data);
-  // const [overall, setOverall] = useState("True");
-  const [tabs, setTabs] = useState("test");
-  console.log("data is here: ", data);
+  const [testCase, settestCase] = useState(testCases);
+  const [overallresult, setoverallresult] = useState(null);
 
+  const [tabs] = useState("test");
+  // user context
+  // const { user } = useContext(userScoreContext);
+  // userId = user.id;
+  // console.log("user is ", user.id);
+  // if user not logged in its null.
+
+  // var overallresult = null;
+  setTimeout(() => {
+    // Calling the update score function
+    if (datas) {
+      updatingUserScore(overallresult);
+    }
+  }, 2000);
+
+  // function for switching between the tabs
   const toggleTabs = () => {
     // if (tabs === "test") {
     //   setTabs("submissions");
@@ -16,7 +34,19 @@ const RunnerEditorOutput = ({ data }) => {
     // }
     // console.log(tabs);
   };
-  var overall = "True";
+  // var overall = "True";
+  // console.log("datas", datas);
+
+  useEffect(() => {
+    let output = true;
+    data.result.map((item, i) => {
+      if (item.Passed == "False") {
+        output = false;
+      }
+      // console.log("state output ", output);
+    });
+    setoverallresult(output);
+  }, []);
 
   return (
     <>
@@ -46,64 +76,72 @@ const RunnerEditorOutput = ({ data }) => {
         <div className="output_window">
           {tabs === "test" && (
             <div className="test_cases">
-              {/* {datas.map((item, i) => {
-            console.log("item data is", item);
-            return ( */}
               <div>
                 <div className="testCasesWrapper">
                   {datas &&
                     datas.result.map((item, i) => {
-                      if (item.Passed == "False") {
-                        overall = "False";
-                      }
                       return (
-                        <div className="testCase" key={i}>
-                          Test Case {i + 1}: {item.Passed}
+                        <div style={{ padding: 0, margin: 0 }} key={i}>
+                          <div className="test_case1">
+                            Test Case {i + 1}:
+                            <span>
+                              {item.Passed == "False" ? "Failed" : "Passed"}
+                            </span>
+                            {/* // input box  */}
+                            <div className="inputCase">
+                              <span className="resultkey">Input:</span>
+
+                              <span className="inputVal">
+                                {testCase[i].test_case_input}
+                              </span>
+                            </div>
+                            {/* // actual and Expected output box  */}
+                            <div className="actualCase">
+                              <span className="resultkey">
+                                Expected Output:
+                              </span>
+
+                              <span className="resultVal">
+                                {testCase[i].test_case_output}
+                              </span>
+                            </div>
+                            {/* // User code output val  */}
+                            {/* <div className="userCase">
+                              <span className="resultkey">Your Output: </span>
+                              <span
+                                className={`resultVal ${
+                                  testCase[i].test_case_output === item.Passed
+                                    ? "correct"
+                                    : "inCorrect"
+                                }`}
+                              >
+                                {item.Passed}
+                              </span>
+                            </div> */}
+                          </div>
+                          <hr style={{ marginTop: "25px" }} />
                         </div>
                       );
                     })}
                 </div>
-                <hr style={{ marginTop: "10px" }} />
-                {/* <div className="test_case2">
-                  Test Case 2:<span> fail</span>
-                  <div className="inputCase">
-                    <span className="resultkey">Input:</span>
-
-                    <span className="inputVal">1 4 5</span>
-                  </div>
-                  <div className="actualCase">
-                    <span className="resultkey">Expected Output:</span>
-
-                    <span className="resultVal">25</span>
-                  </div>
-                  <div className="userCase">
-                    <span className="resultkey">Your Output: </span>
-                    <span
-                      className={`resultVal ${
-                        35 == 43 ? "correct" : "inCorrect"
-                      }`}
-                    >
-                      24
-                    </span>
-                  </div>
-                </div> */}
-                {/* <div className="output">kfefjoiewhfiewhfio</div>
-                <hr style={{ marginTop: "10px" }} /> */}
               </div>
-              {/* );
-          })} */}
-              <div className="final_result">
-                Overall Result : {overall}
+
+              <div
+                className="final_result"
+                style={{
+                  background: overallresult ? "#c0fdc3" : "#fdc0c0",
+                }}
+              >
+                Overall Result : <b>{overallresult ? "Passed" : "Failed"}</b>
                 <span>
                   {/* {datas.overall_result} */}
-                  {/* {item.overall_result === "Passed" ? (
-                <i className="fa-solid fa-circle-check"></i>
-              ) : (
-                <i className="fa-solid fa-circle-xmark"></i>
-              )} */}
-
+                  {overallresult ? (
+                    <i className="fa-solid fa-circle-check ml-2"></i>
+                  ) : (
+                    <i className="fa-solid fa-circle-xmark ml-2"></i>
+                  )}
                   {/* <i className="fa-solid fa-circle-check"></i> */}
-                  {/* <i className="fa-solid fa-circle-xmark"></i> */}
+                  {/* <i cla  ssName="fa-solid fa-circle-xmark"></i> */}
                 </span>
               </div>
             </div>

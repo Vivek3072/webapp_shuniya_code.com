@@ -7,6 +7,7 @@ import RunnerEditor from "./Editor/RunnerEditor";
 // import "./data";
 import { userScoreContext } from "../ContextAPI/userScoreContext";
 import { useSelector } from "react-redux";
+import { FoundationTwoTone } from "@mui/icons-material";
 
 const CodeRunner = () => {
   const resize = useRef();
@@ -14,7 +15,9 @@ const CodeRunner = () => {
   const mainM = useRef(null);
   const editor = useRef(null);
 
-  const { userScore, scoreInc } = useContext(userScoreContext);
+  // user context
+  const { user, userScore, setUserScore, scoreInc } =
+    useContext(userScoreContext);
   // language toggle state
   const language = useSelector((state) => state.language);
 
@@ -22,8 +25,81 @@ const CodeRunner = () => {
   // states
 
   const [filteredItem, setFilteredItem] = useState({});
+  const [testCases, setTestCases] = useState([]);
 
-  // ###### Window resize code starts
+  // ######### function for updating the score if question is solved starts here #########
+
+  const updatingUserScore = async (res) => {
+    if (res == null || res === false) {
+      return false;
+    }
+
+    // getting score field from another collection
+
+    const scoreFields = await fetch(
+      "http://43.204.229.206:8000/api/v1/programmers-ranks/" + user.id + "/"
+    );
+
+    const output = await scoreFields.json();
+    // updating points to save new points into db
+    const updated_points =
+      parseInt(output.points) + filteredItem[0].total_points;
+    const updated_points_int = parseInt(updated_points, 10);
+
+    // setting question array in localstorage for now.
+    var localStr = JSON.parse(localStorage.getItem("qes_sol_arr"));
+
+    if (!localStr) {
+      localStorage.setItem("qes_sol_arr", JSON.stringify([]));
+      localStr = JSON.parse(localStorage.getItem("qes_sol_arr"));
+    }
+    // checking if question already present in localstorage
+    const found = localStr.find(
+      (que) => que.id === filteredItem[0].programming_ques_id
+    );
+    if (found) {
+      console.log("You have already solved that question before");
+
+      return false;
+    } else {
+      // console.log("output", output);
+      // setting the update object
+      const updatedObj = {
+        user: user.id,
+        user_challenges_solved: output.user_challenges_solved,
+        points: updated_points_int,
+        rank: output.rank,
+        questions_solved: output.questions_solved,
+      };
+      // console.log("UPdating content :", updatedObj);
+      if (res !== false || res !== null) {
+        // Updating the score
+        fetch(
+          `http://43.204.229.206:8000/api/v1/programmers-ranks/${user.id}/`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedObj),
+          }
+        )
+          .then((response) => response.json())
+          .then((json) => {
+            console.log("Got response: " + JSON.stringify(json));
+            if (json == "Score and question updated successfully") {
+              setUserScore(updated_points);
+              console.log("score updated successfully");
+              localStr.push({ id: filteredItem[0].programming_ques_id });
+            }
+          });
+      }
+    }
+  };
+
+  // ######### function for updating the score if question is solved ends here #########
+
+  // ###### Window resize code starts  ##########################
   function InitResizerFn(resizer, sidebar, mainMenu, editorDiv) {
     // track current mouse position in x var
     var x, w;
@@ -95,13 +171,14 @@ const CodeRunner = () => {
           .then((response) => response.json())
           .then((data) => {
             // setItems(data);
-            console.log("data", data.question_selected);
+            // console.log("data", data.question_selected);
             const individualQuestion = data.question_selected.filter((item) => {
-              console.log(item.programming_ques_id, questionCode);
+              // console.log(item.pr ogramming_ques_id, questionCode);
               return item.programming_ques_id == questionCode;
             });
-            console.log("question", individualQuestion);
+            // console.log("question", individualQuestion);
             setFilteredItem(individualQuestion);
+            setTestCases(individualQuestion[0].test_cases);
           });
       } catch (error) {
         // Handle error
@@ -257,8 +334,10 @@ const CodeRunner = () => {
           size={size.z}
           editor={editor}
           ques_id={questionCode}
-          scoreInc={scoreInc}
+          // scoreInc={scoreInc}
           language={language}
+          testCases={testCases}
+          updatingUserScore={updatingUserScore}
         />
       </div>
       <div className="Evaluation"></div>

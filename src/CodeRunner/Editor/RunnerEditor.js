@@ -7,8 +7,6 @@ import CodeEditor from "./CodeEditor.js";
 import RunnerEditorOutput from "./RunnerEditorOutput";
 // import QuestionList from "../QuestionList";
 import { Col, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
-// import data from "../data.json";
 
 export default class home extends Component {
   constructor(props) {
@@ -25,14 +23,46 @@ export default class home extends Component {
       data: [],
       show: "",
       submitted: false,
-      output: "hello",
     };
 
     this.componentRef = React.createRef();
+    // console.log("filtered item ", this.props.filteredItem[0].total_points);
   }
 
-  // fetching the data################
-  // language toggle state
+  // updatingUserScore = async (res) => {
+  //   console.log("Updating user score" this.props.userId);
+  //   c
+
+  //   // getting score field from another collection
+
+  //   const scoreFields = await fetch(
+  //     "http://43.204.229.206:8000/api/v1/programmers-ranks/" +
+  //       this.props.userId +
+  //       "/"
+  //   );
+
+  //   const output = await scoreFields.json();
+
+  //   const updated_points =
+  //     output.points + this.props.filteredItem[0].total_points;
+
+  //   // Updating the score
+  //   fetch(
+  //     `http://43.204.229.206:8000/api/v1/programmers-ranks/${this.props.userId}/`,
+  //     {
+  //       method: "PATCH",
+  //       body: JSON.stringify({ output, points: updated_points }),
+  //       headers: {
+  //         "Content-type": "application/json; charset=UTF-8",
+  //       },
+  //     }
+  //   )
+  //     .then((response) => response.json())
+  //     .then((json) => {if(json =="Score and question updated successfully")
+  //     {
+
+  //     }});
+  // };
 
   submitHandler = () => {
     this.setState({
@@ -69,12 +99,17 @@ export default class home extends Component {
         )
         .then((res) => {
           console.log("data in response", res.data);
-          this.setState({
-            data: res.data,
-            isloaded: true,
-          });
-          this.props.scoreInc(100);
+          if (res.data.success) {
+            this.setState({
+              data: res.data,
+              isloaded: true,
+            });
+          }
+          // this.props.scoreInc(100);
         });
+      if (this.state.overall == "Passed") {
+        // checking and updating the score
+      }
     } catch (error) {
       console.log("Error: " + error);
       this.setState({
@@ -184,7 +219,13 @@ export default class home extends Component {
                 <div className="output_box">
                   <div>
                     {this.state.isloaded ? (
-                      <RunnerEditorOutput data={this.state.data} />
+                      <RunnerEditorOutput
+                        data={this.state.data}
+                        testCases={this.props.testCases}
+                        overall={this.state.overall}
+                        updatingUserScore={this.props.updatingUserScore}
+                        // userId={this.state.id}
+                      />
                     ) : (
                       <div>
                         <h6>

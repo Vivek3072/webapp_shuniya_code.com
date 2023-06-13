@@ -8,6 +8,7 @@ import {
 } from "react-bootstrap-icons";
 import "./CodeEditor.css";
 import { useSelector } from "react-redux";
+import { height } from "@mui/system";
 
 const CodeEditor = ({
   texteditor,
@@ -43,11 +44,16 @@ const CodeEditor = ({
   const secondDivRef = useRef();
 
   const handleScrollFirst = (scroll) => {
-    secondDivRef.current.scrollTop = scroll.target.scrollTop;
+    console.log(
+      "#######",
+      scroll.target.scrollTop,
+      secondDivRef.current.scrollTop
+    );
+    // secondDivRef.current.scrollTop = scroll.target.scrollTop;
   };
 
   const handleScrollSecond = (scroll) => {
-    firstDivRef.current.scrollTop = scroll.target.scrollTop;
+    // firstDivRef.current.scrollTop = scroll.target.scrollTop;
   };
   //input tab key wala
   const inputRef = useRef(null);
@@ -77,7 +83,7 @@ const CodeEditor = ({
 
   return (
     <div className="code-editor-container row ">
-      <div className="editor_main mx-2">
+      <div className="editor_main mx-1">
         <div
           className="line-numbers mt-1"
           onScroll={handleScrollFirst}
@@ -95,6 +101,7 @@ const CodeEditor = ({
           value={texteditor}
           onChange={handleLineChange}
           className="editor_class mt-1 multi-input p-1 col-10"
+          style={{ minHeight: "max-content" }}
         ></textarea>
       </div>
 
